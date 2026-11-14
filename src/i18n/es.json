@@ -48,17 +48,8 @@
     "back": "Volver al panel"
   },
   "pages": {
-    "protocol": {
-      "title": "Protocolo: {{id}}",
-      "pending": "Pantalla de protocolo en construcción (P3). El contenido llegará desde /content (P2)."
-    },
-    "emergency": {
-      "title": "Modo emergencia",
-      "pending": "Modo emergencia en construcción (P3)."
-    },
     "control": {
-      "title": "Centro de control",
-      "pending": "Centro de control en construcción (UI: P3, datos: P1)."
+      "title": "Centro de control"
     },
     "notFound": {
       "title": "Página no encontrada"
@@ -423,29 +414,18 @@
     "pending": "El umbral clínico está pendiente de revisión médica."
   },
   "steps": {
-    "title": "Qué hacer ahora",
     "fullProtocol": "Ver protocolo completo",
     "calmTitle": "Nada pendiente",
     "calmLead": "Tus lecturas están dentro de tu rango habitual. Si notas algo, anótalo y la app te dirá qué hacer.",
     "watchTitle": "Atenta a cómo sigues",
     "watchLead": "Hay una lectura en seguimiento. No hace falta actuar todavía; anota cualquier síntoma.",
-    "items": {
-      "stop": "Para y sujétate a un anclaje.",
-      "breathe": "Respira despacio 2 minutos sin moverte.",
-      "askHelp": "Si sigue alto, pide ayuda: tu compañero recibe el aviso.",
-      "clinical": "Paso clínico del manual de a bordo."
-    },
     "done": "Hecho",
     "doneAt": "Hecho a las {{time}}",
     "finished": "Protocolo completado. Queda registrado con la hora de cada paso.",
     "needHelp": "Necesito ayuda",
-    "imOk": "Estoy bien",
     "logSymptom": "Anotar síntoma",
-    "buddy": {
-      "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
-      "sent": "Aviso enviado a tu compañero.",
-      "ok": "Anotado: dijiste que estás bien."
-    }
+    "relatedProtocol": "Ver el protocolo relacionado",
+    "helpSent": "Aviso enviado"
   },
   "engine": {
     "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",
@@ -565,5 +545,145 @@
         "Protocolo del síntoma"
       ]
     }
+  },
+  "help": {
+    "title": "¿Necesitas ayuda?",
+    "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
+    "needHelp": "Necesito ayuda",
+    "imOk": "Estoy bien",
+    "openProtocol": "Abrir el protocolo",
+    "status": {
+      "sent": "Aviso enviado a las pantallas de la tripulación. Esperando a que tu compañero confirme…",
+      "acknowledged": "Tu compañero ha confirmado: viene en camino.",
+      "noAck": "Nadie ha confirmado todavía. Pide ayuda en voz alta o por el interfono.",
+      "unsupported": "Esta pantalla no puede avisar a otras. Pide ayuda en voz alta o por el interfono.",
+      "cancel": "Cancelar aviso",
+      "close": "Cerrar"
+    },
+    "autoSent": "Para esta señal avisamos a tu compañero de inmediato. Ya está avisado.",
+    "imOkCancel": "Estoy bien: cancelar el aviso"
+  },
+  "buddy": {
+    "title": "{{name}} necesita ayuda",
+    "asked": "Ha pulsado «Necesito ayuda»",
+    "noAnswer": "No ha respondido a la alerta",
+    "going": "Voy a ayudar",
+    "silence": "Silenciar",
+    "immediate": "Aviso automático por la señal medida"
+  },
+  "protocol": {
+    "elapsed": "Tiempo desde el inicio:",
+    "decision": "¿Estás consciente y puedes actuar solo?",
+    "canSolo": "Sí, puedo hacerlo solo",
+    "needBuddy": "No, avisa a mi compañero",
+    "iAmHelper": "Soy el compañero que ayuda",
+    "modeLabel": "Modo del protocolo",
+    "mode": {
+      "solo": "Yo solo",
+      "buddy": "Con compañero"
+    },
+    "vitals": "Signos vitales del afectado",
+    "callAnother": "Pedir otro compañero",
+    "trigger": "Cuándo se abre",
+    "buddyPolicyTitle": "¿Hace falta compañero?",
+    "escalate": "Cuándo escalar",
+    "source": "Riesgo de NASA relacionado",
+    "pendingNote": "Los pasos no clínicos siguen el formato del plan. Cada paso clínico remite al manual médico de a bordo y debe revisarlo alguien con formación médica.",
+    "notFoundTitle": "Protocolo no encontrado",
+    "notFound": "No hay ningún protocolo con el identificador «{{id}}».",
+    "kind": {
+      "safety": "Seguridad",
+      "action": "Acción",
+      "notify": "Aviso",
+      "clinical": "Paso clínico",
+      "record": "Registro"
+    },
+    "buddyPolicy": {
+      "always": "Sí, siempre.",
+      "if_no_response": "Si no respondes en 30 s, se avisa al compañero.",
+      "by_severity": "Según la gravedad.",
+      "if_immobile": "Si no puedes moverte.",
+      "optional": "Opcional y con privacidad.",
+      "no": "No hace falta.",
+      "everyone": "Toda la tripulación, al refugio."
+    },
+    "bpm": "lpm"
+  },
+  "emergency": {
+    "title": "Emergencia",
+    "helpNow": "Necesito ayuda ahora",
+    "helpSent": "Aviso enviado",
+    "choose": "Elige la situación",
+    "open": "Ir a emergencia"
+  },
+  "library": {
+    "hazardsTitle": "Los 5 peligros del vuelo espacial (RIDGE)",
+    "hazardsSub": "Según el Programa de Investigación Humana de NASA. Pueden sumarse y agravar sus efectos.",
+    "seeRisks": "Ver sus riesgos",
+    "risksTitle": "Los 17 riesgos para la salud",
+    "risksSub": "Riesgos identificados por NASA HRP. Su efecto cambia según el destino: órbita baja, Luna o Marte.",
+    "filter": "Filtrar riesgos",
+    "all": "Todos",
+    "showing": "Mostrando {{n}} riesgos",
+    "category": {
+      "physiology": "Fisiología humana",
+      "behavior": "Conducta y factores humanos",
+      "radiation": "Radiación"
+    },
+    "hazards": "Peligros",
+    "openProtocol": "Abrir protocolo: {{name}}",
+    "studies": "Cómo lo combatimos: estudios de NASA",
+    "earth": "Beneficios en la Tierra (CSA)",
+    "officialPage": "Página oficial del riesgo",
+    "mission": {
+      "artemis-ii": "Artemis II",
+      "iss": "ISS",
+      "iss-past": "ISS, finalizado"
+    },
+    "research": "Investigación en curso de NASA HRP",
+    "mappingNote": "La relación entre cada riesgo y los peligros es una lectura del equipo a partir de los textos de NASA.",
+    "offlineNote": "Todo este contenido funciona sin red. Los enlaces abren la página oficial cuando hay conexión."
+  },
+  "control": {
+    "link": "Enlace con la Tierra",
+    "linkSub": "Todo se guarda primero a bordo y se envía cuando hay enlace. La nave nunca espera respuesta.",
+    "network": "Red",
+    "online": "Con conexión",
+    "offline": "Sin conexión",
+    "supabase": "Servidor de la Tierra",
+    "configured": "Configurado",
+    "notConfigured": "Sin configurar",
+    "pending": "En la bandeja de salida",
+    "synced": "Entregados",
+    "linkActive": "Enlace activo",
+    "delay": "Retardo simulado",
+    "delayMode": {
+      "none": "Sin retardo",
+      "moon": "Luna",
+      "mars": "Marte"
+    },
+    "earth": "Datos recibidos en la Tierra",
+    "alerts": "Alertas",
+    "protocols": "Protocolos",
+    "noEarthData": "Sin datos (no hay enlace)",
+    "notes": "Notas del control de misión",
+    "log": "Registro a bordo (cifrado)",
+    "logSub": "Lo que se ha guardado en este dispositivo y viajará a la Tierra.",
+    "noEvents": "Todavía no hay eventos registrados.",
+    "event": {
+      "help_prompt": "Se preguntó «¿Necesitas ayuda?»",
+      "help_answer_ok": "Respondió «Estoy bien»",
+      "help_requested": "Pidió ayuda",
+      "help_auto_sent": "Aviso automático: sin respuesta",
+      "help_acknowledged": "El compañero confirmó",
+      "protocol_started": "Protocolo iniciado",
+      "protocol_step_done": "Paso hecho",
+      "protocol_finished": "Protocolo completado"
+    }
+  },
+  "errors": {
+    "title": "El módulo «{{name}}» ha fallado",
+    "body": "El resto de la app sigue funcionando. Si es urgente, abre <a>Emergencia</a>.",
+    "retry": "Reintentar"
   }
 }

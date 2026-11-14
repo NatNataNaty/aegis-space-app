@@ -14,14 +14,14 @@
   --border-2: #5c3d49;
   --text: #f7e9dd;
   --text-2: #e3cdbd;
-  --muted: #c4a999;
+  --muted: #d2bbac; /* ≥ 7:1 sobre los paneles (WCAG AAA) */
   --accent: #9fd0f2; /* azul del atardecer marciano: información y calma */
   --accent-2: #6fa9d6;
   --amber: #f2b35b; /* ámbar: atención */
   --rust: #c8432c; /* óxido: emergencia (4,9:1 con texto blanco, WCAG AA) */
   --ok: #8fd6b4;
   --warn: #f2b35b;
-  --alert: #ff8a6b;
+  --alert: #ffa088; /* ≥ 7:1 sobre los paneles (WCAG AAA) */
   --live: #8fd6b4;
   --sim: #c9b6f2;
   --user: #9fe0d4;
@@ -36,7 +36,7 @@
 
 html,
 body {
-  font-size: 15px;
+  font-size: 16px; /* UI/UX Pro Max: texto base ≥ 16 px */
   font-variant-numeric: tabular-nums;
 }
 
@@ -339,19 +339,11 @@ body {
 
 .mars-hero__sun {
   fill: #f2fbff;
-  animation: sun-drift 40s ease-in-out infinite alternate;
-}
-
-@keyframes sun-drift {
-  to {
-    transform: translate(-14px, 18px);
-  }
 }
 
 .mars-hero__dust circle {
   fill: #f7e9dd;
   opacity: 0;
-  animation: dust 14s linear infinite;
 }
 
 .mars-hero__dust circle:nth-child(2) {
@@ -370,39 +362,14 @@ body {
   animation-duration: 12s;
 }
 
-@keyframes dust {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  15% {
-    opacity: 0.55;
-  }
-  85% {
-    opacity: 0.35;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(120px, -40px);
-  }
-}
-
 .mars-hero__ridge--far {
   fill: #6b3426;
-  animation: ridge 26s ease-in-out infinite alternate;
 }
 .mars-hero__ridge--mid {
   fill: #4a2119;
-  animation: ridge 20s ease-in-out infinite alternate-reverse;
 }
 .mars-hero__ridge--near {
   fill: #2e130f;
-}
-
-@keyframes ridge {
-  to {
-    transform: translateX(-18px);
-  }
 }
 
 .mars-hero__content {

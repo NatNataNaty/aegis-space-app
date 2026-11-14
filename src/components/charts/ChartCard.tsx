@@ -5,14 +5,14 @@ import { OriginBadge } from "../common/OriginBadge";
 export const CHART = {
   // Paleta «Atardecer marciano» (mismos valores que las variables de src/styles/mars.css).
   grid: "rgba(227, 205, 189, 0.12)",
-  axis: "#c4a999",
+  axis: "#d2bbac",
   tooltipBg: "#1a0f14",
   tooltipBorder: "#5c3d49",
   primary: "#9fd0f2",
   secondary: "#c9b6f2",
   live: "#8fd6b4",
   warn: "#f2b35b",
-  alert: "#ff8a6b",
+  alert: "#ffa088",
 } as const;
 
 export const axisProps = {
@@ -30,7 +30,7 @@ export const tooltipProps = {
     fontSize: 12,
     color: "#f7e9dd",
   },
-  labelStyle: { color: "#c4a999" },
+  labelStyle: { color: "#d2bbac" },
   cursor: { stroke: "rgba(227, 205, 189, 0.3)" },
 } as const;
 

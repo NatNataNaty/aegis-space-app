@@ -132,12 +132,14 @@ describe("Zod Validation for Earth Payloads", () => {
 });
 
 describe("Mission Overview & Ground Notes API", () => {
-  it("fetches mission overview with fallback demo data for /control screen", async () => {
+  it("without a link, the /control overview reports no Earth data instead of made-up numbers", async () => {
     const overview = await fetchMissionOverview();
     expect(overview).toBeDefined();
-    expect(overview.telemetryCount).toBeGreaterThanOrEqual(0);
-    expect(overview.alertsCount).toBeGreaterThanOrEqual(0);
-    expect(overview.protocolsCount).toBeGreaterThanOrEqual(0);
+    // Sin enlace no se inventan cifras: null significa «sin datos de la Tierra».
+    expect(overview.telemetryCount === null || overview.telemetryCount >= 0).toBe(true);
+    expect(overview.alertsCount === null || overview.alertsCount >= 0).toBe(true);
+    expect(overview.protocolsCount === null || overview.protocolsCount >= 0).toBe(true);
+    if (!overview.isConfigured) expect([overview.telemetryCount, overview.alertsCount, overview.protocolsCount]).toEqual([null, null, null]);
     expect(Array.isArray(overview.recentNotes)).toBe(true);
   });
 

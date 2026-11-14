@@ -20,6 +20,8 @@ interface HealthState {
   selfReport: SelfReport | null;
   reactionTest: ReactionTestResult | null;
   activeAlerts: Alert[];
+  /** false hasta la primera evaluación del motor (al arrancar la lista vacía no significa «sin alertas»). */
+  alertsEvaluated: boolean;
   alertLog: LoggedAlert[];
 
   setScenario: (id: ScenarioId) => void;
@@ -39,6 +41,7 @@ export const useHealthStore = create<HealthState>((set, get) => ({
   selfReport: null,
   reactionTest: null,
   activeAlerts: [],
+  alertsEvaluated: false,
   alertLog: [],
 
   setScenario: (id) => {
@@ -57,6 +60,7 @@ export const useHealthStore = create<HealthState>((set, get) => ({
 
   setAlerts: (alerts, missionLabel) => {
     const signature = (list: Alert[]) => list.map((a) => `${a.id}|${a.level}|${a.observed}`).join("¦");
+    if (!get().alertsEvaluated) set({ alertsEvaluated: true });
     if (signature(alerts) === signature(get().activeAlerts)) return;
 
     const now = Date.now();

@@ -48,17 +48,8 @@
     "back": "Back to dashboard"
   },
   "pages": {
-    "protocol": {
-      "title": "Protocol: {{id}}",
-      "pending": "Protocol screen under construction (P3). Content will come from /content (P2)."
-    },
-    "emergency": {
-      "title": "Emergency mode",
-      "pending": "Emergency mode under construction (P3)."
-    },
     "control": {
-      "title": "Mission control",
-      "pending": "Mission control under construction (UI: P3, data: P1)."
+      "title": "Mission control"
     },
     "notFound": {
       "title": "Page not found"
@@ -423,29 +414,18 @@
     "pending": "The clinical threshold is pending medical review."
   },
   "steps": {
-    "title": "What to do now",
     "fullProtocol": "See full protocol",
     "calmTitle": "Nothing pending",
     "calmLead": "Your readings are within your usual range. If you notice something, log it and the app will tell you what to do.",
     "watchTitle": "Watch how you feel",
     "watchLead": "One reading is under watch. No action needed yet; log any symptom.",
-    "items": {
-      "stop": "Stop and hold on to an anchor.",
-      "breathe": "Breathe slowly for 2 minutes without moving.",
-      "askHelp": "If it stays high, ask for help: your crewmate gets an alert.",
-      "clinical": "Clinical step from the onboard manual."
-    },
     "done": "Done",
     "doneAt": "Done at {{time}}",
     "finished": "Protocol complete. Each step is logged with its time.",
     "needHelp": "I need help",
-    "imOk": "I'm OK",
     "logSymptom": "Log symptom",
-    "buddy": {
-      "countdown": "If you don't answer in {{s}} s, we alert your crewmate.",
-      "sent": "Alert sent to your crewmate.",
-      "ok": "Logged: you said you're OK."
-    }
+    "relatedProtocol": "See the related protocol",
+    "helpSent": "Alert sent"
   },
   "engine": {
     "disclaimer": "Educational prototype to support observation. Not a diagnosis.",
@@ -565,5 +545,145 @@
         "Protocol for that symptom"
       ]
     }
+  },
+  "help": {
+    "title": "Do you need help?",
+    "countdown": "If you do not answer in {{s}} s, we will alert your crewmate.",
+    "needHelp": "I need help",
+    "imOk": "I'm OK",
+    "openProtocol": "Open the protocol",
+    "status": {
+      "sent": "Alert sent to the crew screens. Waiting for your crewmate to confirm…",
+      "acknowledged": "Your crewmate confirmed: they are on their way.",
+      "noAck": "Nobody has confirmed yet. Call for help out loud or on the intercom.",
+      "unsupported": "This screen cannot alert others. Call for help out loud or on the intercom.",
+      "cancel": "Cancel alert",
+      "close": "Close"
+    },
+    "autoSent": "For this signal we alert your crewmate immediately. They have been alerted.",
+    "imOkCancel": "I'm OK: cancel the alert"
+  },
+  "buddy": {
+    "title": "{{name}} needs help",
+    "asked": "They pressed “I need help”",
+    "noAnswer": "They did not answer the alert",
+    "going": "I'm helping",
+    "silence": "Silence",
+    "immediate": "Automatic alert from the measured signal"
+  },
+  "protocol": {
+    "elapsed": "Time since start:",
+    "decision": "Are you conscious and able to act alone?",
+    "canSolo": "Yes, I can do it alone",
+    "needBuddy": "No, alert my crewmate",
+    "iAmHelper": "I am the crewmate helping",
+    "modeLabel": "Protocol mode",
+    "mode": {
+      "solo": "On my own",
+      "buddy": "With a crewmate"
+    },
+    "vitals": "Vital signs of the affected person",
+    "callAnother": "Call another crewmate",
+    "trigger": "When it opens",
+    "buddyPolicyTitle": "Is a crewmate needed?",
+    "escalate": "When to escalate",
+    "source": "Related NASA risk",
+    "pendingNote": "Non-clinical steps follow the plan's format. Each clinical step points to the onboard medical manual and must be reviewed by someone with medical training.",
+    "notFoundTitle": "Protocol not found",
+    "notFound": "There is no protocol with the id “{{id}}”.",
+    "kind": {
+      "safety": "Safety",
+      "action": "Action",
+      "notify": "Alert",
+      "clinical": "Clinical step",
+      "record": "Log"
+    },
+    "buddyPolicy": {
+      "always": "Yes, always.",
+      "if_no_response": "If you do not answer in 30 s, your crewmate is alerted.",
+      "by_severity": "Depending on severity.",
+      "if_immobile": "If you cannot move.",
+      "optional": "Optional and private.",
+      "no": "Not needed.",
+      "everyone": "The whole crew, to the shelter."
+    },
+    "bpm": "bpm"
+  },
+  "emergency": {
+    "title": "Emergency",
+    "helpNow": "I need help now",
+    "helpSent": "Alert sent",
+    "choose": "Choose the situation",
+    "open": "Go to emergency"
+  },
+  "library": {
+    "hazardsTitle": "The 5 hazards of human spaceflight (RIDGE)",
+    "hazardsSub": "From NASA's Human Research Program. They can feed off one another and worsen their effects.",
+    "seeRisks": "See its risks",
+    "risksTitle": "The 17 health risks",
+    "risksSub": "Risks identified by NASA HRP. Their effects vary by destination: low Earth orbit, the Moon or Mars.",
+    "filter": "Filter risks",
+    "all": "All",
+    "showing": "Showing {{n}} risks",
+    "category": {
+      "physiology": "Human physiology",
+      "behavior": "Behavioral performance and human factors",
+      "radiation": "Space radiation"
+    },
+    "hazards": "Hazards",
+    "openProtocol": "Open protocol: {{name}}",
+    "studies": "How we fight it: NASA studies",
+    "earth": "Benefits on Earth (CSA)",
+    "officialPage": "Official risk page",
+    "mission": {
+      "artemis-ii": "Artemis II",
+      "iss": "ISS",
+      "iss-past": "ISS, completed"
+    },
+    "research": "NASA HRP ongoing research",
+    "mappingNote": "The link between each risk and the hazards is the team's reading of NASA's texts.",
+    "offlineNote": "All of this content works offline. Links open the official page when there is a connection."
+  },
+  "control": {
+    "link": "Link with Earth",
+    "linkSub": "Everything is stored on board first and sent when there is a link. The spacecraft never waits for an answer.",
+    "network": "Network",
+    "online": "Online",
+    "offline": "Offline",
+    "supabase": "Earth server",
+    "configured": "Configured",
+    "notConfigured": "Not configured",
+    "pending": "In the outbox",
+    "synced": "Delivered",
+    "linkActive": "Link active",
+    "delay": "Simulated delay",
+    "delayMode": {
+      "none": "No delay",
+      "moon": "Moon",
+      "mars": "Mars"
+    },
+    "earth": "Data received on Earth",
+    "alerts": "Alerts",
+    "protocols": "Protocols",
+    "noEarthData": "No data (no link)",
+    "notes": "Mission control notes",
+    "log": "Onboard log (encrypted)",
+    "logSub": "What has been stored on this device and will travel to Earth.",
+    "noEvents": "No events logged yet.",
+    "event": {
+      "help_prompt": "“Do you need help?” was asked",
+      "help_answer_ok": "Answered “I'm OK”",
+      "help_requested": "Asked for help",
+      "help_auto_sent": "Automatic alert: no answer",
+      "help_acknowledged": "Crewmate confirmed",
+      "protocol_started": "Protocol started",
+      "protocol_step_done": "Step done",
+      "protocol_finished": "Protocol completed"
+    }
+  },
+  "errors": {
+    "title": "The “{{name}}” module failed",
+    "body": "The rest of the app keeps working. If it is urgent, open <a>Emergency</a>.",
+    "retry": "Retry"
   }
 }

@@ -232,26 +232,18 @@ export async function syncOutboxBatch(batchSize = 25): Promise<{
 // 4. Suscripción y Polling Seguro a Notas de Tierra (ground_notes)
 // ==============================================================================
 
+// Notas de respaldo SOLO para la demo sin enlace: sin contenido clínico ni operativo inventado.
 const FALLBACK_GROUND_NOTES: GroundNote[] = [
   {
     id: "demo-note-1",
     mission_id: "ARES-01",
-    author_role: "Flight Surgeon (JSC)",
-    title: "Revisión de contramedidas ciclo 14",
-    note: "Se aprueba incremento de 15 min en protocolo de cicloergómetro para CDR tras análisis de telemetría cardiovascular.",
+    author_role: "Centro de control (demo)",
+    title: "Nota de demostración",
+    note: "Ejemplo de cómo llega una observación de la Tierra en el siguiente contacto. No es una indicación real.",
     priority: "normal",
     created_at: new Date(Date.now() - 3600 * 4000).toISOString(),
   },
-  {
-    id: "demo-note-2",
-    mission_id: "ARES-01",
-    author_role: "Biomedical Engineer (CapCom)",
-    title: "Alerta meteorología espacial DONKI",
-    note: "Actividad solar moderada prevista para las próximas 18 horas. Dosímetros en modo de muestreo cada 30 min.",
-    priority: "urgent",
-    created_at: new Date(Date.now() - 3600 * 1000).toISOString(),
-  },
-];
+]
 
 /**
  * Consulta las notas de Tierra más recientes desde Supabase (o fallback offline).
@@ -341,9 +333,10 @@ export function startGroundNotesSubscription(): () => void {
 // ==============================================================================
 
 export interface MissionOverview {
-  telemetryCount: number;
-  alertsCount: number;
-  protocolsCount: number;
+  /** null = no hay datos de la Tierra (sin enlace o sin configurar): nunca se inventan cifras. */
+  telemetryCount: number | null;
+  alertsCount: number | null;
+  protocolsCount: number | null;
   notesCount: number;
   recentNotes: GroundNote[];
   isOnline: boolean;
@@ -366,9 +359,9 @@ export async function fetchMissionOverview(): Promise<MissionOverview> {
   if (!isConfigured || !supabase || !isOnline) {
     const notes = await fetchGroundNotes();
     return {
-      telemetryCount: 1420,
-      alertsCount: 3,
-      protocolsCount: 12,
+      telemetryCount: null,
+      alertsCount: null,
+      protocolsCount: null,
       notesCount: notes.length,
       recentNotes: notes,
       isOnline,
@@ -387,9 +380,9 @@ export async function fetchMissionOverview(): Promise<MissionOverview> {
     const notes = await fetchGroundNotes();
 
     return {
-      telemetryCount: tRes.count ?? 1420,
-      alertsCount: aRes.count ?? 3,
-      protocolsCount: pRes.count ?? 12,
+      telemetryCount: tRes.count ?? null,
+      alertsCount: aRes.count ?? null,
+      protocolsCount: pRes.count ?? null,
       notesCount: notes.length,
       recentNotes: notes,
       isOnline,
@@ -399,9 +392,9 @@ export async function fetchMissionOverview(): Promise<MissionOverview> {
   } catch {
     const notes = await fetchGroundNotes();
     return {
-      telemetryCount: 1420,
-      alertsCount: 3,
-      protocolsCount: 12,
+      telemetryCount: null,
+      alertsCount: null,
+      protocolsCount: null,
       notesCount: notes.length,
       recentNotes: notes,
       isOnline,
