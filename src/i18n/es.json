@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "aegis-space-med",
-    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como SIMULADO no representan lecturas reales."
+    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como «Simulado» no representan lecturas reales."
   },
   "mission": {
     "name": "Tránsito a Marte",
@@ -44,20 +43,8 @@
       "Si no hay rostro o la calidad es insuficiente, el dato se muestra como «No disponible», nunca como cero."
     ]
   },
-  "tabs": {
-    "ariaLabel": "Secciones",
-    "eye": "Ojos y alerta",
-    "trends": "Tendencias",
-    "schedule": "Sueño y misión",
-    "exposure": "Exposición",
-    "alerts": "Alertas",
-    "self": "Autoevaluación",
-    "guide": "Guía"
-  },
   "nav": {
-    "panel": "Panel",
     "emergency": "Emergencia",
-    "control": "Centro de control",
     "back": "Volver al panel"
   },
   "pages": {
@@ -81,11 +68,11 @@
     "pendingReview": "PENDIENTE DE REVISIÓN MÉDICA"
   },
   "origin": {
-    "camera_live": "EN VIVO",
-    "simulated": "SIMULADO",
-    "user_reported": "AUTORREPORTADO",
-    "local_test": "PRUEBA LOCAL",
-    "stale": "LECTURA ANTERIOR",
+    "camera_live": "En vivo",
+    "simulated": "Simulado",
+    "user_reported": "Autorreportado",
+    "local_test": "Prueba local",
+    "stale": "Lectura anterior",
     "staleTitle": "Última lectura antes de pausar la cámara"
   },
   "simStatus": {
@@ -155,11 +142,11 @@
     "faceDetected": "Rostro detectado",
     "noFace": "Sin rostro",
     "live": {
-      "starting": "INICIANDO",
-      "paused": "CÁMARA EN PAUSA",
-      "inactive": "CÁMARA INACTIVA",
-      "active": "CÁMARA ACTIVA",
-      "activeLong": "CÁMARA ACTIVA — PROCESAMIENTO LOCAL"
+      "starting": "Iniciando",
+      "paused": "Cámara en pausa",
+      "inactive": "Cámara inactiva",
+      "active": "Cámara activa",
+      "activeLong": "Cámara activa — procesamiento local"
     },
     "eyes": "Ojos",
     "opening": "Apertura",
@@ -426,7 +413,7 @@
     "bpm": "latidos por minuto",
     "baseline": "Lo normal para ti es {{value}}",
     "headline": {
-      "hrHigh": "Tu corazón va demasiado rápido.",
+      "hrVariation": "Tu frecuencia cardíaca está lejos de lo habitual.",
       "alert": "Algo necesita tu atención.",
       "watch": "Vigila cómo te sientes hoy.",
       "calm": "Todo en calma. Sigue con tu día."

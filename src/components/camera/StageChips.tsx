@@ -15,7 +15,7 @@ export function StageChips() {
         {frame.faceVisible ? t("camera.faceDetected") : t("camera.noFace")}
       </span>
       <QualityTag quality={frame.quality} short />
-      <span className="chip chip--mono">{frame.fps} FPS</span>
+      <span className="chip">{frame.fps} FPS</span>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
                 {alert.signals.map((s, i) => (
                   <tr key={i}>
                     <td>{s.label}</td>
-                    <td className="mono">{s.value}</td>
+                    <td>{s.value}</td>
                     <td>
                       <OriginBadge origin={s.origin} />
                     </td>

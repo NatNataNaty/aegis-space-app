@@ -21,22 +21,24 @@ export function ModuleRail({ current, onChange }: { current: ModuleId; onChange:
   return (
     <nav className="rail" aria-label={t("modules.aria")}>
       <span className="rail__brand">aegis</span>
-      {MODULES.map((m) => (
-        <button
-          key={m}
-          type="button"
-          className={cx("rail__item", current === m && "rail__item--on")}
-          aria-current={current === m ? "page" : undefined}
-          onClick={() => onChange(m)}
-        >
-          <span>{t(`modules.${m}`)}</span>
-          {(m === "vitals" || m === "alerts") && alertCount > 0 ? (
-            <span className="rail__badge">{alertCount}</span>
-          ) : hint[m] ? (
-            <span className="rail__hint">{hint[m]}</span>
-          ) : null}
-        </button>
-      ))}
+      <div className="rail__modules">
+        {MODULES.map((m) => (
+          <button
+            key={m}
+            type="button"
+            className={cx("rail__item", current === m && "rail__item--on")}
+            aria-current={current === m ? "page" : undefined}
+            onClick={() => onChange(m)}
+          >
+            <span>{t(`modules.${m}`)}</span>
+            {(m === "vitals" || m === "alerts") && alertCount > 0 ? (
+              <span className="rail__badge">{alertCount}</span>
+            ) : hint[m] ? (
+              <span className="rail__hint">{hint[m]}</span>
+            ) : null}
+          </button>
+        ))}
+      </div>
       <div className="rail__spacer" />
       <div className="rail__assistant">
         <span className="rail__assistant-title">{t("modules.assistant")}</span>

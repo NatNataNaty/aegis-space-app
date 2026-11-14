@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "aegis-space-med",
-    "footer": "aegis-space-med · Educational prototype, NASA Space Apps 2026. Not a medical device. Data marked SIMULATED are not real readings."
+    "footer": "aegis-space-med · Educational prototype, NASA Space Apps 2026. Not a medical device. Data marked “Simulated” are not real readings."
   },
   "mission": {
     "name": "Mars transit",
@@ -44,20 +43,8 @@
       "If no face is found or quality is too low, the value is shown as “Not available”, never as zero."
     ]
   },
-  "tabs": {
-    "ariaLabel": "Sections",
-    "eye": "Eyes & alertness",
-    "trends": "Trends",
-    "schedule": "Sleep & mission",
-    "exposure": "Exposure",
-    "alerts": "Alerts",
-    "self": "Self-check",
-    "guide": "Guide"
-  },
   "nav": {
-    "panel": "Dashboard",
     "emergency": "Emergency",
-    "control": "Mission control",
     "back": "Back to dashboard"
   },
   "pages": {
@@ -81,11 +68,11 @@
     "pendingReview": "PENDING MEDICAL REVIEW"
   },
   "origin": {
-    "camera_live": "LIVE",
-    "simulated": "SIMULATED",
-    "user_reported": "SELF-REPORTED",
-    "local_test": "LOCAL TEST",
-    "stale": "PREVIOUS READING",
+    "camera_live": "Live",
+    "simulated": "Simulated",
+    "user_reported": "Self-reported",
+    "local_test": "Local test",
+    "stale": "Previous reading",
     "staleTitle": "Last reading before the camera was paused"
   },
   "simStatus": {
@@ -155,11 +142,11 @@
     "faceDetected": "Face detected",
     "noFace": "No face",
     "live": {
-      "starting": "STARTING",
-      "paused": "CAMERA PAUSED",
-      "inactive": "CAMERA OFF",
-      "active": "CAMERA ON",
-      "activeLong": "CAMERA ON — LOCAL PROCESSING"
+      "starting": "Starting",
+      "paused": "Camera paused",
+      "inactive": "Camera off",
+      "active": "Camera on",
+      "activeLong": "Camera on — local processing"
     },
     "eyes": "Eyes",
     "opening": "Openness",
@@ -426,7 +413,7 @@
     "bpm": "beats per minute",
     "baseline": "Normal for you is {{value}}",
     "headline": {
-      "hrHigh": "Your heart is beating too fast.",
+      "hrVariation": "Your heart rate is far from your usual range.",
       "alert": "Something needs your attention.",
       "watch": "Keep an eye on how you feel today.",
       "calm": "All calm. Carry on with your day."
