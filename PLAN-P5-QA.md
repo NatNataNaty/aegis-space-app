@@ -1,6 +1,6 @@
 # Checklist de trabajo P5 — Visión y QA
 
-**Repositorio:** `NelvaAdalit/aegis-space-med`  
+**Repositorio:** `NatNataNaty/aegis-space-med`  
 **Responsable:** P5  
 **Actualizado para:** `main` después de integrar P1 (PWA/CSP/Supabase) y P3 (i18n ES/EN y router).  
 **Propósito:** llevar el seguimiento del QA y la integración P5 sin duplicar pruebas ni interferir con módulos de otras personas.

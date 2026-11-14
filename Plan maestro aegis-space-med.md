@@ -4,7 +4,7 @@ Nov 14, 2026 · @Natalia Diaz
 
 ## Resumen y decisiones clave
 
-**aegis-space-med** es una app médica de apoyo a decisiones para astronautas que no pueden recibir ayuda de la Tierra. Funciona 100 % sin conexión, está en español e inglés y la construyen 5 personas en paralelo sobre [el repositorio de GitHub](https://github.com/NelvaAdalit/aegis-space-med).
+**aegis-space-med** es una app médica de apoyo a decisiones para astronautas que no pueden recibir ayuda de la Tierra. Funciona 100 % sin conexión, está en español e inglés y la construyen 5 personas en paralelo sobre [el repositorio de GitHub](https://github.com/NatNataNaty/aegis-space-med).
 
 Qué cambia respecto a la versión anterior: el público ya no es educativo, sino la tripulación en vuelo. Por eso la app no depende de nada externo mientras se usa: ni APIs, ni IA en la nube, ni servidores.
 
@@ -47,7 +47,7 @@ Guárdalo como `CLAUDE.md` en la raíz del repositorio. Así las 5 personas trab
 
 ```markdown
 # PROYECTO: aegis-space-med
-Repositorio: https://github.com/NelvaAdalit/aegis-space-med
+Repositorio: https://github.com/NatNataNaty/aegis-space-med
 
 # ROL
 Actúa como arquitecto full-stack senior, especialista en apps offline-first y en UX
@@ -326,12 +326,12 @@ El repositorio de GitHub está vacío (sin commits), así que P1 hace el arranqu
 - [ ] VS Code o Antigravity como editor
 - [ ] Rust + requisitos de Tauri (rustup, y en Windows las Build Tools de Visual Studio): obligatorio para P1, recomendado para el resto
 - [ ] `npm install -g uipro-cli` (UI/UX Pro Max)
-- [ ] Clonar: `git clone https://github.com/NelvaAdalit/aegis-space-med.git`
+- [ ] Clonar: `git clone https://github.com/NatNataNaty/aegis-space-med.git`
 
 **Solo P1, el primer día**
 
 ```bash
-git clone https://github.com/NelvaAdalit/aegis-space-med.git
+git clone https://github.com/NatNataNaty/aegis-space-med.git
 cd aegis-space-med
 pnpm create next-app@latest . --ts --tailwind --eslint --app --src-dir
 pnpm dlx shadcn@latest init

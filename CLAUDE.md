@@ -1,5 +1,5 @@
 # PROYECTO: aegis-space-med
-Repositorio: https://github.com/NelvaAdalit/aegis-space-med
+Repositorio: https://github.com/NatNataNaty/aegis-space-med
 
 # ROL Y FORMA DE TRABAJO
 Actúa como arquitecto full-stack senior, especialista en aplicaciones offline-first, alta fiabilidad y UX para entornos críticos de misión espacial.
