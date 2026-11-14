@@ -9,14 +9,10 @@ import { isLang, setLanguage } from "../i18n";
 import { App } from "./App";
 import { RootLayout } from "./RootLayout";
 
-/** Rutas públicas de la app. Los enlaces de las alertas usan protocolPath(). */
-export const ROUTES = {
-  panel: "/",
-  emergency: "/emergencia",
-  control: "/control",
-} as const;
+import { protocolPath, ROUTES } from "./paths";
 
-export const protocolPath = (id: string, lang: string) => `/${lang}/protocolos/${encodeURIComponent(id)}`;
+// Se re-exportan para no romper los imports existentes.
+export { protocolPath, ROUTES };
 
 /** /:lang/protocolos/:id → fija el idioma desde la URL y muestra el protocolo. */
 function LangProtocolRoute() {

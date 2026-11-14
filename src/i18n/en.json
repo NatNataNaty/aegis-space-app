@@ -404,5 +404,60 @@
       "result": "Result",
       "glossary": "What does each indicator mean?"
     }
+  },
+  "modules": {
+    "aria": "Modules",
+    "vitals": "Vital signs",
+    "eye": "Eye scan",
+    "log": "How I feel",
+    "alerts": "Alerts",
+    "hazards": "Hazards & guide",
+    "radiation": "Radiation & exercise",
+    "sleep": "Sleep & mission",
+    "hint": {
+      "camOn": "on",
+      "camOff": "off"
+    },
+    "assistant": "Onboard assistant",
+    "assistantSub": "Coming soon: answers from the NASA and CSA library"
+  },
+  "hero": {
+    "crewName": "Mission specialist 2",
+    "bpm": "beats per minute",
+    "baseline": "Normal for you is {{value}}",
+    "headline": {
+      "hrHigh": "Your heart is beating too fast.",
+      "alert": "Something needs your attention.",
+      "watch": "Keep an eye on how you feel today.",
+      "calm": "All calm. Carry on with your day."
+    },
+    "sourcePrefix": "This reading is compared with NASA's risk of",
+    "sourceLink": "cardiovascular adaptations",
+    "pending": "The clinical threshold is pending medical review."
+  },
+  "steps": {
+    "title": "What to do now",
+    "fullProtocol": "See full protocol",
+    "calmTitle": "Nothing pending",
+    "calmLead": "Your readings are within your usual range. If you notice something, log it and the app will tell you what to do.",
+    "watchTitle": "Watch how you feel",
+    "watchLead": "One reading is under watch. No action needed yet; log any symptom.",
+    "items": {
+      "stop": "Stop and hold on to an anchor.",
+      "breathe": "Breathe slowly for 2 minutes without moving.",
+      "askHelp": "If it stays high, ask for help: your crewmate gets an alert.",
+      "clinical": "Clinical step from the onboard manual."
+    },
+    "done": "Done",
+    "doneAt": "Done at {{time}}",
+    "finished": "Protocol complete. Each step is logged with its time.",
+    "needHelp": "I need help",
+    "imOk": "I'm OK",
+    "logSymptom": "Log symptom",
+    "buddy": {
+      "countdown": "If you don't answer in {{s}} s, we alert your crewmate.",
+      "sent": "Alert sent to your crewmate.",
+      "ok": "Logged: you said you're OK."
+    }
   }
 }

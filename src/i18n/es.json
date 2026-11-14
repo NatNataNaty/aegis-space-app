@@ -404,5 +404,60 @@
       "result": "Resultado",
       "glossary": "¿Qué significa cada indicador?"
     }
+  },
+  "modules": {
+    "aria": "Módulos",
+    "vitals": "Signos vitales",
+    "eye": "Escaneo ocular",
+    "log": "Cómo me siento",
+    "alerts": "Alertas",
+    "hazards": "Peligros y guía",
+    "radiation": "Radiación y ejercicio",
+    "sleep": "Sueño y misión",
+    "hint": {
+      "camOn": "activo",
+      "camOff": "apagado"
+    },
+    "assistant": "Asistente de a bordo",
+    "assistantSub": "Próximamente: responderá con la biblioteca de NASA y CSA"
+  },
+  "hero": {
+    "crewName": "Especialista de misión 2",
+    "bpm": "latidos por minuto",
+    "baseline": "Lo normal para ti es {{value}}",
+    "headline": {
+      "hrHigh": "Tu corazón va demasiado rápido.",
+      "alert": "Algo necesita tu atención.",
+      "watch": "Vigila cómo te sientes hoy.",
+      "calm": "Todo en calma. Sigue con tu día."
+    },
+    "sourcePrefix": "Esta lectura se compara con el riesgo de",
+    "sourceLink": "adaptaciones cardiovasculares de NASA",
+    "pending": "El umbral clínico está pendiente de revisión médica."
+  },
+  "steps": {
+    "title": "Qué hacer ahora",
+    "fullProtocol": "Ver protocolo completo",
+    "calmTitle": "Nada pendiente",
+    "calmLead": "Tus lecturas están dentro de tu rango habitual. Si notas algo, anótalo y la app te dirá qué hacer.",
+    "watchTitle": "Atenta a cómo sigues",
+    "watchLead": "Hay una lectura en seguimiento. No hace falta actuar todavía; anota cualquier síntoma.",
+    "items": {
+      "stop": "Para y sujétate a un anclaje.",
+      "breathe": "Respira despacio 2 minutos sin moverte.",
+      "askHelp": "Si sigue alto, pide ayuda: tu compañero recibe el aviso.",
+      "clinical": "Paso clínico del manual de a bordo."
+    },
+    "done": "Hecho",
+    "doneAt": "Hecho a las {{time}}",
+    "finished": "Protocolo completado. Queda registrado con la hora de cada paso.",
+    "needHelp": "Necesito ayuda",
+    "imOk": "Estoy bien",
+    "logSymptom": "Anotar síntoma",
+    "buddy": {
+      "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
+      "sent": "Aviso enviado a tu compañero.",
+      "ok": "Anotado: dijiste que estás bien."
+    }
   }
 }

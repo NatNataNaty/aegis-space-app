@@ -1,0 +1,849 @@
+/* =============================================================================
+   aegis-space-med · tema «Atardecer marciano» (P3)
+   Se carga después de global.css: redefine las variables de ASTRA y añade
+   el armazón nuevo (columna de módulos, escena de Marte y pasos).
+   Fuente Archivo empaquetada localmente (@fontsource-variable), sin red.
+   ========================================================================== */
+
+:root {
+  --bg: #22141b;
+  --bg-2: #1a0f14;
+  --panel: #2f1d26;
+  --panel-2: #39242e;
+  --border: #4a2f3a;
+  --border-2: #5c3d49;
+  --text: #f7e9dd;
+  --text-2: #e3cdbd;
+  --muted: #c4a999;
+  --accent: #9fd0f2; /* azul del atardecer marciano: información y calma */
+  --accent-2: #6fa9d6;
+  --amber: #f2b35b; /* ámbar: atención */
+  --rust: #e2553d; /* óxido: emergencia */
+  --ok: #8fd6b4;
+  --warn: #f2b35b;
+  --alert: #ff8a6b;
+  --live: #8fd6b4;
+  --sim: #c9b6f2;
+  --user: #9fe0d4;
+  --test: #f6b6d2;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 18px 50px rgba(10, 4, 8, 0.45);
+  --font: "Archivo Variable", "Segoe UI", system-ui, sans-serif;
+  --mono: "Archivo Variable", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html,
+body {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Armazón ---------- */
+
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--bg);
+}
+
+.shell__main {
+  flex: 999 1 720px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.module {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: module-in 420ms var(--ease) both;
+}
+
+.module[hidden] {
+  display: none;
+}
+
+@keyframes module-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* ---------- Columna de módulos ---------- */
+
+.rail {
+  flex: 1 1 240px;
+  max-width: 264px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 24px 16px;
+  background: var(--bg-2);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  min-height: 100vh;
+}
+
+.rail__brand {
+  font-weight: 800;
+  font-stretch: 125%;
+  font-size: 24px;
+  color: var(--amber);
+  padding: 0 12px 24px;
+}
+
+.rail__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 15px;
+  text-align: left;
+  transition:
+    background 200ms var(--ease),
+    color 200ms var(--ease),
+    transform 200ms var(--ease);
+}
+
+.rail__item:hover {
+  background: var(--panel);
+  color: var(--text);
+  transform: translateX(3px);
+}
+
+.rail__item--on,
+.rail__item--on:hover {
+  background: var(--amber);
+  color: #2a1405;
+  font-weight: 700;
+  transform: none;
+}
+
+.rail__hint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.rail__item--on .rail__hint {
+  color: #5a3410;
+}
+
+.rail__badge {
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--rust);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  animation: badge-pop 400ms var(--ease);
+}
+
+.rail__item--on .rail__badge {
+  background: #2a1405;
+}
+
+@keyframes badge-pop {
+  from {
+    transform: scale(0.4);
+  }
+}
+
+.rail__spacer {
+  flex: 1 1 auto;
+  min-height: 24px;
+}
+
+.rail__assistant {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+}
+
+.rail__assistant-title {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.rail__assistant-sub {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.rail__emergency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin-top: 10px;
+  border-radius: var(--radius-sm);
+  background: var(--rust);
+  color: #fff;
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 18px;
+  text-decoration: none;
+  transition: transform 160ms var(--ease), box-shadow 200ms var(--ease);
+}
+
+.rail__emergency:hover {
+  color: #fff;
+  box-shadow: 0 0 0 6px rgba(226, 85, 61, 0.25);
+}
+
+.rail__emergency:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Barra superior ---------- */
+
+.topbar {
+  background: rgba(34, 20, 27, 0.88);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar__crew {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar__crew-name {
+  font-weight: 700;
+}
+
+.topbar__crew-mission {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.topbar__met {
+  font-family: var(--font);
+  font-stretch: 85%;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ---------- Escena principal ---------- */
+
+.vitals-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.mars-hero {
+  --halo-core: #d8eefd;
+  --halo-mid: #7fb7e2;
+  --halo-edge: #4b5e86;
+  position: relative;
+  flex: 999 1 560px;
+  min-width: 0;
+  min-height: 560px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #22141b;
+  isolation: isolate;
+}
+
+.mars-hero--watch {
+  --halo-core: #fde3b8;
+  --halo-mid: #d9a663;
+  --halo-edge: #6d4a46;
+}
+
+.mars-hero--alert {
+  --halo-core: #ffe0b0;
+  --halo-mid: #f2b35b;
+  --halo-edge: #8a3b2c;
+}
+
+.mars-hero__scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.mars-hero__halo-core {
+  stop-color: var(--halo-core);
+  transition: stop-color 1.6s var(--ease);
+}
+
+.mars-hero__halo-mid {
+  stop-color: var(--halo-mid);
+  stop-opacity: 0.85;
+  transition: stop-color 1.6s var(--ease);
+}
+
+.mars-hero__halo-edge {
+  stop-color: var(--halo-edge);
+  stop-opacity: 0.4;
+  transition: stop-color 1.6s var(--ease);
+}
+
+.mars-hero__sky {
+  transform-origin: 62% 62%;
+  animation: halo-breathe 9s ease-in-out infinite;
+}
+
+.mars-hero--alert .mars-hero__sky {
+  animation-duration: 3.2s;
+}
+
+@keyframes halo-breathe {
+  50% {
+    transform: scale(1.06);
+    opacity: 0.88;
+  }
+}
+
+.mars-hero__sun {
+  fill: #f2fbff;
+  animation: sun-drift 40s ease-in-out infinite alternate;
+}
+
+@keyframes sun-drift {
+  to {
+    transform: translate(-14px, 18px);
+  }
+}
+
+.mars-hero__dust circle {
+  fill: #f7e9dd;
+  opacity: 0;
+  animation: dust 14s linear infinite;
+}
+
+.mars-hero__dust circle:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 17s;
+}
+.mars-hero__dust circle:nth-child(3) {
+  animation-delay: -7s;
+}
+.mars-hero__dust circle:nth-child(4) {
+  animation-delay: -10s;
+  animation-duration: 19s;
+}
+.mars-hero__dust circle:nth-child(5) {
+  animation-delay: -5s;
+  animation-duration: 12s;
+}
+
+@keyframes dust {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  15% {
+    opacity: 0.55;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(120px, -40px);
+  }
+}
+
+.mars-hero__ridge--far {
+  fill: #6b3426;
+  animation: ridge 26s ease-in-out infinite alternate;
+}
+.mars-hero__ridge--mid {
+  fill: #4a2119;
+  animation: ridge 20s ease-in-out infinite alternate-reverse;
+}
+.mars-hero__ridge--near {
+  fill: #2e130f;
+}
+
+@keyframes ridge {
+  to {
+    transform: translateX(-18px);
+  }
+}
+
+.mars-hero__content {
+  position: relative;
+  height: 100%;
+  min-height: 560px;
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mars-hero__title {
+  max-width: 16ch;
+  font-weight: 800;
+  font-stretch: 118%;
+  font-size: clamp(34px, 4.2vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  animation: title-in 700ms var(--ease) both;
+}
+
+@keyframes title-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.mars-hero__reading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 22px;
+}
+
+.mars-hero__number {
+  font-weight: 700;
+  font-stretch: 72%;
+  font-size: clamp(120px, 15vw, 210px);
+  line-height: 0.82;
+  color: var(--accent);
+  transition: color 1.2s var(--ease);
+}
+
+.mars-hero--watch .mars-hero__number,
+.mars-hero--alert .mars-hero__number {
+  color: var(--amber);
+}
+
+.mars-hero__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+.mars-hero__unit-main {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mars-hero__spark {
+  margin-bottom: 14px;
+}
+
+.mars-hero__spark-line {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.4s var(--ease) forwards;
+}
+
+.mars-hero--calm .mars-hero__spark-line {
+  stroke: var(--accent);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.mars-hero__source {
+  margin-top: auto;
+  max-width: 56ch;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(34, 20, 27, 0.78);
+  backdrop-filter: blur(6px);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+/* ---------- Pasos ---------- */
+
+.steps {
+  flex: 1 1 340px;
+  min-width: 0;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px;
+  border-radius: 22px;
+  background: var(--panel);
+}
+
+.steps__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.steps__title {
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+.steps__full {
+  font-size: 14px;
+}
+
+.steps__lead {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.steps__spacer {
+  flex: 1 1 auto;
+}
+
+.steps__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 14px;
+  transition:
+    background 450ms var(--ease),
+    color 450ms var(--ease),
+    padding 450ms var(--ease);
+}
+
+.step__num {
+  flex: 0 0 36px;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--amber);
+  transition: font-size 450ms var(--ease), color 450ms var(--ease);
+}
+
+.step__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.step__text {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.step__meta {
+  font-size: 13px;
+  color: var(--ok);
+}
+
+.step__pending {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.step--done {
+  color: var(--muted);
+}
+
+.step--done .step__num {
+  color: var(--ok);
+}
+
+.step--done .step__text {
+  text-decoration: line-through;
+}
+
+.step--current {
+  padding: 18px 16px;
+  background: var(--text);
+  color: #22141b;
+  animation: step-in 520ms var(--ease);
+}
+
+.step--current .step__num {
+  font-size: 46px;
+  color: #c2412b;
+}
+
+.step--current .step__text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.step--current .step__pending {
+  color: #9a3412;
+}
+
+@keyframes step-in {
+  from {
+    transform: scale(0.97);
+    opacity: 0.6;
+  }
+}
+
+.step__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.step__timer {
+  font-weight: 700;
+  font-stretch: 75%;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.step__timer--end {
+  color: #c2412b;
+  animation: blink 1s steps(2) 3;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.steps__finished {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(143, 214, 180, 0.14);
+  color: var(--ok);
+}
+
+.steps__row {
+  display: flex;
+  gap: 10px;
+}
+
+.steps__row > * {
+  flex: 1 1 0;
+}
+
+/* ---------- Aviso al compañero ---------- */
+
+.buddy {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--panel-2);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+.buddy--sent {
+  background: rgba(242, 179, 91, 0.16);
+  color: var(--amber);
+  font-weight: 600;
+  animation: step-in 400ms var(--ease);
+}
+
+.buddy__ring {
+  flex: 0 0 auto;
+  transform: rotate(-90deg);
+}
+
+.buddy__track {
+  fill: none;
+  stroke: var(--border-2);
+  stroke-width: 4;
+}
+
+.buddy__arc {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s linear;
+}
+
+/* ---------- Botones ---------- */
+
+.mbtn {
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 26px;
+  border: 0;
+  font-weight: 700;
+  font-size: 16px;
+  transition:
+    transform 140ms var(--ease),
+    box-shadow 200ms var(--ease),
+    background 200ms var(--ease);
+}
+
+.mbtn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.mbtn--dark {
+  background: #22141b;
+  color: var(--text);
+}
+
+.mbtn--amber {
+  min-height: 58px;
+  background: var(--amber);
+  color: #2a1405;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.mbtn--amber:hover:not(:disabled) {
+  box-shadow: 0 0 0 6px rgba(242, 179, 91, 0.25);
+}
+
+.mbtn--ghost {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mbtn--ghost:hover:not(:disabled) {
+  background: var(--panel-2);
+}
+
+/* ---------- Componentes heredados de ASTRA con el nuevo tema ---------- */
+
+.panel,
+.metric,
+.ocular-card,
+.camera {
+  border-radius: var(--radius);
+  transition: transform 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.metric:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-2);
+}
+
+.eye-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.eye-stage > .camera {
+  flex: 999 1 560px;
+  min-width: 0;
+}
+
+.eye-stage > .ocular-card {
+  flex: 1 1 320px;
+}
+
+.banner {
+  border-radius: var(--radius);
+}
+
+/* ---------- Accesibilidad: reducir movimiento ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .mars-hero__spark-line {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .rail {
+    position: static;
+    min-height: 0;
+    max-width: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .rail__spacer,
+  .rail__assistant {
+    display: none;
+  }
+
+  .mars-hero__content {
+    padding: 24px;
+  }
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: #cde8fb;
+}
