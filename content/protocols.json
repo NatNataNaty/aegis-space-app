@@ -1,0 +1,1042 @@
+[
+  {
+    "id": "frecuencia-cardiaca",
+    "riskId": "cardiovascular",
+    "title": {
+      "es": "Frecuencia cardíaca anormal",
+      "en": "Abnormal heart rate"
+    },
+    "trigger": {
+      "es": "El dispositivo de monitoreo o el simulador marca la frecuencia cardíaca fuera de tu rango.",
+      "en": "The monitoring device or the simulator shows your heart rate outside your range."
+    },
+    "buddy": "if_no_response",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Detén lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Pulsa «Necesito ayuda» para avisar a tu compañero u oficial médico.",
+          "en": "Press “I need help” to alert your crewmate or medical officer."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "record",
+        "text": {
+          "es": "Anota lo que notas en «Cómo me siento».",
+          "en": "Log what you feel in “How I feel”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Frecuencia cardíaca anormal» del manual médico de a bordo.",
+          "en": "Follow the “Abnormal heart rate” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba si responde.",
+          "en": "Check whether they respond."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Frecuencia cardíaca anormal» del manual médico de a bordo.",
+          "en": "Follow the “Abnormal heart rate” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+  },
+  {
+    "id": "falta-oxigeno",
+    "riskId": "hypoxia",
+    "title": {
+      "es": "Falta de oxígeno",
+      "en": "Low oxygen"
+    },
+    "trigger": {
+      "es": "Saturación baja (si el dispositivo la mide) o síntomas marcados.",
+      "en": "Low saturation (if the device measures it) or reported symptoms."
+    },
+    "buddy": "always",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Detén lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Pulsa «Necesito ayuda» para avisar a tu compañero u oficial médico.",
+          "en": "Press “I need help” to alert your crewmate or medical officer."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Falta de oxígeno» del manual médico de a bordo.",
+          "en": "Follow the “Low oxygen” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba si responde.",
+          "en": "Check whether they respond."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Falta de oxígeno» del manual médico de a bordo.",
+          "en": "Follow the “Low oxygen” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-hypoxia/"
+  },
+  {
+    "id": "sintomas-eva",
+    "riskId": "decompression",
+    "title": {
+      "es": "Síntomas tras una caminata espacial",
+      "en": "Symptoms after a spacewalk"
+    },
+    "trigger": {
+      "es": "Síntoma marcado después de una actividad extravehicular (EVA).",
+      "en": "Symptom reported after an extravehicular activity (EVA)."
+    },
+    "buddy": "always",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Detén lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Pulsa «Necesito ayuda» para avisar a tu compañero u oficial médico.",
+          "en": "Press “I need help” to alert your crewmate or medical officer."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "record",
+        "text": {
+          "es": "Anota lo que notas en «Cómo me siento».",
+          "en": "Log what you feel in “How I feel”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Síntomas tras EVA» del manual médico de a bordo.",
+          "en": "Follow the “Post-EVA symptoms” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Síntomas tras EVA» del manual médico de a bordo.",
+          "en": "Follow the “Post-EVA symptoms” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-decompression-sickness/"
+  },
+  {
+    "id": "golpe-lesion",
+    "riskId": "eva",
+    "title": {
+      "es": "Golpe o lesión",
+      "en": "Impact or injury"
+    },
+    "trigger": {
+      "es": "Síntoma marcado tras un golpe, durante una EVA o por cargas dinámicas.",
+      "en": "Symptom reported after an impact, during an EVA or from dynamic loads."
+    },
+    "buddy": "by_severity",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Detén lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "record",
+        "text": {
+          "es": "Anota lo que notas en «Cómo me siento».",
+          "en": "Log what you feel in “How I feel”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "notify",
+        "text": {
+          "es": "Si no puedes seguir solo, pulsa «Necesito ayuda».",
+          "en": "If you cannot continue alone, press “I need help”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Lesiones» del manual médico de a bordo.",
+          "en": "Follow the “Injuries” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Lesiones» del manual médico de a bordo.",
+          "en": "Follow the “Injuries” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-injury-and-compromised-performance-from-extravehicular-activity-eva/"
+  },
+  {
+    "id": "mareo",
+    "riskId": "sensorimotor",
+    "title": {
+      "es": "Mareo o desorientación",
+      "en": "Dizziness or disorientation"
+    },
+    "trigger": {
+      "es": "Síntoma marcado tras un cambio de gravedad.",
+      "en": "Symptom reported after a gravity transition."
+    },
+    "buddy": "if_immobile",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Detén lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "safety",
+        "text": {
+          "es": "No manejes vehículos ni equipos hasta que pase.",
+          "en": "Do not operate vehicles or equipment until it passes."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "record",
+        "text": {
+          "es": "Anota lo que notas en «Cómo me siento».",
+          "en": "Log what you feel in “How I feel”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Mareo y desorientación» del manual médico de a bordo.",
+          "en": "Follow the “Dizziness and disorientation” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Mareo y desorientación» del manual médico de a bordo.",
+          "en": "Follow the “Dizziness and disorientation” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/"
+  },
+  {
+    "id": "vision-cabeza",
+    "riskId": "sans",
+    "title": {
+      "es": "Cambios de visión o dolor de cabeza",
+      "en": "Vision changes or headache"
+    },
+    "trigger": {
+      "es": "Síntoma marcado: visión borrosa o dolor de cabeza.",
+      "en": "Reported symptom: blurred vision or headache."
+    },
+    "buddy": "no",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "record",
+        "text": {
+          "es": "Anota lo que notas en «Cómo me siento».",
+          "en": "Log what you feel in “How I feel”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Avisa al oficial médico en el próximo control.",
+          "en": "Tell the medical officer at the next check."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Cambios de visión» del manual médico de a bordo.",
+          "en": "Follow the “Vision changes” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Cambios de visión» del manual médico de a bordo.",
+          "en": "Follow the “Vision changes” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+  },
+  {
+    "id": "crisis-emocional",
+    "riskId": "behavioral",
+    "title": {
+      "es": "Crisis emocional o conflicto",
+      "en": "Emotional crisis or conflict"
+    },
+    "trigger": {
+      "es": "Autoevaluación de ánimo o estrés, o aviso de un compañero.",
+      "en": "Mood or stress self-check, or a crewmate's report."
+    },
+    "buddy": "optional",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Busca un lugar tranquilo y seguro de la nave.",
+          "en": "Find a quiet, safe place in the spacecraft."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Si quieres, habla con alguien de confianza o con el oficial médico. Es privado.",
+          "en": "If you want, talk to someone you trust or to the medical officer. It is private."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Apoyo psicológico» del manual médico de a bordo.",
+          "en": "Follow the “Psychological support” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Acércate con calma y pregunta si quiere hablar.",
+          "en": "Approach calmly and ask if they want to talk."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Apoyo psicológico» del manual médico de a bordo.",
+          "en": "Follow the “Psychological support” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-behavioral-conditions-and-psychiatric-disorders/"
+  },
+  {
+    "id": "agotamiento",
+    "riskId": "sleep",
+    "title": {
+      "es": "Agotamiento o falta de sueño",
+      "en": "Exhaustion or lack of sleep"
+    },
+    "trigger": {
+      "es": "Cierres de ojos prolongados, PERCLOS alto, poco sueño varios días o fatiga autorreportada.",
+      "en": "Prolonged eye closures, high PERCLOS, short sleep for several days or reported fatigue."
+    },
+    "buddy": "no",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Si puedes hacerlo con seguridad, pausa las tareas críticas.",
+          "en": "If it is safe to do so, pause critical tasks."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Avisa al comandante para revisar tu horario.",
+          "en": "Tell the commander so your schedule can be reviewed."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "action",
+        "text": {
+          "es": "Revisa tu próximo descanso en «Sueño y misión».",
+          "en": "Check your next rest period in “Sleep & mission”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Fatiga» del manual médico de a bordo.",
+          "en": "Follow the “Fatigue” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "action",
+        "text": {
+          "es": "Ayúdale a pausar las tareas críticas.",
+          "en": "Help them pause critical tasks."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Fatiga» del manual médico de a bordo.",
+          "en": "Follow the “Fatigue” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+  },
+  {
+    "id": "radiacion",
+    "riskId": "radiation-cancer",
+    "title": {
+      "es": "Evento solar o radiación alta",
+      "en": "Solar event or high radiation"
+    },
+    "trigger": {
+      "es": "Dosímetro o aviso manual de evento solar.",
+      "en": "Dosimeter or manual solar event alert."
+    },
+    "buddy": "everyone",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Ve al refugio de radiación de la nave.",
+          "en": "Go to the spacecraft's radiation shelter."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Avisa a toda la tripulación.",
+          "en": "Alert the whole crew."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "record",
+        "text": {
+          "es": "Anota la hora de entrada al refugio.",
+          "en": "Log the time you entered the shelter."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Evento solar» del manual médico de a bordo.",
+          "en": "Follow the “Solar event” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Comprueba que toda la tripulación llega al refugio.",
+          "en": "Make sure the whole crew reaches the shelter."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "record",
+        "text": {
+          "es": "Anota quién está en el refugio y a qué hora.",
+          "en": "Log who is in the shelter and when."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Evento solar» del manual médico de a bordo.",
+          "en": "Follow the “Solar event” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-radiation-induced-cancers/"
+  },
+  {
+    "id": "no-responde",
+    "riskId": null,
+    "title": {
+      "es": "Tripulante que no responde",
+      "en": "Unresponsive crew member"
+    },
+    "trigger": {
+      "es": "Sin respuesta a la alerta y signos fuera de rango.",
+      "en": "No answer to the alert and vital signs out of range."
+    },
+    "buddy": "always",
+    "escalate": {
+      "es": "Criterios de escalada pendientes de revisión médica. Ante cualquier duda, avisa al comandante o al oficial médico.",
+      "en": "Escalation criteria pending medical review. If in doubt, alert the commander or the medical officer."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "notify",
+        "text": {
+          "es": "Pulsa «Pedir otro compañero».",
+          "en": "Press “Call another crewmate”."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba si responde.",
+          "en": "Check whether they respond."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Soporte vital» del manual médico de a bordo.",
+          "en": "Follow the “Life support” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s6",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «responde», «no responde» o «se traslada».",
+          "en": "Mark the result: “responds”, “does not respond” or “being moved”."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba si responde.",
+          "en": "Check whether they respond."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba la respiración con los signos vitales que muestra la pantalla.",
+          "en": "Check breathing with the vital signs shown on screen."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b5",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Soporte vital» del manual médico de a bordo.",
+          "en": "Follow the “Life support” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b6",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «responde», «no responde» o «se traslada».",
+          "en": "Mark the result: “responds”, “does not respond” or “being moved”."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/hrp/risks/"
+  }
+]

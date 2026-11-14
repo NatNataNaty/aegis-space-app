@@ -1,0 +1,97 @@
+[
+  {
+    "id": "radiation",
+    "letter": "R",
+    "name": {
+      "es": "Radiación espacial",
+      "en": "Space radiation"
+    },
+    "summary": {
+      "es": "Invisible para el ojo humano, la radiación espacial no solo es sigilosa: se considera uno de los aspectos más peligrosos de los vuelos espaciales.",
+      "en": "Invisible to the human eye, space radiation is not only stealthy but considered one of the most hazardous aspects of spaceflight."
+    },
+    "fact": {
+      "es": "Según la CSA, los neutrones aportan cerca del 30 % de la radiación total en la Estación Espacial Internacional.",
+      "en": "According to the CSA, neutron radiation contributes about 30% of total radiation on the International Space Station."
+    },
+    "sourceUrl": "https://www.nasa.gov/hrp/hazards/",
+    "moreUrl": "https://www.nasa.gov/hrp/hazard-space-radiation/",
+    "factSourceUrl": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp"
+  },
+  {
+    "id": "isolation",
+    "letter": "I",
+    "name": {
+      "es": "Aislamiento y confinamiento",
+      "en": "Isolation and confinement"
+    },
+    "summary": {
+      "es": "Aparecen respuestas conductuales en grupos de personas lejos de la Tierra, aisladas y confinadas en un espacio pequeño durante mucho tiempo.",
+      "en": "Behavioral responses occur among groups of people far from Earth who are isolated and confined in a small space over a long period of time."
+    },
+    "fact": {
+      "es": "Las tripulaciones deben elegirse, entrenarse y apoyarse con cuidado para trabajar bien en equipo durante meses o años.",
+      "en": "Crews must be carefully chosen, trained, and supported to ensure they can work effectively as a team for months or years in space."
+    },
+    "sourceUrl": "https://www.nasa.gov/hrp/hazards/",
+    "moreUrl": "https://www.nasa.gov/hrp/hazard-isolation-and-confinement/",
+    "factSourceUrl": "https://www.nasa.gov/hrp/hazards/"
+  },
+  {
+    "id": "distance",
+    "letter": "D",
+    "name": {
+      "es": "Distancia de la Tierra",
+      "en": "Distance from Earth"
+    },
+    "summary": {
+      "es": "Recibir instrucciones, suministros y atención médica desde la Tierra se vuelve cada vez más difícil a medida que la tripulación se adentra en el espacio.",
+      "en": "Instructions, new supplies, medical care, and more become increasingly challenging to receive from Earth as astronauts venture deeper into space."
+    },
+    "fact": {
+      "es": "Marte está, de media, a 140 millones de millas de la Tierra: en lugar de un viaje de tres días a la Luna, la misión dura unos tres años.",
+      "en": "Mars is, on average, 140 million miles from Earth. Rather than a three-day lunar trip, astronauts would be leaving our planet for roughly three years."
+    },
+    "sourceUrl": "https://www.nasa.gov/hrp/hazards/",
+    "moreUrl": "https://www.nasa.gov/hrp/hazard-distance-from-earth/",
+    "factSourceUrl": "https://www.nasa.gov/hrp/hazards/"
+  },
+  {
+    "id": "gravity",
+    "letter": "G",
+    "name": {
+      "es": "Campos de gravedad",
+      "en": "Gravity fields"
+    },
+    "summary": {
+      "es": "Todo el cuerpo (músculos, huesos, oído interno y órganos) debe adaptarse a cada gravedad nueva: la nave, la Luna, Marte y la Tierra al volver.",
+      "en": "Astronauts' entire bodies – muscles, bones, inner ear, and organs – must adjust to the new gravities encountered on the space station or their spacecraft, as well as on the Moon, Mars, and Earth once they return home."
+    },
+    "fact": {
+      "es": "En Marte la tripulación viviría y trabajaría con tres octavos de la gravedad terrestre hasta dos años.",
+      "en": "On Mars, astronauts would need to live and work in three-eighths of Earth's gravitational pull for up to two years."
+    },
+    "sourceUrl": "https://www.nasa.gov/hrp/hazards/",
+    "moreUrl": "https://www.nasa.gov/hrp/hazard-gravity-fields/",
+    "factSourceUrl": "https://www.nasa.gov/hrp/hazards/"
+  },
+  {
+    "id": "environment",
+    "letter": "E",
+    "name": {
+      "es": "Entornos cerrados u hostiles",
+      "en": "Hostile/closed environments"
+    },
+    "summary": {
+      "es": "Mantener un ecosistema seguro en la nave exige controlar temperatura, presión, iluminación y ruido, vigilar las comunidades microbianas y seguir la respuesta inmunitaria.",
+      "en": "Maintaining a safe ecosystem inside a spacecraft presents unique challenges, from ensuring optimal temperatures, pressures, and lighting, to reducing noise, monitoring microbial communities, and tracking immune responses."
+    },
+    "fact": {
+      "es": "Una nave no es solo un hogar, también es una máquina: su ecosistema interior pesa mucho en la vida diaria de la tripulación.",
+      "en": "A spacecraft is not only a home, it's also a machine. The ecosystem inside a vehicle plays a big role in everyday astronaut life."
+    },
+    "sourceUrl": "https://www.nasa.gov/hrp/hazards/",
+    "moreUrl": "https://www.nasa.gov/hrp/hazard-hostile-closed-environments/",
+    "factSourceUrl": "https://www.nasa.gov/hrp/hazards/"
+  }
+]

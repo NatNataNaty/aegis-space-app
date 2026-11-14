@@ -1,0 +1,189 @@
+[
+  {
+    "id": "immune",
+    "category": "physiology",
+    "name": { "es": "Respuestas alteradas del sistema inmunitario", "en": "Risk of Altered Immune System Responses" },
+    "summary": {
+      "es": "El estrés del vuelo espacial puede despertar virus inactivos en el cuerpo, con erupciones y otros síntomas. Se estudian los cambios del sistema inmunitario para proteger mejor la salud.",
+      "en": "The stresses of spaceflight can awaken inactive viruses inside the bodies of astronauts, leading to rashes and other symptoms. Ongoing work seeks to further understand changes in the immune system to better protect astronaut health."
+    },
+    "hazardIds": ["environment"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+  },
+  {
+    "id": "sensorimotor",
+    "category": "physiology",
+    "name": { "es": "Función sensoriomotora y vestibular alterada", "en": "Risk of Altered Sensorimotor and Vestibular Function" },
+    "summary": {
+      "es": "Con los cambios de gravedad pueden aparecer mareo, problemas de coordinación ojo-mano o de la marcha y vértigo, que dificultan caminar o manejar un vehículo.",
+      "en": "Astronauts can experience motion sickness, issues with hand-eye or gait coordination, and dizziness during gravitational changes, making it difficult to walk or operate a vehicle."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/"
+  },
+  {
+    "id": "cardiovascular",
+    "category": "physiology",
+    "name": { "es": "Adaptaciones cardiovasculares", "en": "Risk of Cardiovascular Adaptations" },
+    "summary": {
+      "es": "La ingravidez altera la circulación y el funcionamiento del corazón y los vasos, lo que puede aumentar el riesgo de eventos cardiovasculares.",
+      "en": "Weightlessness alters blood circulation and how the heart and blood vessels function, potentially increasing the risk of cardiovascular events."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+  },
+  {
+    "id": "decompression",
+    "category": "physiology",
+    "name": { "es": "Enfermedad por descompresión", "en": "Risk of Decompression Sickness" },
+    "summary": {
+      "es": "Pasar de la nave presurizada a un traje de menor presión puede hacer que el nitrógeno disuelto forme burbujas en los tejidos.",
+      "en": "Transitioning from a pressurized spacecraft to a lower-pressure spacesuit can cause health and mission complications when dissolved nitrogen starts to bubble within body tissues."
+    },
+    "hazardIds": ["environment"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-decompression-sickness/"
+  },
+  {
+    "id": "microbiome",
+    "category": "physiology",
+    "name": { "es": "Interacciones huésped-microorganismo", "en": "Risk of Host-Microorganism Interactions" },
+    "summary": {
+      "es": "Los microbiomas de la piel y del intestino pueden cambiar en el espacio y aumentar el riesgo de enfermar.",
+      "en": "Skin and gut microbiomes can change in space, potentially increasing the risk of crew members getting sick."
+    },
+    "hazardIds": ["environment"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-host-microorganism-interactions/"
+  },
+  {
+    "id": "hypoxia",
+    "category": "physiology",
+    "name": { "es": "Hipoxia", "en": "Risk of Hypoxia" },
+    "summary": {
+      "es": "Las medidas para evitar la descompresión en las caminatas espaciales elevan el riesgo de hipoxia leve: niveles de oxígeno en los tejidos más bajos de lo normal.",
+      "en": "Following the steps to avoid “the bends” during spacewalks also elevates the risk of mild hypoxia — a condition that occurs when oxygen levels in body tissues become lower than normal."
+    },
+    "hazardIds": ["environment"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-hypoxia/"
+  },
+  {
+    "id": "nutrition",
+    "category": "physiology",
+    "name": { "es": "Alimentación y nutrición inadecuadas", "en": "Risk of Inadequate Food and Nutrition" },
+    "summary": {
+      "es": "Una dieta sana y equilibrada es esencial para la salud y el rendimiento. Se diseñan comidas nutritivas y duraderas para el espacio profundo.",
+      "en": "A healthy, balanced diet is an essential element of crew health and performance. Ongoing research focuses on designing enjoyable, long-lasting, and nutritious meals for deep space missions."
+    },
+    "hazardIds": ["distance"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-inadequate-food-and-nutrition/"
+  },
+  {
+    "id": "eva",
+    "category": "physiology",
+    "name": { "es": "Lesiones y rendimiento reducido en caminatas espaciales", "en": "Risk of Injury and Compromised Performance from Spacewalks" },
+    "summary": {
+      "es": "Trabajar con traje es exigente: fatiga cognitiva, lesiones, descompresión, poco oxígeno y mucho dióxido de carbono.",
+      "en": "Working in a spacesuit is challenging: cognitive fatigue and injury, decompression sickness, and low oxygen and high carbon dioxide levels."
+    },
+    "hazardIds": ["environment"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-injury-and-compromised-performance-from-extravehicular-activity-eva/"
+  },
+  {
+    "id": "fitness",
+    "category": "physiology",
+    "name": { "es": "Menor capacidad cardiorrespiratoria y musculoesquelética", "en": "Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness" },
+    "summary": {
+      "es": "Toda la tripulación hace ejercicio para frenar la pérdida de densidad ósea, fuerza muscular y rendimiento del corazón y los vasos.",
+      "en": "All astronauts perform exercise during their mission to counteract losses in bone density, muscle strength, and heart and blood vessel performance."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+  },
+  {
+    "id": "sans",
+    "category": "physiology",
+    "name": { "es": "Síndrome neuroocular asociado al vuelo espacial (SANS)", "en": "Risk of Spaceflight Associated Neuro-ocular Syndrome (SANS)" },
+    "summary": {
+      "es": "La estructura de los ojos y del cerebro puede cambiar con el vuelo espacial. Se estudian sus consecuencias a largo plazo y cómo prevenirlas.",
+      "en": "The structure of the eyes and brain can change with spaceflight. Research focuses on understanding the long-term health consequences of these changes and preventing them from occurring."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+  },
+  {
+    "id": "bone",
+    "category": "physiology",
+    "name": { "es": "Cambios óseos inducidos por el vuelo espacial", "en": "Risk of Spaceflight-Induced Bone Changes" },
+    "summary": {
+      "es": "Sin gravedad, los huesos se degradan y se vuelven más frágiles, lo que aumenta la probabilidad de fracturas.",
+      "en": "Without gravity, bones break down and become more brittle, boosting the chances of painful breaks."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+  },
+  {
+    "id": "behavioral",
+    "category": "behavior",
+    "name": { "es": "Cambios conductuales y trastornos psiquiátricos", "en": "Risk of Behavioral Changes and Psychiatric Disorders" },
+    "summary": {
+      "es": "El aislamiento, la radiación, la distancia de la Tierra y otros factores de estrés intensos pueden afectar a la salud mental de la tripulación.",
+      "en": "Isolation, radiation, distance from Earth, and other intense space stressors may all take a toll on the mental health of the crew."
+    },
+    "hazardIds": ["isolation", "radiation", "distance"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-behavioral-conditions-and-psychiatric-disorders/"
+  },
+  {
+    "id": "teamwork",
+    "category": "behavior",
+    "name": { "es": "Trabajo en equipo inadecuado", "en": "Risk of Inadequate Teamwork" },
+    "summary": {
+      "es": "Una tripulación que trabaje bien junta es esencial para la seguridad. Se estudia cómo funcionan los equipos en aislamiento prolongado y cómo se recuperan de los contratiempos.",
+      "en": "Selecting a crew that works well together is essential for mission success and safety. Researchers are studying how to help teams in prolonged isolation and confinement function efficiently and quickly recover after setbacks occur."
+    },
+    "hazardIds": ["isolation"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-inadequate-teamwork/"
+  },
+  {
+    "id": "sleep",
+    "category": "behavior",
+    "name": { "es": "Sueño insuficiente y horarios irregulares", "en": "Risk of Inadequate Sleep and Irregular Schedules" },
+    "summary": {
+      "es": "Pérdida crónica de sueño, exigencias de trabajo constantes y alteraciones del reloj biológico afectan a la salud y la seguridad.",
+      "en": "Stressors include chronic sleep loss, constant work demands, and irregularities in their internal biological clocks."
+    },
+    "hazardIds": ["isolation"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+  },
+  {
+    "id": "systems-support",
+    "category": "behavior",
+    "name": { "es": "Apoyo insuficiente para operar los sistemas", "en": "Risk of Inadequate Systems Operations Support" },
+    "summary": {
+      "es": "En el espacio profundo la tripulación debe resolver por sí misma problemas inesperados de software, vehículos u otros sistemas.",
+      "en": "Future crews on deep space missions must be able to live and work in an environment where they may face unexpected problems with software, vehicles, or other systems."
+    },
+    "hazardIds": ["distance"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-inadequate-systems-operations-support/"
+  },
+  {
+    "id": "dynamic-loads",
+    "category": "behavior",
+    "name": { "es": "Lesiones por cargas dinámicas", "en": "Risk of Injury from Dynamic Loads" },
+    "summary": {
+      "es": "Durante el aterrizaje la tripulación puede lesionarse. Se estudia la probabilidad de estas lesiones y cómo prevenirlas.",
+      "en": "During landing activities, crews risk getting injured. Understanding the likelihood of such injuries and how to better prevent them are areas of ongoing research."
+    },
+    "hazardIds": ["gravity"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-injury-from-dynamic-loads/"
+  },
+  {
+    "id": "radiation-cancer",
+    "category": "radiation",
+    "name": { "es": "Cánceres inducidos por radiación", "en": "Risk of Radiation-Induced Cancers" },
+    "summary": {
+      "es": "La tripulación expuesta a la radiación espacial puede tener más probabilidad de desarrollar cáncer. Reducir este riesgo es una prioridad de investigación.",
+      "en": "Crews exposed to radiation from space may be more likely to develop cancer. Identifying the best ways to mitigate this risk and understand what interventions may help are ongoing research priorities."
+    },
+    "hazardIds": ["radiation"],
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-radiation-induced-cancers/"
+  }
+]
