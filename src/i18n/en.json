@@ -1,0 +1,83 @@
+{
+  "app": {
+    "name": "aegis-space-med",
+    "footer": "aegis-space-med · Educational prototype, NASA Space Apps 2026. Not a medical device. Data marked SIMULATED are not real readings."
+  },
+  "mission": {
+    "name": "Mars transit",
+    "clockTitle": "Simulated mission time",
+    "day": "Day {{day}}"
+  },
+  "block": {
+    "sleep": "Rest",
+    "work": "Work",
+    "exercise": "Exercise",
+    "meal": "Meal",
+    "personal": "Personal time"
+  },
+  "scenario": {
+    "label": "Mission scenario",
+    "stable": "Stable routine",
+    "sleep_deficit": "Sleep deficit",
+    "accumulated_fatigue": "Accumulated fatigue",
+    "physio_variation": "Physiological variation",
+    "recovery": "Recovery"
+  },
+  "topbar": {
+    "alertsActive": "Active alerts: {{count}}",
+    "aboutData": "About the data",
+    "language": "Language"
+  },
+  "about": {
+    "title": "About the data",
+    "close": "Close",
+    "camera": "Real webcam and the MediaPipe Face Landmarker model running in this browser: face detection, eye state, blinks, closure duration and PERCLOS. Frames exist only in memory; they are never recorded, uploaded or stored.",
+    "simulated": "Heart rate, SpO₂, blood pressure, temperature, respiration, glucose, sleep, radiation, exercise, schedule and history. Generated deterministically from the selected scenario. They are not data from real astronauts.",
+    "userReported": "Your answers to the fatigue, mood, stress and symptom questionnaire.",
+    "localTest": "Result of the reaction-time test taken on this device.",
+    "limitsTitle": "Limits",
+    "limits": [
+      "Educational prototype to support observation. It is not a medical device and does not diagnose.",
+      "It does not infer emotions, stress, depression or illness from the face.",
+      "The camera does not measure sleep, SpO₂, blood pressure, temperature or glucose.",
+      "Detector thresholds are experimental parameters, not official NASA medical limits.",
+      "If no face is found or quality is too low, the value is shown as “Not available”, never as zero."
+    ]
+  },
+  "tabs": {
+    "ariaLabel": "Sections",
+    "eye": "Eyes & alertness",
+    "trends": "Trends",
+    "schedule": "Sleep & mission",
+    "exposure": "Exposure",
+    "alerts": "Alerts",
+    "self": "Self-check",
+    "guide": "Guide"
+  },
+  "nav": {
+    "panel": "Dashboard",
+    "emergency": "Emergency",
+    "control": "Mission control",
+    "back": "Back to dashboard"
+  },
+  "pages": {
+    "protocol": {
+      "title": "Protocol: {{id}}",
+      "pending": "Protocol screen under construction (P3). Content will come from /content (P2)."
+    },
+    "emergency": {
+      "title": "Emergency mode",
+      "pending": "Emergency mode under construction (P3)."
+    },
+    "control": {
+      "title": "Mission control",
+      "pending": "Mission control under construction (UI: P3, data: P1)."
+    },
+    "notFound": {
+      "title": "Page not found"
+    }
+  },
+  "medical": {
+    "pendingReview": "PENDING MEDICAL REVIEW"
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AlertBanner } from "../components/alerts/AlertBanner";
 import { CameraPanel } from "../components/camera/CameraPanel";
 import { OcularCard } from "../components/dashboard/OcularCard";
@@ -6,11 +7,10 @@ import { PriorityMetrics } from "../components/dashboard/PriorityMetrics";
 import { SectionTabs, type TabId } from "../components/dashboard/SectionTabs";
 import { AboutDataDialog } from "../components/layout/AboutDataDialog";
 import { TopBar } from "../components/layout/TopBar";
-import { useAppEngine } from "../hooks/useAppEngine";
 import { useCameraStore } from "../stores/camera.store";
 
 export function App() {
-  useAppEngine();
+  const { t } = useTranslation();
   const view = useCameraStore((s) => s.view);
   const [tab, setTab] = useState<TabId>("eye");
   const [aboutOpen, setAboutOpen] = useState(false);
@@ -37,10 +37,7 @@ export function App() {
         <SectionTabs tab={tab} onChange={setTab} />
       </main>
 
-      <footer className="footer">
-        aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como
-        SIMULADO no representan lecturas reales.
-      </footer>
+      <footer className="footer">{t("app.footer")}</footer>
 
       <AboutDataDialog open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </div>

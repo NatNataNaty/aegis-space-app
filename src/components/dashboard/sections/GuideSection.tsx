@@ -29,7 +29,7 @@ export function GuideSection() {
           ))}
         </ul>
         <p className="panel__note">
-          ASTRA Health no recomienda medicamentos ni dosis. Ante síntomas o señales graves se sigue el protocolo médico de
+          aegis-space-med no recomienda medicamentos ni dosis. Ante síntomas o señales graves se sigue el protocolo médico de
           la misión.
         </p>
 
