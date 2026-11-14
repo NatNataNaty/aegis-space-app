@@ -1,0 +1,83 @@
+{
+  "app": {
+    "name": "aegis-space-med",
+    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como SIMULADO no representan lecturas reales."
+  },
+  "mission": {
+    "name": "Tránsito a Marte",
+    "clockTitle": "Tiempo de misión simulado",
+    "day": "Día {{day}}"
+  },
+  "block": {
+    "sleep": "Descanso",
+    "work": "Trabajo",
+    "exercise": "Ejercicio",
+    "meal": "Comida",
+    "personal": "Tiempo personal"
+  },
+  "scenario": {
+    "label": "Escenario de misión",
+    "stable": "Rutina estable",
+    "sleep_deficit": "Déficit de sueño",
+    "accumulated_fatigue": "Fatiga acumulada",
+    "physio_variation": "Variación fisiológica",
+    "recovery": "Recuperación"
+  },
+  "topbar": {
+    "alertsActive": "Alertas activas: {{count}}",
+    "aboutData": "Acerca de los datos",
+    "language": "Idioma"
+  },
+  "about": {
+    "title": "Acerca de los datos",
+    "close": "Cerrar",
+    "camera": "Cámara web real y modelo MediaPipe Face Landmarker ejecutado en este navegador: detección del rostro, estado de los ojos, parpadeos, duración de cierres y PERCLOS. Los frames solo existen en memoria; no se graban, no se suben y no se almacenan.",
+    "simulated": "Frecuencia cardíaca, SpO₂, presión arterial, temperatura, respiración, glucosa, sueño, radiación, ejercicio, horario e históricos. Se generan de forma determinista según el escenario elegido. No son datos de astronautas reales.",
+    "userReported": "Respuestas del cuestionario de fatiga, ánimo, estrés y síntomas que introduces tú.",
+    "localTest": "Resultado de la prueba de tiempo de reacción realizada en este dispositivo.",
+    "limitsTitle": "Límites",
+    "limits": [
+      "Prototipo educativo de apoyo a la observación. No es un dispositivo médico y no diagnostica.",
+      "No deduce emociones, estrés, depresión ni enfermedades a partir del rostro.",
+      "La cámara no mide sueño, SpO₂, presión arterial, temperatura ni glucosa.",
+      "Los umbrales del detector son parámetros experimentales, no límites médicos oficiales de NASA.",
+      "Si no hay rostro o la calidad es insuficiente, el dato se muestra como «No disponible», nunca como cero."
+    ]
+  },
+  "tabs": {
+    "ariaLabel": "Secciones",
+    "eye": "Ojos y alerta",
+    "trends": "Tendencias",
+    "schedule": "Sueño y misión",
+    "exposure": "Exposición",
+    "alerts": "Alertas",
+    "self": "Autoevaluación",
+    "guide": "Guía"
+  },
+  "nav": {
+    "panel": "Panel",
+    "emergency": "Emergencia",
+    "control": "Centro de control",
+    "back": "Volver al panel"
+  },
+  "pages": {
+    "protocol": {
+      "title": "Protocolo: {{id}}",
+      "pending": "Pantalla de protocolo en construcción (P3). El contenido llegará desde /content (P2)."
+    },
+    "emergency": {
+      "title": "Modo emergencia",
+      "pending": "Modo emergencia en construcción (P3)."
+    },
+    "control": {
+      "title": "Centro de control",
+      "pending": "Centro de control en construcción (UI: P3, datos: P1)."
+    },
+    "notFound": {
+      "title": "Página no encontrada"
+    }
+  },
+  "medical": {
+    "pendingReview": "PENDIENTE DE REVISIÓN MÉDICA"
+  }
+}

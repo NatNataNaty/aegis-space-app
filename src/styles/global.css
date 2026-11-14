@@ -1985,3 +1985,54 @@ button:disabled {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---- P3: selector de idioma y páginas secundarias ---- */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.lang-switch__btn {
+  min-width: 40px;
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: transparent;
+  color: var(--text-2);
+  border: 0;
+  cursor: pointer;
+}
+
+.lang-switch__btn + .lang-switch__btn {
+  border-left: 1px solid var(--border-2);
+}
+
+.lang-switch__btn--on {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.lang-switch__btn:focus-visible {
+  outline: 2px solid var(--accent, currentColor);
+  outline-offset: -2px;
+}
+
+.page__title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.page__pending {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid currentColor;
+  color: var(--warn, #f5b041);
+}

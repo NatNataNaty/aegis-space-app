@@ -1,11 +1,13 @@
 import { Bell, Database, Orbit } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { MISSION, toMissionTime } from "../../features/mission/missionClock";
-import { blockAt, BLOCK_LABEL } from "../../features/mission/schedule";
+import { blockAt } from "../../features/mission/schedule";
 import { SCENARIO_ORDER, SCENARIOS } from "../../features/simulation/scenarios";
 import type { ScenarioId } from "../../features/simulation/simulation.types";
 import { useHealthStore } from "../../stores/health.store";
 import { useMissionStore } from "../../stores/mission.store";
 import { LiveIndicator } from "../camera/LiveIndicator";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 interface TopBarProps {
   onOpenAbout: () => void;
@@ -13,6 +15,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ onOpenAbout, onOpenAlerts }: TopBarProps) {
+  const { t } = useTranslation();
   const missionMs = useMissionStore((s) => s.missionMs);
   const scenarioId = useHealthStore((s) => s.scenarioId);
   const setScenario = useHealthStore((s) => s.setScenario);
@@ -28,42 +31,43 @@ export function TopBar({ onOpenAbout, onOpenAlerts }: TopBarProps) {
         <div>
           <span className="brand__name">aegis-space-med</span>
           <span className="brand__mission">
-            {MISSION.id} · {MISSION.name}
+            {MISSION.id} · {t("mission.name")}
           </span>
         </div>
       </div>
 
-      <div className="topbar__clock" title="Tiempo de misión simulado">
+      <div className="topbar__clock" title={t("mission.clockTitle")}>
         <span className="topbar__met">
-          Día {mt.day} · {mt.clock}
+          {t("mission.day", { day: mt.day })} · {mt.clock}
         </span>
         {block && (
-          <span className={`block-chip block-chip--${block.kind}`}>{BLOCK_LABEL[block.kind]}</span>
+          <span className={`block-chip block-chip--${block.kind}`}>{t(`block.${block.kind}`)}</span>
         )}
       </div>
 
       <div className="topbar__actions">
         <label className="scenario">
-          <span className="scenario__label">Escenario de misión</span>
+          <span className="scenario__label">{t("scenario.label")}</span>
           <select value={scenarioId} onChange={(e) => setScenario(e.target.value as ScenarioId)}>
             {SCENARIO_ORDER.map((id) => (
               <option key={id} value={id}>
-                {SCENARIOS[id].name}
+                {t(`scenario.${id}`, { defaultValue: SCENARIOS[id].name })}
               </option>
             ))}
           </select>
         </label>
 
-        <button type="button" className="icon-btn" onClick={onOpenAlerts} aria-label={`Alertas activas: ${alertCount}`}>
+        <button type="button" className="icon-btn" onClick={onOpenAlerts} aria-label={t("topbar.alertsActive", { count: alertCount })}>
           <Bell size={18} aria-hidden />
           {alertCount > 0 && <span className="icon-btn__count">{alertCount}</span>}
         </button>
 
         <button type="button" className="btn btn--ghost" onClick={onOpenAbout}>
           <Database size={15} aria-hidden />
-          <span className="btn__label">Acerca de los datos</span>
+          <span className="btn__label">{t("topbar.aboutData")}</span>
         </button>
 
+        <LanguageSwitch />
         <LiveIndicator />
       </div>
     </header>

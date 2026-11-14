@@ -1,5 +1,6 @@
 import { Bell, BookOpen, ClipboardCheck, Eye, LineChart, Moon, Radiation } from "lucide-react";
 import { useRef, type KeyboardEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { cx } from "../../lib/format";
 import { useHealthStore } from "../../stores/health.store";
 import { AlertsSection } from "./sections/AlertsSection";
@@ -12,14 +13,15 @@ import { TrendsSection } from "./sections/TrendsSection";
 
 export type TabId = "eye" | "trends" | "schedule" | "exposure" | "alerts" | "self" | "guide";
 
-const TABS: { id: TabId; label: string; Icon: typeof Eye }[] = [
-  { id: "eye", label: "Ojos y alerta", Icon: Eye },
-  { id: "trends", label: "Tendencias", Icon: LineChart },
-  { id: "schedule", label: "Sueño y misión", Icon: Moon },
-  { id: "exposure", label: "Exposición", Icon: Radiation },
-  { id: "alerts", label: "Alertas", Icon: Bell },
-  { id: "self", label: "Autoevaluación", Icon: ClipboardCheck },
-  { id: "guide", label: "Guía", Icon: BookOpen },
+// Las etiquetas salen de i18n: tabs.<id>
+const TABS: { id: TabId; Icon: typeof Eye }[] = [
+  { id: "eye", Icon: Eye },
+  { id: "trends", Icon: LineChart },
+  { id: "schedule", Icon: Moon },
+  { id: "exposure", Icon: Radiation },
+  { id: "alerts", Icon: Bell },
+  { id: "self", Icon: ClipboardCheck },
+  { id: "guide", Icon: BookOpen },
 ];
 
 const PANELS: Record<TabId, () => React.JSX.Element> = {
@@ -33,6 +35,7 @@ const PANELS: Record<TabId, () => React.JSX.Element> = {
 };
 
 export function SectionTabs({ tab, onChange }: { tab: TabId; onChange: (t: TabId) => void }) {
+  const { t } = useTranslation();
   const alertCount = useHealthStore((s) => s.activeAlerts.filter((a) => a.level !== "info").length);
   const refs = useRef<Record<string, HTMLButtonElement | null>>({});
   const Panel = PANELS[tab];
@@ -48,8 +51,8 @@ export function SectionTabs({ tab, onChange }: { tab: TabId; onChange: (t: TabId
 
   return (
     <section className="sections" id="sections">
-      <div className="tabs" role="tablist" aria-label="Secciones" onKeyDown={onKey}>
-        {TABS.map(({ id, label, Icon }) => (
+      <div className="tabs" role="tablist" aria-label={t("tabs.ariaLabel")} onKeyDown={onKey}>
+        {TABS.map(({ id, Icon }) => (
           <button
             key={id}
             ref={(el) => {
@@ -65,7 +68,7 @@ export function SectionTabs({ tab, onChange }: { tab: TabId; onChange: (t: TabId
             onClick={() => onChange(id)}
           >
             <Icon size={15} aria-hidden />
-            {label}
+            {t(`tabs.${id}`)}
             {id === "alerts" && alertCount > 0 && <span className="tab__count">{alertCount}</span>}
           </button>
         ))}
