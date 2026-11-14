@@ -4,4 +4,6 @@ dist
 .vite
 coverage
 *.pdf
+.env
+.env*.local
 
