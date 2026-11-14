@@ -1,6 +1,8 @@
 # ==============================================================================
 # CODEOWNERS - aegis-space-med
 # Responsabilidades y propiedad de código por rol (P1 a P5)
+# NOTA: Las asignaciones de usuarios se mantienen comentadas temporalmente
+# hasta configurar los usuarios reales de GitHub para evitar bloqueos en PRs.
 # ==============================================================================
 # P1: Líder técnico, plataforma, seguridad e integración (CI, PWA, CSP, Tauri)
 # P2: Contenido científico bilingüe (/content, esquemas Zod, fuentes NASA/CSA)
@@ -10,28 +12,28 @@
 # ==============================================================================
 
 # Por defecto, P1 supervisa todo el repositorio y plataforma base
-*                                          @P1-usuario
+# *                                          @P1-usuario
 
 # P1: Infraestructura, workflows de CI/CD y configuración de entorno
-/.github/                                  @P1-usuario
-/src-tauri/                                @P1-usuario
-/CLAUDE.md                                 @P1-usuario
-/CODEOWNERS                                @P1-usuario
+# /.github/                                  @P1-usuario
+# /src-tauri/                                @P1-usuario
+# /CLAUDE.md                                 @P1-usuario
+# /CODEOWNERS                                @P1-usuario
 
 # P2: Contenido estructurado bilingüe y esquemas de validación Zod
-/content/                                  @P2-usuario
-/public/media/                             @P2-usuario
-/src/lib/schemas/                          @P2-usuario @P1-usuario
+# /content/                                  @P2-usuario
+# /public/media/                             @P2-usuario
+# /src/lib/schemas/                          @P2-usuario @P1-usuario
 
 # P3: Interfaz de usuario, componentes de misión, alertas, modo emergencia e i18n
-/src/app/                                  @P3-usuario
-/src/components/                           @P3-usuario
-/src/messages/                             @P3-usuario
+# /src/app/                                  @P3-usuario
+# /src/components/                           @P3-usuario
+# /src/i18n/                                 @P3-usuario
 
 # P4: Capa de persistencia local offline (Dexie/WebCrypto), motores de cálculo y búsqueda
-/src/lib/db/                               @P4-usuario
-/src/features/                             @P4-usuario
+# /src/lib/db/                               @P4-usuario
+# /src/features/                             @P4-usuario
 
 # P5: Pruebas automatizadas (unitarias, e2e offline, accesibilidad) e IA local
-/tests/                                    @P5-usuario
-/src/lib/ai/                               @P5-usuario
+# /tests/                                    @P5-usuario
+# /src/lib/ai/                               @P5-usuario

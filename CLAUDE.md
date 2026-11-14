@@ -38,6 +38,7 @@ Fuentes oficiales autorizadas:
 # IDIOMAS E INTERNACIONALIZACIÓN (i18n)
 - Soporte bilingüe completo: Español e Inglés en interfaz, avisos y base de conocimiento.
 - Todo texto visible en componentes debe usar las claves de traducción de `react-i18next` / `i18next`. Prohibido hardcodear textos en componentes.
+- Las traducciones y recursos de internacionalización residen en `src/i18n/` (`es.json`, `en.json`, o estructura modular de i18n).
 
 # STACK TÉCNICO
 - **Core:** React 19 + TypeScript estricto (~5.9) + Vite 8.
@@ -46,7 +47,8 @@ Fuentes oficiales autorizadas:
 - **Validación de contratos:** `zod` para esquemas de datos clínicos, logs y registros de dosis.
 - **PWA:** `vite-plugin-pwa` con precaching exhaustivo de assets, modelos y WASM.
 - **Sincronización:** `@supabase/supabase-js` (sincronización opcional / diferida).
-- **Diseño & UI:** Lucide React, Recharts para métricas y gráficos, Tailwind CSS / sistema consola de misión (WCAG AA, soporte alto contraste y modo oscuro).
+- **Diseño & UI:** Lucide React, Recharts para métricas y gráficos.
+  - **Sistema de estilos:** Se utiliza el CSS nativo de ASTRA mediante `global.css` (ubicado en `src/styles/` o raíz de estilos). **NO se usa Tailwind CSS**. Mantiene la estética de consola de misión (WCAG AA, modo oscuro y alto contraste).
 - **Visión / Monitoreo:** MediaPipe Face Landmarker local (WASM y modelos locales en `public/`).
 - **Calidad y Tests:** Vitest para pruebas unitarias, `@playwright/test` con red bloqueada para pruebas e2e offline, y `@axe-core/playwright` para accesibilidad.
 
