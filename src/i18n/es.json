@@ -446,5 +446,124 @@
       "sent": "Aviso enviado a tu compañero.",
       "ok": "Anotado: dijiste que estás bien."
     }
+  },
+  "engine": {
+    "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",
+    "unavailable": "No disponible",
+    "noBlock": "Sin bloque",
+    "vital": {
+      "heartRate": "Frecuencia cardíaca",
+      "bloodPressure": "Presión arterial",
+      "spo2": "SpO₂",
+      "respRate": "Frecuencia respiratoria",
+      "temperature": "Temperatura",
+      "glucose": "Glucosa"
+    },
+    "signal": {
+      "prolonged": "Cierres prolongados (400–499 ms)",
+      "long": "Cierres largos (≥ 500 ms)",
+      "perclos5": "PERCLOS 5 min",
+      "sleepLast": "Sueño último ciclo",
+      "block": "Bloque actual",
+      "quality": "Calidad de captura",
+      "scheduleBlock": "Bloque del horario",
+      "baseline": "Referencia personal",
+      "latest": "Última ventana",
+      "regularity": "Regularidad",
+      "symptom": "Síntoma",
+      "fatigue": "Fatiga percibida"
+    },
+    "camera_unavailable": {
+      "title": "Medición ocular no disponible",
+      "observedReasons": "{{reasons}}. No se emiten alertas oculares con fotogramas no válidos.",
+      "observed": "No se detecta el rostro o los ojos. No se emiten alertas oculares.",
+      "window": "{{s}} s sin datos válidos",
+      "action": "Colócate frente a la cámara con iluminación suficiente o recalibra."
+    },
+    "rest_period": {
+      "title": "Periodo de descanso programado",
+      "observed": "La misión está en ventana de descanso. Los ojos cerrados no se tratan como anomalía y la cámara no mide sueño.",
+      "window": "Horario de misión",
+      "action": "Respetar la ventana de descanso."
+    },
+    "combined_fatigue": {
+      "title": "Señales compatibles con fatiga",
+      "observed": "La cámara registró {{closures}} cierres prolongados o largos en 5 min y el escenario simula {{hours}} h de sueño.",
+      "window": "Últimos 5 min (cámara) · último ciclo de sueño (simulado)",
+      "action": "Abre el protocolo de agotamiento. Si no respondes, se avisa a tu compañero."
+    },
+    "repeated_closures": {
+      "title": "Revisar nivel de alerta",
+      "observed": "Se registraron {{closures}} cierres prolongados o largos durante el trabajo.",
+      "window": "Últimos 5 min",
+      "action": "Haz una pausa breve y revisa tu estado de alerta."
+    },
+    "perclos_above_baseline": {
+      "title": "Más cierres de ojos que tu referencia",
+      "observed": "PERCLOS por encima de tu referencia personal en {{n}} ventanas seguidas de 1 min.",
+      "window": "{{n}} ventanas de 60 s",
+      "action": "Haz una pausa y revisa tu descanso."
+    },
+    "sim_vitals": {
+      "title": "Variación en datos simulados",
+      "observed": "{{list}} fuera del perfil de demostración. No representa una urgencia médica real.",
+      "window": "Lectura actual del escenario",
+      "action": "Sigue el protocolo enlazado y avisa a tu compañero u oficial médico."
+    },
+    "sim_sleep": {
+      "title": "Sueño simulado reducido",
+      "observed": "El escenario simula {{hours}} h de sueño en el último ciclo (media de 7 días: {{avg}} h).",
+      "window": "Últimos 7 ciclos",
+      "action": "Recuerda el horario de descanso de la misión."
+    },
+    "self_symptoms": {
+      "title": "Síntomas reportados",
+      "observed": "Reportaste: {{list}}.",
+      "window": "Último cuestionario",
+      "action": "Sigue el protocolo enlazado y avisa a tu compañero u oficial médico."
+    },
+    "self_fatigue": {
+      "title": "Fatiga percibida alta",
+      "observed": "Indicaste una fatiga de {{n}}/5.",
+      "window": "Último cuestionario",
+      "action": "Planifica una pausa y revisa tu próximo descanso."
+    },
+    "questionnaire_pending": {
+      "title": "Autoevaluación pendiente",
+      "observed": "No hay un cuestionario de fatiga y síntomas en esta sesión.",
+      "window": "Sesión actual",
+      "action": "Completa la autoevaluación breve."
+    },
+    "rules": {
+      "title": "Reglas activas",
+      "camera_unavailable": [
+        "Cámara sin rostro u ojos visibles",
+        "Medición no disponible; sin alerta ocular"
+      ],
+      "rest_period": [
+        "Periodo programado de descanso",
+        "Los cierres de ojos no se tratan como anomalía"
+      ],
+      "repeated_closures": [
+        "≥ {{n}} cierres prolongados o largos en 5 min de trabajo",
+        "Revisar nivel de alerta"
+      ],
+      "perclos_above_baseline": [
+        "PERCLOS sobre tu referencia en {{n}} ventanas válidas",
+        "Más cierres de ojos que tu referencia"
+      ],
+      "combined_fatigue": [
+        "≥ {{n}} cierres prolongados + sueño simulado < {{h}} h",
+        "Protocolo de agotamiento y «¿Necesitas ayuda?»"
+      ],
+      "sim_vitals": [
+        "Signos vitales simulados fuera del perfil",
+        "Protocolo de la señal (frecuencia cardíaca, oxígeno)"
+      ],
+      "self_symptoms": [
+        "Síntomas autorreportados",
+        "Protocolo del síntoma"
+      ]
+    }
   }
 }

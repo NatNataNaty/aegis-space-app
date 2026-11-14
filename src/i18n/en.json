@@ -446,5 +446,124 @@
       "sent": "Alert sent to your crewmate.",
       "ok": "Logged: you said you're OK."
     }
+  },
+  "engine": {
+    "disclaimer": "Educational prototype to support observation. Not a diagnosis.",
+    "unavailable": "Not available",
+    "noBlock": "No block",
+    "vital": {
+      "heartRate": "Heart rate",
+      "bloodPressure": "Blood pressure",
+      "spo2": "SpO₂",
+      "respRate": "Respiratory rate",
+      "temperature": "Temperature",
+      "glucose": "Glucose"
+    },
+    "signal": {
+      "prolonged": "Prolonged closures (400–499 ms)",
+      "long": "Long closures (≥ 500 ms)",
+      "perclos5": "PERCLOS 5 min",
+      "sleepLast": "Last sleep cycle",
+      "block": "Current block",
+      "quality": "Capture quality",
+      "scheduleBlock": "Schedule block",
+      "baseline": "Personal reference",
+      "latest": "Latest window",
+      "regularity": "Regularity",
+      "symptom": "Symptom",
+      "fatigue": "Perceived fatigue"
+    },
+    "camera_unavailable": {
+      "title": "Eye measurement not available",
+      "observedReasons": "{{reasons}}. No eye alerts are raised from invalid frames.",
+      "observed": "Face or eyes not detected. No eye alerts are raised.",
+      "window": "{{s}} s without valid data",
+      "action": "Face the camera with enough light or recalibrate."
+    },
+    "rest_period": {
+      "title": "Scheduled rest period",
+      "observed": "The mission is in a rest window. Closed eyes are not treated as an anomaly and the camera does not measure sleep.",
+      "window": "Mission schedule",
+      "action": "Respect the rest window."
+    },
+    "combined_fatigue": {
+      "title": "Signals consistent with fatigue",
+      "observed": "The camera logged {{closures}} prolonged or long closures in 5 min and the scenario simulates {{hours}} h of sleep.",
+      "window": "Last 5 min (camera) · last sleep cycle (simulated)",
+      "action": "Open the exhaustion protocol. If you do not answer, your crewmate is alerted."
+    },
+    "repeated_closures": {
+      "title": "Check your alertness",
+      "observed": "{{closures}} prolonged or long closures were logged during work.",
+      "window": "Last 5 min",
+      "action": "Take a short break and check your alertness."
+    },
+    "perclos_above_baseline": {
+      "title": "More eye closures than your reference",
+      "observed": "PERCLOS above your personal reference in {{n}} consecutive 1-min windows.",
+      "window": "{{n}} windows of 60 s",
+      "action": "Take a break and review your rest."
+    },
+    "sim_vitals": {
+      "title": "Variation in simulated data",
+      "observed": "{{list}} outside the demo profile. This is not a real medical emergency.",
+      "window": "Current scenario reading",
+      "action": "Follow the linked protocol and alert your crewmate or medical officer."
+    },
+    "sim_sleep": {
+      "title": "Reduced simulated sleep",
+      "observed": "The scenario simulates {{hours}} h of sleep in the last cycle (7-day average: {{avg}} h).",
+      "window": "Last 7 cycles",
+      "action": "Keep in mind the mission rest schedule."
+    },
+    "self_symptoms": {
+      "title": "Symptoms reported",
+      "observed": "You reported: {{list}}.",
+      "window": "Last questionnaire",
+      "action": "Follow the linked protocol and alert your crewmate or medical officer."
+    },
+    "self_fatigue": {
+      "title": "High perceived fatigue",
+      "observed": "You rated your fatigue {{n}}/5.",
+      "window": "Last questionnaire",
+      "action": "Plan a break and check your next rest period."
+    },
+    "questionnaire_pending": {
+      "title": "Self-check pending",
+      "observed": "There is no fatigue and symptoms questionnaire in this session.",
+      "window": "Current session",
+      "action": "Complete the short self-check."
+    },
+    "rules": {
+      "title": "Active rules",
+      "camera_unavailable": [
+        "Camera without a visible face or eyes",
+        "Measurement not available; no eye alert"
+      ],
+      "rest_period": [
+        "Scheduled rest period",
+        "Eye closures are not treated as an anomaly"
+      ],
+      "repeated_closures": [
+        "≥ {{n}} prolonged or long closures in 5 min of work",
+        "Check your alertness"
+      ],
+      "perclos_above_baseline": [
+        "PERCLOS above your reference in {{n}} valid windows",
+        "More eye closures than your reference"
+      ],
+      "combined_fatigue": [
+        "≥ {{n}} prolonged closures + simulated sleep < {{h}} h",
+        "Exhaustion protocol and “Need help?”"
+      ],
+      "sim_vitals": [
+        "Simulated vital signs outside the profile",
+        "Protocol for that signal (heart rate, oxygen)"
+      ],
+      "self_symptoms": [
+        "Self-reported symptoms",
+        "Protocol for that symptom"
+      ]
+    }
   }
 }

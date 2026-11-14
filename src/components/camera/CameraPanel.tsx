@@ -1,3 +1,4 @@
+import { simT } from "../../i18n";
 import { useEffect, useRef } from "react";
 import { CAMERA_ERROR_TEXT } from "../../features/camera/camera.service";
 import { ocularSession } from "../../features/camera/ocularSession";
@@ -77,7 +78,7 @@ export function CameraPanel() {
 
       {status === "error" && error && view !== "expanded" && (
         <p className="camera__error" role="alert">
-          {error.message || CAMERA_ERROR_TEXT[error.code]}
+          {simT(error.message || CAMERA_ERROR_TEXT[error.code])}
         </p>
       )}
     </section>

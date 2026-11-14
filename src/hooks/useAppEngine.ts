@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { evaluateAlerts } from "../features/alerts/alertEngine";
 import { toMissionTime } from "../features/mission/missionClock";
-import { blockAt, BLOCK_LABEL } from "../features/mission/schedule";
+import { blockAt } from "../features/mission/schedule";
+import i18n, { simT } from "../i18n";
 import { SCENARIOS } from "../features/simulation/scenarios";
 import { useCameraStore } from "../stores/camera.store";
 import { useHealthStore } from "../stores/health.store";
@@ -42,7 +43,7 @@ export function useAppEngine(): void {
           active,
           calibrated: cam.calibration.phase === "ready",
           frameQuality,
-          qualityReasons: cam.frame?.qualityReasons ?? [],
+          qualityReasons: (cam.frame?.qualityReasons ?? []).map(simT),
           unavailableForMs: unavailableSince.current ? Date.now() - unavailableSince.current : 0,
           summary60: active ? cam.summary60 : null,
           summary300: active ? cam.summary300 : null,
@@ -50,7 +51,7 @@ export function useAppEngine(): void {
         },
         sim: useHealthStore.getState().snapshot,
         restPeriod: block?.kind === "sleep",
-        blockLabel: block ? `${BLOCK_LABEL[block.kind]} · ${block.label}` : "Sin bloque",
+        blockLabel: block ? `${i18n.t(`block.${block.kind}`)} · ${simT(block.label)}` : i18n.t("engine.noBlock"),
         selfReport: health.selfReport,
       });
       health.setAlerts(alerts, mt.label);

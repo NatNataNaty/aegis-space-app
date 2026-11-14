@@ -1,6 +1,7 @@
 import { Lightbulb } from "lucide-react";
 import { METRIC_INFO, type MetricId } from "../../../data/metricCatalog";
-import { RULES } from "../../../features/alerts/alertRules";
+import { ruleExplanations } from "../../../features/alerts/alertRules";
+import { simT } from "../../../i18n";
 import { SCENARIOS } from "../../../features/simulation/scenarios";
 import { useHealthStore } from "../../../stores/health.store";
 import { OriginBadge } from "../../common/OriginBadge";
@@ -21,13 +22,13 @@ export function GuideSection() {
             <h3>
               <Lightbulb size={16} aria-hidden /> {t("sections.guide.actions", { scenario: t(`scenario.${scenarioId}`) })}
             </h3>
-            <p className="panel__sub">{scenario.summary}</p>
+            <p className="panel__sub">{simT(scenario.summary)}</p>
           </div>
           <OriginBadge origin="simulated" />
         </header>
         <ul className="guide-list">
           {scenario.recommendations.map((r) => (
-            <li key={r}>{r}</li>
+            <li key={r}>{simT(r)}</li>
           ))}
         </ul>
         <p className="panel__note">{t("sections.guide.noMeds")}</p>
@@ -41,7 +42,7 @@ export function GuideSection() {
             </tr>
           </thead>
           <tbody>
-            {RULES.map((r) => (
+            {ruleExplanations().map((r) => (
               <tr key={r.id}>
                 <td>{r.condition}</td>
                 <td>{r.result}</td>

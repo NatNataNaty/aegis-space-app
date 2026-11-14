@@ -1,18 +1,14 @@
+import i18n, { fmtLocale } from "../../i18n";
+import { getAlertRule, protocolForSymptom } from "../../lib/content";
 import { median } from "../camera/eyeAspectRatio";
 import type { VitalId } from "../simulation/simulation.types";
 import type { Alert, AlertContext, AlertSignal, PerclosPoint } from "./alert.types";
-import { ALERT_CONFIG, DISCLAIMER, LEVEL_ORDER } from "./alertRules";
+import { ALERT_CONFIG, LEVEL_ORDER } from "./alertRules";
 
-const VITAL_LABEL: Record<VitalId, string> = {
-  heartRate: "Frecuencia cardíaca",
-  bloodPressure: "Presión arterial",
-  spo2: "SpO₂",
-  respRate: "Frecuencia respiratoria",
-  temperature: "Temperatura",
-  glucose: "Glucosa",
-};
+/** Textos en el idioma activo: el motor se reevalúa cada segundo, así que sigue al selector ES/EN. */
+const t = (key: string, params: Record<string, unknown> = {}): string => i18n.t(key, params) as string;
 
-const fmt = (v: number, d = 0) => v.toLocaleString("es-ES", { maximumFractionDigits: d, minimumFractionDigits: d });
+const vitalLabel = (id: VitalId) => t(`engine.vital.${id}`);
 
 export interface PerclosBaselineStatus {
   baseline: number | null;
@@ -55,14 +51,28 @@ function closureSignals(ctx: AlertContext): AlertSignal[] {
   const s = ctx.camera.summary300;
   if (!s) return [];
   return [
-    { label: "Cierres prolongados (400–499 ms)", value: String(s.prolongedClosures), origin: "camera_live" },
-    { label: "Cierres largos (≥ 500 ms)", value: String(s.longClosures), origin: "camera_live" },
+    { label: t("engine.signal.prolonged"), value: String(s.prolongedClosures), origin: "camera_live" },
+    { label: t("engine.signal.long"), value: String(s.longClosures), origin: "camera_live" },
     {
-      label: "PERCLOS 5 min",
-      value: s.perclos === null ? "No disponible" : `${fmt(s.perclos, 1)} %`,
+      label: t("engine.signal.perclos5"),
+      value: s.perclos === null ? t("engine.unavailable") : `${fmtLocale(s.perclos, 1)} %`,
       origin: "camera_live",
     },
   ];
+}
+
+type AlertBody = Omit<Alert, "disclaimer" | "protocolId" | "askForHelp" | "buddyAfterSec">;
+
+/** Añade el enlace al protocolo y la regla de ayuda definidos en content/alerts.json. */
+function linked(body: AlertBody, ruleKey: string = body.id, fallbackProtocol: string | null = null): Alert {
+  const rule = getAlertRule(ruleKey);
+  return {
+    ...body,
+    disclaimer: t("engine.disclaimer"),
+    protocolId: rule?.protocolId ?? fallbackProtocol,
+    askForHelp: rule?.askForHelp ?? false,
+    buddyAfterSec: rule?.buddyAfterSec ?? 30,
+  };
 }
 
 /** Pure function: same context → same alerts. Never rewrites the origin of a signal. */
@@ -76,89 +86,93 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
   const sleepShort = sleepHours < ALERT_CONFIG.insufficientSleepHours;
 
   if (cam.active && cam.frameQuality === "unavailable" && cam.unavailableForMs >= ALERT_CONFIG.cameraUnavailableMs) {
-    alerts.push({
-      id: "camera_unavailable",
-      title: "Medición ocular no disponible",
-      level: "info",
-      source: "camera_live",
-      observed: cam.qualityReasons.length
-        ? `${cam.qualityReasons.join(", ")}. No se emiten alertas oculares con frames no válidos.`
-        : "No se detecta el rostro o los ojos. No se emiten alertas oculares.",
-      signals: [{ label: "Calidad de captura", value: "No disponible", origin: "camera_live" }],
-      window: `${Math.round(cam.unavailableForMs / 1000)} s sin datos válidos`,
-      quality: "unavailable",
-      action: "Colócate frente a la cámara con iluminación suficiente o recalibra.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "camera_unavailable",
+        title: t("engine.camera_unavailable.title"),
+        level: "info",
+        source: "camera_live",
+        observed: cam.qualityReasons.length
+          ? t("engine.camera_unavailable.observedReasons", { reasons: cam.qualityReasons.join(", ") })
+          : t("engine.camera_unavailable.observed"),
+        signals: [{ label: t("engine.signal.quality"), value: t("engine.unavailable"), origin: "camera_live" }],
+        window: t("engine.camera_unavailable.window", { s: Math.round(cam.unavailableForMs / 1000) }),
+        quality: "unavailable",
+        action: t("engine.camera_unavailable.action"),
+      }),
+    );
   }
 
   if (ctx.restPeriod) {
-    alerts.push({
-      id: "rest_period",
-      title: "Periodo de descanso programado",
-      level: "info",
-      source: "simulated",
-      observed: "La misión simulada está en ventana de descanso. Los ojos cerrados no se clasifican como anomalía y la cámara no mide sueño.",
-      signals: [{ label: "Bloque del horario", value: ctx.blockLabel, origin: "simulated" }],
-      window: "Horario de misión",
-      quality: null,
-      action: "Respetar la ventana de descanso.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "rest_period",
+        title: t("engine.rest_period.title"),
+        level: "info",
+        source: "simulated",
+        observed: t("engine.rest_period.observed"),
+        signals: [{ label: t("engine.signal.scheduleBlock"), value: ctx.blockLabel, origin: "simulated" }],
+        window: t("engine.rest_period.window"),
+        quality: null,
+        action: t("engine.rest_period.action"),
+      }),
+    );
   }
 
-  const combined =
-    !ctx.restPeriod && cameraUsable && closures >= ALERT_CONFIG.combinedClosures && sleepShort;
+  const combined = !ctx.restPeriod && cameraUsable && closures >= ALERT_CONFIG.combinedClosures && sleepShort;
 
   if (combined) {
-    alerts.push({
-      id: "combined_fatigue",
-      title: "Señales compatibles con fatiga en este escenario de demo",
-      level: "attention",
-      source: "combined",
-      observed: `La cámara registró ${closures} cierres prolongados o largos en 5 min y el escenario simula ${fmt(sleepHours, 1)} h de sueño.`,
-      signals: [
-        ...closureSignals(ctx),
-        { label: "Sueño último ciclo", value: `${fmt(sleepHours, 1)} h`, origin: "simulated" },
-        { label: "Bloque actual", value: ctx.blockLabel, origin: "simulated" },
-      ],
-      window: "Últimos 5 min (cámara) · último ciclo de sueño (simulado)",
-      quality: s300?.quality ?? null,
-      action: "Realizar una pausa, revisar el estado de alerta y priorizar el próximo descanso programado.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "combined_fatigue",
+        title: t("engine.combined_fatigue.title"),
+        level: "attention",
+        source: "combined",
+        observed: t("engine.combined_fatigue.observed", { closures, hours: fmtLocale(sleepHours, 1) }),
+        signals: [
+          ...closureSignals(ctx),
+          { label: t("engine.signal.sleepLast"), value: `${fmtLocale(sleepHours, 1)} h`, origin: "simulated" },
+          { label: t("engine.signal.block"), value: ctx.blockLabel, origin: "simulated" },
+        ],
+        window: t("engine.combined_fatigue.window"),
+        quality: s300?.quality ?? null,
+        action: t("engine.combined_fatigue.action"),
+      }),
+    );
   } else if (!ctx.restPeriod && cameraUsable && closures >= ALERT_CONFIG.repeatedClosures) {
-    alerts.push({
-      id: "repeated_closures",
-      title: "Revisar nivel de alerta",
-      level: "watch",
-      source: "camera_live",
-      observed: `Se registraron ${closures} cierres prolongados o largos durante la sesión de trabajo.`,
-      signals: closureSignals(ctx),
-      window: "Últimos 5 min",
-      quality: s300?.quality ?? null,
-      action: "Realizar una pausa breve y revisar el estado de alerta.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "repeated_closures",
+        title: t("engine.repeated_closures.title"),
+        level: "watch",
+        source: "camera_live",
+        observed: t("engine.repeated_closures.observed", { closures }),
+        signals: closureSignals(ctx),
+        window: t("engine.repeated_closures.window"),
+        quality: s300?.quality ?? null,
+        action: t("engine.repeated_closures.action"),
+      }),
+    );
   }
 
   const perclos = perclosBaselineStatus(cam.perclosTrend);
   if (!ctx.restPeriod && cam.active && perclos.elevatedWindows >= ALERT_CONFIG.perclosElevatedWindows) {
-    alerts.push({
-      id: "perclos_above_baseline",
-      title: "Aumento de cierres oculares respecto a tu referencia",
-      level: "watch",
-      source: "camera_live",
-      observed: `PERCLOS por encima de tu referencia personal en ${perclos.elevatedWindows} ventanas consecutivas de 1 min.`,
-      signals: [
-        { label: "Referencia personal", value: `${fmt(perclos.baseline ?? 0, 1)} %`, origin: "camera_live" },
-        { label: "Última ventana", value: `${fmt(perclos.latest ?? 0, 1)} %`, origin: "camera_live" },
-      ],
-      window: `${perclos.elevatedWindows} ventanas de 60 s`,
-      quality: cam.summary60?.quality ?? null,
-      action: "Realizar una pausa y revisar el descanso.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "perclos_above_baseline",
+        title: t("engine.perclos_above_baseline.title"),
+        level: "watch",
+        source: "camera_live",
+        observed: t("engine.perclos_above_baseline.observed", { n: perclos.elevatedWindows }),
+        signals: [
+          { label: t("engine.signal.baseline"), value: `${fmtLocale(perclos.baseline ?? 0, 1)} %`, origin: "camera_live" },
+          { label: t("engine.signal.latest"), value: `${fmtLocale(perclos.latest ?? 0, 1)} %`, origin: "camera_live" },
+        ],
+        window: t("engine.perclos_above_baseline.window", { n: perclos.elevatedWindows }),
+        quality: cam.summary60?.quality ?? null,
+        action: t("engine.perclos_above_baseline.action"),
+      }),
+    );
   }
 
   const vitals = Object.values(ctx.sim.vitals);
@@ -166,85 +180,103 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
   const watched = vitals.filter((v) => v.status === "watch");
   if (varied.length || watched.length >= 2) {
     const list = [...varied, ...watched];
-    alerts.push({
-      id: "sim_vitals",
-      title: "Variación en datos simulados",
-      level: varied.length ? "attention" : "watch",
-      source: "simulated",
-      observed: `${list.map((v) => VITAL_LABEL[v.id]).join(", ")} fuera del perfil de demostración. No representa una urgencia médica real.`,
-      signals: list.map((v) => ({
-        label: VITAL_LABEL[v.id],
-        value:
-          v.id === "bloodPressure" ? `${v.value}/${v.value2} ${v.unit}` : `${fmt(v.value, v.id === "temperature" ? 1 : 0)} ${v.unit}`,
-        origin: "simulated" as const,
-      })),
-      window: "Lectura actual del escenario",
-      quality: null,
-      action: "En una situación real, seguir el protocolo médico de la misión y contactar al personal sanitario.",
-      disclaimer: DISCLAIMER,
-    });
+    // El protocolo depende de la señal: oxígeno antes que frecuencia cardíaca (plan: aviso inmediato).
+    const lead = (["spo2", "heartRate"] as const).find((id) => list.some((v) => v.id === id));
+    alerts.push(
+      linked(
+        {
+          id: "sim_vitals",
+          title: t("engine.sim_vitals.title"),
+          level: varied.length ? "attention" : "watch",
+          source: "simulated",
+          observed: t("engine.sim_vitals.observed", { list: list.map((v) => vitalLabel(v.id)).join(", ") }),
+          signals: list.map((v) => ({
+            label: vitalLabel(v.id),
+            value:
+              v.id === "bloodPressure"
+                ? `${v.value}/${v.value2} ${v.unit}`
+                : `${fmtLocale(v.value, v.id === "temperature" ? 1 : 0)} ${v.unit}`,
+            origin: "simulated" as const,
+          })),
+          window: t("engine.sim_vitals.window"),
+          quality: null,
+          action: t("engine.sim_vitals.action"),
+        },
+        lead ? `sim_vitals.${lead}` : "sim_vitals",
+      ),
+    );
   }
 
   if (sleepShort && !combined) {
-    alerts.push({
-      id: "sim_sleep",
-      title: "Sueño simulado reducido",
-      level: "watch",
-      source: "simulated",
-      observed: `El escenario simula ${fmt(sleepHours, 1)} h de sueño en el último ciclo (media 7 días: ${fmt(ctx.sim.sleep.avg7d, 1)} h).`,
-      signals: [
-        { label: "Sueño último ciclo", value: `${fmt(sleepHours, 1)} h`, origin: "simulated" },
-        { label: "Regularidad", value: `${ctx.sim.sleep.regularity} %`, origin: "simulated" },
-      ],
-      window: "Últimos 7 ciclos",
-      quality: null,
-      action: "Recordar el horario de descanso de la misión.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "sim_sleep",
+        title: t("engine.sim_sleep.title"),
+        level: "watch",
+        source: "simulated",
+        observed: t("engine.sim_sleep.observed", { hours: fmtLocale(sleepHours, 1), avg: fmtLocale(ctx.sim.sleep.avg7d, 1) }),
+        signals: [
+          { label: t("engine.signal.sleepLast"), value: `${fmtLocale(sleepHours, 1)} h`, origin: "simulated" },
+          { label: t("engine.signal.regularity"), value: `${ctx.sim.sleep.regularity} %`, origin: "simulated" },
+        ],
+        window: t("engine.sim_sleep.window"),
+        quality: null,
+        action: t("engine.sim_sleep.action"),
+      }),
+    );
   }
 
   const report = ctx.selfReport;
   if (report && report.symptoms.length) {
-    alerts.push({
-      id: "self_symptoms",
-      title: "Síntomas reportados",
-      level: "attention",
-      source: "user_reported",
-      observed: `Reportaste: ${report.symptoms.join(", ")}.`,
-      signals: report.symptoms.map((s) => ({ label: "Síntoma", value: s, origin: "user_reported" as const })),
-      window: "Último cuestionario",
-      quality: null,
-      action: "Seguir el protocolo médico de la misión y contactar al personal sanitario correspondiente.",
-      disclaimer: DISCLAIMER,
-    });
+    const symptomLabel = (s: string) => t(`sections.self.symptom.${s}`, { defaultValue: s });
+    const protocolId = report.symptoms.map(protocolForSymptom).find(Boolean) ?? null;
+    alerts.push(
+      linked(
+        {
+          id: "self_symptoms",
+          title: t("engine.self_symptoms.title"),
+          level: "attention",
+          source: "user_reported",
+          observed: t("engine.self_symptoms.observed", { list: report.symptoms.map(symptomLabel).join(", ") }),
+          signals: report.symptoms.map((s) => ({ label: t("engine.signal.symptom"), value: symptomLabel(s), origin: "user_reported" as const })),
+          window: t("engine.self_symptoms.window"),
+          quality: null,
+          action: t("engine.self_symptoms.action"),
+        },
+        "self_symptoms",
+        protocolId,
+      ),
+    );
   }
   if (report && report.fatigue >= ALERT_CONFIG.highPerceivedFatigue) {
-    alerts.push({
-      id: "self_fatigue",
-      title: "Fatiga percibida alta",
-      level: "watch",
-      source: "user_reported",
-      observed: `Indicaste una fatiga de ${report.fatigue}/5.`,
-      signals: [{ label: "Fatiga percibida", value: `${report.fatigue}/5`, origin: "user_reported" }],
-      window: "Último cuestionario",
-      quality: null,
-      action: "Planificar una pausa y revisar el próximo descanso.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "self_fatigue",
+        title: t("engine.self_fatigue.title"),
+        level: "watch",
+        source: "user_reported",
+        observed: t("engine.self_fatigue.observed", { n: report.fatigue }),
+        signals: [{ label: t("engine.signal.fatigue"), value: `${report.fatigue}/5`, origin: "user_reported" }],
+        window: t("engine.self_fatigue.window"),
+        quality: null,
+        action: t("engine.self_fatigue.action"),
+      }),
+    );
   }
   if (!report) {
-    alerts.push({
-      id: "questionnaire_pending",
-      title: "Autoevaluación pendiente",
-      level: "info",
-      source: "user_reported",
-      observed: "No hay un cuestionario de fatiga y síntomas en esta sesión.",
-      signals: [],
-      window: "Sesión actual",
-      quality: null,
-      action: "Completar la autoevaluación breve.",
-      disclaimer: DISCLAIMER,
-    });
+    alerts.push(
+      linked({
+        id: "questionnaire_pending",
+        title: t("engine.questionnaire_pending.title"),
+        level: "info",
+        source: "user_reported",
+        observed: t("engine.questionnaire_pending.observed"),
+        signals: [],
+        window: t("engine.questionnaire_pending.window"),
+        quality: null,
+        action: t("engine.questionnaire_pending.action"),
+      }),
+    );
   }
 
   return alerts.sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]);

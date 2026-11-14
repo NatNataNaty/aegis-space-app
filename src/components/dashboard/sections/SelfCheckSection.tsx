@@ -7,15 +7,8 @@ import { InfoTip } from "../../common/InfoTip";
 import { OriginBadge } from "../../common/OriginBadge";
 import { useTranslation } from "react-i18next";
 
-// `value` es lo que se guarda (lo leen las reglas de alerta de P4): no cambiarlo. Lo visible sale de i18n.
-const SYMPTOMS = [
-  { value: "Dolor de cabeza", key: "headache" },
-  { value: "Náuseas", key: "nausea" },
-  { value: "Mareo", key: "dizziness" },
-  { value: "Visión borrosa", key: "blurred" },
-  { value: "Congestión", key: "congestion" },
-  { value: "Dolor lumbar", key: "backPain" },
-] as const;
+// Se guarda la clave del síntoma (independiente del idioma); content/alerts.json la enlaza a su protocolo.
+const SYMPTOMS = ["headache", "nausea", "dizziness", "blurred", "congestion", "backPain"] as const;
 
 function Scale({ label, value, onChange, low, high }: { label: string; value: number; onChange: (v: number) => void; low: string; high: string }) {
   return (
@@ -73,10 +66,10 @@ function Questionnaire() {
         <fieldset className="symptoms">
           <legend>{t("sections.self.symptoms")}</legend>
           <div className="symptoms__list">
-            {SYMPTOMS.map(({ value: s, key }) => (
+            {SYMPTOMS.map((s) => (
               <label key={s} className={cx("check", symptoms.includes(s) && "check--on")}>
                 <input type="checkbox" checked={symptoms.includes(s)} onChange={() => toggle(s)} />
-                {t(`sections.self.symptom.${key}`)}
+                {t(`sections.self.symptom.${s}`)}
               </label>
             ))}
           </div>

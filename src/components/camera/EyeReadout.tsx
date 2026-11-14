@@ -1,3 +1,4 @@
+import { simT } from "../../i18n";
 import { useEffect, useState } from "react";
 import type { EyeState } from "../../features/camera/camera.types";
 import { cx, fmtNum } from "../../lib/format";
@@ -67,7 +68,7 @@ export function EyeReadout() {
         <span className="eye__value">{calibrated ? recent : "—"}</span>
       </div>
       {active && frame && frame.qualityReasons.length > 0 && (
-        <p className="eye__reasons">{frame.qualityReasons.join(" · ")}</p>
+        <p className="eye__reasons">{frame.qualityReasons.map(simT).join(" · ")}</p>
       )}
     </div>
   );
