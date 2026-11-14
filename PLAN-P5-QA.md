@@ -1,176 +1,192 @@
-# Plan de trabajo P5 — QA, pruebas offline y accesibilidad
+# Checklist de trabajo P5 — Visión y QA
 
+**Repositorio:** `NelvaAdalit/aegis-space-med`  
 **Responsable:** P5  
-**Alcance:** pruebas automatizadas, verificación sin red, accesibilidad y, solo si el MVP está estable y el equipo lo aprueba, evaluación de IA local.  
-**Estado:** plan de trabajo; no implica que todos los casos descritos ya estén implementados.
+**Actualizado para:** `main` después de integrar P1 (PWA/CSP/Supabase) y P3 (i18n ES/EN y router).  
+**Propósito:** llevar el seguimiento del QA y la integración P5 sin duplicar pruebas ni interferir con módulos de otras personas.
 
-## 1. Objetivo de P5
+> Marca una casilla solo cuando hayas ejecutado o verificado el punto y anota el commit, resultado o issue correspondiente. Que exista código no significa que ya haya sido probado en el entorno objetivo.
 
-Entregar evidencia reproducible de que la aplicación funciona de forma segura y predecible, detecta errores sin colapsar y no depende de la red durante el uso previsto. Las pruebas deben validar el comportamiento acordado por el equipo, no certificar eficacia médica.
+## Reglas de trabajo
 
-**Límites:**
+- Trabajar en una rama propia `feat/p5-...`; actualizarla desde `origin/main` antes de iniciar cada tanda.
+- No subir cambios de WASM que sean efectos secundarios de `npm ci`; conservar los assets de `main` salvo que P1 coordine una actualización intencional.
+- Mantener fixtures sintéticos: no usar datos médicos personales ni secretos.
+- No inventar diagnósticos, umbrales, dosis ni protocolos. Las pruebas verifican contratos y comportamientos aprobados, no eficacia clínica.
+- Coordinar con P1 cambios en CI, `package.json`, configuración de Playwright o PWA; con P2 contratos y contenido clínico; con P3 UI/i18n; con P4 sensores, alertas, perfiles y persistencia.
+- No publicar claves de Supabase en commits, capturas, logs ni mensajes. La QA offline debe funcionar sin claves.
+- Registrar defectos con pasos reproducibles, resultado esperado/observado, commit y responsable. No arreglar archivos de otro módulo sin coordinación.
 
-- No inventar diagnósticos, umbrales, dosis ni protocolos clínicos.
-- No presentar resultados de pruebas como validación clínica.
-- No usar datos personales ni imágenes reales de tripulantes en fixtures; preferir datos sintéticos.
-- No cambiar contratos Zod, módulos ajenos o configuración de CI sin coordinar con P1/P2/P4 y respetar `CODEOWNERS`.
-- En las pruebas de red, bloquear conexiones externas y verificar el comportamiento de la app; no probar contra servicios o sistemas ajenos.
+## Estado del repositorio que guía este checklist
 
-## 2. Estado inicial conocido del repositorio
+En la versión de `main` revisada tras la integración de P3:
 
-La base actual usa **React + TypeScript + Vite + Vitest**. No asumir que las instrucciones de Next.js del plan maestro ya están implementadas.
+- La aplicación usa React, TypeScript, Vite y Vitest.
+- P1 integró PWA/offline, CSP, configuración de despliegue y enlace/outbox de Supabase.
+- P3 integró i18n local ES/EN, selector de idioma, React Router y páginas iniciales de protocolo, emergencia y control.
+- `tests/i18n.test.ts` comprueba igualdad de claves ES/EN y que las traducciones no estén vacías.
+- Hay pruebas unitarias de cámara/visión (`eyeAspectRatio`, `blinkDetector`, `perclos`), simulación, alertas y enlace/outbox (`earthLink`). No repetir casos ya cubiertos; revisar los archivos de `tests/` antes de añadir otros.
+- Las páginas de protocolo, emergencia y control de P3 son actualmente provisionales. La existencia de una ruta no significa que el flujo funcional esté terminado.
+- Playwright y axe están en dependencias, pero `package.json` todavía no declara un script E2E dedicado ni se ha confirmado una configuración Playwright lista para el flujo offline.
+- El workflow CI ejecuta instalación, typecheck, pruebas unitarias y build en `push`/`pull_request`; coordinar con P1 antes de añadirle E2E.
+- Perfiles/PIN y contratos de protocolos/alertas dependen de la entrega y confirmación de P2/P4.
 
-Ya hay pruebas unitarias en `tests/` para:
+## Tanda 0 — Sincronización y línea base
 
-- `eyeAspectRatio.test.ts`: EAR, landmarks ausentes o degenerados y mediana.
-- `blinkDetector.test.ts`: eventos, histéresis, duración, estado `unknown` y FPS.
-- `perclos.test.ts`: porcentaje, exclusión de cierres cortos, frames inválidos y cobertura insuficiente.
-- `simulation.test.ts`: reproducibilidad, procedencia simulada, escenarios e históricos.
-- `alertEngine.test.ts`: alertas oculares/combinadas, procedencia, descanso y variaciones simuladas.
+**Objetivo:** comprobar el estado integrado actual antes de cambiar código.
 
-Por tanto, el primer trabajo es ejecutar y revisar estas pruebas; no duplicar casos que ya están cubiertos. Playwright y axe están en dependencias, pero antes de planificar E2E hay que comprobar configuración, scripts y estado real de la app. Coordinar con P1 cualquier cambio de configuración compartida.
+- [ ] Confirmar rama P5 y árbol de trabajo limpio: `git status -sb`.
+- [ ] Obtener cambios remotos: `git fetch origin`.
+- [ ] Integrar `origin/main` en la rama P5 según el procedimiento acordado; si hay conflictos, detenerse y pedir revisión antes de resolverlos.
+- [ ] Ejecutar `npm ci`.
+- [ ] Si `npm ci` modifica WASM versionados, restaurar solo esos assets y verificar el estado:
 
-## 3. Pasos para empezar
+  ```bash
+  git restore -- public/mediapipe/wasm/vision_wasm_internal.js public/mediapipe/wasm/vision_wasm_module_internal.js
+  git status --short
+  ```
 
-1. Sincronizar la rama local con `origin/main` (usar el procedimiento del equipo; por ejemplo, `git pull --rebase origin main`).
-2. Crear una rama de tarea, por ejemplo `feat/p5-qa-plan` para este documento y luego `feat/p5-unit-tests` para cambios de pruebas.
-3. Revisar `CODEOWNERS` y confirmar con el equipo cualquier archivo compartido que se necesite modificar.
-4. Ejecutar y anotar el estado inicial:
+- [ ] Ejecutar `npm test` y anotar resultado/número de pruebas.
+- [ ] Ejecutar `npm run typecheck`.
+- [ ] Ejecutar `npm run build`; registrar advertencias aunque el build termine bien.
+- [ ] Registrar commit probado, sistema operativo, comandos y fallos preexistentes en el PR o en la sección de progreso.
 
-   ```bash
-   npm test
-   npm run typecheck
-   npm run build
-   ```
+**Resultado de la última línea base local conocida:** 31 pruebas pasaron y `typecheck`/`build` pasaron antes de integrar los cambios recientes de P3 y P1. **Hay que repetir en el `main` actual; no se considera validación de la versión nueva.**
 
-5. Separar fallos preexistentes de regresiones nuevas. Guardar comandos, resultado y notas en el PR o en la issue.
-6. Elegir un lote acotado, implementar pruebas en `tests/`, volver a ejecutar los comandos y abrir un PR pequeño para revisión.
+## Tanda 1 — Revisar cobertura existente de visión y alertas
 
-## 4. Tandas de trabajo
+**Objetivo:** confirmar que los tests existentes siguen cubriendo las reglas principales y añadir pruebas solo para huecos reales.
 
-### Tanda 0 — Línea base y mapa de cobertura (primero)
+Cobertura ya presente (revisar, no duplicar):
 
-**Tareas**
+- `tests/eyeAspectRatio.test.ts`: EAR, landmarks no válidos y mediana.
+- `tests/blinkDetector.test.ts`: eventos de cierre, histéresis, duración, `unknown` y calidad FPS.
+- `tests/perclos.test.ts`: porcentaje, exclusión de cierres cortos, frames inválidos y cobertura insuficiente.
+- `tests/alertEngine.test.ts`: cierres repetidos/aislados, calidad no disponible, descanso, alerta combinada y origen de señales.
+- `tests/simulation.test.ts`: determinismo, origen simulado, escenarios e históricos.
 
-- Ejecutar `npm test`, `npm run typecheck` y `npm run build` en la base sincronizada.
-- Leer las pruebas ya existentes y marcar qué reglas cubren.
-- Identificar huecos reales sin reescribir pruebas equivalentes.
+Checklist:
 
-**Aceptación**
+- [ ] Ejecutar los tests actuales en la rama actualizada y registrar resultado.
+- [ ] Comparar los casos presentes con reglas de `eyeMetrics.config.ts` y `alertRules.ts`; los umbrales se toman del código aprobado, no se inventan en QA.
+- [ ] Añadir únicamente casos límite no cubiertos (por ejemplo, entradas nulas/malformadas o transiciones relevantes), en tests unitarios deterministas.
+- [ ] Confirmar que datos ausentes o de calidad insuficiente no se transformen en una lectura válida ni causen alerta ocular indebida.
+- [ ] Verificar que la señal de cámara se mantenga distinguible de datos simulados/autorreporte.
+- [ ] Ejecutar `npm test`, `npm run typecheck` y `npm run build` tras los cambios.
 
-- Hay un registro claro de comandos, resultados y fallos preexistentes.
-- El equipo sabe qué comportamiento ya está probado y qué falta.
+**Aceptación:** pruebas reproducibles sin cámara real, internet ni tiempo aleatorio; cada caso corresponde a una regla existente.
 
-### Tanda 1 — Pruebas unitarias de mayor prioridad
+## Tanda 2 — QA exploratorio de la integración actual de P3
 
-**Enfoque:** completar únicamente brechas de lógica pura, usando Vitest y fixtures sintéticos. Revisar primero si la regla ya está cubierta en `perclos.test.ts`, `alertEngine.test.ts` o `simulation.test.ts`.
+**Objetivo:** encontrar problemas y reportarlos sin editar las pantallas que P3 sigue mejorando.
 
-Lista de comprobación:
+En local, arrancar `npm run dev` y recorrer:
 
-- [ ] Datos ausentes, inválidos o con calidad `unavailable` no se convierten en mediciones válidas ni provocan alertas oculares indebidas.
-- [ ] La cobertura insuficiente de PERCLOS produce el estado no disponible (`null`), no un cero engañoso.
-- [ ] El periodo de descanso no clasifica los cierres oculares como anomalía.
-- [ ] Las alertas combinadas conservan el origen individual de cada señal (`camera_live`, `simulated`, etc.).
-- [ ] La simulación es reproducible para los mismos parámetros acordados.
-- [ ] Las entradas límite y valores ausentes se manejan de forma explícita.
+- [ ] `/` carga el panel.
+- [ ] El selector cambia entre ES y EN; comprobar nombres accesibles y estado seleccionado.
+- [ ] Recargar después de cambiar idioma: verificar si se conserva la preferencia.
+- [ ] Abrir `/emergencia` y `/control`; confirmar carga y regreso al panel.
+- [ ] Abrir rutas `/es/protocolos/<id>` y `/en/protocolos/<id>`; comprobar idioma y que el identificador de ruta no rompa la página.
+- [ ] Abrir `/protocolos/<id>` sin idioma; comprobar redirección al idioma actual.
+- [ ] Probar idioma o ruta inexistente; comprobar pantalla 404 controlada.
+- [ ] Recargar directamente una ruta secundaria en servidor local/preview; reportar errores de rewrite si aparecen.
+- [ ] Probar navegación básica con teclado (Tab, Shift+Tab, Enter, Escape si aplica) y registrar hallazgos sin cambiar CSS/componentes de P3.
 
-**Nota:** varios de estos puntos ya aparecen en las pruebas actuales. Añadir solo aserciones o escenarios que falten tras comprobar la línea base.
+Para cada defecto registrar: URL, idioma, pasos, esperado, observado, navegador/tamaño de pantalla y captura sin datos sensibles. Las pantallas provisionales se prueban solo por el comportamiento que ya ofrecen; no se marca como defecto que el contenido de protocolo esté pendiente si así está indicado.
 
-**Aceptación**
+## Tanda 3 — E2E Playwright sin red
 
-- Cada caso está vinculado a una regla existente del producto.
-- Las pruebas son deterministas, no dependen de cámara, reloj real, red ni orden de ejecución.
-- `npm test`, `npm run typecheck` y `npm run build` pasan.
+**Antes de implementar:** coordinar con P1 la configuración compartida, scripts de `package.json`, instalación de navegadores y ejecución en CI. No cambiar workflow o configuración de PWA unilateralmente.
 
-### Tanda 2 — Pruebas de interfaz y fallos controlados
+Casos propuestos, tras acuerdo y cuando las rutas estén suficientemente estables:
 
-**Tareas**
+- [ ] Configurar una prueba smoke que arranque el build local en un servidor de prueba.
+- [ ] Bloquear y registrar solicitudes externas durante el flujo (sin contactar servicios reales).
+- [ ] Verificar que el panel carga con recursos empaquetados/locales.
+- [ ] Verificar navegación entre panel, emergencia, control y una ruta de protocolo.
+- [ ] Verificar cambio ES/EN y persistencia de idioma si ese comportamiento está aprobado.
+- [ ] Simular rechazo/ausencia de cámara y comprobar mensaje/recuperación sin hardware físico.
+- [ ] Verificar comportamiento de la app cuando Supabase no está configurado o la red está bloqueada, sin proporcionar secretos.
+- [ ] Comprobar offline de primera carga y offline tras instalación/cache por separado; no afirmar soporte offline completo si solo funciona después de precargar.
+- [ ] Añadir E2E a CI solo con aprobación de P1 y documentar navegador/entorno.
 
-- Comprobar navegación y renderizado de las secciones principales.
-- Verificar estados de carga, error y ausencia de datos.
-- Probar que una cámara denegada/no disponible o un error del modelo se comunica con claridad y no inutiliza las funciones independientes de cámara.
-- Revisar que cambiar de escenario no mezcle datos simulados con lecturas en vivo.
+**Aceptación:** ninguna petición externa inesperada, sin dependencia de secretos, datos deterministas y resultado reproducible localmente/CI.
 
-**Aceptación**
+## Tanda 4 — Integración de alertas oculares con protocolos (dependencia P2/P4)
 
-- La UI comunica estados sin mostrar datos inventados ni dejar controles bloqueados.
-- Los tests no necesitan hardware real; usar mocks para APIs del navegador.
-- Acordar con P3 si se deben tocar componentes o textos fuera del área P5.
+**Bloqueada hasta que P2/P4 publiquen y confirmen los contratos y los módulos correspondientes.** No inventar IDs ni relacionar síntomas con protocolos sin aprobación de contenido.
 
-### Tanda 3 — E2E sin conexión
+- [ ] Pedir a P2 el contrato acordado de `Protocol`/`AlertRule`, IDs disponibles, idioma y estado de revisión médica.
+- [ ] Pedir a P4 el contrato del evento de alerta y el punto de integración con las alertas oculares de ASTRA.
+- [ ] Acordar con P2/P4 el mapeo explícito de reglas a IDs de protocolo; registrar decisiones y excepciones.
+- [ ] Crear fixtures sintéticos que cumplan los esquemas compartidos.
+- [ ] Probar que una alerta enlazada abre el protocolo correcto y mantiene el idioma esperado.
+- [ ] Probar ID inexistente, protocolo no disponible y contenido pendiente de revisión; el sistema debe fallar de forma controlada y no presentar la alerta como diagnóstico.
+- [ ] Probar procedencia: la señal ocular sigue marcada como cámara/observación y no se confunde con datos simulados.
+- [ ] Revisar con P2 cualquier texto clínico; P5 valida el comportamiento técnico, no aprueba contenido médico.
 
-**Antes de empezar:** verificar que Playwright esté configurado y acordar con P1 los cambios a `package.json`, configuración y CI. La existencia de dependencias por sí sola no significa que E2E esté listo.
+## Tanda 5 — Perfiles/PIN y protección de datos (dependencia P4)
 
-**Casos**
+**Bloqueada hasta que P4 publique la implementación y el contrato de prueba.** Usar únicamente cuentas y datos ficticios.
 
-- [ ] Arrancar la app con navegador y contexto de prueba controlados.
-- [ ] Bloquear solicitudes de red externas durante el uso y detectar cualquier intento inesperado.
-- [ ] Verificar que la pantalla inicial y los recursos locales necesarios cargan sin red, según lo que soporte actualmente el proyecto.
-- [ ] Comprobar un flujo principal y una ruta de error sin conectividad.
-- [ ] Confirmar que un fallo de un módulo opcional no impide usar el resto de la aplicación.
+- [ ] Obtener de P4 el flujo esperado de alta, desbloqueo, cierre/bloqueo y errores de PIN.
+- [ ] Probar PIN válido e inválido según reglas aprobadas, sin guardar ni imprimir PIN en logs.
+- [ ] Probar bloqueo/cierre de sesión y reingreso según los requisitos definidos por P4.
+- [ ] Comprobar aislamiento de datos entre perfiles de prueba.
+- [ ] Comprobar que los errores de almacenamiento/cifrado se manejan sin exponer registros.
+- [ ] No inferir ni añadir reglas de recuperación, límite de intentos o bloqueo progresivo: deben estar definidas por P4/producto.
 
-**Aceptación**
+## Tanda 6 — Accesibilidad con UI estabilizada
 
-- La prueba no depende de internet ni llama servicios externos reales.
-- Las excepciones de red locales se documentan y aprueban explícitamente.
-- No afirmar que la PWA funciona offline hasta verificar instalación/caché y arranque real en el navegador.
+**Coordinar correcciones con P3.** axe ayuda a detectar problemas, pero no sustituye pruebas manuales.
 
-### Tanda 4 — Accesibilidad
+- [ ] Ejecutar axe en panel, cambio de idioma, emergencia, control y protocolo cuando estén disponibles.
+- [ ] Revisar controles con nombres accesibles, etiquetas, foco visible y orden de tabulación.
+- [ ] Verificar que el idioma de documento cambia correctamente (`html lang`) al alternar ES/EN y al abrir una ruta con idioma.
+- [ ] Revisar mensajes de error, contraste y que color no sea el único indicador.
+- [ ] Registrar violaciones con pantalla, selector/elemento, severidad y pasos; acordar responsable P3.
+- [ ] Repetir pruebas tras los cambios visuales de P3.
 
-**Tareas**
+## Tanda 7 — Regresión, PR y evidencia
 
-- Ejecutar axe en las pantallas y estados principales cuando la prueba E2E esté disponible.
-- Revisar teclado, foco visible, etiquetas accesibles, nombres de controles y mensajes de error.
-- Comprobar contraste y que color no sea el único medio para transmitir estado.
-- Registrar hallazgos con pantalla, paso para reproducir, severidad y responsable; coordinar reparaciones de UI con P3.
+- [ ] Actualizar la rama P5 desde `origin/main` antes de cerrar la tanda.
+- [ ] Ejecutar `npm test`, `npm run typecheck` y `npm run build`.
+- [ ] Ejecutar Playwright/axe si ya están configurados y aprobados.
+- [ ] Revisar `git status`; no incluir `dist/`, secretos ni cambios incidentales en WASM.
+- [ ] Abrir PR pequeño hacia `main` con propósito, alcance, evidencia, pruebas pasadas/fallidas y limitaciones.
+- [ ] Pedir revisión a los propietarios del módulo tocado; no asumir que las asignaciones de `CODEOWNERS` están activas si sus usuarios están comentados.
+- [ ] No declarar “funciona offline”, “seguro” o “validado clínicamente” más allá de lo comprobado y del alcance técnico de las pruebas.
 
-**Aceptación**
+## Dependencias y coordinación
 
-- No hay violaciones críticas/bloqueantes sin issue y responsable.
-- La revisión automatizada se complementa con una comprobación manual básica de teclado; axe no sustituye una auditoría completa.
+| Trabajo P5 | Depende de | Acción de coordinación |
+|---|---|---|
+| E2E/CI/offline | P1 | Acordar Playwright, scripts, servidor de prueba y workflow |
+| Protocolos y mapeo de alertas | P2 + P4 | Confirmar esquemas, IDs, eventos y reglas de relación |
+| Perfiles/PIN | P4 | Esperar contrato e implementación; pedir criterios de aceptación |
+| Accesibilidad visual | P3 | Reportar hallazgos; coordinar arreglos mientras evoluciona la interfaz |
+| Unit tests de visión existentes | Código actual P4/P5 | Auditar cobertura y añadir solo huecos, sin alterar lógica ajena |
 
-### Tanda 5 — Regresión y evidencia para entrega
+## Registro de progreso
 
-**Tareas**
+Añadir una fila por tanda ejecutada:
 
-- Ejecutar toda la batería después de integrar cambios.
-- Repetir el flujo offline en el artefacto o entorno de entrega acordado.
-- Publicar en el PR un resumen de pruebas pasadas/fallidas, pasos manuales y limitaciones conocidas.
-- Revisar que fixtures no contengan datos personales, secretos ni contenido clínico sin fuente.
+| Fecha | Tanda | Rama/commit probado | Resultado | Hallazgos / issue / PR |
+|---|---|---|---|---|
+|  |  |  |  |  |
 
-**Aceptación**
-
-- CI y comandos locales acordados pasan o los fallos están explicados y asignados.
-- La evidencia identifica versión/commit, entorno y pasos reproducibles.
-- No se presenta la app como dispositivo médico validado.
-
-### Extra — IA local (solo después del MVP y con aprobación)
-
-No es prioridad inicial. Si se autoriza, probar como mínimo: modelo ausente/sin recursos, respuesta fuera de la base de conocimiento, citas de fuente, contenido pendiente de revisión médica y recuperación ante error. La IA no debe modificar registros ni reemplazar el flujo determinista crítico. Coordinar implementación y criterios con P1 y el equipo.
-
-## 5. Plantilla breve para documentar un caso
+## Plantilla para reportar un defecto de QA
 
 ```text
-ID / prioridad:
-Regla o requisito relacionado:
-Precondiciones / datos sintéticos:
-Pasos:
+Título:
+Prioridad:
+Commit / rama:
+Entorno (SO, navegador, versión):
+Precondiciones y datos sintéticos:
+Pasos para reproducir:
 Resultado esperado:
 Resultado observado:
-Tipo: unitario / UI / E2E / manual / accesibilidad
-Comando y entorno:
-Issue o PR:
+¿Reproducible?:
+Captura/log sin información sensible:
+Módulo responsable / persona a coordinar:
 ```
-
-## 6. Checklist de PR de P5
-
-- [ ] Rama actualizada y cambios limitados al alcance acordado.
-- [ ] No se duplican pruebas existentes.
-- [ ] Casos deterministas y datos sintéticos.
-- [ ] `npm test` ejecutado.
-- [ ] `npm run typecheck` ejecutado.
-- [ ] `npm run build` ejecutado.
-- [ ] En cambios E2E: configuración y CI coordinadas con P1.
-- [ ] En cambios UI: coordinación con P3; contratos/contenido: P2; persistencia/motores: P4.
-- [ ] PR incluye propósito, cobertura, resultados y limitaciones.
-- [ ] Sin afirmaciones de diagnóstico ni validación clínica.
