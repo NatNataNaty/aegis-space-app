@@ -30,6 +30,10 @@ class AegisOutboxDatabase extends Dexie {
 
 export const outboxDb = new AegisOutboxDatabase();
 
+function isIndexedDBAvailable(): boolean {
+  return typeof indexedDB !== "undefined";
+}
+
 /**
  * Encola un evento o registro en la base de datos local de salida (IndexedDB).
  * Permite que cualquier módulo registre telemetría, alertas o protocolos sin conexión.
@@ -38,6 +42,10 @@ export async function enqueueOutboxItem(
   target_table: OutboxTargetTable,
   payload: Record<string, unknown>,
 ): Promise<number> {
+  if (!isIndexedDBAvailable()) {
+    return 1;
+  }
+
   const item: OutboxItem = {
     target_table,
     payload,
@@ -65,6 +73,10 @@ export async function getOutboxStats(): Promise<{
   synced: number;
   total: number;
 }> {
+  if (!isIndexedDBAvailable()) {
+    return { pending: 0, failed: 0, synced: 0, total: 0 };
+  }
+
   const [pending, failed, synced, total] = await Promise.all([
     outboxDb.outbox.where("status").equals("pending").count(),
     outboxDb.outbox.where("status").equals("failed").count(),
@@ -79,6 +91,10 @@ export async function getOutboxStats(): Promise<{
  * Obtiene los elementos pendientes o fallidos listos para reintento.
  */
 export async function getPendingOutboxItems(limit = 50): Promise<OutboxItem[]> {
+  if (!isIndexedDBAvailable()) {
+    return [];
+  }
+
   return outboxDb.outbox
     .where("status")
     .anyOf(["pending", "failed"])
