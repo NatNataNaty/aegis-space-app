@@ -79,5 +79,385 @@
   },
   "medical": {
     "pendingReview": "PENDIENTE DE REVISIÓN MÉDICA"
+  },
+  "origin": {
+    "camera_live": "EN VIVO",
+    "simulated": "SIMULADO",
+    "user_reported": "AUTORREPORTADO",
+    "local_test": "PRUEBA LOCAL",
+    "stale": "LECTURA ANTERIOR",
+    "staleTitle": "Última lectura antes de pausar la cámara"
+  },
+  "simStatus": {
+    "stable": "Estable",
+    "watch": "Seguimiento",
+    "variation": "Variación"
+  },
+  "quality": {
+    "good": "Calidad buena",
+    "limited": "Calidad limitada",
+    "unavailable": "No disponible",
+    "short": {
+      "good": "buena",
+      "limited": "limitada",
+      "unavailable": "No disponible"
+    }
+  },
+  "common": {
+    "unavailable": "No disponible",
+    "calibrating": "Calibrando…",
+    "lastReading": "Última lectura {{time}}",
+    "whatIs": "¿Qué significa {{label}}?"
+  },
+  "eyeState": {
+    "open": "Abiertos",
+    "closing": "Cerrándose",
+    "closed": "Cerrados",
+    "unknown": "No disponible"
+  },
+  "closureKind": {
+    "blink": "Parpadeo",
+    "prolonged_closure": "Cierre prolongado",
+    "long_closure": "Cierre largo"
+  },
+  "camera": {
+    "title": "Observación ocular",
+    "controls": "Controles de cámara",
+    "pause": "Pausar",
+    "pauseTitle": "Apagar la cámara y detener el análisis",
+    "resume": "Reanudar",
+    "start": "Iniciar",
+    "minimize": "Minimizar",
+    "minimizeTitle": "Minimizar sin detener el análisis",
+    "expand": "Expandir",
+    "expandTitle": "Expandir la cámara",
+    "showVideo": "Mostrar vídeo",
+    "showVideoTitle": "Mostrar el vídeo",
+    "hideVideo": "Ocultar vídeo",
+    "hideVideoTitle": "Ocultar el vídeo y mantener el análisis activo",
+    "recalibrate": "Recalibrar",
+    "recalibrateTitle": "Repetir la calibración ocular",
+    "hideLandmarks": "Ocultar puntos faciales",
+    "showLandmarks": "Mostrar puntos faciales",
+    "loadingModel": "Cargando modelo local de visión…",
+    "requesting": "Solicitando acceso a la cámara…",
+    "retry": "Reintentar",
+    "paused": "Cámara en pausa. Pistas de vídeo liberadas.",
+    "idle": "Activa la cámara para iniciar una sesión de observación ocular.",
+    "privacy": "Los frames se procesan en este dispositivo y no se guardan.",
+    "localProcessing": "Procesamiento local · sin grabación",
+    "delegate": "Delegado {{delegate}}",
+    "noModel": "Modelo sin cargar",
+    "calibStep": "Calibración · paso {{step}} de 2",
+    "faceToCamera": "Coloca el rostro frente a la cámara",
+    "blinksDetected": "{{count}} parpadeos detectados",
+    "skipCheck": "Omitir comprobación",
+    "faceDetected": "Rostro detectado",
+    "noFace": "Sin rostro",
+    "live": {
+      "starting": "INICIANDO",
+      "paused": "CÁMARA EN PAUSA",
+      "inactive": "CÁMARA INACTIVA",
+      "active": "CÁMARA ACTIVA",
+      "activeLong": "CÁMARA ACTIVA — PROCESAMIENTO LOCAL"
+    },
+    "eyes": "Ojos",
+    "opening": "Apertura",
+    "closingNow": "Cierre en curso",
+    "lastClosure": "Último cierre",
+    "events5": "Eventos (5 min)"
+  },
+  "alerts": {
+    "viewDetail": "Ver detalle",
+    "signal": "Señal",
+    "value": "Valor",
+    "source": "Fuente",
+    "window": "Ventana",
+    "quality": "Calidad",
+    "qualityNa": "No aplica (dato simulado o autorreportado)",
+    "action": "Acción sugerida",
+    "level": {
+      "info": "Información",
+      "watch": "Seguimiento",
+      "attention": "Atención"
+    },
+    "sourceLabel": {
+      "camera_live": "Cámara real",
+      "simulated": "Simulador",
+      "combined": "Combinada (demo)",
+      "user_reported": "Autorreporte"
+    }
+  },
+  "ocular": {
+    "title": "Vigilancia ocular",
+    "eyes": "Ojos: {{state}}",
+    "inactive": "Cámara inactiva",
+    "perclos1": "PERCLOS 1 min",
+    "perclos5": "PERCLOS 5 min",
+    "blinksMin": "Parpadeos/min",
+    "longClosures5": "Cierres largos (5 min)"
+  },
+  "metrics": {
+    "heartRate": "Frecuencia cardíaca",
+    "spo2": "SpO₂",
+    "bloodPressure": "Presión arterial",
+    "temperature": "Temperatura",
+    "sleepLast": "Sueño último ciclo",
+    "perclos": "PERCLOS",
+    "perclosStart": "Inicia la cámara para medir",
+    "perclosCoverage": "Cobertura insuficiente",
+    "perclosWindow": "Ventana 1 min"
+  },
+  "metricInfo": {
+    "heartRate": {
+      "label": "Frecuencia cardíaca",
+      "what": "Latidos por minuto generados por el escenario de demostración.",
+      "note": "Dato simulado. No procede de ningún sensor."
+    },
+    "spo2": {
+      "label": "SpO₂",
+      "what": "Saturación de oxígeno en sangre simulada.",
+      "note": "La cámara no mide SpO₂ en este prototipo."
+    },
+    "bloodPressure": {
+      "label": "Presión arterial",
+      "what": "Presión sistólica / diastólica simulada en mmHg.",
+      "note": "Dato simulado. Las etiquetas describen el escenario, no un diagnóstico."
+    },
+    "temperature": {
+      "label": "Temperatura corporal",
+      "what": "Temperatura central simulada en °C."
+    },
+    "respRate": {
+      "label": "Frecuencia respiratoria",
+      "what": "Respiraciones por minuto simuladas."
+    },
+    "glucose": {
+      "label": "Glucosa",
+      "what": "Glucosa en sangre simulada en mg/dL. Indicador secundario."
+    },
+    "sleep": {
+      "label": "Sueño",
+      "what": "Horas de sueño del último ciclo estimadas por una actigrafía ficticia.",
+      "note": "La cámara no mide el sueño. Una actigrafía real requeriría un wearable."
+    },
+    "perclos": {
+      "label": "PERCLOS",
+      "what": "Porcentaje del tiempo válido con los ojos casi cerrados (≥ 80 % de reducción frente a tu apertura de referencia), excluyendo parpadeos de menos de 400 ms.",
+      "note": "Ventanas móviles de 1 y 5 min. Sin cobertura suficiente se muestra «No disponible». No es un diagnóstico de somnolencia."
+    },
+    "blinkRate": {
+      "label": "Parpadeos por minuto",
+      "what": "Reaperturas confirmadas por minuto de tiempo válido.",
+      "note": "No existe un valor normal universal: depende de la tarea y de cada persona."
+    },
+    "closures": {
+      "label": "Cierres",
+      "what": "Parpadeo < 400 ms · cierre prolongado 400–499 ms · cierre largo ≥ 500 ms.",
+      "note": "Cortes experimentales del detector, no umbrales médicos ni prueba de microsueño."
+    },
+    "ear": {
+      "label": "Apertura ocular (EAR)",
+      "what": "Eye Aspect Ratio: relación entre la altura y la anchura del ojo a partir de 6 puntos faciales, normalizada con tu calibración."
+    },
+    "quality": {
+      "label": "Calidad de captura",
+      "what": "Combina FPS, presencia del rostro, visibilidad de los ojos, orientación de la cabeza e iluminación.",
+      "note": "Con calidad insuficiente las métricas pasan a «No disponible» y no se generan alertas."
+    },
+    "yawn": {
+      "label": "Aperturas prolongadas de boca",
+      "what": "Coeficiente jawOpen mantenido ≥ 1,5 s. Puede representar un posible bostezo, pero no lo demuestra."
+    },
+    "radiation": {
+      "label": "Radiación acumulada",
+      "what": "Dosis acumulada demostrativa en mSv para un tránsito interplanetario.",
+      "note": "Valor ilustrativo, no una medición dosimétrica."
+    },
+    "exercise": {
+      "label": "Ejercicio",
+      "what": "Minutos de ejercicio completados según el horario simulado."
+    },
+    "reaction": {
+      "label": "Tiempo de reacción",
+      "what": "Prueba local breve: pulsa en cuanto aparezca el estímulo. Resultado real de tu interacción."
+    }
+  },
+  "sections": {
+    "eye": {
+      "metricsTitle": "Métricas oculares",
+      "metricsSub": "Calculadas en este dispositivo a partir de la cámara.",
+      "window1": "Ventana 1 min",
+      "window5": "Ventana 5 min",
+      "blinksMin": "Parpadeos/min",
+      "meanBlink": "Duración media del parpadeo",
+      "prolonged": "Cierres prolongados",
+      "long": "Cierres largos",
+      "yawns": "Aperturas prolongadas de boca",
+      "coverage": "Cobertura válida",
+      "headPose": "Orientación de cabeza (contextual): inclinación {{pitch}}°, giro {{yaw}}°, ladeo {{roll}}°",
+      "timelineTitle": "Línea de tiempo de cierres",
+      "timelineSub": "Duración de cada evento · cortes {{blink}} y {{prolonged}} ms",
+      "noEvents": "Sin eventos registrados en esta sesión",
+      "time": "Hora",
+      "duration": "Duración",
+      "trendTitle": "PERCLOS y parpadeos en la sesión",
+      "trendSub": "Muestreo cada 10 s · ventana 1 min",
+      "needData": "Se necesitan al menos 20 s de datos calibrados"
+    },
+    "trends": {
+      "indicator": "Indicador",
+      "respRate": "Resp./min",
+      "last24": "Últimas 24 horas",
+      "last24Sub": "Muestras cada 30 min del escenario",
+      "systolic": "Sistólica",
+      "diastolic": "Diastólica",
+      "last7": "Últimos 7 días",
+      "last7Sub": "Sueño (barras) y frecuencia cardíaca en reposo (línea)",
+      "sleep": "Sueño",
+      "restingHr": "FC en reposo"
+    },
+    "schedule": {
+      "title": "Horario de misión · Día {{day}}",
+      "sub": "Reloj de la demo. La cámara no se usa para medir el sueño.",
+      "dayTimeline": "Horario del día",
+      "currentBlock": "Bloque actual",
+      "sinceRest": "Desde el último descanso",
+      "resting": "En descanso",
+      "nextRest": "Próximo descanso",
+      "now": "Ahora",
+      "inTime": "en {{time}}",
+      "sleepTitle": "Sueño",
+      "sleepSub": "Actigrafía ficticia y percepción simulada.",
+      "sleepActigraphy": "Sueño estimado (actigrafía)",
+      "sleepPerceived": "Sueño percibido",
+      "avg7": "Media 7 días",
+      "regularity": "Regularidad",
+      "qualityPerceived": "Calidad percibida",
+      "illustrative": "Escala ilustrativa",
+      "fatigue": "Fatiga percibida",
+      "scenarioValue": "Valor del escenario"
+    },
+    "exposure": {
+      "radiation": "Radiación acumulada",
+      "radiationSub": "Valor demostrativo para un tránsito interplanetario.",
+      "dailyRate": "Tasa diaria de la demo: {{value}} mSv/día",
+      "activity": "Actividad física",
+      "activitySub": "Ejercicio completado hoy según el horario.",
+      "pctGoal": "{{pct}} % del objetivo",
+      "workload": "Carga de trabajo: {{label}}",
+      "workloadLabel": {
+        "habitual": "Habitual",
+        "elevada": "Elevada",
+        "exigente": "Exigente"
+      },
+      "chartTitle": "Ejercicio y carga de trabajo · 7 días",
+      "exercise": "Ejercicio",
+      "work": "Trabajo"
+    },
+    "alerts": {
+      "activeTitle": "Observaciones activas",
+      "activeSub": "Cada observación indica sus señales, su fuente y la calidad de la medición.",
+      "none": "Sin observaciones activas.",
+      "historyTitle": "Historial",
+      "historySub": "Observaciones de esta sesión y registro del escenario.",
+      "ended": "finalizada"
+    },
+    "self": {
+      "title": "Cuestionario breve",
+      "sub": "Tus respuestas no salen de este navegador.",
+      "fatigue": "Fatiga percibida",
+      "mood": "Estado de ánimo",
+      "stress": "Estrés percibido",
+      "low": "Baja",
+      "high": "Alta",
+      "lowM": "Bajo",
+      "good": "Bueno",
+      "highM": "Alto",
+      "symptoms": "Síntomas",
+      "save": "Registrar",
+      "savedAt": "Registrado a las {{time}}",
+      "symptom": {
+        "headache": "Dolor de cabeza",
+        "nausea": "Náuseas",
+        "dizziness": "Mareo",
+        "blurred": "Visión borrosa",
+        "congestion": "Congestión",
+        "backPain": "Dolor lumbar"
+      },
+      "reaction": "Tiempo de reacción",
+      "reactionSub": "{{n}} estímulos. Pulsa en cuanto el recuadro se ilumine.",
+      "startTest": "Iniciar prueba",
+      "wait": "Espera…",
+      "go": "¡Ahora!",
+      "early": "Demasiado pronto · pulsa para repetir",
+      "repeat": "Repetir prueba",
+      "median": "Mediana",
+      "mean": "Media",
+      "recorded": "Registrado"
+    },
+    "guide": {
+      "actions": "Acciones educativas · {{scenario}}",
+      "noMeds": "aegis-space-med no recomienda medicamentos ni dosis. Ante síntomas o señales graves se sigue el protocolo médico de la misión.",
+      "rules": "Reglas de observación",
+      "condition": "Condición",
+      "result": "Resultado",
+      "glossary": "¿Qué significa cada indicador?"
+    }
+  },
+  "modules": {
+    "aria": "Módulos",
+    "vitals": "Signos vitales",
+    "eye": "Escaneo ocular",
+    "log": "Cómo me siento",
+    "alerts": "Alertas",
+    "hazards": "Peligros y guía",
+    "radiation": "Radiación y ejercicio",
+    "sleep": "Sueño y misión",
+    "hint": {
+      "camOn": "activo",
+      "camOff": "apagado"
+    },
+    "assistant": "Asistente de a bordo",
+    "assistantSub": "Próximamente: responderá con la biblioteca de NASA y CSA"
+  },
+  "hero": {
+    "crewName": "Especialista de misión 2",
+    "bpm": "latidos por minuto",
+    "baseline": "Lo normal para ti es {{value}}",
+    "headline": {
+      "hrHigh": "Tu corazón va demasiado rápido.",
+      "alert": "Algo necesita tu atención.",
+      "watch": "Vigila cómo te sientes hoy.",
+      "calm": "Todo en calma. Sigue con tu día."
+    },
+    "sourcePrefix": "Esta lectura se compara con el riesgo de",
+    "sourceLink": "adaptaciones cardiovasculares de NASA",
+    "pending": "El umbral clínico está pendiente de revisión médica."
+  },
+  "steps": {
+    "title": "Qué hacer ahora",
+    "fullProtocol": "Ver protocolo completo",
+    "calmTitle": "Nada pendiente",
+    "calmLead": "Tus lecturas están dentro de tu rango habitual. Si notas algo, anótalo y la app te dirá qué hacer.",
+    "watchTitle": "Atenta a cómo sigues",
+    "watchLead": "Hay una lectura en seguimiento. No hace falta actuar todavía; anota cualquier síntoma.",
+    "items": {
+      "stop": "Para y sujétate a un anclaje.",
+      "breathe": "Respira despacio 2 minutos sin moverte.",
+      "askHelp": "Si sigue alto, pide ayuda: tu compañero recibe el aviso.",
+      "clinical": "Paso clínico del manual de a bordo."
+    },
+    "done": "Hecho",
+    "doneAt": "Hecho a las {{time}}",
+    "finished": "Protocolo completado. Queda registrado con la hora de cada paso.",
+    "needHelp": "Necesito ayuda",
+    "imOk": "Estoy bien",
+    "logSymptom": "Anotar síntoma",
+    "buddy": {
+      "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
+      "sent": "Aviso enviado a tu compañero.",
+      "ok": "Anotado: dijiste que estás bien."
+    }
   }
 }

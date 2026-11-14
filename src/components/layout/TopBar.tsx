@@ -1,4 +1,4 @@
-import { Bell, Database, Orbit } from "lucide-react";
+import { Bell, Database } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { MISSION, toMissionTime } from "../../features/mission/missionClock";
 import { blockAt } from "../../features/mission/schedule";
@@ -26,14 +26,11 @@ export function TopBar({ onOpenAbout, onOpenAlerts }: TopBarProps) {
 
   return (
     <header className="topbar">
-      <div className="brand">
-        <Orbit size={22} aria-hidden />
-        <div>
-          <span className="brand__name">aegis-space-med</span>
-          <span className="brand__mission">
-            {MISSION.id} · {t("mission.name")}
-          </span>
-        </div>
+      <div className="topbar__crew">
+        <span className="topbar__crew-name">{t("hero.crewName")}</span>
+        <span className="topbar__crew-mission">
+          {MISSION.id} · {t("mission.name")}
+        </span>
       </div>
 
       <div className="topbar__clock" title={t("mission.clockTitle")}>

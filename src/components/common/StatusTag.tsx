@@ -1,35 +1,38 @@
 import { CircleCheck, CircleExclamationPoint, CircleSlash, TriangleExclamationPoint } from "lucide-react";
 import type { Quality } from "../../features/camera/camera.types";
 import type { SimStatus } from "../../features/simulation/simulation.types";
+import { useTranslation } from "react-i18next";
 
-const SIM: Record<SimStatus, { label: string; Icon: typeof CircleCheck; tone: string }> = {
-  stable: { label: "Estable", Icon: CircleCheck, tone: "ok" },
-  watch: { label: "Seguimiento", Icon: CircleExclamationPoint, tone: "warn" },
-  variation: { label: "Variación", Icon: TriangleExclamationPoint, tone: "alert" },
+const SIM: Record<SimStatus, { Icon: typeof CircleCheck; tone: string }> = {
+  stable: { Icon: CircleCheck, tone: "ok" },
+  watch: { Icon: CircleExclamationPoint, tone: "warn" },
+  variation: { Icon: TriangleExclamationPoint, tone: "alert" },
 };
 
-const QUALITY: Record<Quality, { label: string; Icon: typeof CircleCheck; tone: string }> = {
-  good: { label: "Calidad buena", Icon: CircleCheck, tone: "ok" },
-  limited: { label: "Calidad limitada", Icon: CircleExclamationPoint, tone: "warn" },
-  unavailable: { label: "No disponible", Icon: CircleSlash, tone: "muted" },
+const QUALITY: Record<Quality, { Icon: typeof CircleCheck; tone: string }> = {
+  good: { Icon: CircleCheck, tone: "ok" },
+  limited: { Icon: CircleExclamationPoint, tone: "warn" },
+  unavailable: { Icon: CircleSlash, tone: "muted" },
 };
 
 export function SimStatusTag({ status }: { status: SimStatus }) {
-  const { label, Icon, tone } = SIM[status];
+  const { t } = useTranslation();
+  const { Icon, tone } = SIM[status];
   return (
     <span className={`tag tag--${tone}`}>
       <Icon size={12} aria-hidden />
-      {label}
+      {t(`simStatus.${status}`)}
     </span>
   );
 }
 
 export function QualityTag({ quality, short = false }: { quality: Quality; short?: boolean }) {
-  const { label, Icon, tone } = QUALITY[quality];
+  const { t } = useTranslation();
+  const { Icon, tone } = QUALITY[quality];
   return (
     <span className={`tag tag--${tone}`}>
       <Icon size={12} aria-hidden />
-      {short ? label.replace("Calidad ", "") : label}
+      {t(short ? `quality.short.${quality}` : `quality.${quality}`)}
     </span>
   );
 }

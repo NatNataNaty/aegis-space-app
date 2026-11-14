@@ -4,10 +4,12 @@ import { RULES } from "../../../features/alerts/alertRules";
 import { SCENARIOS } from "../../../features/simulation/scenarios";
 import { useHealthStore } from "../../../stores/health.store";
 import { OriginBadge } from "../../common/OriginBadge";
+import { useTranslation } from "react-i18next";
 
 const GUIDE_METRICS: MetricId[] = ["perclos", "blinkRate", "closures", "ear", "quality", "yawn", "sleep", "radiation"];
 
 export function GuideSection() {
+  const { t } = useTranslation();
   const scenarioId = useHealthStore((s) => s.scenarioId);
   const scenario = SCENARIOS[scenarioId];
 
@@ -17,7 +19,7 @@ export function GuideSection() {
         <header className="panel__head">
           <div>
             <h3>
-              <Lightbulb size={16} aria-hidden /> Acciones educativas · {scenario.name}
+              <Lightbulb size={16} aria-hidden /> {t("sections.guide.actions", { scenario: t(`scenario.${scenarioId}`) })}
             </h3>
             <p className="panel__sub">{scenario.summary}</p>
           </div>
@@ -28,17 +30,14 @@ export function GuideSection() {
             <li key={r}>{r}</li>
           ))}
         </ul>
-        <p className="panel__note">
-          aegis-space-med no recomienda medicamentos ni dosis. Ante síntomas o señales graves se sigue el protocolo médico de
-          la misión.
-        </p>
+        <p className="panel__note">{t("sections.guide.noMeds")}</p>
 
-        <h4 className="subhead">Reglas de observación</h4>
+        <h4 className="subhead">{t("sections.guide.rules")}</h4>
         <table className="rules">
           <thead>
             <tr>
-              <th>Condición</th>
-              <th>Resultado</th>
+              <th>{t("sections.guide.condition")}</th>
+              <th>{t("sections.guide.result")}</th>
             </tr>
           </thead>
           <tbody>
@@ -55,18 +54,19 @@ export function GuideSection() {
       <article className="panel">
         <header className="panel__head">
           <div>
-            <h3>¿Qué significa cada indicador?</h3>
+            <h3>{t("sections.guide.glossary")}</h3>
           </div>
         </header>
         <dl className="glossary">
           {GUIDE_METRICS.map((id) => {
             const info = METRIC_INFO[id];
+            const note = "note" in info && info.note ? t(`metricInfo.${id}.note`, { defaultValue: info.note }) : null;
             return (
               <div key={id}>
-                <dt>{info.label}</dt>
+                <dt>{t(`metricInfo.${id}.label`, { defaultValue: info.label })}</dt>
                 <dd>
-                  {info.what}
-                  {"note" in info && info.note && <em> {info.note}</em>}
+                  {t(`metricInfo.${id}.what`, { defaultValue: info.what })}
+                  {note && <em> {note}</em>}
                 </dd>
               </div>
             );

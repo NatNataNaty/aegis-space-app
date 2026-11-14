@@ -14,25 +14,28 @@ import {
 import { cx, fmtNum } from "../../../lib/format";
 import { useHealthStore } from "../../../stores/health.store";
 import { axisProps, CHART, ChartCard, tooltipProps } from "../../charts/ChartCard";
+import { useTranslation } from "react-i18next";
 
 type SeriesKey = "heartRate" | "spo2" | "temperature" | "bloodPressure" | "respRate";
 
-const SERIES: Record<SeriesKey, { label: string; unit: string; decimals: number }> = {
-  heartRate: { label: "Frecuencia cardíaca", unit: "bpm", decimals: 0 },
-  spo2: { label: "SpO₂", unit: "%", decimals: 0 },
-  temperature: { label: "Temperatura", unit: "°C", decimals: 1 },
-  bloodPressure: { label: "Presión arterial", unit: "mmHg", decimals: 0 },
-  respRate: { label: "Resp./min", unit: "resp/min", decimals: 0 },
+// Etiquetas en i18n (labelKey)
+const SERIES: Record<SeriesKey, { labelKey: string; unit: string; decimals: number }> = {
+  heartRate: { labelKey: "metrics.heartRate", unit: "bpm", decimals: 0 },
+  spo2: { labelKey: "metrics.spo2", unit: "%", decimals: 0 },
+  temperature: { labelKey: "metrics.temperature", unit: "°C", decimals: 1 },
+  bloodPressure: { labelKey: "metrics.bloodPressure", unit: "mmHg", decimals: 0 },
+  respRate: { labelKey: "sections.trends.respRate", unit: "resp/min", decimals: 0 },
 };
 
 export function TrendsSection() {
+  const { t } = useTranslation();
   const history = useHealthStore((s) => s.snapshot.history24h);
   const trend7d = useHealthStore((s) => s.snapshot.trend7d);
   const [series, setSeries] = useState<SeriesKey>("heartRate");
   const meta = SERIES[series];
 
   const selector = (
-    <div className="seg" role="tablist" aria-label="Indicador">
+    <div className="seg" role="tablist" aria-label={t("sections.trends.indicator")}>
       {(Object.keys(SERIES) as SeriesKey[]).map((key) => (
         <button
           key={key}
@@ -42,7 +45,7 @@ export function TrendsSection() {
           className={cx("seg__btn", series === key && "seg__btn--on")}
           onClick={() => setSeries(key)}
         >
-          {SERIES[key].label}
+          {t(SERIES[key].labelKey)}
         </button>
       ))}
     </div>
@@ -52,7 +55,7 @@ export function TrendsSection() {
 
   return (
     <div className="section-grid section-grid--wide">
-      <ChartCard title="Últimas 24 horas" subtitle="Muestras cada 30 min del escenario" origin="simulated" actions={selector} height={260}>
+      <ChartCard title={t("sections.trends.last24")} subtitle={t("sections.trends.last24Sub")} origin="simulated" actions={selector} height={260}>
         <ResponsiveContainer>
           <AreaChart data={history} margin={{ top: 8, right: 12, bottom: 0, left: -8 }}>
             <defs>
@@ -67,17 +70,17 @@ export function TrendsSection() {
             <Tooltip {...tooltipProps} formatter={(v, name) => [fmt(v), name]} />
             {series === "bloodPressure" ? (
               <>
-                <Area dataKey="systolic" name="Sistólica" stroke={CHART.primary} fill="url(#fillSim)" strokeWidth={2} isAnimationActive={false} />
-                <Area dataKey="diastolic" name="Diastólica" stroke={CHART.secondary} fill="transparent" strokeWidth={2} isAnimationActive={false} />
+                <Area dataKey="systolic" name={t("sections.trends.systolic")} stroke={CHART.primary} fill="url(#fillSim)" strokeWidth={2} isAnimationActive={false} />
+                <Area dataKey="diastolic" name={t("sections.trends.diastolic")} stroke={CHART.secondary} fill="transparent" strokeWidth={2} isAnimationActive={false} />
               </>
             ) : (
-              <Area dataKey={series} name={meta.label} stroke={CHART.primary} fill="url(#fillSim)" strokeWidth={2} isAnimationActive={false} />
+              <Area dataKey={series} name={t(meta.labelKey)} stroke={CHART.primary} fill="url(#fillSim)" strokeWidth={2} isAnimationActive={false} />
             )}
           </AreaChart>
         </ResponsiveContainer>
       </ChartCard>
 
-      <ChartCard title="Últimos 7 días" subtitle="Sueño (barras) y frecuencia cardíaca en reposo (línea)" origin="simulated" height={260}>
+      <ChartCard title={t("sections.trends.last7")} subtitle={t("sections.trends.last7Sub")} origin="simulated" height={260}>
         <ResponsiveContainer>
           <ComposedChart data={trend7d} margin={{ top: 8, right: 4, bottom: 0, left: -8 }}>
             <CartesianGrid stroke={CHART.grid} vertical={false} />
@@ -86,10 +89,10 @@ export function TrendsSection() {
             <YAxis yAxisId="r" orientation="right" width={40} domain={["dataMin - 5", "dataMax + 5"]} {...axisProps} />
             <Tooltip
               {...tooltipProps}
-              formatter={(v, name) => [name === "Sueño" ? `${fmtNum(Number(v), 1)} h` : `${fmtNum(Number(v))} bpm`, name]}
+              formatter={(v, name) => [name === t("sections.trends.sleep") ? `${fmtNum(Number(v), 1)} h` : `${fmtNum(Number(v))} bpm`, name]}
             />
-            <Bar yAxisId="h" dataKey="sleepHours" name="Sueño" fill={CHART.secondary} radius={[4, 4, 0, 0]} maxBarSize={28} isAnimationActive={false} />
-            <Line yAxisId="r" dataKey="restingHr" name="FC en reposo" stroke={CHART.primary} strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
+            <Bar yAxisId="h" dataKey="sleepHours" name={t("sections.trends.sleep")} fill={CHART.secondary} radius={[4, 4, 0, 0]} maxBarSize={28} isAnimationActive={false} />
+            <Line yAxisId="r" dataKey="restingHr" name={t("sections.trends.restingHr")} stroke={CHART.primary} strokeWidth={2} dot={{ r: 3 }} isAnimationActive={false} />
           </ComposedChart>
         </ResponsiveContainer>
       </ChartCard>

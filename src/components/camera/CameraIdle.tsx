@@ -2,8 +2,10 @@ import { CameraOff, LoaderCircle, ScanFace, ShieldCheck } from "lucide-react";
 import { ocularSession } from "../../features/camera/ocularSession";
 import { fmtClock } from "../../lib/format";
 import { useCameraStore } from "../../stores/camera.store";
+import { useTranslation } from "react-i18next";
 
 export function CameraIdle() {
+  const { t } = useTranslation();
   const status = useCameraStore((s) => s.status);
   const error = useCameraStore((s) => s.error);
   const modelState = useCameraStore((s) => s.modelState);
@@ -13,7 +15,7 @@ export function CameraIdle() {
     return (
       <div className="stage-msg">
         <LoaderCircle size={28} className="spin" aria-hidden />
-        <p>{modelState === "loading" ? "Cargando modelo local de visión…" : "Solicitando acceso a la cámara…"}</p>
+        <p>{modelState === "loading" ? t("camera.loadingModel") : t("camera.requesting")}</p>
       </div>
     );
   }
@@ -24,7 +26,7 @@ export function CameraIdle() {
         <CameraOff size={28} aria-hidden />
         <p>{error.message}</p>
         <button type="button" className="btn btn--primary" onClick={() => void ocularSession.start()}>
-          Reintentar
+          {t("camera.retry")}
         </button>
       </div>
     );
@@ -34,8 +36,8 @@ export function CameraIdle() {
     return (
       <div className="stage-msg">
         <CameraOff size={28} aria-hidden />
-        <p>Cámara en pausa. Pistas de vídeo liberadas.</p>
-        {lastReadingAt && <span className="stage-msg__sub">Última lectura {fmtClock(lastReadingAt)}</span>}
+        <p>{t("camera.paused")}</p>
+        {lastReadingAt && <span className="stage-msg__sub">{t("common.lastReading", { time: fmtClock(lastReadingAt) })}</span>}
       </div>
     );
   }
@@ -43,9 +45,9 @@ export function CameraIdle() {
   return (
     <div className="stage-msg">
       <ScanFace size={32} aria-hidden />
-      <p>Activa la cámara para iniciar una sesión de observación ocular.</p>
+      <p>{t("camera.idle")}</p>
       <span className="stage-msg__sub">
-        <ShieldCheck size={13} aria-hidden /> Los frames se procesan en este dispositivo y no se guardan.
+        <ShieldCheck size={13} aria-hidden /> {t("camera.privacy")}
       </span>
     </div>
   );

@@ -5,7 +5,7 @@ import { useCameraStore } from "../../stores/camera.store";
 import { InfoTip } from "../common/InfoTip";
 import { OriginBadge } from "../common/OriginBadge";
 import { QualityTag } from "../common/StatusTag";
-import { EYE_STATE_LABEL } from "../camera/EyeReadout";
+import { useTranslation } from "react-i18next";
 
 function Stat({ label, value, unit }: { label: string; value: string; unit?: string }) {
   return (
@@ -21,6 +21,7 @@ function Stat({ label, value, unit }: { label: string; value: string; unit?: str
 
 /** "Vigilancia ocular": compact live summary shown when the camera is minimized or hidden. */
 export function OcularCard() {
+  const { t } = useTranslation();
   const status = useCameraStore((s) => s.status);
   const s60 = useCameraStore((s) => s.summary60);
   const s300 = useCameraStore((s) => s.summary300);
@@ -38,7 +39,7 @@ export function OcularCard() {
     <article className={cx("ocular-card", stale && "ocular-card--stale")}>
       <header className="ocular-card__head">
         <Eye size={16} aria-hidden />
-        <h3>Vigilancia ocular</h3>
+        <h3>{t("ocular.title")}</h3>
         <InfoTip metric="perclos" />
         <span className="spacer" />
         <OriginBadge origin="camera_live" stale={stale} />
@@ -47,19 +48,19 @@ export function OcularCard() {
       <div className="ocular-card__state">
         <span className={`eye__state eye__state--${active && frame ? frame.eyeState : "unknown"}`}>
           <span className="eye__dot" aria-hidden />
-          Ojos: {EYE_STATE_LABEL[active && frame ? frame.eyeState : "unknown"]}
+          {t("ocular.eyes", { state: t(`eyeState.${active && frame ? frame.eyeState : "unknown"}`) })}
         </span>
         {active && frame && <QualityTag quality={frame.quality} />}
-        {stale && <span className="muted">Última lectura {fmtClock(lastReadingAt)}</span>}
-        {active && !calibrated && <span className="muted">Calibrando…</span>}
-        {!active && !stale && <span className="muted">Cámara inactiva</span>}
+        {stale && <span className="muted">{t("common.lastReading", { time: fmtClock(lastReadingAt) })}</span>}
+        {active && !calibrated && <span className="muted">{t("common.calibrating")}</span>}
+        {!active && !stale && <span className="muted">{t("ocular.inactive")}</span>}
       </div>
 
       <div className="ocular-card__stats">
-        <Stat label="PERCLOS 1 min" value={v(s60, (s) => s.perclos, 1)} unit="%" />
-        <Stat label="PERCLOS 5 min" value={v(s300, (s) => s.perclos, 1)} unit="%" />
-        <Stat label="Parpadeos/min" value={v(s60, (s) => s.blinksPerMin)} />
-        <Stat label="Cierres largos (5 min)" value={show && s300 ? String(s300.longClosures) : "—"} />
+        <Stat label={t("ocular.perclos1")} value={v(s60, (s) => s.perclos, 1)} unit="%" />
+        <Stat label={t("ocular.perclos5")} value={v(s300, (s) => s.perclos, 1)} unit="%" />
+        <Stat label={t("ocular.blinksMin")} value={v(s60, (s) => s.blinksPerMin)} />
+        <Stat label={t("ocular.longClosures5")} value={show && s300 ? String(s300.longClosures) : "—"} />
       </div>
     </article>
   );

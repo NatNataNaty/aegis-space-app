@@ -32,7 +32,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: [
-          "**/*.{js,css,html,ico,png,svg,wasm,task,json}",
+          "**/*.{js,css,html,ico,png,svg,wasm,task,json,woff2}",
         ],
         // Soporte para archivos pesados: MediaPipe WASM (~14.6MB) y modelo (~3.76MB)
         maximumFileSizeToCacheInBytes: 35 * 1024 * 1024,

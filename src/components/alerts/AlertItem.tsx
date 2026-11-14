@@ -1,13 +1,14 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import type { Alert } from "../../features/alerts/alert.types";
-import { LEVEL_LABEL, SOURCE_LABEL } from "../../features/alerts/alertRules";
 import { cx } from "../../lib/format";
 import { OriginBadge } from "../common/OriginBadge";
 import { QualityTag } from "../common/StatusTag";
 import { LevelIcon } from "./LevelIcon";
+import { useTranslation } from "react-i18next";
 
 export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaultOpen?: boolean }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(defaultOpen);
 
   return (
@@ -15,8 +16,8 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
       <button type="button" className="alert__summary" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
         <LevelIcon level={alert.level} />
         <span className="alert__title">{alert.title}</span>
-        <span className={`alert__level alert__level--${alert.level}`}>{LEVEL_LABEL[alert.level]}</span>
-        <span className="alert__source">{SOURCE_LABEL[alert.source]}</span>
+        <span className={`alert__level alert__level--${alert.level}`}>{t(`alerts.level.${alert.level}`)}</span>
+        <span className="alert__source">{t(`alerts.sourceLabel.${alert.source}`)}</span>
         <ChevronDown size={16} className="alert__chev" aria-hidden />
       </button>
       {open && (
@@ -26,9 +27,9 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
             <table className="signals">
               <thead>
                 <tr>
-                  <th>Señal</th>
-                  <th>Valor</th>
-                  <th>Fuente</th>
+                  <th>{t("alerts.signal")}</th>
+                  <th>{t("alerts.value")}</th>
+                  <th>{t("alerts.source")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -45,11 +46,11 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
             </table>
           )}
           <dl className="alert__meta">
-            <dt>Ventana</dt>
+            <dt>{t("alerts.window")}</dt>
             <dd>{alert.window}</dd>
-            <dt>Calidad</dt>
-            <dd>{alert.quality ? <QualityTag quality={alert.quality} /> : "No aplica (dato simulado o autorreportado)"}</dd>
-            <dt>Acción sugerida</dt>
+            <dt>{t("alerts.quality")}</dt>
+            <dd>{alert.quality ? <QualityTag quality={alert.quality} /> : t("alerts.qualityNa")}</dd>
+            <dt>{t("alerts.action")}</dt>
             <dd>{alert.action}</dd>
           </dl>
           <p className="alert__disclaimer">{alert.disclaimer}</p>
