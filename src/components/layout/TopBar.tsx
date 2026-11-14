@@ -26,7 +26,7 @@ export function TopBar({ onOpenAbout, onOpenAlerts }: TopBarProps) {
       <div className="brand">
         <Orbit size={22} aria-hidden />
         <div>
-          <span className="brand__name">ASTRA Health</span>
+          <span className="brand__name">aegis-space-med</span>
           <span className="brand__mission">
             {MISSION.id} · {MISSION.name}
           </span>

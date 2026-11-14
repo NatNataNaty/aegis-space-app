@@ -1,4 +1,4 @@
-const PREFIX = "astra-health:";
+const PREFIX = "aegis-space-med:";
 
 export function loadPref<T>(key: string, fallback: T): T {
   try {

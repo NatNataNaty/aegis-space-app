@@ -1,4 +1,4 @@
-# ASTRA Health — MVP
+# aegis-space-med — MVP (Base ASTRA Health)
 
 Prototipo para NASA Space Apps Challenge 2026: observación ocular real con la cámara web y contexto de salud y misión simulado.
 

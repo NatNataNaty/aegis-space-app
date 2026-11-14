@@ -1,5 +1,5 @@
 {
-  "name": "astra-health",
+  "name": "aegis-space-med",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -15,13 +15,22 @@
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "1.2.3",
+    "@supabase/supabase-js": "^2.119.0",
+    "dexie": "^4.4.7",
+    "i18next": "^27.1.1",
     "lucide-react": "^1.73.0",
+    "minisearch": "^7.2.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "react-i18next": "^18.0.1",
+    "react-router-dom": "^7.18.5",
     "recharts": "^3.10.1",
+    "zod": "^4.6.7",
     "zustand": "^5.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.10",
@@ -31,6 +40,7 @@
     "jsdom": "^31.0.1",
     "typescript": "~5.9.0",
     "vite": "^8.3.8",
+    "vite-plugin-pwa": "^2.0.0",
     "vitest": "^5.1.0"
   }
 }

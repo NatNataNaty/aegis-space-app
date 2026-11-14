@@ -38,7 +38,7 @@ export function App() {
       </main>
 
       <footer className="footer">
-        ASTRA Health · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como
+        aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como
         SIMULADO no representan lecturas reales.
       </footer>
 
