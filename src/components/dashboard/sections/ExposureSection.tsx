@@ -5,10 +5,10 @@ import { useHealthStore } from "../../../stores/health.store";
 import { InfoTip } from "../../common/InfoTip";
 import { OriginBadge } from "../../common/OriginBadge";
 import { axisProps, CHART, ChartCard, tooltipProps } from "../../charts/ChartCard";
-
-const WORKLOAD_LABEL = { habitual: "Habitual", elevada: "Elevada", exigente: "Exigente" } as const;
+import { useTranslation } from "react-i18next";
 
 export function ExposureSection() {
+  const { t } = useTranslation();
   const exposure = useHealthStore((s) => s.snapshot.exposure);
   const activity = useHealthStore((s) => s.snapshot.activity);
   const trend7d = useHealthStore((s) => s.snapshot.trend7d);
@@ -20,9 +20,9 @@ export function ExposureSection() {
         <header className="panel__head">
           <div>
             <h3>
-              <Radiation size={16} aria-hidden /> Radiación acumulada <InfoTip metric="radiation" />
+              <Radiation size={16} aria-hidden /> {t("sections.exposure.radiation")} <InfoTip metric="radiation" />
             </h3>
-            <p className="panel__sub">Valor demostrativo para un tránsito interplanetario.</p>
+            <p className="panel__sub">{t("sections.exposure.radiationSub")}</p>
           </div>
           <OriginBadge origin="simulated" />
         </header>
@@ -30,16 +30,16 @@ export function ExposureSection() {
           {fmtNum(exposure.totalMsv, 1)}
           <small>mSv</small>
         </div>
-        <p className="muted">Tasa diaria de la demo: {fmtNum(exposure.dailyMsv, 1)} mSv/día</p>
+        <p className="muted">{t("sections.exposure.dailyRate", { value: fmtNum(exposure.dailyMsv, 1) })}</p>
       </article>
 
       <article className="panel">
         <header className="panel__head">
           <div>
             <h3>
-              <Dumbbell size={16} aria-hidden /> Actividad física <InfoTip metric="exercise" />
+              <Dumbbell size={16} aria-hidden /> {t("sections.exposure.activity")} <InfoTip metric="exercise" />
             </h3>
-            <p className="panel__sub">Ejercicio completado hoy según el horario.</p>
+            <p className="panel__sub">{t("sections.exposure.activitySub")}</p>
           </div>
           <OriginBadge origin="simulated" />
         </header>
@@ -47,13 +47,13 @@ export function ExposureSection() {
           {activity.exerciseTodayMin}
           <small>/ {activity.exerciseTargetMin} min</small>
         </div>
-        <div className="progress progress--lg" aria-label={`${pct} % del objetivo`}>
+        <div className="progress progress--lg" aria-label={t("sections.exposure.pctGoal", { pct })}>
           <span style={{ width: `${pct}%` }} />
         </div>
-        <p className="muted">Carga de trabajo: {WORKLOAD_LABEL[activity.workloadLabel]}</p>
+        <p className="muted">{t("sections.exposure.workload", { label: t(`sections.exposure.workloadLabel.${activity.workloadLabel}`) })}</p>
       </article>
 
-      <ChartCard title="Ejercicio y carga de trabajo · 7 días" origin="simulated">
+      <ChartCard title={t("sections.exposure.chartTitle")} origin="simulated">
         <ResponsiveContainer>
           <BarChart data={trend7d} margin={{ top: 8, right: 12, bottom: 0, left: -8 }}>
             <CartesianGrid stroke={CHART.grid} vertical={false} />
@@ -62,10 +62,10 @@ export function ExposureSection() {
             <YAxis yAxisId="w" orientation="right" width={32} {...axisProps} />
             <Tooltip
               {...tooltipProps}
-              formatter={(v, name) => [name === "Ejercicio" ? `${v} min` : `${fmtNum(Number(v), 1)} h`, name]}
+              formatter={(v, name) => [name === t("sections.exposure.exercise") ? `${v} min` : `${fmtNum(Number(v), 1)} h`, name]}
             />
-            <Bar yAxisId="e" dataKey="exerciseMin" name="Ejercicio" fill={CHART.live} radius={[4, 4, 0, 0]} maxBarSize={22} isAnimationActive={false} />
-            <Bar yAxisId="w" dataKey="workloadHours" name="Trabajo" fill={CHART.secondary} radius={[4, 4, 0, 0]} maxBarSize={22} isAnimationActive={false} />
+            <Bar yAxisId="e" dataKey="exerciseMin" name={t("sections.exposure.exercise")} fill={CHART.live} radius={[4, 4, 0, 0]} maxBarSize={22} isAnimationActive={false} />
+            <Bar yAxisId="w" dataKey="workloadHours" name={t("sections.exposure.work")} fill={CHART.secondary} radius={[4, 4, 0, 0]} maxBarSize={22} isAnimationActive={false} />
           </BarChart>
         </ResponsiveContainer>
       </ChartCard>

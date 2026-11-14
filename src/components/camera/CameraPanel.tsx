@@ -10,12 +10,14 @@ import { CameraIdle } from "./CameraIdle";
 import { EyeReadout } from "./EyeReadout";
 import { LiveIndicator } from "./LiveIndicator";
 import { StageChips } from "./StageChips";
+import { useTranslation } from "react-i18next";
 
 /**
  * Rendered once at a fixed position in the tree. Changing the view only changes CSS classes,
  * so the <video>, the MediaStream and the Face Landmarker instance are never recreated.
  */
 export function CameraPanel() {
+  const { t } = useTranslation();
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const view = useCameraStore((s) => s.view);
@@ -38,10 +40,10 @@ export function CameraPanel() {
   const active = status === "active";
 
   return (
-    <section className={cx("camera", `camera--${view}`, `camera--${status}`)} aria-label="Observación ocular">
+    <section className={cx("camera", `camera--${view}`, `camera--${status}`)} aria-label={t("camera.title")}>
       <header className="camera__head">
         <div className="camera__title">
-          <h2>Observación ocular</h2>
+          <h2>{t("camera.title")}</h2>
           <OriginBadge origin="camera_live" />
         </div>
         <LiveIndicator />
@@ -65,9 +67,9 @@ export function CameraPanel() {
 
       {view === "expanded" && (
         <footer className="camera__foot">
-          <span>Procesamiento local · sin grabación</span>
+          <span>{t("camera.localProcessing")}</span>
           <span>
-            {delegate ? `Delegado ${delegate}` : "Modelo sin cargar"}
+            {delegate ? t("camera.delegate", { delegate }) : t("camera.noModel")}
             {active && fps !== null && ` · ${fps} FPS`}
           </span>
         </footer>

@@ -25,3 +25,24 @@ describe("i18n", () => {
     expect(empty(en)).toBe(false);
   });
 });
+
+describe("i18n: claves usadas en el código", () => {
+  it("cada t(\"clave\") literal de src/ existe en es.json", () => {
+    // Vite carga el código fuente como texto (sin depender de node:fs).
+    const sources = import.meta.glob("../src/**/*.{ts,tsx}", { query: "?raw", import: "default", eager: true }) as Record<
+      string,
+      string
+    >;
+    const flat = new Set(keys(es));
+    const missing: string[] = [];
+    for (const [file, code] of Object.entries(sources)) {
+      for (const m of code.matchAll(/\bt\("([\w.]+)"/g)) {
+        const k = m[1];
+        // también vale una clave que apunta a una lista u objeto (returnObjects)
+        if (!flat.has(k) && ![...flat].some((x) => x.startsWith(k + "."))) missing.push(`${file}: ${k}`);
+      }
+    }
+    expect(Object.keys(sources).length).toBeGreaterThan(20);
+    expect(missing).toEqual([]);
+  });
+});

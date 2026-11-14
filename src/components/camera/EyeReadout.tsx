@@ -3,19 +3,9 @@ import type { EyeState } from "../../features/camera/camera.types";
 import { cx, fmtNum } from "../../lib/format";
 import { useCameraStore } from "../../stores/camera.store";
 import { InfoTip } from "../common/InfoTip";
+import { useTranslation } from "react-i18next";
 
-export const EYE_STATE_LABEL: Record<EyeState, string> = {
-  open: "Abiertos",
-  closing: "Cerrándose",
-  closed: "Cerrados",
-  unknown: "No disponible",
-};
-
-const KIND_LABEL = {
-  blink: "Parpadeo",
-  prolonged_closure: "Cierre prolongado",
-  long_closure: "Cierre largo",
-} as const;
+// Etiquetas en i18n: eyeState.<estado> y closureKind.<tipo>
 
 function useClosureTimer(closedSince: number | null): number | null {
   const [now, setNow] = useState(() => performance.now());
@@ -28,6 +18,7 @@ function useClosureTimer(closedSince: number | null): number | null {
 }
 
 export function EyeReadout() {
+  const { t } = useTranslation();
   const frame = useCameraStore((s) => s.frame);
   const status = useCameraStore((s) => s.status);
   const lastEvent = useCameraStore((s) => s.lastEvent);
@@ -44,15 +35,15 @@ export function EyeReadout() {
   return (
     <div className={cx("eye", stale && "eye--stale")}>
       <div className="eye__item">
-        <span className="eye__label">Ojos</span>
+        <span className="eye__label">{t("camera.eyes")}</span>
         <span className={`eye__state eye__state--${state}`}>
           <span className="eye__dot" aria-hidden />
-          {EYE_STATE_LABEL[state]}
+          {t(`eyeState.${state}`)}
         </span>
       </div>
       <div className="eye__item">
         <span className="eye__label">
-          Apertura <InfoTip metric="ear" align="left" />
+          {t("camera.opening")} <InfoTip metric="ear" align="left" />
         </span>
         <span className="eye__value">
           {active && frame?.normalizedEar != null ? `${fmtNum(frame.normalizedEar * 100)} %` : "—"}
@@ -60,7 +51,7 @@ export function EyeReadout() {
       </div>
       <div className="eye__item">
         <span className="eye__label">
-          {closingFor !== null ? "Cierre en curso" : "Último cierre"} <InfoTip metric="closures" align="left" />
+          {closingFor !== null ? t("camera.closingNow") : t("camera.lastClosure")} <InfoTip metric="closures" align="left" />
         </span>
         <span className="eye__value">
           {closingFor !== null
@@ -69,10 +60,10 @@ export function EyeReadout() {
               ? `${fmtNum(lastEvent.durationMs)} ms`
               : "—"}
         </span>
-        {closingFor === null && lastEvent && <span className="eye__sub">{KIND_LABEL[lastEvent.kind]}</span>}
+        {closingFor === null && lastEvent && <span className="eye__sub">{t(`closureKind.${lastEvent.kind}`)}</span>}
       </div>
       <div className="eye__item">
-        <span className="eye__label">Eventos (5 min)</span>
+        <span className="eye__label">{t("camera.events5")}</span>
         <span className="eye__value">{calibrated ? recent : "—"}</span>
       </div>
       {active && frame && frame.qualityReasons.length > 0 && (

@@ -1,27 +1,30 @@
 import { ClipboardList, Cpu, Radio, Timer } from "lucide-react";
 import type { DataOrigin } from "../../features/camera/camera.types";
+import { useTranslation } from "react-i18next";
 
-const ORIGIN: Record<DataOrigin, { label: string; Icon: typeof Radio }> = {
-  camera_live: { label: "EN VIVO", Icon: Radio },
-  simulated: { label: "SIMULADO", Icon: Cpu },
-  user_reported: { label: "AUTORREPORTADO", Icon: ClipboardList },
-  local_test: { label: "PRUEBA LOCAL", Icon: Timer },
+// Etiquetas en i18n: origin.<id>
+const ORIGIN_ICON: Record<DataOrigin, typeof Radio> = {
+  camera_live: Radio,
+  simulated: Cpu,
+  user_reported: ClipboardList,
+  local_test: Timer,
 };
 
 export function OriginBadge({ origin, stale = false }: { origin: DataOrigin; stale?: boolean }) {
-  const { label, Icon } = ORIGIN[origin];
+  const { t } = useTranslation();
+  const Icon = ORIGIN_ICON[origin];
   if (stale) {
     return (
-      <span className="badge badge--stale" title="Última lectura antes de pausar la cámara">
+      <span className="badge badge--stale" title={t("origin.staleTitle")}>
         <Icon size={11} aria-hidden />
-        LECTURA ANTERIOR
+        {t("origin.stale")}
       </span>
     );
   }
   return (
     <span className={`badge badge--${origin}`}>
       <Icon size={11} aria-hidden />
-      {label}
+      {t(`origin.${origin}`)}
     </span>
   );
 }

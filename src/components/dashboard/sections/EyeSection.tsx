@@ -19,6 +19,7 @@ import { InfoTip } from "../../common/InfoTip";
 import { OriginBadge } from "../../common/OriginBadge";
 import { QualityTag } from "../../common/StatusTag";
 import { axisProps, CHART, ChartCard, EmptyChart, tooltipProps } from "../../charts/ChartCard";
+import { useTranslation } from "react-i18next";
 
 const KIND_COLOR = {
   blink: CHART.primary,
@@ -27,6 +28,7 @@ const KIND_COLOR = {
 } as const;
 
 function SummaryColumn({ title, s, show }: { title: string; s: OcularSummary | null; show: boolean }) {
+  const { t } = useTranslation();
   const val = (v: number | null | undefined, d = 0) => (show && s ? fmtNum(v ?? null, d) : "—");
   return (
     <div className="summary-col">
@@ -36,18 +38,18 @@ function SummaryColumn({ title, s, show }: { title: string; s: OcularSummary | n
       </div>
       <dl>
         <dt>PERCLOS</dt>
-        <dd>{show && s?.perclos == null ? "No disponible" : `${val(s?.perclos, 1)} %`}</dd>
-        <dt>Parpadeos/min</dt>
+        <dd>{show && s?.perclos == null ? t("common.unavailable") : `${val(s?.perclos, 1)} %`}</dd>
+        <dt>{t("sections.eye.blinksMin")}</dt>
         <dd>{val(s?.blinksPerMin)}</dd>
-        <dt>Duración media del parpadeo</dt>
+        <dt>{t("sections.eye.meanBlink")}</dt>
         <dd>{s?.meanBlinkDurationMs != null && show ? `${val(s.meanBlinkDurationMs)} ms` : "—"}</dd>
-        <dt>Cierres prolongados</dt>
+        <dt>{t("sections.eye.prolonged")}</dt>
         <dd>{show && s ? s.prolongedClosures : "—"}</dd>
-        <dt>Cierres largos</dt>
+        <dt>{t("sections.eye.long")}</dt>
         <dd>{show && s ? s.longClosures : "—"}</dd>
-        <dt>Aperturas prolongadas de boca</dt>
+        <dt>{t("sections.eye.yawns")}</dt>
         <dd>{val(s?.possibleYawns)}</dd>
-        <dt>Cobertura válida</dt>
+        <dt>{t("sections.eye.coverage")}</dt>
         <dd>{show && s ? `${fmtNum(s.validCoverage * 100)} %` : "—"}</dd>
       </dl>
     </div>
@@ -55,6 +57,7 @@ function SummaryColumn({ title, s, show }: { title: string; s: OcularSummary | n
 }
 
 export function EyeSection() {
+  const { t } = useTranslation();
   const status = useCameraStore((s) => s.status);
   const calibrated = useCameraStore((s) => s.calibration.phase === "ready");
   const s60 = useCameraStore((s) => s.summary60);
@@ -77,31 +80,30 @@ export function EyeSection() {
         <header className="panel__head">
           <div>
             <h3>
-              Métricas oculares <InfoTip metric="closures" />
+              {t("sections.eye.metricsTitle")} <InfoTip metric="closures" />
             </h3>
-            <p className="panel__sub">Calculadas en este dispositivo a partir de la cámara.</p>
+            <p className="panel__sub">{t("sections.eye.metricsSub")}</p>
           </div>
           <OriginBadge origin="camera_live" stale={status === "paused" && s60 !== null} />
         </header>
         <div className="summary-cols">
-          <SummaryColumn title="Ventana 1 min" s={s60} show={show} />
-          <SummaryColumn title="Ventana 5 min" s={s300} show={show} />
+          <SummaryColumn title={t("sections.eye.window1")} s={s60} show={show} />
+          <SummaryColumn title={t("sections.eye.window5")} s={s300} show={show} />
         </div>
         {status === "active" && pose && (
           <p className="panel__note">
-            Orientación de cabeza (contextual): inclinación {fmtNum(pose.pitch)}°, giro {fmtNum(pose.yaw)}°, ladeo{" "}
-            {fmtNum(pose.roll)}°
+            {t("sections.eye.headPose", { pitch: fmtNum(pose.pitch), yaw: fmtNum(pose.yaw), roll: fmtNum(pose.roll) })}
           </p>
         )}
       </article>
 
       <ChartCard
-        title="Línea de tiempo de cierres"
-        subtitle={`Duración de cada evento · cortes ${EYE_CONFIG.blinkMaxMs} y ${EYE_CONFIG.prolongedMaxMs} ms`}
+        title={t("sections.eye.timelineTitle")}
+        subtitle={t("sections.eye.timelineSub", { blink: EYE_CONFIG.blinkMaxMs, prolonged: EYE_CONFIG.prolongedMaxMs })}
         origin="camera_live"
       >
         {eventPoints.length === 0 ? (
-          <EmptyChart text="Sin eventos registrados en esta sesión" />
+          <EmptyChart text={t("sections.eye.noEvents")} />
         ) : (
           <ResponsiveContainer>
             <ScatterChart margin={{ top: 8, right: 12, bottom: 0, left: -12 }}>
@@ -121,7 +123,7 @@ export function EyeSection() {
                 {...tooltipProps}
                 labelFormatter={() => ""}
                 formatter={(value, name) =>
-                  name === "t" ? [fmtClock(Number(value)), "Hora"] : [`${value} ms`, "Duración"]
+                  name === "t" ? [fmtClock(Number(value)), t("sections.eye.time")] : [`${value} ms`, t("sections.eye.duration")]
                 }
               />
               {(["blink", "prolonged_closure", "long_closure"] as const).map((kind) => (
@@ -137,9 +139,9 @@ export function EyeSection() {
         )}
       </ChartCard>
 
-      <ChartCard title="PERCLOS y parpadeos en la sesión" subtitle="Muestreo cada 10 s · ventana 1 min" origin="camera_live">
+      <ChartCard title={t("sections.eye.trendTitle")} subtitle={t("sections.eye.trendSub")} origin="camera_live">
         {trend.length < 2 ? (
-          <EmptyChart text="Se necesitan al menos 20 s de datos calibrados" />
+          <EmptyChart text={t("sections.eye.needData")} />
         ) : (
           <ResponsiveContainer>
             <LineChart data={trend} margin={{ top: 8, right: 12, bottom: 0, left: -12 }}>
@@ -152,7 +154,7 @@ export function EyeSection() {
                 labelFormatter={(v) => fmtClock(Number(v))}
                 formatter={(value, name) =>
                   value == null
-                    ? ["No disponible", name]
+                    ? [t("common.unavailable"), name]
                     : name === "PERCLOS"
                       ? [`${fmtNum(Number(value), 1)} %`, name]
                       : [fmtNum(Number(value)), name]
@@ -171,7 +173,7 @@ export function EyeSection() {
               <Line
                 yAxisId="b"
                 dataKey="blinksPerMin"
-                name="Parpadeos/min"
+                name={t("sections.eye.blinksMin")}
                 stroke={CHART.primary}
                 dot={false}
                 strokeWidth={1.5}

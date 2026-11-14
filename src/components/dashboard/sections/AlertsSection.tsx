@@ -1,13 +1,14 @@
 import { toMissionTime } from "../../../features/mission/missionClock";
-import { SOURCE_LABEL } from "../../../features/alerts/alertRules";
 import { SCENARIOS } from "../../../features/simulation/scenarios";
 import { useHealthStore } from "../../../stores/health.store";
 import { useMissionStore } from "../../../stores/mission.store";
 import { AlertItem } from "../../alerts/AlertItem";
 import { LevelIcon } from "../../alerts/LevelIcon";
 import { OriginBadge } from "../../common/OriginBadge";
+import { useTranslation } from "react-i18next";
 
 export function AlertsSection() {
+  const { t } = useTranslation();
   const active = useHealthStore((s) => s.activeAlerts);
   const log = useHealthStore((s) => s.alertLog);
   const scenarioId = useHealthStore((s) => s.scenarioId);
@@ -24,12 +25,12 @@ export function AlertsSection() {
       <article className="panel">
         <header className="panel__head">
           <div>
-            <h3>Observaciones activas</h3>
-            <p className="panel__sub">Cada observación indica sus señales, su fuente y la calidad de la medición.</p>
+            <h3>{t("sections.alerts.activeTitle")}</h3>
+            <p className="panel__sub">{t("sections.alerts.activeSub")}</p>
           </div>
         </header>
         {active.length === 0 ? (
-          <p className="empty">Sin observaciones activas.</p>
+          <p className="empty">{t("sections.alerts.none")}</p>
         ) : (
           <ul className="alert-list">
             {active.map((a, i) => (
@@ -42,8 +43,8 @@ export function AlertsSection() {
       <article className="panel">
         <header className="panel__head">
           <div>
-            <h3>Historial</h3>
-            <p className="panel__sub">Observaciones de esta sesión y registro del escenario.</p>
+            <h3>{t("sections.alerts.historyTitle")}</h3>
+            <p className="panel__sub">{t("sections.alerts.historySub")}</p>
           </div>
         </header>
         <ul className="history">
@@ -53,7 +54,7 @@ export function AlertsSection() {
               <div>
                 <span className="history__title">{e.alert.title}</span>
                 <span className="history__meta">
-                  {e.missionLabel} · {SOURCE_LABEL[e.alert.source]} · finalizada
+                  {e.missionLabel} · {t(`alerts.sourceLabel.${e.alert.source}`)} · {t("sections.alerts.ended")}
                 </span>
               </div>
             </li>
