@@ -656,6 +656,15 @@ a.mbtn--dark:hover {
   grid-column: 1 / -1;
 }
 
+/* Enlace de cada alerta a su protocolo */
+.alert__protocol {
+  align-self: flex-start;
+  width: fit-content;
+  min-height: 52px;
+  margin: 4px 0 12px;
+  font-size: 16px;
+}
+
 /* ---------- Límite de error por módulo ---------- */
 
 .module-error {
