@@ -137,7 +137,7 @@ export const alertRuleSchema = z.object({
   protocolId: z.string().min(1),
   /** Abre «¿Necesitas ayuda?» a pantalla completa. */
   askForHelp: z.boolean(),
-  /** Segundos sin respuesta antes de avisar al compañero (plan: 30 s). 0 = aviso inmediato. */
+  /** Segundos sin respuesta antes de avisar al compañero (demo: 5 s). 0 = aviso inmediato. */
   buddyAfterSec: z.number().int().min(0).max(120),
   reviewStatus,
 });

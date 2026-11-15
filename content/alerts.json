@@ -4,7 +4,7 @@
       "alertId": "sim_vitals.heartRate",
       "protocolId": "frecuencia-cardiaca",
       "askForHelp": true,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     },
     {
@@ -18,35 +18,35 @@
       "alertId": "combined_fatigue",
       "protocolId": "agotamiento",
       "askForHelp": true,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     },
     {
       "alertId": "repeated_closures",
       "protocolId": "agotamiento",
       "askForHelp": false,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     },
     {
       "alertId": "perclos_above_baseline",
       "protocolId": "agotamiento",
       "askForHelp": false,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     },
     {
       "alertId": "sim_sleep",
       "protocolId": "agotamiento",
       "askForHelp": false,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     },
     {
       "alertId": "self_fatigue",
       "protocolId": "agotamiento",
       "askForHelp": false,
-      "buddyAfterSec": 30,
+      "buddyAfterSec": 5,
       "reviewStatus": "pendiente"
     }
   ],

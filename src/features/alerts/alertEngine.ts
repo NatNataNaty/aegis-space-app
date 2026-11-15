@@ -71,7 +71,7 @@ function linked(body: AlertBody, ruleKey: string = body.id, fallbackProtocol: st
     disclaimer: t("engine.disclaimer"),
     protocolId: rule?.protocolId ?? fallbackProtocol,
     askForHelp: rule?.askForHelp ?? false,
-    buddyAfterSec: rule?.buddyAfterSec ?? 30,
+    buddyAfterSec: rule?.buddyAfterSec ?? 5,
   };
 }
 
