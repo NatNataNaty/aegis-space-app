@@ -628,7 +628,7 @@
     },
     "buddyPolicy": {
       "always": "Sí, siempre.",
-      "if_no_response": "Si no respondes en 30 s, se avisa al compañero.",
+      "if_no_response": "Si no respondes en 5 s, se avisa al compañero.",
       "by_severity": "Según la gravedad.",
       "if_immobile": "Si no puedes moverte.",
       "optional": "Opcional y con privacidad.",
@@ -977,7 +977,7 @@
       },
       "help": {
         "title": "¿Necesitas ayuda?",
-        "text": "Aviso a pantalla completa con cuenta atrás de 30 s."
+        "text": "Aviso a pantalla completa con cuenta atrás de 5 s."
       },
       "buddy": {
         "title": "Aviso al compañero",

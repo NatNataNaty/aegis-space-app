@@ -628,7 +628,7 @@
     },
     "buddyPolicy": {
       "always": "Yes, always.",
-      "if_no_response": "If you do not answer in 30 s, your crewmate is alerted.",
+      "if_no_response": "If you do not answer in 5 s, your crewmate is alerted.",
       "by_severity": "Depending on severity.",
       "if_immobile": "If you cannot move.",
       "optional": "Optional and private.",
@@ -977,7 +977,7 @@
       },
       "help": {
         "title": "Do you need help?",
-        "text": "Full-screen prompt with a 30 s countdown."
+        "text": "Full-screen prompt with a 5 s countdown."
       },
       "buddy": {
         "title": "Crewmate alert",
