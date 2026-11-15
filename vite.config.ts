@@ -43,6 +43,10 @@ export default defineConfig({
   build: {
     sourcemap: false,
   },
+  // Versión visible en el pie: confirma qué despliegue tiene en caché el dispositivo.
+  define: {
+    __BUILD_ID__: JSON.stringify(((globalThis as { process?: { env: Record<string, string | undefined> } }).process?.env.VERCEL_GIT_COMMIT_SHA ?? "local").slice(0, 7)),
+  },
   server: {
     port: 5173,
     host: "localhost",

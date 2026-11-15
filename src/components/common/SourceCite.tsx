@@ -11,13 +11,13 @@ export function shortUrl(url: string): string {
  * sin enlace. A bordo no hay internet, así que nada en la app abre páginas externas;
  * el contenido citado ya va empaquetado dentro de la app.
  */
-export function SourceCite({ label, url }: { label: string; url?: string }) {
+export function SourceCite({ label, url, compact = false }: { label: string; url?: string; compact?: boolean }) {
   const { t } = useTranslation();
   return (
-    <cite className="source" title={url ? t("source.offlineHint") : undefined}>
+    <cite className="source" title={url ? (compact ? `${shortUrl(url)} · ${t("source.offlineHint")}` : t("source.offlineHint")) : undefined}>
       <BookMarked size={13} aria-hidden />
       <span>{label}</span>
-      {url && <span className="source__url">{shortUrl(url)}</span>}
+      {url && !compact && <span className="source__url">{shortUrl(url)}</span>}
     </cite>
   );
 }

@@ -28,3 +28,18 @@ describe("contenido empaquetado (/content)", () => {
     expect(contentIntegrityErrors()).toEqual([]);
   });
 });
+
+describe("cómo prevenirlo", () => {
+  it("todo protocolo ligado a un riesgo muestra prevención, sin fármacos ni dosis", async () => {
+    const { PROTOCOLS, RISKS } = await import("../src/lib/content");
+    for (const p of PROTOCOLS) {
+      if (!p.riskId) continue;
+      const r = RISKS.find((x) => x.id === p.riskId)!;
+      expect(r.prevention?.length, p.id).toBeGreaterThan(0);
+    }
+    const text = JSON.stringify(RISKS.map((r) => r.prevention ?? [])).toLowerCase();
+    for (const banned of [" mg", "bisfosfonato", "bisphosphonate", "acetazolamid", "promethazine", "prometazina"]) {
+      expect(text).not.toContain(banned);
+    }
+  });
+});

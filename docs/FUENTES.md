@@ -63,3 +63,16 @@ Propuesta editorial del proyecto:
 8. Comprobar derechos antes de empaquetar medios/documentos; una URL pública no concede redistribución automática.
 
 No se encontró en las fuentes consultadas justificación suficiente para publicar los diez tratamientos completos, sus dosis y todos sus umbrales como protocolos operacionales. Sí hay base para la taxonomía, el diseño de contratos, la demostración y una cola concreta de revisión.
+
+## «Cómo prevenirlo» (contramedidas, añadido por P3)
+
+Cada riesgo de `content/risks.json` puede llevar `prevention`: contramedidas descritas por NASA, parafraseadas, sin fármacos ni dosis. Sin URL propia, la fuente es la sección «What can be done about it?» de la página oficial del riesgo. Fuentes adicionales:
+
+| ID | Fuente | Uso |
+| --- | --- | --- |
+| S20 | [NASA OCHMO-MTB-009 Circadian Desynchrony](https://www.nasa.gov/wp-content/uploads/2026/03/ochmo-mtb-009-circadian-desynchrony.pdf) | Horario de luz y cafeína antes de dormir. |
+| S21 | [NASA-STD-3001 Radiation Protection brief](https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf) | Aviso oportuno para ir al refugio ante una tormenta solar. |
+| S22 | [NASA OCHMO-MTB-004 Space Adaptation Sickness](https://www.nasa.gov/wp-content/uploads/2025/09/ochmo-mtb-004-space-adaptation-sickness-sas.pdf) | Sin caminatas espaciales en las primeras 72 h. |
+| S23 | [NASA HSRB Bone Risk Record Rev C](https://www.nasa.gov/wp-content/uploads/2025/11/hsrb-bone-risk-record-rev-c-web.pdf) | Calcio y vitamina D suficientes. |
+| S24 | [Human Research Roadmap: SANS](https://humanresearchroadmap.nasa.gov/Risks/risk.aspx?i=105) | Revisiones oculares en vuelo. |
+| S25 | [NTRS 20080026032: Human factors and ISS medical systems](https://ntrs.nasa.gov/api/citations/20080026032/downloads/20080026032.pdf) | Respaldo del primer paso «sujétate»: sujetar equipo, paciente y a uno mismo. |

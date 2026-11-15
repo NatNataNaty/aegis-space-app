@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { protocolPath } from "../../../app/paths";
 import { EARTH_BENEFITS, HAZARDS, HRP_RESEARCH_URL, HRP_RISKS_URL, pick, PROTOCOLS, RISKS, STUDIES } from "../../../lib/content";
 import { cx } from "../../../lib/format";
+import { PreventionList } from "../../common/PreventionList";
 import { SourceCite } from "../../common/SourceCite";
 import type { HazardId, RiskCategory } from "../../../lib/schemas/content";
 
@@ -132,6 +133,7 @@ export function LibrarySection() {
                         </ul>
                       </>
                     )}
+                    <PreventionList risk={r} />
                     <p>
                       <Source href={r.sourceUrl} label={t("library.officialPage")} />
                     </p>

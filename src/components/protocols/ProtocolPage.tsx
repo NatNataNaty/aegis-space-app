@@ -1,4 +1,5 @@
 import { UserRoundPlus } from "lucide-react";
+import { PreventionList } from "../common/PreventionList";
 import { SourceCite } from "../common/SourceCite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -124,6 +125,18 @@ export function ProtocolPage() {
             <p>{t(`protocol.buddyPolicy.${protocol.buddy}`)}</p>
             <h3>{t("protocol.escalate")}</h3>
             <p>{pick(protocol.escalate, lang)}</p>
+          </div>
+
+          {risk?.prevention && (
+            <div className="panel">
+              <PreventionList risk={risk} headingLevel={3} />
+            </div>
+          )}
+
+          <div className="panel">
+            <h3>{t("protocol.whyAnchor")}</h3>
+            <p>{t("protocol.whyAnchorText")}</p>
+            <SourceCite label={t("protocol.whyAnchorSource")} url="https://ntrs.nasa.gov/api/citations/20080026032/downloads/20080026032.pdf" />
           </div>
 
           <div className="panel">

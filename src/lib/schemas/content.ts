@@ -12,6 +12,18 @@ export type Localized = z.infer<typeof localized>;
 const OFFICIAL_SOURCE = /^https:\/\/(www\.nasa\.gov\/(hrp|reference|missions|humans-in-space)\/|www\.asc-csa\.gc\.ca\/eng\/)/;
 export const sourceUrl = z.string().regex(OFFICIAL_SOURCE, "La fuente debe ser una página oficial de NASA HRP o de la CSA");
 
+/**
+ * Fuentes de las contramedidas («Cómo prevenirlo»): páginas de NASA y sus documentos técnicos
+ * oficiales (informes OCHMO, Human Research Roadmap, NTRS) o la CSA. Nunca libros ni webs de terceros.
+ */
+const NASA_DOC_SOURCE = /^https:\/\/(www\.nasa\.gov\/|ntrs\.nasa\.gov\/|humanresearchroadmap\.nasa\.gov\/|www\.asc-csa\.gc\.ca\/eng\/)/;
+export const preventionSchema = z.object({
+  text: localized,
+  /** Sin URL propia, la fuente es la página oficial del riesgo. */
+  sourceUrl: z.string().regex(NASA_DOC_SOURCE, "La contramedida debe venir de un documento oficial de NASA o la CSA").optional(),
+});
+export type Prevention = z.infer<typeof preventionSchema>;
+
 export const reviewStatus = z.enum(["pendiente", "revisado"]);
 export type ReviewStatus = z.infer<typeof reviewStatus>;
 
@@ -46,6 +58,8 @@ export const riskSchema = z.object({
   /** Relación con los 5 peligros: lectura del equipo a partir de los textos de NASA. */
   hazardIds: z.array(hazardId).min(1),
   sourceUrl,
+  /** «Cómo prevenirlo»: contramedidas que NASA describe para este riesgo (sin fármacos ni dosis). */
+  prevention: z.array(preventionSchema).optional(),
 });
 export type Risk = z.infer<typeof riskSchema>;
 

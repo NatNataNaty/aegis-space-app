@@ -117,7 +117,7 @@ export function App() {
         )}
 
         <footer className="footer">
-          {t("app.footer")}
+          {t("app.footer")} <span className="footer__build">v1.0 · {__BUILD_ID__}</span>
           <button type="button" className="footer__link" onClick={() => setAboutOpen(true)}>
             {t("topbar.aboutData")}
           </button>
