@@ -3,6 +3,12 @@ import { create } from "zustand";
 import { newCallId, onBuddyMessage, postBuddyMessage, type HelpCall } from "../features/buddy/buddyChannel";
 import { logEvent } from "../features/protocols/eventLog";
 import { loadPref, savePref } from "../lib/storage";
+import { useHealthStore } from "./health.store";
+
+/** La alerta que originó una llamada queda atendida cuando alguien acude. */
+function attendCall(call: HelpCall): void {
+  useHealthStore.getState().attendAlerts((a) => (!!call.protocolId && a.protocolId === call.protocolId) || a.title === call.reason);
+}
 
 /** «¿Necesitas ayuda?» abierto por una alerta. */
 export interface HelpPrompt {
@@ -91,6 +97,8 @@ export const useBuddyStore = create<BuddyState>((set, get) => ({
     if (!p) return;
     if (p.autoSent) get().cancelOutgoing();
     set({ prompt: null });
+    // «Estoy bien»: la alerta queda atendida y deja de mostrarse.
+    useHealthStore.getState().attendAlerts((a) => a.id === p.alertId);
     void logEvent("help_answer_ok", { alert_id: p.alertId });
   },
 
@@ -130,6 +138,7 @@ export const useBuddyStore = create<BuddyState>((set, get) => ({
     if (!out || out.acknowledgedAt) return;
     postBuddyMessage({ type: "ack", id: out.call.id, at: Date.now() });
     set({ outgoing: { ...out, acknowledgedAt: Date.now(), acknowledgedBy: "local" } });
+    attendCall(out.call);
     void logEvent("help_acknowledged", { call_id: out.call.id, by: "local" });
   },
 
@@ -172,6 +181,7 @@ onBuddyMessage((m) => {
   } else if (m.type === "ack") {
     if (s.outgoing?.call.id === m.id && !s.outgoing.acknowledgedAt) {
       useBuddyStore.setState({ outgoing: { ...s.outgoing, acknowledgedAt: m.at, acknowledgedBy: "buddy" } });
+      attendCall(s.outgoing.call);
     }
   } else if (m.type === "cancel") {
     useBuddyStore.setState({ incoming: s.incoming.filter((c) => c.id !== m.id) });

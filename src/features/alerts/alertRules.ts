@@ -5,8 +5,8 @@ import type { AlertLevel } from "./alert.types";
 export const ALERT_CONFIG = {
   cameraUnavailableMs: 3000,
   /** Prolonged + long closures in the 5-min window. */
-  repeatedClosures: 3,
-  combinedClosures: 2,
+  repeatedClosures: 2,
+  combinedClosures: 1,
   /** Simulated sleep below this is treated as insufficient in the demo. */
   insufficientSleepHours: 6,
   perclosWindowSpacingMs: 60_000,

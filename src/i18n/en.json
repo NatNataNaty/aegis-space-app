@@ -166,7 +166,8 @@
       "simulated": "Scenario",
       "combined": "Combined (demo)",
       "user_reported": "Self-report"
-    }
+    },
+    "attend": "Mark as handled"
   },
   "ocular": {
     "title": "Eye monitoring",
@@ -282,8 +283,8 @@
       "time": "Time",
       "duration": "Duration",
       "trendTitle": "PERCLOS and blinks this session",
-      "trendSub": "Sampled every 10 s · 1 min window",
-      "needData": "At least 20 s of calibrated data is needed"
+      "trendSub": "Sampled every 5 s · 1 min window",
+      "needData": "At least 10 s of calibrated data is needed"
     },
     "trends": {
       "indicator": "Indicator",
