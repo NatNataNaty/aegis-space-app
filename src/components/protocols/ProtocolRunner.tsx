@@ -1,6 +1,7 @@
 import { BellRing, Check, ClipboardCheck, Hand, ShieldAlert, Stethoscope } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { CREW_PROFILE } from "../../data/crew";
 import { enqueueOutboxItem } from "../../features/link/outboxService";
 import { logEvent } from "../../features/protocols/eventLog";
 import { pick } from "../../lib/content";
@@ -59,7 +60,7 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
       void enqueueOutboxItem("protocol_runs", {
         protocol_id: protocol.id,
         protocol_title: protocol.title.es,
-        crew_id: "ARES-01-MS2",
+        crew_id: CREW_PROFILE.id,
         status: "completed",
         review_status: protocol.reviewStatus,
         steps_data: steps.map((s, i) => ({ step_id: s.id, kind: s.kind, done_at: new Date(nextDone[i]).toISOString() })),

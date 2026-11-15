@@ -9,6 +9,7 @@ import { LanguageSwitch } from "../layout/LanguageSwitch";
 /** Orden de la lista: primero lo que más urge cuando no hay nadie a quien llamar. */
 const ORDER = [
   "no-responde",
+  "dolor-pecho-respirar",
   "falta-oxigeno",
   "frecuencia-cardiaca",
   "radiacion",
@@ -52,6 +53,15 @@ export function EmergencyPage() {
         >
           {outgoing && !outgoing.acknowledgedAt ? t("emergency.helpSent") : t("emergency.helpNow")}
         </button>
+
+        <ul className="triage-legend" aria-label={t("triage.legendTitle")}>
+          {(["green", "yellow", "red"] as const).map((l) => (
+            <li key={l} className={`triage-legend__${l}`}>
+              <strong>{t(`triage.${l}.name`)}</strong>
+              <span>{t(`triage.legend.${l}`)}</span>
+            </li>
+          ))}
+        </ul>
 
         <h2 className="emergency__sub">{t("emergency.choose")}</h2>
         <ul className="emergency__grid">

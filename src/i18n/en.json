@@ -361,7 +361,9 @@
         "dizziness": "Dizziness",
         "blurred": "Blurred vision",
         "congestion": "Congestion",
-        "backPain": "Lower back pain"
+        "backPain": "Lower back pain",
+        "chestPain": "Chest pain or tightness",
+        "breathing": "Hard to breathe"
       },
       "reaction": "Reaction time",
       "reactionSub": "{{n}} stimuli. Tap as soon as the box lights up.",
@@ -659,7 +661,7 @@
     },
     "research": "NASA HRP ongoing research",
     "mappingNote": "The link between each risk and the hazards is the team's reading of NASA's texts.",
-    "offlineNote": "All of this content works offline. Links open the official page when there is a connection."
+    "offlineNote": "All of this content is bundled in the app and works offline. Source addresses are only for reference on Earth."
   },
   "control": {
     "link": "Link with Earth",
@@ -696,6 +698,24 @@
       "protocol_started": "Protocol started",
       "protocol_step_done": "Step done",
       "protocol_finished": "Protocol completed"
+    },
+    "telemetry": "Crew reports",
+    "delayNote": "Real signal delay: up to 20 minutes each way between Earth and Mars (NASA HRP). Moon and Mars are a sped-up demo: here they take seconds.",
+    "reports": "Reports from each crew member",
+    "reportsSub": "Every minute a vitals summary is sent per crew member, plus every “How I feel”, every traffic-light change and every completed protocol. Without a link they are kept on board and travel at the next contact.",
+    "noReports": "No reports in the outbox yet.",
+    "neverSent": "Photos, video, face points, the face template and the PIN are never sent.",
+    "reportKind": {
+      "minute_summary": "Vitals summary",
+      "self_report": "How I feel",
+      "alerts_log": "Alert or traffic-light change",
+      "protocol_runs": "Protocol completed"
+    },
+    "reportStatus": {
+      "pending": "Queued",
+      "syncing": "Sending",
+      "failed": "Will retry",
+      "synced": "Delivered"
     }
   },
   "errors": {
@@ -771,7 +791,7 @@
     "logLast": "Log your fatigue, mood and symptoms. Last entry at {{time}}.",
     "logNone": "Log your fatigue, mood and symptoms. No entries yet today.",
     "alertsTitle": "Alerts & protocols",
-    "alertsNone": "No active alerts. All 10 protocols are 3 taps away from Emergency.",
+    "alertsNone": "No active alerts. All 11 protocols are 3 taps away from Emergency.",
     "alertsSome": "{{count}} active alert(s). Open them to see what to do."
   },
   "face": {
@@ -918,7 +938,7 @@
       },
       "protocol": {
         "title": "Step-by-step protocol",
-        "text": "10 protocols. Pending medical review."
+        "text": "11 protocols. Pending medical review."
       },
       "vault": {
         "title": "Onboard log",
@@ -938,5 +958,34 @@
       "guide": "Alerts, and Hazards & guide with NASA's 5 hazards and 17 risks.",
       "mission": "Radiation & exercise, and Sleep & mission."
     }
+  },
+  "source": {
+    "offlineHint": "Content is bundled in the app. This address is only for reference on Earth."
+  },
+  "triage": {
+    "srNow": "Status now:",
+    "openProtocol": "Open protocol: {{name}}",
+    "green": {
+      "name": "Green",
+      "title": "Green · all within your range",
+      "why": "No signal outside your usual.",
+      "do": "Carry on with your day. aegis keeps watching and tells you if anything changes."
+    },
+    "yellow": {
+      "name": "Yellow",
+      "title": "Yellow · keep an eye on it",
+      "do": "Pause, repeat the reading in a few minutes and log how you feel. If it gets worse or pain appears, move to red."
+    },
+    "red": {
+      "name": "Red",
+      "title": "Red · act now",
+      "do": "Open the protocol and follow the steps one by one. If you are alone, press “I need help”: your crewmate gets the alert."
+    },
+    "legend": {
+      "green": "Carry on with your day.",
+      "yellow": "Repeat the reading and log how you feel.",
+      "red": "Ask for help and follow the protocol step by step."
+    },
+    "legendTitle": "What each colour means"
   }
 }

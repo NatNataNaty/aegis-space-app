@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { BuddyAlarm } from "../components/alerts/BuddyAlarm";
 import { HelpOverlay } from "../components/alerts/HelpOverlay";
 import { HelpStatus } from "../components/alerts/HelpStatus";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { VaultLock } from "../components/layout/VaultLock";
+import { startEarthLink } from "../features/link/earthReports";
 import { useAppEngine } from "../hooks/useAppEngine";
 import { useHelpWatcher } from "../hooks/useHelpWatcher";
 
@@ -15,6 +17,8 @@ import { useHelpWatcher } from "../hooks/useHelpWatcher";
 export function RootLayout() {
   useAppEngine();
   useHelpWatcher();
+  // Reportes de cada tripulante hacia la Tierra: se guardan a bordo y salen cuando hay enlace.
+  useEffect(() => startEarthLink(), []);
   return (
     <>
       <ErrorBoundary name="help">

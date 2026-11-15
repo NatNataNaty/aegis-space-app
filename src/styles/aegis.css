@@ -1474,3 +1474,158 @@ button.pill:hover,
     animation: none !important;
   }
 }
+
+/* ---------- Cita de fuente local (sin enlaces externos: a bordo no hay internet) ---------- */
+cite.source {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 0;
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent, #8ec8f0);
+  vertical-align: middle;
+}
+cite.source .source__url {
+  font-weight: 400;
+  color: var(--muted, #c9b8be);
+}
+.hazard__links cite.source {
+  max-width: 55%;
+}
+
+/* ---------- Semáforo: verde sigue, amarillo vigila, rojo actúa ---------- */
+.triage {
+  --lamp-green: #5fd49a;
+  --lamp-yellow: #f0b05a;
+  --lamp-red: #ff5a4a;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid var(--border-2);
+  border-left-width: 6px;
+  border-radius: var(--radius-md, 14px);
+  background: var(--panel);
+  transition: border-color 300ms var(--ease), background 300ms var(--ease);
+}
+.triage--green { border-left-color: var(--lamp-green); }
+.triage--yellow { border-left-color: var(--lamp-yellow); background: linear-gradient(90deg, rgba(240, 176, 90, 0.10), var(--panel) 55%); }
+.triage--red { border-left-color: var(--lamp-red); background: linear-gradient(90deg, rgba(255, 90, 74, 0.16), var(--panel) 60%); }
+
+.triage__lamps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 10px 12px;
+  list-style: none;
+  border-radius: 999px;
+  background: var(--bg-2);
+}
+.triage__lamp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  opacity: 0.45;
+  transition: opacity 250ms var(--ease);
+}
+.triage__lamp--on { opacity: 1; color: var(--text); }
+.triage__bulb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.triage__lamp--green .triage__bulb { color: var(--lamp-green); }
+.triage__lamp--yellow .triage__bulb { color: var(--lamp-yellow); }
+.triage__lamp--red .triage__bulb { color: var(--lamp-red); }
+.triage__lamp--on .triage__bulb { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06), 0 0 18px currentColor; }
+.triage--red .triage__lamp--on .triage__bulb { animation: pulse-dot 1.2s var(--ease) infinite; }
+
+.triage__body { min-width: 0; }
+.triage__title {
+  margin: 0 0 4px;
+  font-family: "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  letter-spacing: -0.01em;
+}
+.triage--green .triage__title { color: var(--lamp-green); }
+.triage--yellow .triage__title { color: var(--lamp-yellow); }
+.triage--red .triage__title { color: #ff8a7d; }
+.triage__why { margin: 0 0 6px; font-weight: 600; color: var(--text); }
+.triage__do { margin: 0; color: var(--text-2); max-width: 62ch; }
+.triage__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.triage__actions:empty { display: none; }
+
+.dbtn--danger {
+  border-color: var(--lamp-red, #ff5a4a);
+  background: #ff5a4a;
+  color: #2a0500;
+}
+.dbtn--danger:hover:not(:disabled) { background: #ff7465; }
+
+@media (max-width: 560px) {
+  .triage { grid-template-columns: 1fr; }
+  .triage__lamps { flex-direction: row; justify-content: space-around; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .triage--red .triage__lamp--on .triage__bulb { animation: none; }
+}
+
+/* Leyenda del semáforo en Emergencia */
+.triage-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.triage-legend li {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 2px solid currentColor;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.triage-legend strong { display: block; font-size: 18px; margin-bottom: 2px; }
+.triage-legend__green { color: #5fd49a; }
+.triage-legend__yellow { color: #f0b05a; }
+.triage-legend__red { color: #ff8a7d; }
+.triage-legend span { color: var(--text, #f5ece8); }
+@media (max-width: 640px) { .triage-legend { grid-template-columns: 1fr; } }
+
+/* ---------- Centro de control: reportes por tripulante ---------- */
+.reports li { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.report-status {
+  flex: none;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--panel-2);
+  color: var(--text-2);
+}
+.report-status--synced { background: rgba(143, 224, 184, 0.16); color: var(--ok, #8fe0b8); }
+.report-status--pending, .report-status--syncing { background: rgba(240, 176, 90, 0.16); color: var(--amber, #f0b05a); }
+.report-status--failed { background: rgba(255, 90, 74, 0.16); color: #ff8a7d; }
+
+a.dbtn { text-decoration: none; }
+cite.source { max-width: 100%; min-width: 0; }
+cite.source .source__url {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.78rem;
+}
+.hazard__links { flex-wrap: wrap; }
+.hazard__links cite.source { flex: 1 1 100%; max-width: 100%; }

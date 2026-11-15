@@ -75,6 +75,9 @@ function linked(body: AlertBody, ruleKey: string = body.id, fallbackProtocol: st
   };
 }
 
+/** Síntomas que siempre son rojo y avisan al compañero al instante (pendiente de revisión médica). */
+export const RED_FLAG_SYMPTOMS: readonly string[] = ["chestPain", "breathing"];
+
 /** Pure function: same context → same alerts. Never rewrites the origin of a signal. */
 export function evaluateAlerts(ctx: AlertContext): Alert[] {
   const alerts: Alert[] = [];
@@ -239,9 +242,11 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
   const report = reportAge >= 0 && reportAge <= ALERT_CONFIG.selfReportMaxAgeMs ? ctx.selfReport : null;
   if (report && report.symptoms.length) {
     const symptomLabel = (s: string) => t(`sections.self.symptom.${s}`, { defaultValue: s });
-    const protocolId = report.symptoms.map(protocolForSymptom).find(Boolean) ?? null;
-    alerts.push(
-      linked(
+    // Señales de alarma (dolor de pecho, falta de aire): su protocolo va primero y el aviso al compañero es inmediato.
+    const redFlag = report.symptoms.some((s) => RED_FLAG_SYMPTOMS.includes(s));
+    const ordered = [...report.symptoms].sort((a, b) => Number(RED_FLAG_SYMPTOMS.includes(b)) - Number(RED_FLAG_SYMPTOMS.includes(a)));
+    const protocolId = ordered.map(protocolForSymptom).find(Boolean) ?? null;
+    const symptomAlert = linked(
         {
           id: "self_symptoms",
           title: t("engine.self_symptoms.title"),
@@ -255,8 +260,8 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
         },
         "self_symptoms",
         protocolId,
-      ),
-    );
+      );
+    alerts.push(redFlag ? { ...symptomAlert, askForHelp: true, buddyAfterSec: 0 } : symptomAlert);
   }
   if (report && report.fatigue >= ALERT_CONFIG.highPerceivedFatigue) {
     alerts.push(

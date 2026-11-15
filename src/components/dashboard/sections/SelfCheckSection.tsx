@@ -8,7 +8,7 @@ import { OriginBadge } from "../../common/OriginBadge";
 import { useTranslation } from "react-i18next";
 
 // Se guarda la clave del síntoma (independiente del idioma); content/alerts.json la enlaza a su protocolo.
-const SYMPTOMS = ["headache", "nausea", "dizziness", "blurred", "congestion", "backPain"] as const;
+const SYMPTOMS = ["chestPain", "breathing", "headache", "nausea", "dizziness", "blurred", "congestion", "backPain"] as const;
 
 function Scale({ label, value, onChange, low, high }: { label: string; value: number; onChange: (v: number) => void; low: string; high: string }) {
   return (

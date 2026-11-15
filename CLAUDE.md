@@ -7,7 +7,7 @@ Trabaja por fases: propón un plan, espera confirmación y luego implementa camb
 Respeta la estructura modular y los CODEOWNERS de P1 a P5: ningún agente o colaborador debe modificar archivos ajenos a su módulo sin coordinar previamente.
 
 # PÚBLICO Y MISIÓN
-- **Usuarios objetivo:** Tripulantes y oficiales médicos en misiones de exploración espacial lejana (Luna, Marte, espacio profundo) que operan SIN asistencia en tiempo real de la Tierra (retrasos de comunicación de hasta 22 minutos por sentido, sin reabastecimiento ni telemedicina sincrónica).
+- **Usuarios objetivo:** Tripulantes y oficiales médicos en misiones de exploración espacial lejana (Luna, Marte, espacio profundo) que operan SIN asistencia en tiempo real de la Tierra (retrasos de comunicación de hasta 20 minutos por sentido según NASA HRP, sin reabastecimiento ni telemedicina sincrónica).
 - **Misión de la app:** Herramienta médica de soporte a la decisión clínica, monitoreo fisiológico y gestión de contramedidas a bordo.
 
 # PRINCIPIOS DE ASTRA Y ARQUITECTURA OFFLINE-FIRST

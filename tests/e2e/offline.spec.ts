@@ -33,7 +33,14 @@ test("el panel, la biblioteca y los protocolos funcionan sin ninguna petición e
   await page.locator(".rail__item").nth(4).click();
   await expect(page.locator(".hazard")).toHaveCount(5);
   await expect(page.locator(".risk")).toHaveCount(17);
+  // A bordo no hay internet: ningún enlace debe llevar fuera de la app.
+  await expect(page.locator('a[href^="http"]')).toHaveCount(0);
+  await expect(page.locator(".triage")).toHaveCount(0);
+  await page.locator(".rail__item").nth(0).click();
+  await expect(page.locator(".triage")).toBeVisible();
+  await expect(page.locator('a[href^="http"]')).toHaveCount(0);
   await page.goto("/es/protocolos/frecuencia-cardiaca");
+  await expect(page.locator('a[href^="http"]')).toHaveCount(0);
   await page.getByRole("button", { name: "Sí, puedo hacerlo solo" }).click();
   await page.getByRole("button", { name: "Hecho" }).first().click();
   await expect(page.locator(".step--done")).toHaveCount(1);

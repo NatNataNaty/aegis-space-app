@@ -11,8 +11,8 @@ describe("contenido empaquetado (/content)", () => {
     expect([count("physiology"), count("behavior"), count("radiation")]).toEqual([11, 5, 1]);
   });
 
-  it("tiene los 10 protocolos del plan y todos siguen pendientes de revisión médica", () => {
-    expect(PROTOCOLS).toHaveLength(10);
+  it("tiene los 11 protocolos (10 del plan + dolor de pecho) y todos siguen pendientes de revisión médica", () => {
+    expect(PROTOCOLS).toHaveLength(11);
     for (const p of PROTOCOLS) {
       expect(p.reviewStatus).toBe("pendiente");
       for (const s of [...p.solo, ...p.withBuddy]) expect(s.reviewStatus).toBe("pendiente");

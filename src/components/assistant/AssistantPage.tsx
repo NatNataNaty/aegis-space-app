@@ -1,6 +1,7 @@
 import { Check, Send, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { SourceCite } from "../common/SourceCite";
 import { useNavigate } from "react-router-dom";
 import { answer, type AssistantAnswer } from "../../features/assistant/assistant";
 import { useBaselineStore } from "../../features/baseline/personalBaseline";
@@ -77,13 +78,7 @@ export function AssistantPage({ onGo }: { onGo: (m: ModuleId) => void }) {
                 <div className="chat__bubble">
                   <p>{turn.a.text}</p>
                   <span className="chat__src">
-                    {turn.a.source.url ? (
-                      <a href={turn.a.source.url} target="_blank" rel="noreferrer">
-                        {turn.a.source.label}
-                      </a>
-                    ) : (
-                      turn.a.source.label
-                    )}
+                    <SourceCite label={turn.a.source.label} url={turn.a.source.url} />
                   </span>
                   {turn.a.action === "log" && (
                     <button type="button" className="dbtn dbtn--primary chat__act" onClick={() => onGo("log")}>

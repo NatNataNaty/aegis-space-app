@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AlertBanner } from "../components/alerts/AlertBanner";
+import { TriageLight } from "../components/alerts/TriageLight";
 import { AssistantPage } from "../components/assistant/AssistantPage";
 import { CameraPanel } from "../components/camera/CameraPanel";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
@@ -47,7 +47,7 @@ export function App() {
                 <MarsHero />
                 <StepsPanel mood={mood} onLogSymptom={() => go("log")} />
               </div>
-              <AlertBanner onOpen={() => go("alerts")} />
+              <TriageLight onOpenAlerts={() => go("alerts")} />
               <BodyNow />
               <QuickActions onGo={go} />
             </div>
