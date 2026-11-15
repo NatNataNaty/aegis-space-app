@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { createPin, initVault, lockVault, resetVault, unlockWithPin, useVaultStore } from "../../features/protocols/eventLog";
 import { PIN_PATTERN } from "../../lib/db/vaultCrypto";
+import { useVaultUi } from "../../stores/vaultUi.store";
 import { useBuddyStore } from "../../stores/buddy.store";
 
 /**
@@ -14,7 +15,8 @@ export function VaultLock() {
   const { t } = useTranslation();
   const status = useVaultStore((s) => s.status);
   const pending = useVaultStore((s) => s.pending);
-  const [open, setOpen] = useState(false);
+  const open = useVaultUi((s) => s.open);
+  const setOpen = useVaultUi((s) => s.setOpen);
   // Si salta «¿Necesitas ayuda?» o llega un aviso del compañero, el PIN se aparta: la emergencia manda.
   const helpActive = useBuddyStore((s) => s.prompt !== null || s.incoming.length > 0);
 

@@ -664,7 +664,10 @@
     },
     "research": "Investigación en curso de NASA HRP",
     "mappingNote": "La relación entre cada riesgo y los peligros es una lectura del equipo a partir de los textos de NASA.",
-    "offlineNote": "Todo este contenido va incluido en la app y funciona sin red. Las direcciones de las fuentes son solo para consultarlas en la Tierra."
+    "offlineNote": "Todo este contenido va incluido en la app y funciona sin red.",
+    "seeRisksN_one": "Ver su riesgo ({{count}})",
+    "seeRisksN_other": "Ver sus {{count}} riesgos",
+    "seeRisksN": "Ver sus {{count}} riesgos"
   },
   "control": {
     "link": "Enlace con la Tierra",
@@ -833,7 +836,16 @@
       "last": "Último reconocimiento",
       "lastNow": "Ahora",
       "lastNever": "Aún no",
-      "fictional": "Este perfil solo lo ven tú y el oficial médico. Se abre con tu rostro o con tu PIN y se guarda cifrado en esta tableta. A la Tierra viajan tus mediciones; nunca tu rostro ni tu PIN. Perfil ficticio de demostración."
+      "fictional": "Este perfil solo lo ven tú y el oficial médico. Se abre con tu rostro o con tu PIN y se guarda cifrado en esta tableta. A la Tierra viajan tus mediciones; nunca tu rostro ni tu PIN. Perfil ficticio de demostración.",
+      "lockedTitle": "Perfil protegido",
+      "lockedText": "Ponte frente a la cámara: aegis te reconoce y abre tus datos. También puedes abrirlos con tu PIN.",
+      "useFace": "Activar cámara y reconocerme",
+      "usePin": "Abrir con mi PIN",
+      "createPin": "Crear mi PIN",
+      "enrollHint": "Registra tu rostro una vez (botón «Registrar mi rostro» arriba) para abrir el perfil sin escribir nada.",
+      "byFace": "Abierto: te reconoció tu rostro.",
+      "byPin": "Abierto con tu PIN.",
+      "lockedRole": "Tripulación ARES-01"
     },
     "today": {
       "title": "Monitoreo de hoy · Día {{day}}",
@@ -853,6 +865,22 @@
       "sleep": "Sueño",
       "exercise": "Ejercicio",
       "today": "Día {{day}} (hoy)"
+    },
+    "auto": {
+      "off": "Activa la cámara: aegis reconocerá a quien esté frente a la tableta y abrirá su perfil.",
+      "watching": "Esperando un rostro…",
+      "identifying": "Reconociendo…",
+      "matched": "Hola, {{name}}. Perfil abierto.",
+      "newcrew": "Rostro nuevo: registrado como {{name}}. Si no eres tú, cámbialo.",
+      "unknown": "Rostro no reconocido: los 4 tripulantes ya tienen rostro registrado.",
+      "start": "Activar cámara",
+      "notYou": "¿No eres tú?",
+      "pick": "Elige quién eres:",
+      "forget_one": "Olvidar {{count}} rostro",
+      "forget_other": "Olvidar {{count}} rostros",
+      "forget": "Olvidar rostros",
+      "storedEncrypted": "Las huellas se guardan cifradas con tu PIN.",
+      "storedMemory": "Sin PIN, las huellas viven solo en memoria y se borran al cerrar."
     }
   },
   "assistant": {
@@ -970,7 +998,8 @@
     }
   },
   "source": {
-    "offlineHint": "Contenido incluido en la app. Esta dirección es solo para consultarla en la Tierra."
+    "offlineHint": "Contenido incluido en la app. La referencia completa está en la ficha de fuentes del proyecto.",
+    "prefix": "Fuente:"
   },
   "triage": {
     "srNow": "Estado ahora:",
@@ -1043,5 +1072,13 @@
     "title": "Cómo prevenirlo",
     "note": "Contramedidas que describe NASA. No incluyen fármacos ni dosis: esos los indica el médico de vuelo.",
     "techBrief": "NASA · informe técnico"
+  },
+  "crew": {
+    "role": {
+      "commander": "Comandante",
+      "pilot": "Piloto",
+      "specialist": "Especialista de misión",
+      "medical": "Oficial médica"
+    }
   }
 }

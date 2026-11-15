@@ -1,5 +1,6 @@
 import { ChevronDown, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useActiveCrew } from "../../data/crew";
 import { MISSION, toMissionTime } from "../../features/mission/missionClock";
 import { SCENARIO_ORDER, SCENARIOS } from "../../features/simulation/scenarios";
 import type { ScenarioId } from "../../features/simulation/simulation.types";
@@ -19,11 +20,14 @@ export function TopBar({ onOpenAssistant }: TopBarProps) {
   const scenarioId = useHealthStore((s) => s.scenarioId);
   const setScenario = useHealthStore((s) => s.setScenario);
   const mt = toMissionTime(missionMs);
+  const crew = useActiveCrew();
 
   return (
     <header className="topbar">
       <div className="topbar__crew">
-        <span className="topbar__crew-name">{t("hero.crewName")}</span>
+        <span className="topbar__crew-name">
+          {crew.name} <small>· {t(`crew.role.${crew.role}`)}</small>
+        </span>
         <span className="topbar__crew-mission">
           {MISSION.id} · {t("mission.name")} · {t("mission.day", { day: mt.day })} · {mt.clock.slice(0, 5)}
         </span>

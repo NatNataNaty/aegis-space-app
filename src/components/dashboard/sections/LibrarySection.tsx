@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -45,9 +46,14 @@ export function LibrarySection() {
                   type="button"
                   className={cx("chip-btn", hazard === h.id && "chip-btn--on")}
                   aria-pressed={hazard === h.id}
-                  onClick={() => setHazard(hazard === h.id ? "all" : h.id)}
+                  onClick={() => {
+                    const next = hazard === h.id ? "all" : h.id;
+                    setHazard(next);
+                    // Lleva a la lista ya filtrada: así se ve qué riesgos produce este peligro.
+                    if (next !== "all") requestAnimationFrame(() => document.getElementById("risks-title")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                  }}
                 >
-                  {t("library.seeRisks")}
+                  {t("library.seeRisksN", { count: RISKS.filter((r) => r.hazardIds.includes(h.id)).length })} <ArrowDown size={14} aria-hidden />
                 </button>
               </div>
             </li>

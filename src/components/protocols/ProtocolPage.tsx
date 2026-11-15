@@ -1,3 +1,4 @@
+import { activeCrew } from "../../data/crew";
 import { UserRoundPlus } from "lucide-react";
 import { PreventionList } from "../common/PreventionList";
 import { SourceCite } from "../common/SourceCite";
@@ -37,7 +38,7 @@ export function ProtocolPage() {
   const lang = i18n.language;
   const title = pick(protocol.title, lang);
   const risk = protocol.riskId ? riskById(protocol.riskId) : undefined;
-  const requestBuddy = () => askForHelp(false, t("hero.crewName"), { protocolId: protocol.id, reason: title });
+  const requestBuddy = () => askForHelp(false, activeCrew().name, { protocolId: protocol.id, reason: title });
 
   return (
     <PageShell title={title}>
