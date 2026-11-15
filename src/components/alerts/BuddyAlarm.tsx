@@ -26,7 +26,7 @@ export function BuddyAlarm() {
 
   const goHelp = () => {
     acknowledge(call.id);
-    if (call.protocolId) navigate(`${protocolPath(call.protocolId, i18n.language)}?modo=companero`);
+    if (call.protocolId) navigate(`${protocolPath(call.protocolId, i18n.language)}?modo=companero&aviso=1`);
   };
 
   return (

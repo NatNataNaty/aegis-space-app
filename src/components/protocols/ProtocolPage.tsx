@@ -21,7 +21,25 @@ export function ProtocolPage() {
   const protocol = getProtocol(id);
   const askForHelp = useBuddyStore((s) => s.askForHelp);
   const vitals = useHealthStore((s) => s.snapshot.vitals);
-  const [mode, setMode] = useState<RunMode | null>(params.get("modo") === "companero" ? "buddy" : null);
+  // Modo: el de la URL (al llegar desde un aviso) o el último usado en esta sesión (al volver del manual).
+  const [mode, setModeState] = useState<RunMode | null>(() => {
+    if (params.get("modo") === "companero") return "buddy";
+    try {
+      const m = sessionStorage.getItem(`mode:${id}`);
+      return m === "solo" || m === "buddy" ? m : null;
+    } catch {
+      return null;
+    }
+  });
+  const setMode = (m: RunMode) => {
+    setModeState(m);
+    try {
+      sessionStorage.setItem(`mode:${id}`, m);
+    } catch {
+      /* sin almacenamiento */
+    }
+  };
+  const autoNotified = mode === "buddy" && params.get("aviso") === "1";
 
   if (!protocol) {
     return (
@@ -88,7 +106,7 @@ export function ProtocolPage() {
               <h2 id="protocol-steps" className="visually-hidden">
                 {t(`protocol.mode.${mode}`)}
               </h2>
-              <ProtocolRunner key={mode} protocol={protocol} mode={mode} />
+              <ProtocolRunner key={mode} protocol={protocol} mode={mode} autoNotified={autoNotified} />
             </>
           )}
         </section>

@@ -1,0 +1,519 @@
+/* =============================================================================
+   aegis · estilo «control de misión»
+   Se carga el último. Solo cambia aspecto: colores sólidos (sin degradados ni brillos),
+   grafito neutro con un único color por significado, medidas y botones consistentes.
+   No toca la lógica ni la estructura de las pantallas.
+   ========================================================================== */
+
+:root {
+  /* Superficies: grafito neutro, de más oscuro a más claro */
+  --bg: #0d0f12;
+  --bg-2: #090b0d;
+  --panel: #15181c;
+  --panel-2: #1d2126;
+  --panel-3: #191c21;
+  --border: #262b31;
+  --border-2: #343a42;
+  --rule: #22272d;
+  /* Texto */
+  --text: #f1f3f5;
+  --text-2: #c7cdd4;
+  --muted: #9aa3ad;
+  --faint: #8c95a0;
+  /* Un color por significado */
+  --amber: #e8a33d; /* atención */
+  --amber-ink: #1a1205;
+  --accent: #f1f3f5; /* elemento activo: blanco */
+  --accent-2: #c7cdd4;
+  --ok: #3dbe7a; /* estable */
+  --ok-line: #24583d;
+  --rust: #d7263d; /* emergencia */
+  --alert: #ef5350;
+  --warn: #e8a33d;
+  --live: #3dbe7a;
+  --sim: #c7cdd4;
+  --user: #c7cdd4;
+  --test: #c7cdd4;
+  --lilac: #c7cdd4;
+  --lilac-line: #343a42;
+  /* Forma: esquinas discretas, sin sombras */
+  --radius: 12px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --shadow: none;
+  /* Tipografía: una sola familia, sobria */
+  --display: "Inter Variable", "Segoe UI", system-ui, sans-serif;
+  --font: "Inter Variable", "Segoe UI", system-ui, sans-serif;
+}
+
+/* Sin degradados, sombras ni resplandores en ninguna parte */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+[class] {
+  background-image: none !important;
+}
+
+html,
+body {
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+.mars-hero__title,
+.section-title h2,
+.panel h3,
+.panel__head h3,
+.card__title,
+.triage__title,
+.ship-alarm__title,
+.help__title {
+  font-family: var(--display);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Barra lateral ---------- */
+.rail {
+  background: var(--bg-2);
+  border-right: 1px solid var(--border);
+}
+.rail__item {
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  font-size: 14.5px;
+}
+.rail__item:hover {
+  background: var(--panel);
+  color: var(--text);
+}
+.rail__item--on,
+.rail__item--on:hover {
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+}
+.rail__item--on .rail__hint {
+  color: #4a525c;
+}
+.rail__emergency {
+  background: var(--rust);
+  color: #fff;
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Barra superior ---------- */
+.topbar {
+  border-bottom: 1px solid var(--border);
+}
+.pill,
+.pill--select select {
+  min-height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border-color: var(--border-2);
+  color: var(--text);
+}
+
+/* ---------- Contenedores: mismas medidas en todas partes ---------- */
+.panel,
+.metric,
+.ocular-card,
+.camera,
+.steps,
+.card,
+.body-card,
+.quick > *,
+.how__box,
+.how__col,
+.how__refs-col {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.card,
+.panel {
+  padding: 20px;
+}
+.body-now,
+.quick,
+.module {
+  gap: 16px;
+}
+.section-title {
+  margin: 8px 0 4px;
+}
+.section-title h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.body-card__value {
+  font-family: var(--font);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Botones: una altura, una esquina, tres variantes ---------- */
+.btn,
+.mbtn,
+.dbtn,
+.chip-btn,
+.seg__btn,
+.scale__btn {
+  min-height: 44px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  transform: none;
+}
+.btn,
+.mbtn,
+.dbtn {
+  padding: 0 16px;
+}
+/* Secundario: contorno neutro */
+.dbtn,
+.mbtn--ghost,
+.mbtn--dark,
+.chip-btn {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text);
+}
+.dbtn:hover:not(:disabled),
+.mbtn--ghost:hover,
+.mbtn--dark:hover,
+.chip-btn:hover {
+  background: var(--panel-2);
+}
+/* Principal: blanco sólido */
+.btn--primary,
+.dbtn--primary,
+.mbtn--amber,
+.chip-btn--on,
+.seg__btn--on,
+.scale__btn--on,
+.dbtn--outline-amber {
+  background: var(--text);
+  border: 1px solid var(--text);
+  color: var(--bg);
+}
+.btn--primary:hover,
+.dbtn--primary:hover:not(:disabled),
+.mbtn--amber:hover {
+  background: #d9dde2;
+}
+/* Peligro: rojo sólido */
+.dbtn--danger,
+.ship-alarm__go {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: #fff;
+}
+.dbtn--danger:hover:not(:disabled) {
+  background: #bf1f34;
+}
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ---------- Pantalla principal: paisaje de Marte en colores planos ---------- */
+.mars-hero,
+.mars-hero--calm {
+  background: #14181d !important;
+  border: 1px solid var(--border);
+}
+.mars-hero--watch {
+  background: #1a1813 !important;
+}
+.mars-hero--alert {
+  background: #1d1314 !important;
+}
+.mars-hero__sky,
+.mars-hero__dust {
+  display: none;
+}
+.mars-hero__sun {
+  fill: #e9e2d6;
+  animation: none;
+}
+.mars-hero--watch .mars-hero__sun {
+  fill: var(--amber);
+}
+.mars-hero--alert .mars-hero__sun {
+  fill: var(--alert);
+}
+.mars-hero__ridge--far {
+  fill: #3a2b26;
+}
+.mars-hero__ridge--mid {
+  fill: #4a332a;
+}
+.mars-hero__ridge--near {
+  fill: #5a3b2d;
+}
+.mars-hero__number {
+  color: var(--text);
+}
+.mars-hero--watch .mars-hero__number {
+  color: var(--amber);
+}
+.mars-hero--alert .mars-hero__number {
+  color: var(--alert);
+}
+
+/* ---------- Semáforo y avisos: fondos sólidos ---------- */
+.triage,
+.triage--yellow,
+.triage--red {
+  background: var(--panel);
+}
+.triage {
+  --lamp-green: var(--ok);
+  --lamp-yellow: var(--amber);
+  --lamp-red: var(--alert);
+}
+.triage__lamps {
+  background: var(--bg-2);
+  border-radius: var(--radius-sm);
+}
+.triage--red .triage__title {
+  color: var(--alert);
+}
+.manual__alarm {
+  background: var(--panel);
+  border: 1px solid var(--alert);
+  border-left-width: 6px;
+}
+.manual__alarm h2 {
+  color: var(--alert);
+}
+.manual__n {
+  background: var(--text);
+  color: var(--bg);
+}
+.prevent {
+  background: var(--bg-2);
+  border-color: var(--border);
+}
+.prevent__title,
+.how__refs-col h3 {
+  color: var(--text);
+}
+.ship-alarm {
+  background: rgba(9, 11, 13, 0.92);
+  animation: ship-flash-solid 1.3s steps(1, end) infinite;
+}
+@keyframes ship-flash-solid {
+  0% {
+    background: rgba(120, 14, 24, 0.92);
+  }
+  50% {
+    background: rgba(9, 11, 13, 0.94);
+  }
+}
+.ship-alarm__panel {
+  background: var(--panel);
+  border: 2px solid var(--rust);
+}
+.ship-alarm__kicker {
+  color: var(--alert);
+}
+.help__panel {
+  background: var(--panel);
+  border-color: var(--border-2);
+}
+
+/* ---------- Etiquetas y estados ---------- */
+.body-card__status--stable,
+.report-status--synced {
+  color: var(--ok);
+}
+.risk__cat {
+  border-color: var(--border-2);
+  color: var(--text-2);
+}
+.risk__cat--radiation {
+  color: var(--amber);
+}
+.ico,
+.ico--sm {
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+}
+.crew-chip__av,
+.profile__avatar {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.hazard__letter {
+  color: var(--text);
+}
+.hazard__fact {
+  border-left-color: var(--border-2);
+}
+.step__link {
+  border-color: var(--border-2);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ship-alarm {
+    animation: none;
+  }
+}
+
+/* ---------- Ámbar solo para «atención»: marca, iconos y números en neutro ---------- */
+.rail__brand,
+.body-card__name svg,
+.profile--locked .profile__avatar,
+.vault__icon,
+.footer__build,
+.step__num,
+.steps--calm .dbtn,
+.help__reason,
+.check--on,
+.crew-chip:hover {
+  color: var(--text);
+}
+.rail__brand {
+  letter-spacing: -0.02em;
+}
+.step--current {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.step--current .step__kind,
+.step--current .step__num {
+  color: var(--text);
+}
+.step--clinical:not(.step--current) {
+  box-shadow: inset 3px 0 0 var(--border-2) !important;
+}
+.steps--calm .dbtn--outline-amber,
+.dbtn--outline-amber {
+  background: transparent;
+  border-color: var(--border-2);
+  color: var(--text);
+}
+.check--on {
+  background: var(--panel-2);
+  border-color: var(--text);
+}
+.crew-chip:hover {
+  border-color: var(--text);
+}
+.rail__assist--on {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.step--current {
+  border: 1px solid var(--text);
+  border-radius: var(--radius);
+}
+.step--current .step__text {
+  color: var(--text);
+}
+.step--current .mbtn--dark,
+.step--current .mbtn {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+.step--current .step__num {
+  color: var(--text);
+}
+.step__num {
+  color: var(--muted);
+}
+.step--done .step__num {
+  color: var(--ok);
+}
+/* Los 5 peligros en una sola fila cuando cabe */
+.hazards {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+/* ---------- Emergencia: alto contraste sobrio (negro, blanco y rojo de alarma) ---------- */
+.emergency a,
+.emergency__back {
+  color: var(--text);
+}
+.emergency__bar {
+  border-bottom-color: var(--rust);
+}
+.emergency .lang-switch__btn--on {
+  background: var(--text);
+  color: #000;
+}
+.emergency__help {
+  background: var(--rust);
+  color: #fff;
+}
+.emergency__item:hover {
+  background: #1a1a1a;
+}
+.emergency :focus-visible {
+  outline-color: var(--text);
+}
+.triage-legend__green {
+  color: var(--ok);
+}
+.triage-legend__yellow {
+  color: var(--amber);
+}
+.triage-legend__red {
+  color: var(--alert);
+}
+
+/* ---------- Móvil: la escena no se superpone a la barra superior ---------- */
+.mars-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+@media (max-width: 900px) {
+  .vitals-stage .mars-hero {
+    position: relative;
+    top: auto;
+  }
+}
+@media (max-width: 720px) {
+  .rail {
+    background: var(--bg-2) !important;
+    z-index: 40;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+.steps--calm .mbtn--ghost {
+  border-color: var(--border-2);
+  color: var(--text);
+}
+@media (max-width: 900px) {
+  /* En pantallas estrechas solo el menú queda fijo; la barra del tripulante se desplaza con la página. */
+  .topbar {
+    position: static;
+    z-index: auto;
+  }
+}
+.runner__notified {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--panel-2);
+  color: var(--text-2);
+  font-size: 14px;
+}
+.runner__restart {
+  margin-top: 14px;
+}
+.back-to-protocol { width: fit-content; text-decoration: none; }

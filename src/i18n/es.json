@@ -448,7 +448,10 @@
     "relatedProtocol": "Ver el protocolo relacionado",
     "helpSent": "Aviso enviado",
     "openManual": "Abrir en el manual de a bordo",
-    "openLog": "Abrir «¿Cómo me siento?»"
+    "openLog": "Abrir «¿Cómo me siento?»",
+    "restart": "Empezar de nuevo",
+    "alreadyNotified": "Ya avisaste al pulsar «Voy a ayudar»: el comandante está informado y el registro empezó.",
+    "backToProtocol": "Volver al protocolo"
   },
   "engine": {
     "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",

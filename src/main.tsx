@@ -9,6 +9,7 @@ import "./styles/global.css";
 import "./styles/mars.css";
 import "./styles/screens.css";
 import "./styles/aegis.css";
+import "./styles/mission.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
