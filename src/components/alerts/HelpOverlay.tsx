@@ -1,3 +1,4 @@
+import { activeCrew } from "../../data/crew";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +19,7 @@ export function HelpOverlay() {
   const firstButton = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
 
-  const crewName = t("hero.crewName");
+  const crewName = activeCrew().name;
   const goToProtocol = (id: string | null) => {
     if (id) navigate(protocolPath(id, i18n.language));
   };

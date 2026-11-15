@@ -1,3 +1,4 @@
+import { activeCrew } from "../../data/crew";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { protocolPath } from "../../app/paths";
@@ -60,7 +61,7 @@ export function StepsPanel({ mood, onLogSymptom }: { mood: HeroMood; onLogSympto
         type="button"
         className="mbtn mbtn--amber"
         disabled={sent}
-        onClick={() => askForHelp(false, t("hero.crewName"), { protocolId: protocol.id, reason: lead?.title ?? title })}
+        onClick={() => askForHelp(false, activeCrew().name, { protocolId: protocol.id, reason: lead?.title ?? title })}
       >
         {sent ? t("steps.helpSent") : t("steps.needHelp")}
       </button>

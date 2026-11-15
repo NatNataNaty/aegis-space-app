@@ -838,13 +838,14 @@
       "lastNever": "Not yet",
       "fictional": "Only you and the medical officer see this profile. It opens with your face or your PIN and is stored encrypted on this tablet. Your measurements travel to Earth; your face and PIN never do. Fictional demo profile.",
       "lockedTitle": "Protected profile",
-      "lockedText": "Your personal and medical data open when aegis recognises you: by your face or your PIN.",
-      "useFace": "Identify me by face",
+      "lockedText": "Stand in front of the camera: aegis recognises you and opens your data. You can also open them with your PIN.",
+      "useFace": "Turn on camera and recognise me",
       "usePin": "Open with my PIN",
       "createPin": "Create my PIN",
       "enrollHint": "Register your face once (the “Register my face” button above) to open the profile without typing.",
       "byFace": "Open: your face was recognised.",
-      "byPin": "Opened with your PIN."
+      "byPin": "Opened with your PIN.",
+      "lockedRole": "ARES-01 crew"
     },
     "today": {
       "title": "Today's monitoring · Day {{day}}",
@@ -864,6 +865,22 @@
       "sleep": "Sleep",
       "exercise": "Exercise",
       "today": "Day {{day}} (today)"
+    },
+    "auto": {
+      "off": "Turn on the camera: aegis will recognise whoever is in front of the tablet and open their profile.",
+      "watching": "Waiting for a face…",
+      "identifying": "Recognising…",
+      "matched": "Hi, {{name}}. Profile open.",
+      "newcrew": "New face: registered as {{name}}. If that's not you, change it.",
+      "unknown": "Face not recognised: all 4 crew members already have a face registered.",
+      "start": "Turn on camera",
+      "notYou": "Not you?",
+      "pick": "Choose who you are:",
+      "forget_one": "Forget {{count}} face",
+      "forget_other": "Forget {{count}} faces",
+      "forget": "Forget faces",
+      "storedEncrypted": "Face prints are stored encrypted with your PIN.",
+      "storedMemory": "Without a PIN, face prints live only in memory and are erased on close."
     }
   },
   "assistant": {
@@ -1055,5 +1072,13 @@
     "title": "How to prevent it",
     "note": "Countermeasures described by NASA. They include no drugs or doses: the flight surgeon prescribes those.",
     "techBrief": "NASA · technical brief"
+  },
+  "crew": {
+    "role": {
+      "commander": "Commander",
+      "pilot": "Pilot",
+      "specialist": "Mission specialist",
+      "medical": "Medical officer"
+    }
   }
 }

@@ -1672,3 +1672,15 @@ cite.source .source__url { white-space: normal; overflow-wrap: anywhere; text-ov
 .profile__actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .profile__opened { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--ok, #8fe0b8); }
 #risks-title { scroll-margin-top: 90px; }
+
+/* ---------- Tripulación reconocida automáticamente ---------- */
+.identity__watch { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); animation: pulse-dot 1.6s var(--ease) infinite; }
+.identity__pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+.crew-chip { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 6px 14px 6px 6px; border: 1px solid var(--border-2); border-radius: 999px; background: var(--panel-2); color: var(--text); font-weight: 600; text-align: left; }
+.crew-chip small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+.crew-chip:hover { border-color: var(--amber); }
+.crew-chip__av { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-2); color: var(--amber); font-size: 13px; font-weight: 700; }
+.profile--open { animation: profile-in 520ms var(--ease) both; }
+@keyframes profile-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
+.topbar__crew-name small { font-weight: 500; color: var(--muted); font-size: 0.8em; }
+@media (prefers-reduced-motion: reduce) { .identity__watch, .profile--open { animation: none; } }

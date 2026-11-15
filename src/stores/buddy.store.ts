@@ -1,7 +1,7 @@
+import { activeCrew } from "../data/crew";
 import { create } from "zustand";
 import { newCallId, onBuddyMessage, postBuddyMessage, type HelpCall } from "../features/buddy/buddyChannel";
 import { logEvent } from "../features/protocols/eventLog";
-import i18n from "../i18n";
 import { loadPref, savePref } from "../lib/storage";
 
 /** «¿Necesitas ayuda?» abierto por una alerta. */
@@ -66,7 +66,7 @@ export const useBuddyStore = create<BuddyState>((set, get) => ({
       const call: HelpCall = {
         type: "help",
         id: newCallId(),
-        crewName: i18n.t("hero.crewName"),
+        crewName: activeCrew().name,
         protocolId: p.protocolId,
         reason: p.title,
         auto: true,

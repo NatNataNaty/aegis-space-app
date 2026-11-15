@@ -1,3 +1,4 @@
+import { activeCrew } from "../../data/crew";
 import { ArrowLeft, Siren } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -49,7 +50,7 @@ export function EmergencyPage() {
           type="button"
           className="emergency__help"
           disabled={!!outgoing && !outgoing.acknowledgedAt}
-          onClick={() => askForHelp(false, t("hero.crewName"), { protocolId: "no-responde", reason: t("emergency.title") })}
+          onClick={() => askForHelp(false, activeCrew().name, { protocolId: "no-responde", reason: t("emergency.title") })}
         >
           {outgoing && !outgoing.acknowledgedAt ? t("emergency.helpSent") : t("emergency.helpNow")}
         </button>

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { create } from "zustand";
-import { CREW_PROFILE } from "../../data/crew";
+import { activeCrew } from "../../data/crew";
 import { loadPref, savePref } from "../../lib/storage";
 import { enqueueOutboxItem } from "../link/outboxService";
 
@@ -53,7 +53,7 @@ export function parseMeasurement(raw: Partial<Record<MeasureField, string>>, rec
 }
 
 /** Lo que viaja a la Tierra (crew_telemetry, kind «manual_measurement»). */
-export function buildManualPayload(m: Measurement, crewId: string = CREW_PROFILE.id) {
+export function buildManualPayload(m: Measurement, crewId: string = activeCrew().id) {
   return {
     mission_id: "ARES-01",
     crew_id: crewId,

@@ -1,4 +1,4 @@
-import { CREW_PROFILE } from "../../data/crew";
+import { activeCrew } from "../../data/crew";
 import { useCameraStore } from "../../stores/camera.store";
 import { useHealthStore } from "../../stores/health.store";
 import { useLinkStore } from "../../stores/linkStore";
@@ -41,7 +41,7 @@ export function buildMinuteSummary(
   snap: SimSnapshot,
   ocular: OcularSummary | null,
   light: Light,
-  crewId: string = CREW_PROFILE.id,
+  crewId: string = activeCrew().id,
   at: number = Date.now(),
 ) {
   const v = snap.vitals;
@@ -70,7 +70,7 @@ export function buildMinuteSummary(
 }
 
 /** «Cómo me siento»: escalas y síntomas marcados por el propio tripulante. */
-export function buildSelfReport(report: SelfReport, crewId: string = CREW_PROFILE.id) {
+export function buildSelfReport(report: SelfReport, crewId: string = activeCrew().id) {
   return {
     mission_id: MISSION_ID,
     crew_id: crewId,
@@ -86,7 +86,7 @@ export function buildSelfReport(report: SelfReport, crewId: string = CREW_PROFIL
 }
 
 /** Cambio de semáforo (verde → amarillo → rojo…) para que la Tierra vea la evolución. */
-export function buildLightChange(light: Light, top: Alert | undefined, crewId: string = CREW_PROFILE.id, at: number = Date.now()) {
+export function buildLightChange(light: Light, top: Alert | undefined, crewId: string = activeCrew().id, at: number = Date.now()) {
   return {
     mission_id: MISSION_ID,
     alert_id: top?.id ?? `triage_${light}`,
