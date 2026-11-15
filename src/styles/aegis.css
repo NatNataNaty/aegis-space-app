@@ -520,7 +520,7 @@ button.pill:hover,
 
 .body-now {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 16px;
 }
 
@@ -1533,10 +1533,9 @@ cite.source .source__url {
   font-size: 12px;
   font-weight: 600;
   color: var(--muted);
-  opacity: 0.45;
-  transition: opacity 250ms var(--ease);
 }
-.triage__lamp--on { opacity: 1; color: var(--text); }
+.triage__lamp--on { color: var(--text); }
+.triage__lamp:not(.triage__lamp--on) .triage__bulb { opacity: 0.35; }
 .triage__bulb {
   width: 18px;
   height: 18px;
@@ -1629,3 +1628,28 @@ cite.source .source__url {
 }
 .hazard__links { flex-wrap: wrap; }
 .hazard__links cite.source { flex: 1 1 100%; max-width: 100%; }
+
+/* ---------- Registrar medición a mano ---------- */
+.body-card__manual { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 13px; font-weight: 600; color: var(--accent); }
+.measure h3 { display: flex; align-items: center; gap: 8px; }
+.measure__form { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.measure__group { margin: 0; padding: 12px 14px; border: 1px solid var(--border-2); border-radius: 12px; background: var(--bg-2); }
+.measure__group legend { padding: 0 4px; font-weight: 700; color: var(--text); }
+.measure__group small { display: block; margin-top: 6px; color: var(--muted); font-size: 12.5px; line-height: 1.35; }
+.measure__inputs { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.measure__input { display: inline-flex; align-items: center; gap: 6px; }
+.measure__inputs input {
+  width: 5.2em; min-height: 44px; padding: 0 10px;
+  border: 1px solid var(--border-2); border-radius: 10px;
+  background: var(--panel); color: var(--text);
+  font: 600 18px/1 "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
+}
+.measure__inputs input:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.measure__inputs em { font-style: normal; font-size: 13px; }
+.measure__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.measure__msg { margin: 0; color: var(--text-2); font-size: 14px; }
+.measure__msg[role="alert"] { color: #ff8a7d; font-weight: 600; }
+.measure__history li { display: flex; gap: 12px; flex-wrap: wrap; }
+.body-card--pressure .body-card__value { font-size: 32px; white-space: nowrap; }
+.measure__inputs { flex-wrap: wrap; }
+.measure__inputs input { width: 4.4em; }

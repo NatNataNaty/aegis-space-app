@@ -13,6 +13,7 @@ import { EyeSection } from "../components/dashboard/sections/EyeSection";
 import { GuideSection } from "../components/dashboard/sections/GuideSection";
 import { LibrarySection } from "../components/dashboard/sections/LibrarySection";
 import { ScheduleSection } from "../components/dashboard/sections/ScheduleSection";
+import { MeasureEntry } from "../components/dashboard/sections/MeasureEntry";
 import { SelfCheckSection } from "../components/dashboard/sections/SelfCheckSection";
 import { TrendsSection } from "../components/dashboard/sections/TrendsSection";
 import { FaceModule } from "../components/identity/FaceModule";
@@ -66,6 +67,7 @@ export function App() {
           <ErrorBoundary name="log">
             <div className="module" key="log">
               <SelfCheckSection />
+              <MeasureEntry />
             </div>
           </ErrorBoundary>
         )}

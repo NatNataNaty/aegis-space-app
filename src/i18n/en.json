@@ -709,7 +709,8 @@
       "minute_summary": "Vitals summary",
       "self_report": "How I feel",
       "alerts_log": "Alert or traffic-light change",
-      "protocol_runs": "Protocol completed"
+      "protocol_runs": "Protocol completed",
+      "manual_measurement": "Manual measurement"
     },
     "reportStatus": {
       "pending": "Queued",
@@ -725,7 +726,7 @@
   },
   "vault": {
     "bar": {
-      "new": "Your medical log has no PIN yet.",
+      "new": "Protect your medical record with a PIN: a secret code of 4 to 8 digits, like the one on your phone.",
       "locked": "Medical log locked.",
       "unlocked": "Medical log encrypted and open.",
       "pending": "{{count}} event(s) waiting to be stored encrypted."
@@ -740,7 +741,7 @@
       "locked": "Unlock your medical log"
     },
     "lead": {
-      "new": "Choose a 4 to 8 digit PIN. It encrypts your alerts, help calls and protocol steps on this device.",
+      "new": "Choose a PIN of 4 to 8 digits. Only you know it: it encrypts your alerts, notices and protocol steps on this tablet, so nobody else can read them.",
       "locked": "Enter your PIN to store and see your encrypted records."
     },
     "pin": "PIN",
@@ -781,6 +782,12 @@
       "name": "Sleep",
       "what": "Last cycle",
       "explain": "Hours you slept in your last rest period."
+    },
+    "manualAt": "Measured by hand at {{time}}",
+    "glucose": {
+      "name": "Blood sugar",
+      "what": "Glucose · mg/dL",
+      "explain": "Energy your blood carries to muscles and brain. Measured with a drop of blood on the glucose meter."
     }
   },
   "quick": {
@@ -823,7 +830,7 @@
       "last": "Last recognition",
       "lastNow": "Now",
       "lastNever": "Not yet",
-      "fictional": "Fictional demonstration profile."
+      "fictional": "Only you and the medical officer see this profile. It opens with your face or your PIN and is stored encrypted on this tablet. Your measurements travel to Earth; your face and PIN never do. Fictional demo profile."
     },
     "today": {
       "title": "Today's monitoring · Day {{day}}",
@@ -987,5 +994,46 @@
       "red": "Ask for help and follow the protocol step by step."
     },
     "legendTitle": "What each colour means"
+  },
+  "measure": {
+    "title": "Log a measurement",
+    "sub": "Type what the medical-kit device shows. Fill in only what you measured.",
+    "devices": "The Bio-Monitor and the wristband send their data on their own; here goes what you measure by hand.",
+    "save": "Save measurement",
+    "saved": "Saved at {{time}} · travels to Earth at the next contact.",
+    "history": "Your latest measurements",
+    "bpm": "bpm",
+    "field": {
+      "pressure": "Blood pressure",
+      "heartRate": "Pulse",
+      "spo2": "Oxygen (SpO₂)",
+      "temperature": "Temperature",
+      "glucose": "Blood sugar"
+    },
+    "aria": {
+      "systolic": "Systolic pressure in mmHg",
+      "diastolic": "Diastolic pressure in mmHg",
+      "heartRate": "Pulse in beats per minute",
+      "spo2": "Oxygen saturation in percent",
+      "temperature": "Temperature in degrees Celsius",
+      "glucose": "Glucose in mg/dL"
+    },
+    "ph": {
+      "systolic": "High",
+      "diastolic": "Low"
+    },
+    "how": {
+      "pressure": "Arm cuff. Type both numbers it shows.",
+      "heartRate": "From the cuff or the pulse oximeter.",
+      "spo2": "Pulse oximeter on the finger.",
+      "temperature": "Medical-kit thermometer.",
+      "glucose": "Glucose meter: a drop of blood from the finger."
+    },
+    "error": {
+      "empty": "Type at least one value.",
+      "pressurePair": "Blood pressure needs two numbers: high and low.",
+      "pressureOrder": "The high pressure number must be greater than the low one.",
+      "range": "A value is not possible for that device. Check what you typed."
+    }
   }
 }
