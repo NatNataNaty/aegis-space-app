@@ -107,10 +107,6 @@ export function MarsHero() {
           </span>
           <Sparkline points={history.slice(-16).map((p) => p.heartRate)} />
         </div>
-
-        <p className="mars-hero__source">
-          {t("hero.pending")}
-        </p>
       </div>
     </section>
   );

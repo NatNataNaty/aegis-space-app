@@ -13,6 +13,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../app/paths";
+import { REFERENCES } from "../../data/references";
 
 const COLUMNS: { id: string; items: { id: string; Icon: LucideIcon; tag?: "live" | "self" }[] }[] = [
   {
@@ -50,7 +53,7 @@ const MENU: { id: string; Icon: LucideIcon }[] = [
 
 /** «Cómo funciona aegis»: el mapa del sistema en cuatro pasos (pantalla del diseño). */
 export function HowItWorks() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className="how">
       <header className="how__head">
@@ -98,6 +101,39 @@ export function HowItWorks() {
           </div>
         ))}
       </div>
+
+      <section className="how__earth" aria-labelledby="how-earth">
+        <h2 id="how-earth" className="how__menu-title">{t("how.earth.title")}</h2>
+        <ol className="how__earth-steps">
+          <li>{t("how.earth.s1")}</li>
+          <li>{t("how.earth.s2")}</li>
+          <li>{t("how.earth.s3")}</li>
+        </ol>
+        <Link className="dbtn dbtn--primary" to={ROUTES.control}>
+          {t("how.earth.open")}
+        </Link>
+      </section>
+
+      <section className="how__refs" aria-labelledby="how-refs">
+        <h2 id="how-refs" className="how__menu-title">{t("how.refs.title")}</h2>
+        <p className="muted">{t("how.refs.sub")}</p>
+        <div className="how__refs-grid">
+          {(["space", "firstAid", "devices"] as const).map((g) => (
+            <div key={g} className="how__refs-col">
+              <h3>{t(`how.refs.${g}`)}</h3>
+              <ul>
+                {REFERENCES.filter((r) => r.group === g).map((r) => (
+                  <li key={r.org}>
+                    <b>{r.org}</b>
+                    <span>{i18n.language.startsWith("en") ? r.what.en : r.what.es}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p className="muted small">{t("how.refs.note")}</p>
+      </section>
     </div>
   );
 }

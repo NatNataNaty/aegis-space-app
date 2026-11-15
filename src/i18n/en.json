@@ -42,7 +42,8 @@
       "Detector thresholds are experimental parameters, not official NASA medical limits.",
       "If no face is found or quality is too low, the value is shown as “Not available”, never as zero."
     ],
-    "refsTitle": "Content references"
+    "refsTitle": "Content references",
+    "refsHint": "Sources for all content are in “How aegis works”."
   },
   "nav": {
     "emergency": "Emergency",
@@ -611,7 +612,7 @@
     "buddyPolicyTitle": "Is a crewmate needed?",
     "escalate": "When to escalate",
     "source": "Related NASA risk",
-    "pendingNote": "Non-clinical steps follow the plan's format. Each clinical step points to the onboard medical manual and must be reviewed by someone with medical training.",
+    "pendingNote": "Follow the steps one by one and press “Done”: each step is saved with its time.",
     "notFoundTitle": "Protocol not found",
     "notFound": "There is no protocol with the id “{{id}}”.",
     "kind": {
@@ -980,7 +981,7 @@
       },
       "protocol": {
         "title": "Step-by-step protocol",
-        "text": "11 protocols. Pending medical review."
+        "text": "11 step-by-step protocols, alone or with a crewmate."
       },
       "vault": {
         "title": "Onboard log",
@@ -999,6 +1000,21 @@
       "watch": "Vital signs, Face ID and How I feel.",
       "guide": "Alerts, and Hazards & guide with NASA's 5 hazards and 17 risks.",
       "mission": "Radiation & exercise, and Sleep & mission."
+    },
+    "earth": {
+      "title": "How do I know reports reach Earth?",
+      "s1": "Every minute a vitals summary for each crew member is stored on the tablet, plus every “How I feel”, measurement, alarm and protocol.",
+      "s2": "When there is a link, they leave automatically for the Earth server with the real signal delay. Without a link, they wait on board.",
+      "s3": "In the control centre each report goes from “Queued” to “Delivered”, with its crew member and time.",
+      "open": "See what is sent to Earth"
+    },
+    "refs": {
+      "title": "Where does the information come from?",
+      "sub": "All medical and space content comes from these sources. It is bundled in the app and works offline.",
+      "space": "Health in space",
+      "firstAid": "First aid",
+      "devices": "Devices and vision",
+      "note": "First-aid actions include no drugs or doses: the flight surgeon prescribes those. Their adaptation to microgravity needs medical validation before a real mission."
     }
   },
   "source": {
@@ -1029,7 +1045,7 @@
       "yellow": "Repeat the reading and log how you feel.",
       "red": "Ask for help and follow the protocol step by step."
     },
-    "legendTitle": "What each colour means"
+    "legendTitle": "What does each colour mean?"
   },
   "measure": {
     "title": "Log a measurement",
@@ -1073,7 +1089,7 @@
     }
   },
   "prevent": {
-    "title": "How to prevent it",
+    "title": "How to prevent it?",
     "note": "Countermeasures described by NASA. They include no drugs or doses: the flight surgeon prescribes those.",
     "techBrief": "NASA · technical brief"
   },
@@ -1092,9 +1108,9 @@
     "clinicalText": "The validated clinical procedure (drugs, doses and manoeuvres) is loaded by the flight medical team before the mission. In this prototype it is pending medical review: aegis does not invent treatments. Meanwhile, follow the steps below and alert the medical officer.",
     "askOfficer": "Alert the medical officer",
     "nowTitle": "What you can do now",
-    "riskTitle": "What this risk is: {{name}}",
+    "riskTitle": "What is this risk? {{name}}",
     "signsTitle": "Warning signs: act now",
-    "doTitle": "What to do now",
+    "doTitle": "What to do now?",
     "related": "If it gets worse: {{name}}",
     "reviewNote": "First-aid actions from recognised guidelines. Their adaptation to microgravity and any drugs are set by the flight medical team."
   },

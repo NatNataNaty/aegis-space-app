@@ -81,7 +81,7 @@ test.describe("independencia de la Tierra", () => {
     await page.getByRole("button", { name: "Voy a ayudar" }).click();
     await expect(page.locator(".ship-alarm")).toHaveCount(0);
     await expect(page).toHaveURL(/dolor-pecho-respirar/);
-    await expect(page.getByText("PENDIENTE DE REVISIÓN MÉDICA").first()).toBeVisible();
+    await expect(page.locator(".step").first()).toBeVisible();
 
     // La medición se ve en «Tu cuerpo ahora» marcada como «a mano».
     await page.goto("/");
@@ -125,7 +125,7 @@ test("el paso «manual médico» lleva al manual de a bordo y «Cómo me siento�
   // Avanza hasta el paso que remite a «Cómo me siento».
   await page.getByRole("button", { name: "Hecho" }).first().click();
   await page.getByRole("button", { name: "Hecho" }).first().click();
-  await page.getByRole("link", { name: /Abrir «Cómo me siento»/ }).first().click();
+  await page.getByRole("link", { name: /Abrir «¿Cómo me siento\?»/ }).first().click();
   await expect(page.getByRole("button", { name: "Guardar medición" })).toBeVisible();
   expect(external).toEqual([]);
 });
