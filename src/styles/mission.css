@@ -501,3 +501,86 @@ h3,
   margin-top: 14px;
 }
 .back-to-protocol { width: fit-content; text-decoration: none; }
+
+/* =============================================================================
+   Regla 60-30-10
+   60 % azul marino (fondos y paneles) · 30 % blanco (texto, bordes, selección)
+   10 % rojo de acción (botón principal, menú activo, emergencia). Nada más compite con él.
+   ========================================================================== */
+:root {
+  --action: #fc3d21;
+  --action-hover: #e2341a;
+  --action-ink: #ffffff;
+  --rust: #fc3d21;
+}
+
+/* Menú activo: superficie azul más clara, texto blanco y una barra roja (el 10 %) */
+.rail__item--on,
+.rail__item--on:hover {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.rail__item--on::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--action);
+}
+.rail__item--on .rail__hint {
+  color: var(--muted);
+}
+
+/* Botón principal de cada pantalla: rojo de acción */
+.btn--primary,
+.dbtn--primary,
+.mbtn--amber,
+.ship-alarm__go,
+.step--current .mbtn--dark,
+.step--current .mbtn {
+  background: var(--action);
+  border-color: var(--action);
+  color: var(--action-ink);
+}
+.btn--primary:hover,
+.dbtn--primary:hover:not(:disabled),
+.mbtn--amber:hover {
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+}
+
+/* Selección (pestañas, escalas, filtros): blanco, el 30 % */
+.chip-btn--on,
+.seg__btn--on,
+.scale__btn--on {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+/* Emergencia: el mismo rojo, siempre visible */
+.rail__emergency,
+.emergency__help,
+.dbtn--danger {
+  background: var(--action);
+  border-color: var(--action);
+  color: #fff;
+}
+
+/* Detalles en blanco, no en color */
+.mars-hero:not(.mars-hero--watch):not(.mars-hero--alert) .mars-hero__number {
+  color: var(--text);
+}
+.manual__n {
+  background: var(--action);
+  color: #fff;
+}
+.triage__lamps {
+  background: var(--bg);
+}
+.rail__brand {
+  color: var(--text);
+}
