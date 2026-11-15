@@ -1,20 +1,16 @@
-import { ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { protocolPath } from "../../../app/paths";
 import { EARTH_BENEFITS, HAZARDS, HRP_RESEARCH_URL, HRP_RISKS_URL, pick, PROTOCOLS, RISKS, STUDIES } from "../../../lib/content";
 import { cx } from "../../../lib/format";
+import { SourceCite } from "../../common/SourceCite";
 import type { HazardId, RiskCategory } from "../../../lib/schemas/content";
 
 const CATEGORIES: RiskCategory[] = ["physiology", "behavior", "radiation"];
 
 function Source({ href, label }: { href: string; label: string }) {
-  return (
-    <a className="source" href={href} target="_blank" rel="noreferrer">
-      {label} <ExternalLink size={13} aria-hidden />
-    </a>
-  );
+  return <SourceCite label={label} url={href} />;
 }
 
 /** Los 5 peligros (RIDGE) y los 17 riesgos de NASA HRP, empaquetados en la app (sin red). */

@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { SourceCite } from "../common/SourceCite";
 import { fmtNum } from "../../lib/format";
 import { useHealthStore } from "../../stores/health.store";
 import { confidence, useBaselineStore } from "../../features/baseline/personalBaseline";
@@ -109,11 +110,7 @@ export function MarsHero() {
         </div>
 
         <p className="mars-hero__source">
-          {t("hero.sourcePrefix")}{" "}
-          <a href="https://www.nasa.gov/hrp/risks/" target="_blank" rel="noreferrer">
-            {t("hero.sourceLink")}
-          </a>
-          . {t("hero.pending")}
+          {t("hero.sourcePrefix")} <SourceCite label={t("hero.sourceLink")} url="https://www.nasa.gov/hrp/risks/" /> {t("hero.pending")}
         </p>
       </div>
     </section>

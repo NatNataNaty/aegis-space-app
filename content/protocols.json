@@ -113,6 +113,119 @@
     "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
   },
   {
+    "id": "dolor-pecho-respirar",
+    "riskId": "cardiovascular",
+    "title": {
+      "es": "Dolor en el pecho o falta de aire",
+      "en": "Chest pain or shortness of breath"
+    },
+    "trigger": {
+      "es": "Dolor u opresión en el pecho, o dificultad para respirar, notados por ti o por un compañero.",
+      "en": "Chest pain or tightness, or difficulty breathing, noticed by you or a crewmate."
+    },
+    "buddy": "always",
+    "escalate": {
+      "es": "Siempre es rojo: avisa de inmediato al oficial médico y al comandante. Criterios clínicos pendientes de revisión médica.",
+      "en": "Always red: alert the medical officer and the commander immediately. Clinical criteria pending medical review."
+    },
+    "solo": [
+      {
+        "id": "s1",
+        "kind": "safety",
+        "text": {
+          "es": "Deja lo que estás haciendo y sujétate a un anclaje.",
+          "en": "Stop what you are doing and hold on to an anchor point."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s2",
+        "kind": "notify",
+        "text": {
+          "es": "Pulsa «Necesito ayuda»: el aviso llega a tu compañero al instante.",
+          "en": "Press “I need help”: your crewmate is alerted at once."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s3",
+        "kind": "action",
+        "text": {
+          "es": "Quédate quieto y respira despacio mientras llega ayuda.",
+          "en": "Stay still and breathe slowly while help arrives."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Dolor torácico / disnea» del manual médico de a bordo.",
+          "en": "Follow the “Chest pain / dyspnea” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "s5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "withBuddy": [
+      {
+        "id": "b1",
+        "kind": "safety",
+        "text": {
+          "es": "Asegura tu posición y la del compañero (anclajes o sujeción).",
+          "en": "Secure your position and your crewmate's (anchors or restraints)."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b2",
+        "kind": "notify",
+        "text": {
+          "es": "Toca «Voy a ayudar»: se avisa al comandante y empieza el registro.",
+          "en": "Tap “I'm helping”: the commander is notified and logging starts."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b3",
+        "kind": "clinical",
+        "text": {
+          "es": "Comprueba si responde y si respira.",
+          "en": "Check whether they respond and are breathing."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b4",
+        "kind": "clinical",
+        "text": {
+          "es": "Sigue el procedimiento «Dolor torácico / disnea» del manual médico de a bordo.",
+          "en": "Follow the “Chest pain / dyspnea” procedure in the onboard medical manual."
+        },
+        "reviewStatus": "pendiente"
+      },
+      {
+        "id": "b5",
+        "kind": "record",
+        "text": {
+          "es": "Marca el resultado: «mejor», «igual» o «peor». Queda registrado con la hora.",
+          "en": "Mark the result: “better”, “same” or “worse”. It is logged with the time."
+        },
+        "reviewStatus": "pendiente"
+      }
+    ],
+    "reviewStatus": "pendiente",
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+  },
+  {
     "id": "falta-oxigeno",
     "riskId": "hypoxia",
     "title": {

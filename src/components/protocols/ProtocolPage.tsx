@@ -1,4 +1,5 @@
-import { ExternalLink, UserRoundPlus } from "lucide-react";
+import { UserRoundPlus } from "lucide-react";
+import { SourceCite } from "../common/SourceCite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams, useSearchParams } from "react-router-dom";
@@ -128,9 +129,7 @@ export function ProtocolPage() {
           <div className="panel">
             <h3>{t("protocol.source")}</h3>
             <p>
-              <a href={risk?.sourceUrl ?? HRP_RISKS_URL} target="_blank" rel="noreferrer">
-                {risk ? pick(risk.name, lang) : t("library.risksTitle")} <ExternalLink size={14} aria-hidden />
-              </a>
+              <SourceCite label={`NASA HRP · ${risk ? pick(risk.name, lang) : t("library.risksTitle")}`} url={risk?.sourceUrl ?? HRP_RISKS_URL} />
             </p>
             <p className="muted">{t("library.offlineNote")}</p>
           </div>

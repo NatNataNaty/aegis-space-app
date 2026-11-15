@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getOutboxStats } from "../../features/link/outboxService";
+import { recentReports } from "../../features/link/earthReports";
+import { getOutboxStats, type OutboxItem } from "../../features/link/outboxService";
 import { fetchMissionOverview, type MissionOverview } from "../../features/link/syncService";
 import { readEvents, type LoggedEvent } from "../../features/protocols/eventLog";
 import { DELAY_MS, useLinkStore, type DelayMode } from "../../stores/linkStore";
@@ -21,16 +22,19 @@ export function ControlPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [overview, setOverview] = useState<MissionOverview | null>(null);
   const [events, setEvents] = useState<LoggedEvent[]>([]);
+  const [reports, setReports] = useState<OutboxItem[]>([]);
 
   useEffect(() => {
     let alive = true;
     const load = async () => {
-      const [s, o, e] = await Promise.all([
+      const [s, o, e, r] = await Promise.all([
         getOutboxStats().catch(() => null),
         fetchMissionOverview().catch(() => null),
         readEvents(30).catch(() => []),
+        recentReports(12).catch(() => []),
       ]);
       if (!alive) return;
+      setReports(r);
       setStats(s);
       setOverview(o);
       setEvents(e);
@@ -83,11 +87,46 @@ export function ControlPage() {
               ))}
             </div>
           </div>
+          <p className="muted">{t("control.delayNote")}</p>
+        </section>
+
+        <section className="panel" aria-labelledby="reports-title">
+          <h2 id="reports-title">{t("control.reports")}</h2>
+          <p className="muted">{t("control.reportsSub")}</p>
+          {reports.length === 0 ? (
+            <p className="empty">{t("control.noReports")}</p>
+          ) : (
+            <ul className="history reports">
+              {reports.map((r) => {
+                const raw = (r.payload.raw_data ?? {}) as Record<string, unknown>;
+                const kind = r.target_table === "crew_telemetry" ? String(raw.kind ?? "minute_summary") : r.target_table;
+                return (
+                  <li key={r.id}>
+                    <div>
+                      <span className="history__title">
+                        {t(`control.reportKind.${kind}`, { defaultValue: kind })} · {String(r.payload.crew_id ?? "—")}
+                      </span>
+                      <span className="history__meta">
+                        {time(Date.parse(r.created_at))}
+                        {typeof r.payload.heart_rate === "number" ? ` · ${r.payload.heart_rate} lpm · SpO₂ ${String(r.payload.spo2)} %` : ""}
+                      </span>
+                    </div>
+                    <span className={`report-status report-status--${r.status}`}>{t(`control.reportStatus.${r.status}`)}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          <p className="muted">{t("control.neverSent")}</p>
         </section>
 
         <section className="panel" aria-labelledby="earth-title">
           <h2 id="earth-title">{t("control.earth")}</h2>
           <dl className="kv-grid">
+            <div>
+              <dt className="kv__label">{t("control.telemetry")}</dt>
+              <dd className="kv__value">{earthValue(overview?.telemetryCount)}</dd>
+            </div>
             <div>
               <dt className="kv__label">{t("control.alerts")}</dt>
               <dd className="kv__value">{earthValue(overview?.alertsCount)}</dd>

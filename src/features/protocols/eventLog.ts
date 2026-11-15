@@ -10,6 +10,7 @@ import {
   type Sealed,
   type VaultRecord,
 } from "../../lib/db/vaultCrypto";
+import { CREW_PROFILE } from "../../data/crew";
 import { enqueueOutboxItem } from "../link/outboxService";
 
 /**
@@ -241,6 +242,7 @@ export async function logEvent(kind: EventKind, data: Record<string, unknown> = 
     if (level) {
       await enqueueOutboxItem("alerts_log", {
         alert_id: String(data.alert_id ?? data.call_id ?? kind),
+        crew_id: CREW_PROFILE.id,
         level,
         title: kind,
         description: JSON.stringify(data),

@@ -361,7 +361,9 @@
         "dizziness": "Mareo",
         "blurred": "Visión borrosa",
         "congestion": "Congestión",
-        "backPain": "Dolor lumbar"
+        "backPain": "Dolor lumbar",
+        "chestPain": "Dolor u opresión en el pecho",
+        "breathing": "Me cuesta respirar"
       },
       "reaction": "Tiempo de reacción",
       "reactionSub": "{{n}} estímulos. Pulsa en cuanto el recuadro se ilumine.",
@@ -659,7 +661,7 @@
     },
     "research": "Investigación en curso de NASA HRP",
     "mappingNote": "La relación entre cada riesgo y los peligros es una lectura del equipo a partir de los textos de NASA.",
-    "offlineNote": "Todo este contenido funciona sin red. Los enlaces abren la página oficial cuando hay conexión."
+    "offlineNote": "Todo este contenido va incluido en la app y funciona sin red. Las direcciones de las fuentes son solo para consultarlas en la Tierra."
   },
   "control": {
     "link": "Enlace con la Tierra",
@@ -696,6 +698,24 @@
       "protocol_started": "Protocolo iniciado",
       "protocol_step_done": "Paso hecho",
       "protocol_finished": "Protocolo completado"
+    },
+    "telemetry": "Reportes de la tripulación",
+    "delayNote": "Retardo real de la señal: hasta 20 minutos por sentido entre la Tierra y Marte (NASA HRP). Luna y Marte son una demo acelerada: aquí tardan segundos.",
+    "reports": "Reportes de cada tripulante",
+    "reportsSub": "Cada minuto sale un resumen de signos por tripulante; también cada «Cómo me siento», cada cambio de semáforo y cada protocolo completado. Sin enlace se guardan a bordo y viajan en el siguiente contacto.",
+    "noReports": "Aún no hay reportes en la bandeja.",
+    "neverSent": "Nunca se envían fotos, vídeo, puntos del rostro, la plantilla facial ni el PIN.",
+    "reportKind": {
+      "minute_summary": "Resumen de signos",
+      "self_report": "Cómo me siento",
+      "alerts_log": "Aviso o cambio de semáforo",
+      "protocol_runs": "Protocolo completado"
+    },
+    "reportStatus": {
+      "pending": "En cola",
+      "syncing": "Enviando",
+      "failed": "Reintentará",
+      "synced": "Entregado"
     }
   },
   "errors": {
@@ -771,7 +791,7 @@
     "logLast": "Cuenta tu fatiga, ánimo y síntomas. Última entrada a las {{time}}.",
     "logNone": "Cuenta tu fatiga, ánimo y síntomas. Aún no hay entradas hoy.",
     "alertsTitle": "Alertas y protocolos",
-    "alertsNone": "Sin avisos activos. Los 10 protocolos están a 3 toques desde Emergencia.",
+    "alertsNone": "Sin avisos activos. Los 11 protocolos están a 3 toques desde Emergencia.",
     "alertsSome": "{{count}} aviso(s) activo(s). Ábrelos para ver qué hacer."
   },
   "face": {
@@ -918,7 +938,7 @@
       },
       "protocol": {
         "title": "Protocolo paso a paso",
-        "text": "10 protocolos. Pendientes de revisión médica."
+        "text": "11 protocolos. Pendientes de revisión médica."
       },
       "vault": {
         "title": "Registro a bordo",
@@ -938,5 +958,34 @@
       "guide": "Alertas, y Peligros y guía con los 5 peligros y 17 riesgos de NASA.",
       "mission": "Radiación y ejercicio, y Sueño y misión."
     }
+  },
+  "source": {
+    "offlineHint": "Contenido incluido en la app. Esta dirección es solo para consultarla en la Tierra."
+  },
+  "triage": {
+    "srNow": "Estado ahora:",
+    "openProtocol": "Abrir protocolo: {{name}}",
+    "green": {
+      "name": "Verde",
+      "title": "Verde · todo en tu rango",
+      "why": "Ninguna señal fuera de lo habitual en ti.",
+      "do": "Sigue con tu día. aegis sigue vigilando y te avisa si algo cambia."
+    },
+    "yellow": {
+      "name": "Amarillo",
+      "title": "Amarillo · vigila",
+      "do": "Para un momento, repite la medición en unos minutos y anota cómo te sientes. Si empeora o aparece dolor, pasa a rojo."
+    },
+    "red": {
+      "name": "Rojo",
+      "title": "Rojo · actúa ahora",
+      "do": "Abre el protocolo y sigue los pasos uno a uno. Si estás solo, pulsa «Necesito ayuda»: tu compañero recibe el aviso."
+    },
+    "legend": {
+      "green": "Sigue con tu día.",
+      "yellow": "Repite la medición y anota cómo te sientes.",
+      "red": "Pide ayuda y sigue el protocolo paso a paso."
+    },
+    "legendTitle": "Qué significa cada color"
   }
 }
