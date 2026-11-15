@@ -586,3 +586,182 @@ h3,
 .rail__brand {
   color: var(--text);
 }
+
+/* =============================================================================
+   Animaciones espaciales: estrellas que titilan, estrellas fugaces, satélite en órbita.
+   Colores sólidos; todo se detiene con «reducir movimiento».
+   ========================================================================== */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.starfield svg {
+  position: absolute;
+  inset: 0;
+}
+.starfield__star {
+  fill: #ffffff;
+  opacity: 0.35;
+  animation: star-twinkle 5s ease-in-out infinite;
+}
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+.starfield__meteor {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  border-radius: 2px;
+  background: #ffffff;
+  opacity: 0;
+  transform-origin: left center;
+}
+.starfield__meteor--a {
+  top: 12%;
+  left: 55%;
+  animation: meteor 9s linear infinite 2s;
+}
+.starfield__meteor--b {
+  top: 38%;
+  left: 18%;
+  animation: meteor 13s linear infinite 7s;
+}
+@keyframes meteor {
+  0% {
+    opacity: 0;
+    transform: rotate(18deg) translateX(0) scaleX(0.2);
+  }
+  3% {
+    opacity: 0.85;
+  }
+  9% {
+    opacity: 0;
+    transform: rotate(18deg) translateX(320px) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(18deg) translateX(320px) scaleX(1);
+  }
+}
+/* El contenido queda por encima del cielo; los paneles tapan las estrellas. */
+.app,
+.page,
+.emergency,
+#root > * {
+  position: relative;
+  z-index: 1;
+}
+.app,
+.page {
+  background: transparent;
+}
+
+/* Marca de aegis con su satélite */
+.rail__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.aegis-mark__orbit {
+  fill: none;
+  stroke: #5b7bb8;
+  stroke-width: 1.2;
+}
+.aegis-mark__planet {
+  fill: #ffffff;
+}
+.aegis-mark__sat {
+  fill: var(--action-bright);
+}
+.aegis-mark__sat-path {
+  transform-origin: 20px 20px;
+  transform: rotate(-24deg) scaleY(0.41) rotate(0deg) scaleY(2.44) rotate(24deg);
+  animation: sat-orbit 6s linear infinite;
+}
+@keyframes sat-orbit {
+  to {
+    transform: rotate(-24deg) scaleY(0.41) rotate(360deg) scaleY(2.44) rotate(24deg);
+  }
+}
+
+/* Estrella fugaz y satélite sobre el cielo de Marte */
+.mars-hero__meteor {
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: hero-meteor 11s linear infinite 3s;
+}
+@keyframes hero-meteor {
+  0% {
+    opacity: 0;
+    transform: translate(120px, 60px);
+  }
+  2% {
+    opacity: 0.9;
+  }
+  7% {
+    opacity: 0;
+    transform: translate(420px, 150px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(420px, 150px);
+  }
+}
+.mars-hero__satellite rect {
+  fill: #dfe8f7;
+}
+.mars-hero__satellite {
+  animation: hero-sat 40s linear infinite;
+}
+@keyframes hero-sat {
+  0% {
+    transform: translate(-20px, 120px);
+  }
+  100% {
+    transform: translate(820px, 70px);
+  }
+}
+.mars-hero--alert .mars-hero__meteor,
+.mars-hero--alert .mars-hero__satellite {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield__star,
+  .starfield__meteor,
+  .mars-hero__meteor,
+  .mars-hero__satellite,
+  .aegis-mark__sat-path {
+    animation: none;
+  }
+  .starfield__meteor,
+  .mars-hero__meteor {
+    display: none;
+  }
+}
+/* El fondo de la app deja ver el cielo; el menú lateral también, con un velo azul */
+.shell,
+.shell--calm,
+.shell--watch,
+.shell--alert {
+  background: transparent !important;
+}
+.rail {
+  background: rgba(4, 14, 36, 0.82);
+}
+#root > .starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}

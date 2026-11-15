@@ -79,6 +79,11 @@ export function MarsHero() {
         </defs>
         <rect width="800" height="600" fill="url(#mars-halo)" className="mars-hero__sky" />
         <circle cx="496" cy="372" r="15" className="mars-hero__sun" />
+        <line x1="0" y1="0" x2="60" y2="18" className="mars-hero__meteor" />
+        <g className="mars-hero__satellite">
+          <rect x="-6" y="-1.5" width="12" height="3" />
+          <rect x="-1.5" y="-2.5" width="3" height="5" />
+        </g>
         <g className="mars-hero__dust">
           <circle cx="120" cy="300" r="1.6" />
           <circle cx="260" cy="250" r="1.2" />

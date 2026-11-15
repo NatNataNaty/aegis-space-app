@@ -7,6 +7,7 @@ import { ShipAlarm } from "../components/alerts/ShipAlarm";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { VaultLock } from "../components/layout/VaultLock";
 import { startEarthLink } from "../features/link/earthReports";
+import { Starfield } from "../components/space/Starfield";
 import { useAppEngine } from "../hooks/useAppEngine";
 import { useHelpWatcher } from "../hooks/useHelpWatcher";
 
@@ -22,6 +23,7 @@ export function RootLayout() {
   useEffect(() => startEarthLink(), []);
   return (
     <>
+      <Starfield />
       <ErrorBoundary name="help">
         <HelpStatus />
         <HelpOverlay />
