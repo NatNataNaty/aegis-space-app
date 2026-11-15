@@ -5,7 +5,7 @@
  */
 const STARS = Array.from({ length: 150 }, (_, i) => {
   const r = (n: number) => ((Math.sin(i * 127.1 + n * 311.7) * 43758.5453) % 1 + 1) % 1;
-  return { x: r(1) * 100, y: r(2) * 100, s: r(3) < 0.7 ? 1.1 : r(3) < 0.93 ? 1.6 : 2.2, d: (r(4) * 6).toFixed(2), t: (3 + r(5) * 5).toFixed(2) };
+  return { x: r(1) * 100, y: r(2) * 100, s: r(3) < 0.6 ? 1.3 : r(3) < 0.9 ? 1.8 : 2.4, d: (r(4) * 6).toFixed(2), t: (3 + r(5) * 5).toFixed(2) };
 });
 
 export function Starfield() {
