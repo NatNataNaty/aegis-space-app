@@ -903,3 +903,6 @@ h3,
 .triage-legend__green {
   color: var(--ok);
 }
+
+/* Botón «Marcar como atendida» dentro de cada alerta */
+.alert__attend { margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; }

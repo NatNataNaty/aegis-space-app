@@ -21,6 +21,16 @@ export function RootLayout() {
   useHelpWatcher();
   // Reportes de cada tripulante hacia la Tierra: se guardan a bordo y salen cuando hay enlace.
   useEffect(() => startEarthLink(), []);
+  // Precarga el modelo de visión (local, sin red) para que la cámara analice en cuanto se encienda.
+  useEffect(() => {
+    if (navigator.webdriver) return; // las pruebas automáticas no usan la cámara
+    const id = window.setTimeout(() => {
+      void import("../features/camera/faceLandmarker.service")
+        .then((m) => m.getFaceLandmarker())
+        .catch(() => undefined);
+    }, 2000);
+    return () => window.clearTimeout(id);
+  }, []);
   return (
     <>
       <Starfield />

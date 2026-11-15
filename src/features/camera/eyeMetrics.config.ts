@@ -19,7 +19,7 @@ export const EYE_CONFIG = {
   perclosMinRunMs: 400,
   /** Max time credited to a single frame; larger gaps are treated as missing data. */
   maxFrameDtMs: 200,
-  perclosMinValidMs: { 60: 30_000, 300: 120_000 } as const,
+  perclosMinValidMs: { 60: 10_000, 300: 30_000 } as const,
   minCoverage: 0.6,
 
   minFps: 15,
@@ -34,11 +34,12 @@ export const EYE_CONFIG = {
   jawOpenThreshold: 0.5,
   yawnMinMs: 1500,
 
-  calibrationOpenMs: 4000,
-  calibrationMinSamples: 30,
+  // Calibración corta (demo en vivo): ~1,5 s con ojos abiertos y un parpadeo.
+  calibrationOpenMs: 1500,
+  calibrationMinSamples: 12,
   calibrationMinBaseline: 0.15,
-  calibrationBlinkTarget: 3,
-  calibrationBlinkTimeoutMs: 12_000,
+  calibrationBlinkTarget: 1,
+  calibrationBlinkTimeoutMs: 3_000,
 } as const;
 
 export type EyeConfig = typeof EYE_CONFIG;

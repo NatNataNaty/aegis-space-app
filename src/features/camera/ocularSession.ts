@@ -9,7 +9,7 @@ import { clearOverlay, drawOverlay } from "./overlay";
 
 const UI_INTERVAL_MS = 100;
 const SUMMARY_INTERVAL_MS = 500;
-const TREND_INTERVAL_MS = 10_000;
+const TREND_INTERVAL_MS = 5_000;
 const TREND_MAX_POINTS = 90;
 const EVENTS_MAX = 200;
 const BRIGHTNESS_INTERVAL_MS = 1000;

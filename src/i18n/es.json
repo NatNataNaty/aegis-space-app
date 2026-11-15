@@ -166,7 +166,8 @@
       "simulated": "Escenario",
       "combined": "Combinada (demo)",
       "user_reported": "Autorreporte"
-    }
+    },
+    "attend": "Marcar como atendida"
   },
   "ocular": {
     "title": "Vigilancia ocular",
@@ -282,8 +283,8 @@
       "time": "Hora",
       "duration": "Duración",
       "trendTitle": "PERCLOS y parpadeos en la sesión",
-      "trendSub": "Muestreo cada 10 s · ventana 1 min",
-      "needData": "Se necesitan al menos 20 s de datos calibrados"
+      "trendSub": "Muestreo cada 5 s · ventana 1 min",
+      "needData": "Se necesitan al menos 10 s de datos calibrados"
     },
     "trends": {
       "indicator": "Indicador",

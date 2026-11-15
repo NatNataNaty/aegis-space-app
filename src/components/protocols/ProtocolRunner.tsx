@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { activeCrew } from "../../data/crew";
 import { enqueueOutboxItem } from "../../features/link/outboxService";
 import { logEvent } from "../../features/protocols/eventLog";
+import { useHealthStore } from "../../stores/health.store";
 import { pick } from "../../lib/content";
 import { cx } from "../../lib/format";
 import type { Protocol, ProtocolStep, StepKind } from "../../lib/schemas/content";
@@ -124,6 +125,8 @@ export function ProtocolRunner({
     void logEvent("protocol_step_done", { protocol_id: protocol.id, step_id: step.id, run_id: runId.current });
     if (current + 1 >= steps.length) {
       void logEvent("protocol_finished", { protocol_id: protocol.id, run_id: runId.current });
+      // Protocolo completo: sus alertas quedan atendidas y desaparecen del panel.
+      useHealthStore.getState().attendAlerts((a) => a.protocolId === protocol.id);
       // Registro automático hacia la Tierra (plan: «cada paso queda guardado con su hora»).
       void enqueueOutboxItem("protocol_runs", {
         protocol_id: protocol.id,
