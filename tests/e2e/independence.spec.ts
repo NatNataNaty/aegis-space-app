@@ -129,3 +129,28 @@ test("el paso «manual médico» lleva al manual de a bordo y «Cómo me siento�
   await expect(page.getByRole("button", { name: "Guardar medición" })).toBeVisible();
   expect(external).toEqual([]);
 });
+
+test("el protocolo recuerda el paso al ir al manual o a «¿Cómo me siento?» y volver", async ({ page }) => {
+  await page.goto("/es/protocolos/frecuencia-cardiaca");
+  await page.getByRole("button", { name: "Sí, puedo hacerlo solo" }).click();
+  await page.getByRole("button", { name: "Hecho" }).first().click();
+  await page.getByRole("button", { name: "Hecho" }).first().click();
+  await expect(page.locator(".step--done")).toHaveCount(2);
+  // Ir a «¿Cómo me siento?» y volver con su botón.
+  await page.getByRole("link", { name: /Abrir «¿Cómo me siento\?»/ }).first().click();
+  await page.getByRole("link", { name: "Volver al protocolo" }).click();
+  await expect(page.locator(".step--done")).toHaveCount(2);
+  // Ir al manual y volver.
+  await page.getByRole("link", { name: /Abrir en el manual de a bordo/ }).first().click();
+  await page.getByRole("link", { name: "Volver al protocolo" }).click();
+  await expect(page.locator(".step--done")).toHaveCount(2);
+  // Terminar todos los pasos.
+  while ((await page.getByRole("button", { name: "Hecho" }).count()) > 0) await page.getByRole("button", { name: "Hecho" }).first().click();
+  await expect(page.locator(".steps__finished")).toBeVisible();
+});
+
+test("al llegar con «Voy a ayudar» no se repite ese paso", async ({ page }) => {
+  await page.goto("/es/protocolos/frecuencia-cardiaca?modo=companero&aviso=1");
+  await expect(page.locator(".runner__notified")).toBeVisible();
+  await expect(page.getByText("Toca «Voy a ayudar»")).toHaveCount(0);
+});

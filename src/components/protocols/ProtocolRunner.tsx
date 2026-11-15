@@ -1,6 +1,6 @@
 import { BellRing, Check, ChevronRight, ClipboardCheck, Hand, ShieldAlert, Stethoscope } from "lucide-react";
 import { Link } from "react-router-dom";
-import { manualPath, modulePath } from "../../app/paths";
+import { manualPath, modulePath, protocolPath } from "../../app/paths";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { activeCrew } from "../../data/crew";
@@ -23,22 +23,82 @@ const KIND_ICON: Record<StepKind, typeof Check> = {
 const mmss = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
 
 /** Ejecuta un protocolo: un paso cada vez, «Hecho» grande y la hora de cada paso registrada. */
-export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: Protocol; mode: RunMode; compact?: boolean }) {
+interface SavedRun {
+  current: number;
+  doneAt: number[];
+  startedAt: number;
+}
+
+function loadRun(key: string, total: number): SavedRun | null {
+  try {
+    const raw = sessionStorage.getItem(key);
+    if (!raw) return null;
+    const r = JSON.parse(raw) as SavedRun;
+    // Un protocolo terminado hace rato empieza de nuevo.
+    if (r.current >= total && Date.now() - (r.doneAt.at(-1) ?? 0) > 10 * 60_000) return null;
+    return r;
+  } catch {
+    return null;
+  }
+}
+function saveRun(key: string, run: SavedRun) {
+  try {
+    sessionStorage.setItem(key, JSON.stringify(run));
+  } catch {
+    /* sin almacenamiento: el avance vive en memoria */
+  }
+}
+function clearRun(key: string) {
+  try {
+    sessionStorage.removeItem(key);
+  } catch {
+    /* nada que borrar */
+  }
+}
+
+export function ProtocolRunner({
+  protocol,
+  mode,
+  compact = false,
+  autoNotified = false,
+}: {
+  protocol: Protocol;
+  mode: RunMode;
+  compact?: boolean;
+  /** Se llegó desde «Voy a ayudar»: el aviso al comandante ya se hizo. */
+  autoNotified?: boolean;
+}) {
   const { t, i18n } = useTranslation();
-  const steps = mode === "solo" ? protocol.solo : protocol.withBuddy;
+  // Si llegaste pulsando «Voy a ayudar», ese aviso ya está hecho: el paso no se repite.
+  const allSteps = mode === "solo" ? protocol.solo : protocol.withBuddy;
+  const steps = autoNotified ? allSteps.filter((s) => !s.text.es.includes("Voy a ayudar")) : allSteps;
   // Los pasos que remiten a otra parte de la app llevan a ella con un toque.
   const stepLink = (s: ProtocolStep): { to: string; label: string } | null => {
     if (s.text.es.includes("manual médico")) return { to: manualPath(protocol.id, i18n.language), label: t("steps.openManual") };
-    if (s.text.es.includes("Cómo me siento")) return { to: modulePath("log"), label: t("steps.openLog") };
+    if (s.text.es.includes("Cómo me siento")) return { to: modulePath("log", protocolPath(protocol.id, i18n.language)), label: t("steps.openLog") };
     return null;
   };
-  const [current, setCurrent] = useState(0);
-  const [doneAt, setDoneAt] = useState<number[]>([]);
-  const [startedAt] = useState(() => Date.now());
+  // El avance se guarda en la sesión: si abres el manual o «¿Cómo me siento?» a mitad de camino,
+  // al volver sigues en el mismo paso.
+  const storeKey = `run:${protocol.id}:${mode}${autoNotified ? ":ack" : ""}`;
+  const [saved] = useState(() => loadRun(storeKey, steps.length));
+  const [current, setCurrent] = useState(() => saved?.current ?? 0);
+  const [doneAt, setDoneAt] = useState<number[]>(() => saved?.doneAt ?? []);
+  const [startedAt] = useState(() => saved?.startedAt ?? Date.now());
   const [now, setNow] = useState(() => Date.now());
   const runId = useRef(`${protocol.id}-${startedAt}`);
   const logged = useRef(false);
   const finished = current >= steps.length;
+
+  useEffect(() => {
+    saveRun(storeKey, { current, doneAt, startedAt });
+  }, [storeKey, current, doneAt, startedAt]);
+
+  const restart = () => {
+    clearRun(storeKey);
+    setCurrent(0);
+    setDoneAt([]);
+  };
 
   useEffect(() => {
     // Una sola vez por ejecución (React monta dos veces los efectos en desarrollo).
@@ -84,6 +144,7 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
       <p className="runner__elapsed" aria-live="off">
         {t("protocol.elapsed")} <strong>{mmss(Math.floor(((finished ? doneAt.at(-1) ?? now : now) - startedAt) / 1000))}</strong>
       </p>
+      {autoNotified && <p className="runner__notified">{t("steps.alreadyNotified")}</p>}
       <ol className="runner__list">
         {steps.map((s, i) => {
           const state = i < current ? "done" : i === current ? "current" : "next";
@@ -118,6 +179,11 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
         <p className="steps__finished" role="status">
           {t("steps.finished")}
         </p>
+      )}
+      {current > 0 && (
+        <button type="button" className="mbtn mbtn--ghost runner__restart" onClick={restart}>
+          {t("steps.restart")}
+        </button>
       )}
     </div>
   );

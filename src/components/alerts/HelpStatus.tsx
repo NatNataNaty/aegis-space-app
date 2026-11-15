@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { protocolPath } from "../../app/paths";
 import { useBuddyStore } from "../../stores/buddy.store";
 
@@ -13,6 +13,14 @@ export function HelpStatus() {
   const outgoing = useBuddyStore((s) => s.outgoing);
   const cancel = useBuddyStore((s) => s.cancelOutgoing);
   const [now, setNow] = useState(() => Date.now());
+  const { pathname } = useLocation();
+
+  // Si alguien en la nave ya acudió, el aviso se cierra solo a los pocos segundos.
+  useEffect(() => {
+    if (!outgoing?.acknowledgedAt) return;
+    const id = window.setTimeout(cancel, 6000);
+    return () => window.clearTimeout(id);
+  }, [outgoing?.acknowledgedAt, cancel]);
 
   useEffect(() => {
     if (!outgoing || outgoing.acknowledgedAt) return;
@@ -37,7 +45,7 @@ export function HelpStatus() {
     <div className={`help-status help-status--${tone}`} role="status" aria-live="assertive">
       <p className="help-status__text">{message}</p>
       <div className="help-status__actions">
-        {call.protocolId && (
+        {call.protocolId && !pathname.includes(`/protocolos/${call.protocolId}`) && (
           <Link className="mbtn mbtn--dark" to={protocolPath(call.protocolId, i18n.language)}>
             {t("help.openProtocol")}
           </Link>

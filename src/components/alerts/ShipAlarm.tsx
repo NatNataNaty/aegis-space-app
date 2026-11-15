@@ -40,7 +40,7 @@ export function ShipAlarm() {
 
   const goHelp = () => {
     localAck();
-    if (call.protocolId) navigate(`${protocolPath(call.protocolId, i18n.language)}?modo=companero`);
+    if (call.protocolId) navigate(`${protocolPath(call.protocolId, i18n.language)}?modo=companero&aviso=1`);
   };
 
   return (

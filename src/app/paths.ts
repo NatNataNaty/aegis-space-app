@@ -11,4 +11,5 @@ export const protocolPath = (id: string, lang: string) => `/${lang}/protocolos/$
 export const manualPath = (id: string, lang: string) => `/${lang}/manual/${encodeURIComponent(id)}`;
 
 /** Panel abierto directamente en un módulo (p. ej. «Cómo me siento»: /?m=log). */
-export const modulePath = (module: string) => `/?m=${encodeURIComponent(module)}`;
+export const modulePath = (module: string, back?: string) =>
+  `/?m=${encodeURIComponent(module)}${back ? `&volver=${encodeURIComponent(back)}` : ""}`;

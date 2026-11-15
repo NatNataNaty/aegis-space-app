@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TriageLight } from "../components/alerts/TriageLight";
@@ -19,7 +20,7 @@ import { TrendsSection } from "../components/dashboard/sections/TrendsSection";
 import { FaceModule } from "../components/identity/FaceModule";
 import { AboutDataDialog } from "../components/layout/AboutDataDialog";
 import { HowItWorks } from "../components/layout/HowItWorks";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ModuleRail, MODULES, type ModuleId } from "../components/layout/ModuleRail";
 import { TopBar } from "../components/layout/TopBar";
 import { StepsPanel } from "../components/protocols/StepsPanel";
@@ -29,6 +30,9 @@ export function App() {
   const mood = useHeroMood();
   const [params] = useSearchParams();
   const fromUrl = params.get("m");
+  // Si vienes desde un paso de un protocolo, un botón te devuelve a ese mismo paso.
+  const back = params.get("volver");
+  const backTo = back && back.startsWith("/") && back.includes("/protocolos/") ? back : null;
   const [module, setModule] = useState<ModuleId>((MODULES as string[]).includes(fromUrl ?? "") ? (fromUrl as ModuleId) : "vitals");
   const [aboutOpen, setAboutOpen] = useState(false);
 
@@ -69,6 +73,11 @@ export function App() {
         {module === "log" && (
           <ErrorBoundary name="log">
             <div className="module" key="log">
+              {backTo && (
+                <Link className="dbtn dbtn--primary back-to-protocol" to={backTo}>
+                  <ArrowLeft size={16} aria-hidden /> {t("steps.backToProtocol")}
+                </Link>
+              )}
               <SelfCheckSection />
               <MeasureEntry />
             </div>

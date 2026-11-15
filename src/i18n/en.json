@@ -448,7 +448,10 @@
     "relatedProtocol": "See the related protocol",
     "helpSent": "Alert sent",
     "openManual": "Open in the onboard manual",
-    "openLog": "Open “How I feel”"
+    "openLog": "Open “How I feel”",
+    "restart": "Start again",
+    "alreadyNotified": "You already alerted when you pressed “I'm on my way”: the commander is informed and logging has started.",
+    "backToProtocol": "Back to the protocol"
   },
   "engine": {
     "disclaimer": "Educational prototype to support observation. Not a diagnosis.",
