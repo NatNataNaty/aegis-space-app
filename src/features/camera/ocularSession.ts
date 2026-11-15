@@ -49,6 +49,15 @@ class OcularSession {
   private brightness: number | null = null;
   private lumaCanvas: HTMLCanvasElement | null = null;
 
+  /** Oyentes de puntos faciales por fotograma (identificación facial, P3). Solo en memoria. */
+  private landmarkListeners = new Set<(landmarks: Point3[] | null) => void>();
+
+  /** Recibe los puntos faciales de cada fotograma procesado. Devuelve la función para dejar de escuchar. */
+  onLandmarks(listener: (landmarks: Point3[] | null) => void): () => void {
+    this.landmarkListeners.add(listener);
+    return () => this.landmarkListeners.delete(listener);
+  }
+
   bindElements(video: HTMLVideoElement | null, canvas: HTMLCanvasElement | null): void {
     this.video = video as VideoWithRvfc | null;
     this.canvas = canvas;
@@ -238,6 +247,13 @@ class OcularSession {
 
     const result = detectFrame(landmarker, video, now);
     const landmarks = (result?.faceLandmarks?.[0] as Point3[] | undefined) ?? null;
+    for (const listener of this.landmarkListeners) {
+      try {
+        listener(landmarks);
+      } catch {
+        /* un oyente que falla nunca detiene el análisis ocular */
+      }
+    }
     const categories = result?.faceBlendshapes?.[0]?.categories;
     const blendshapes = categories
       ? Object.fromEntries(categories.map((c) => [c.categoryName, c.score]))

@@ -13,6 +13,9 @@ const ORIGIN_ICON: Record<DataOrigin, typeof Radio> = {
 export function OriginBadge({ origin, stale = false }: { origin: DataOrigin; stale?: boolean }) {
   const { t } = useTranslation();
   const Icon = ORIGIN_ICON[origin];
+  // Los datos del escenario de demostración no llevan etiqueta en cada tarjeta (se explica en la exposición
+  // y en el pie de página). Sí se marcan lo EN VIVO, lo AUTORREPORTADO y la PRUEBA LOCAL.
+  if (origin === "simulated") return null;
   if (stale) {
     return (
       <span className="badge badge--stale" title={t("origin.staleTitle")}>

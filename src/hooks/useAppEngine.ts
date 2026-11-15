@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { evaluateAlerts } from "../features/alerts/alertEngine";
 import { toMissionTime } from "../features/mission/missionClock";
+import { useBaselineStore } from "../features/baseline/personalBaseline";
 import { blockAt } from "../features/mission/schedule";
 import i18n, { simT } from "../i18n";
 import { SCENARIOS } from "../features/simulation/scenarios";
@@ -26,6 +27,8 @@ export function useAppEngine(): void {
       if (bucket !== lastBucket.current || health.snapshot.scenarioId !== health.scenarioId) {
         lastBucket.current = bucket;
         health.refreshSnapshot(missionMs);
+        // La línea base personal aprende de cada lectura nueva (no cambia umbrales de alerta).
+        useBaselineStore.getState().learn(useHealthStore.getState().snapshot, toMissionTime(missionMs).day);
       }
 
       const cam = useCameraStore.getState();

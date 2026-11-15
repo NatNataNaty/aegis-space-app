@@ -50,9 +50,15 @@ interface StoredVault extends VaultRecord {
   id: "primary";
 }
 
+interface StoredSecret {
+  id: string;
+  sealed: Sealed;
+}
+
 class LocalDb extends Dexie {
   events!: EntityTable<StoredEvent, "id">;
   vault!: EntityTable<StoredVault, "id">;
+  secrets!: EntityTable<StoredSecret, "id">;
   constructor() {
     super("aegis_local_db");
     this.version(1).stores({ events: "++id, at", keys: "id" });
@@ -60,6 +66,8 @@ class LocalDb extends Dexie {
     this.version(2)
       .stores({ events: "++id, at", keys: null, vault: "id" })
       .upgrade((tx) => tx.table("events").clear());
+    // v3: datos sensibles pequeños (p. ej. la huella facial), cifrados con la misma clave del PIN.
+    this.version(3).stores({ events: "++id, at", vault: "id", secrets: "id" });
   }
 }
 
@@ -166,11 +174,42 @@ export function lockVault(): void {
 export async function resetVault(): Promise<void> {
   const store = getDb();
   dataKey = null;
-  if (store) await store.transaction("rw", store.events, store.vault, async () => {
+  if (store) await store.transaction("rw", [store.events, store.vault, store.secrets], async () => {
     await store.events.clear();
     await store.vault.clear();
+    await store.secrets.clear();
   });
   setVault({ status: store ? "new" : "unsupported", error: null });
+}
+
+const secretPurpose = (id: string) => `aegis:secret:${id}:v1`;
+
+/** ¿Está abierto el registro? Lo necesitan los datos sensibles (huella facial). */
+export const isVaultOpen = () => dataKey !== null;
+
+/** Guarda un dato sensible cifrado con la clave del PIN. Devuelve false si el registro está cerrado. */
+export async function saveSecret(id: string, value: unknown): Promise<boolean> {
+  const store = getDb();
+  if (!store || !dataKey) return false;
+  await store.secrets.put({ id, sealed: await seal(dataKey, value, secretPurpose(id)) });
+  return true;
+}
+
+/** Lee un dato sensible. null si no existe o si el registro está cerrado. */
+export async function loadSecret<T>(id: string): Promise<T | null> {
+  const store = getDb();
+  if (!store || !dataKey) return null;
+  const row = await store.secrets.get(id);
+  if (!row) return null;
+  try {
+    return await unseal<T>(dataKey, row.sealed, secretPurpose(id));
+  } catch {
+    return null;
+  }
+}
+
+export async function deleteSecret(id: string): Promise<void> {
+  await getDb()?.secrets.delete(id);
 }
 
 /** Nivel con el que el evento viaja en alerts_log hacia la Tierra. */

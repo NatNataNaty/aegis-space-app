@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { fmtNum } from "../../lib/format";
 import { useHealthStore } from "../../stores/health.store";
-import { OriginBadge } from "../common/OriginBadge";
+import { confidence, useBaselineStore } from "../../features/baseline/personalBaseline";
 import { useAnimatedNumber } from "../common/useAnimatedNumber";
 
 export type HeroMood = "calm" | "watch" | "alert";
@@ -44,7 +44,15 @@ export function MarsHero() {
   const hrStatus = useHealthStore((s) => s.snapshot.vitals.heartRate.status);
   const topAlert = useHealthStore((s) => s.activeAlerts.find((a) => a.level !== "info"));
 
-  const baseline = trend7d.length ? Math.round(trend7d.reduce((a, d) => a + d.restingHr, 0) / trend7d.length) : null;
+  // «Lo normal para ti»: lo que la línea base aprendió de ti; si aún no hay lecturas, la media de 7 días.
+  const learned = useBaselineStore((st) => st.stats.heartRate);
+  const conf = confidence(learned);
+  const baseline =
+    learned.n > 0
+      ? Math.round(learned.mean)
+      : trend7d.length
+        ? Math.round(trend7d.reduce((a, d) => a + d.restingHr, 0) / trend7d.length)
+        : null;
   const shown = useAnimatedNumber(hr);
 
   // El titular solo refleja el estado ya calculado (heartRate.status) y las alertas activas:
@@ -93,7 +101,9 @@ export function MarsHero() {
           <span className="mars-hero__unit">
             <span className="mars-hero__unit-main">{t("hero.bpm")}</span>
             {baseline !== null && <span>{t("hero.baseline", { value: baseline })}</span>}
-            <OriginBadge origin="simulated" />
+            {conf !== "none" && (
+              <span className="mars-hero__learn">{t(`hero.learn.${conf}`, { count: learned.n })}</span>
+            )}
           </span>
           <Sparkline points={history.slice(-16).map((p) => p.heartRate)} />
         </div>

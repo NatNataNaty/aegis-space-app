@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AlertBanner } from "../components/alerts/AlertBanner";
+import { AssistantPage } from "../components/assistant/AssistantPage";
 import { CameraPanel } from "../components/camera/CameraPanel";
+import { ErrorBoundary } from "../components/common/ErrorBoundary";
+import { BodyNow } from "../components/dashboard/BodyNow";
 import { MarsHero, useHeroMood } from "../components/dashboard/MarsHero";
-import { OcularCard } from "../components/dashboard/OcularCard";
-import { PriorityMetrics } from "../components/dashboard/PriorityMetrics";
+import { QuickActions } from "../components/dashboard/QuickActions";
 import { AlertsSection } from "../components/dashboard/sections/AlertsSection";
 import { ExposureSection } from "../components/dashboard/sections/ExposureSection";
 import { EyeSection } from "../components/dashboard/sections/EyeSection";
 import { GuideSection } from "../components/dashboard/sections/GuideSection";
 import { LibrarySection } from "../components/dashboard/sections/LibrarySection";
-import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { ScheduleSection } from "../components/dashboard/sections/ScheduleSection";
 import { SelfCheckSection } from "../components/dashboard/sections/SelfCheckSection";
 import { TrendsSection } from "../components/dashboard/sections/TrendsSection";
+import { FaceModule } from "../components/identity/FaceModule";
 import { AboutDataDialog } from "../components/layout/AboutDataDialog";
+import { HowItWorks } from "../components/layout/HowItWorks";
 import { ModuleRail, type ModuleId } from "../components/layout/ModuleRail";
 import { TopBar } from "../components/layout/TopBar";
 import { StepsPanel } from "../components/protocols/StepsPanel";
@@ -25,34 +28,37 @@ export function App() {
   const [module, setModule] = useState<ModuleId>("vitals");
   const [aboutOpen, setAboutOpen] = useState(false);
 
+  const go = (m: ModuleId) => {
+    setModule(m);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className={`shell shell--${mood}`}>
-      <ModuleRail current={module} onChange={setModule} />
+      <ModuleRail current={module} onChange={go} />
 
       <div className="shell__main">
-        <TopBar onOpenAbout={() => setAboutOpen(true)} onOpenAlerts={() => setModule("alerts")} />
+        <TopBar onOpenAssistant={() => go("assistant")} />
 
         {module === "vitals" && (
           <ErrorBoundary name="vitals">
             <div className="module module--vitals" key="vitals">
               <div className="vitals-stage">
                 <MarsHero />
-                <StepsPanel mood={mood} onLogSymptom={() => setModule("log")} />
+                <StepsPanel mood={mood} onLogSymptom={() => go("log")} />
               </div>
-              <AlertBanner onOpen={() => setModule("alerts")} />
-              <PriorityMetrics />
+              <AlertBanner onOpen={() => go("alerts")} />
+              <BodyNow />
+              <QuickActions onGo={go} />
             </div>
           </ErrorBoundary>
         )}
 
         {/* La cámara se monta una sola vez y solo se oculta: el vídeo y el modelo no se reinician al cambiar de módulo. */}
-        <div className="module module--eye" hidden={module !== "eye"}>
-          <ErrorBoundary name="eye">
-            <div className="eye-stage">
-              <CameraPanel />
-              <OcularCard />
-            </div>
-            {module === "eye" && <EyeSection />}
+        <div className="module module--face" hidden={module !== "face"}>
+          <ErrorBoundary name="face">
+            <FaceModule camera={<CameraPanel />} />
+            {module === "face" && <EyeSection />}
           </ErrorBoundary>
         </div>
 
@@ -93,8 +99,27 @@ export function App() {
             </div>
           </ErrorBoundary>
         )}
+        {module === "assistant" && (
+          <ErrorBoundary name="assistant">
+            <div className="module" key="assistant">
+              <AssistantPage onGo={go} />
+            </div>
+          </ErrorBoundary>
+        )}
+        {module === "how" && (
+          <ErrorBoundary name="how">
+            <div className="module" key="how">
+              <HowItWorks />
+            </div>
+          </ErrorBoundary>
+        )}
 
-        <footer className="footer">{t("app.footer")}</footer>
+        <footer className="footer">
+          {t("app.footer")}
+          <button type="button" className="footer__link" onClick={() => setAboutOpen(true)}>
+            {t("topbar.aboutData")}
+          </button>
+        </footer>
       </div>
 
       <AboutDataDialog open={aboutOpen} onClose={() => setAboutOpen(false)} />
