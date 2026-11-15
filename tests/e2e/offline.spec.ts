@@ -47,6 +47,18 @@ test("el panel, la biblioteca y los protocolos funcionan sin ninguna petición e
   expect(external).toEqual([]);
 });
 
+test("pedir ayuda con el botón hace sonar la alarma de la nave hasta que alguien acude", async ({ page }) => {
+  const external = await blockNetwork(page);
+  await page.goto("/emergencia");
+  await page.locator(".emergency__help").click();
+  await expect(page.locator(".ship-alarm")).toBeVisible();
+  await expect(page.locator(".ship-alarm__title")).toContainText(/necesita ayuda|needs help/);
+  await page.locator(".ship-alarm__go").click();
+  await expect(page.locator(".ship-alarm")).toHaveCount(0);
+  await expect(page.locator(".help-status")).toBeVisible();
+  expect(external).toEqual([]);
+});
+
 test("flujo de demo: alerta → ¿Necesitas ayuda? → compañero confirma → protocolo", async ({ context }) => {
   const crew = await context.newPage();
   const buddy = await context.newPage();
@@ -54,7 +66,8 @@ test("flujo de demo: alerta → ¿Necesitas ayuda? → compañero confirma → p
   await crew.goto("/");
   await buddy.goto("/");
   await crew.locator(".scenario select").selectOption("physio_variation");
-  await expect(crew.getByRole("alertdialog")).toBeVisible();
+  // Señal de aviso inmediato: suena la alarma de la nave aquí y el aviso llega a la otra pantalla.
+  await expect(crew.locator(".ship-alarm")).toBeVisible();
   await expect(buddy.locator(".help--buddy")).toBeVisible();
   await buddy.locator(".help--buddy .help__btn").first().click();
   await expect(buddy).toHaveURL(/protocolos\/.+modo=companero/);

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { protocolPath } from "../../app/paths";
+import { playTick } from "../../features/buddy/buddyChannel";
 import { useBuddyStore } from "../../stores/buddy.store";
 
 /**
@@ -13,6 +14,7 @@ export function HelpOverlay() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const prompt = useBuddyStore((s) => s.prompt);
+  const ringing = useBuddyStore((s) => !!s.outgoing && !s.outgoing.acknowledgedAt);
   const answerOk = useBuddyStore((s) => s.answerOk);
   const askForHelp = useBuddyStore((s) => s.askForHelp);
   const [now, setNow] = useState(() => Date.now());
@@ -43,7 +45,13 @@ export function HelpOverlay() {
     if (prompt && !prompt.autoSent && Date.now() >= prompt.deadline) sendHelp(true);
   }, [prompt, left]);
 
-  if (!prompt) return null;
+  // Un pitido por segundo mientras corre la cuenta atrás; más agudo en los últimos 5 s.
+  useEffect(() => {
+    if (prompt && !prompt.autoSent && left > 0) playTick(left <= 5);
+  }, [prompt, left]);
+
+  // Si ya suena la alarma de la nave, ese aviso manda; la pregunta vuelve cuando alguien acude.
+  if (!prompt || ringing) return null;
 
   // Foco atrapado dentro del aviso: Tab no puede salir a la página de detrás.
   const onKeyDown = (e: React.KeyboardEvent) => {

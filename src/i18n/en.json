@@ -580,7 +580,8 @@
       "noAck": "Nobody has confirmed yet. Call for help out loud or on the intercom.",
       "unsupported": "This screen cannot alert others. Call for help out loud or on the intercom.",
       "cancel": "Cancel alert",
-      "close": "Close"
+      "close": "Close",
+      "localAck": "A crewmate is on the way."
     },
     "autoSent": "For this signal we alert your crewmate immediately. They have been alerted.",
     "imOkCancel": "I'm OK: cancel the alert"
@@ -1096,5 +1097,14 @@
     "doTitle": "What to do now",
     "related": "If it gets worse: {{name}}",
     "reviewNote": "First-aid actions from recognised guidelines. Their adaptation to microgravity and any drugs are set by the flight medical team."
+  },
+  "shipAlarm": {
+    "asked": "Medical alarm · asked for help",
+    "noAnswer": "Medical alarm · not responding",
+    "title": "{{name}} needs help",
+    "going": "I'm on my way",
+    "mute": "Silence siren",
+    "falseAlarm": "False alarm: cancel",
+    "note": "The siren keeps going until someone responds. It also alerts the other screens on the spacecraft."
   }
 }

@@ -580,7 +580,8 @@
       "noAck": "Nadie ha confirmado todavía. Pide ayuda en voz alta o por el interfono.",
       "unsupported": "Esta pantalla no puede avisar a otras. Pide ayuda en voz alta o por el interfono.",
       "cancel": "Cancelar aviso",
-      "close": "Cerrar"
+      "close": "Cerrar",
+      "localAck": "Un compañero va en camino."
     },
     "autoSent": "Para esta señal avisamos a tu compañero de inmediato. Ya está avisado.",
     "imOkCancel": "Estoy bien: cancelar el aviso"
@@ -1096,5 +1097,14 @@
     "doTitle": "Qué hacer ahora",
     "related": "Si empeora: {{name}}",
     "reviewNote": "Acciones de primeros auxilios de guías reconocidas. Su adaptación a la microgravedad y cualquier fármaco los define el equipo médico de vuelo."
+  },
+  "shipAlarm": {
+    "asked": "Alarma médica · ha pedido ayuda",
+    "noAnswer": "Alarma médica · no responde",
+    "title": "{{name}} necesita ayuda",
+    "going": "Voy a ayudar",
+    "mute": "Silenciar sirena",
+    "falseAlarm": "Falsa alarma: cancelar",
+    "note": "La sirena sigue hasta que alguien acude. También avisa a las demás pantallas de la nave."
   }
 }

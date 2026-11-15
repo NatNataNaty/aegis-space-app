@@ -1702,3 +1702,17 @@ cite.source .source__url { white-space: normal; overflow-wrap: anywhere; text-ov
 .manual__n { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: var(--amber-ink); font-weight: 800; font-family: "Space Grotesk Variable", system-ui, sans-serif; }
 .manual__review { margin-top: 10px; font-size: 13px; color: var(--muted); }
 .about-refs li { font-size: 14px; }
+
+/* ---------- Alarma de la nave ---------- */
+.ship-alarm { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(40, 4, 4, 0.82); animation: ship-flash 1.3s steps(1, end) infinite; }
+@keyframes ship-flash { 0% { background: rgba(140, 12, 8, 0.86); } 50% { background: rgba(40, 4, 4, 0.9); } }
+.ship-alarm__panel { width: min(620px, 100%); padding: 32px 28px; border-radius: 22px; border: 3px solid #ff5a4a; background: #1d0a0a; text-align: center; display: grid; gap: 14px; box-shadow: 0 0 60px rgba(255, 90, 74, 0.45); }
+.ship-alarm__kicker { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin: 0; color: #ff8a7d; font-weight: 800; letter-spacing: 0.02em; }
+.ship-alarm__title { margin: 0; font-family: "Space Grotesk Variable", system-ui, sans-serif; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; color: #fff1ee; }
+.ship-alarm__reason { margin: 0; font-size: 18px; color: #f2d4cf; }
+.ship-alarm__go { min-height: 68px; border: 0; border-radius: 14px; background: #ff5a4a; color: #2a0500; font-size: 22px; font-weight: 800; cursor: pointer; }
+.ship-alarm__go:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.ship-alarm__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.ship-alarm__row .mbtn { display: inline-flex; align-items: center; gap: 6px; }
+.ship-alarm__note { margin: 0; font-size: 13px; color: #d9b3ad; }
+@media (prefers-reduced-motion: reduce) { .ship-alarm { animation: none; } }

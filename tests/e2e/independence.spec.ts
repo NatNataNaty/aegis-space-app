@@ -76,8 +76,10 @@ test.describe("independencia de la Tierra", () => {
     // Marcar dolor de pecho → rojo inmediato con su protocolo.
     await page.getByText("Dolor u opresión en el pecho").click();
     await page.getByRole("button", { name: "Registrar", exact: true }).click();
-    await expect(page.locator(".help")).toBeVisible();
-    await page.locator(".help button").filter({ hasText: "protocolo" }).first().click();
+    // Dolor de pecho: aviso inmediato → suena la alarma de la nave; alguien acude.
+    await expect(page.locator(".ship-alarm")).toBeVisible();
+    await page.getByRole("button", { name: "Voy a ayudar" }).click();
+    await expect(page.locator(".ship-alarm")).toHaveCount(0);
     await expect(page).toHaveURL(/dolor-pecho-respirar/);
     await expect(page.getByText("PENDIENTE DE REVISIÓN MÉDICA").first()).toBeVisible();
 
