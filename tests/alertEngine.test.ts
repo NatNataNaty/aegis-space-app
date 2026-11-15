@@ -145,4 +145,23 @@ describe("alertas en inglés", () => {
     const text = alerts.flatMap((a) => [a.title, a.observed, a.action, a.window, ...a.signals.map((s) => s.label)]).join(" ");
     expect(text).not.toMatch(/[áéíóúñ¿¡]|Sueño|Variación|Síntoma|Frecuencia/);
   });
+  // Correcciones aportadas por P2/P4 (rama de Griss390, commit e20aea3).
+  it("no lanza PERCLOS con historial antiguo si el fotograma actual no es válido", () => {
+    const context = ctx("stable", summary());
+    context.camera.frameQuality = "unavailable";
+    context.camera.perclosTrend = [2, 2, 2, 20, 20].map((perclos, i) => ({ t: i * 60000, perclos }));
+    expect(evaluateAlerts(context).some((a) => a.id === "perclos_above_baseline")).toBe(false);
+  });
+
+  it("no reutiliza una autoevaluación caducada ni con fecha futura", () => {
+    const context = ctx("stable", summary());
+    context.selfReport = { fatigue: 5, mood: 2, stress: 5, symptoms: ["dizziness"], recordedAt: 0 };
+    context.evaluatedAt = 13 * 3600000;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms" || a.id === "self_fatigue")).toBe(false);
+    context.evaluatedAt = 100;
+    context.selfReport.recordedAt = 200;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms")).toBe(false);
+    context.evaluatedAt = 300;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms")).toBe(true);
+  });
 });

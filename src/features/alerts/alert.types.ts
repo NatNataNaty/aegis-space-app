@@ -51,6 +51,8 @@ export interface PerclosPoint {
 }
 
 export interface AlertContext {
+  /** Hora de la evaluación (ms). Sirve para ignorar autoevaluaciones caducadas. */
+  evaluatedAt?: number;
   camera: {
     active: boolean;
     calibrated: boolean;

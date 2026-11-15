@@ -80,7 +80,9 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
   const alerts: Alert[] = [];
   const cam = ctx.camera;
   const s300 = cam.summary300;
-  const cameraUsable = cam.active && cam.calibrated && s300 !== null && s300.quality !== "unavailable";
+  // El fotograma actual también debe ser válido: un historial bueno no basta si la cámara ya no ve el rostro.
+  const cameraUsable =
+    cam.active && cam.calibrated && cam.frameQuality !== "unavailable" && s300 !== null && s300.quality !== "unavailable";
   const closures = s300 ? s300.prolongedClosures + s300.longClosures : 0;
   const sleepHours = ctx.sim.sleep.lastNightHours;
   const sleepShort = sleepHours < ALERT_CONFIG.insufficientSleepHours;
@@ -156,7 +158,13 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
   }
 
   const perclos = perclosBaselineStatus(cam.perclosTrend);
-  if (!ctx.restPeriod && cam.active && perclos.elevatedWindows >= ALERT_CONFIG.perclosElevatedWindows) {
+  if (
+    !ctx.restPeriod &&
+    cameraUsable &&
+    cam.summary60 !== null &&
+    cam.summary60.quality !== "unavailable" &&
+    perclos.elevatedWindows >= ALERT_CONFIG.perclosElevatedWindows
+  ) {
     alerts.push(
       linked({
         id: "perclos_above_baseline",
@@ -226,7 +234,9 @@ export function evaluateAlerts(ctx: AlertContext): Alert[] {
     );
   }
 
-  const report = ctx.selfReport;
+  // Una autoevaluación caducada (o con fecha futura) no vuelve a disparar alertas.
+  const reportAge = ctx.evaluatedAt === undefined || !ctx.selfReport ? 0 : ctx.evaluatedAt - ctx.selfReport.recordedAt;
+  const report = reportAge >= 0 && reportAge <= ALERT_CONFIG.selfReportMaxAgeMs ? ctx.selfReport : null;
   if (report && report.symptoms.length) {
     const symptomLabel = (s: string) => t(`sections.self.symptom.${s}`, { defaultValue: s });
     const protocolId = report.symptoms.map(protocolForSymptom).find(Boolean) ?? null;

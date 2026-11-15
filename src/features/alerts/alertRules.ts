@@ -15,6 +15,8 @@ export const ALERT_CONFIG = {
   perclosMarginPoints: 5,
   perclosMarginRatio: 1.5,
   highPerceivedFatigue: 4,
+  /** Ventana de validez de la autoevaluación en la demo (no es un umbral clínico). */
+  selfReportMaxAgeMs: 12 * 60 * 60 * 1000,
 } as const;
 
 export const LEVEL_ORDER: Record<AlertLevel, number> = { attention: 0, watch: 1, info: 2 };

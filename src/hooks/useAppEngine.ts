@@ -39,6 +39,7 @@ export function useAppEngine(): void {
       const block = blockAt(scenario.schedule, mt.minuteOfDay);
 
       const alerts = evaluateAlerts({
+        evaluatedAt: Date.now(),
         camera: {
           active,
           calibrated: cam.calibration.phase === "ready",
