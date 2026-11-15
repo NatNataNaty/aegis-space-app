@@ -17,8 +17,8 @@ export default defineConfig({
         name: "AEGIS Space Med",
         short_name: "AEGIS",
         description: "Sistema de soporte a la decisión clínica y monitoreo offline para misiones espaciales profundas",
-        theme_color: "#0d0f12",
-        background_color: "#0d0f12",
+        theme_color: "#061430",
+        background_color: "#061430",
         display: "standalone",
         orientation: "any",
         icons: [
