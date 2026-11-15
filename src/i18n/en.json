@@ -626,7 +626,10 @@
       "no": "Not needed.",
       "everyone": "The whole crew, to the shelter."
     },
-    "bpm": "bpm"
+    "bpm": "bpm",
+    "whyAnchor": "Why the first step is to hold on",
+    "whyAnchorText": "Without gravity, the responder must restrain the equipment, the crewmate and themselves before helping.",
+    "whyAnchorSource": "NASA · Human factors and ISS medical systems"
   },
   "emergency": {
     "title": "Emergency",
@@ -1035,5 +1038,10 @@
       "pressureOrder": "The high pressure number must be greater than the low one.",
       "range": "A value is not possible for that device. Check what you typed."
     }
+  },
+  "prevent": {
+    "title": "How to prevent it",
+    "note": "Countermeasures described by NASA. They include no drugs or doses: the flight surgeon prescribes those.",
+    "techBrief": "NASA · technical brief"
   }
 }

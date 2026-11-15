@@ -626,7 +626,10 @@
       "no": "No hace falta.",
       "everyone": "Toda la tripulación, al refugio."
     },
-    "bpm": "lpm"
+    "bpm": "lpm",
+    "whyAnchor": "Por qué el primer paso es sujetarse",
+    "whyAnchorText": "Sin gravedad, quien atiende debe sujetar el equipo, al tripulante y a sí mismo antes de ayudar.",
+    "whyAnchorSource": "NASA · Factores humanos y sistemas médicos de la ISS"
   },
   "emergency": {
     "title": "Emergencia",
@@ -1035,5 +1038,10 @@
       "pressureOrder": "El número alto de la presión debe ser mayor que el bajo.",
       "range": "Algún valor no es posible para ese aparato. Revisa lo escrito."
     }
+  },
+  "prevent": {
+    "title": "Cómo prevenirlo",
+    "note": "Contramedidas que describe NASA. No incluyen fármacos ni dosis: esos los indica el médico de vuelo.",
+    "techBrief": "NASA · informe técnico"
   }
 }

@@ -1653,3 +1653,14 @@ cite.source .source__url {
 .body-card--pressure .body-card__value { font-size: 32px; white-space: nowrap; }
 .measure__inputs { flex-wrap: wrap; }
 .measure__inputs input { width: 4.4em; }
+
+/* ---------- «Cómo prevenirlo» (contramedidas NASA) ---------- */
+.prevent { margin-top: 12px; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(143, 224, 184, 0.35); background: rgba(143, 224, 184, 0.06); }
+.prevent__title { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; color: var(--ok, #8fe0b8); }
+.prevent__list { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.prevent__list li { line-height: 1.45; }
+.prevent__list li cite.source { margin-left: 6px; }
+.prevent__note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+.panel .prevent { margin-top: 0; }
+.footer__build { opacity: 0.7; font-variant-numeric: tabular-nums; }
+cite.source .source__url { white-space: normal; overflow-wrap: anywhere; text-overflow: clip; }
