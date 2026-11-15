@@ -59,6 +59,7 @@ export function buildMinuteSummary(
       mission_day: toMissionTime(snap.missionMs).day,
       blood_pressure: [Math.round(v.bloodPressure.value), Math.round(v.bloodPressure.value2 ?? 0)],
       temperature: round(v.temperature.value),
+      glucose_mg_dl: Math.round(v.glucose.value),
       resp_rate: Math.round(v.respRate.value),
       sleep_last_night_h: round(snap.sleep.lastNightHours),
       exercise_today_min: Math.round(snap.activity.exerciseTodayMin),

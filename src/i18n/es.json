@@ -709,7 +709,8 @@
       "minute_summary": "Resumen de signos",
       "self_report": "Cómo me siento",
       "alerts_log": "Aviso o cambio de semáforo",
-      "protocol_runs": "Protocolo completado"
+      "protocol_runs": "Protocolo completado",
+      "manual_measurement": "Medición a mano"
     },
     "reportStatus": {
       "pending": "En cola",
@@ -725,7 +726,7 @@
   },
   "vault": {
     "bar": {
-      "new": "Tu registro médico aún no tiene PIN.",
+      "new": "Protege tu registro médico con un PIN: un código secreto de 4 a 8 números, como el de tu celular.",
       "locked": "Registro médico bloqueado.",
       "unlocked": "Registro médico cifrado y abierto.",
       "pending": "{{count}} evento(s) esperan para guardarse cifrados."
@@ -740,7 +741,7 @@
       "locked": "Desbloquea tu registro médico"
     },
     "lead": {
-      "new": "Elige un PIN de 4 a 8 cifras. Cifra en este equipo tus alertas, avisos y pasos de protocolo.",
+      "new": "Elige un PIN de 4 a 8 números. Solo tú lo sabes: con él se cifran en esta tableta tus alertas, avisos y pasos de protocolo, y nadie más puede leerlos.",
       "locked": "Escribe tu PIN para guardar y ver tus registros cifrados."
     },
     "pin": "PIN",
@@ -781,6 +782,12 @@
       "name": "Sueño",
       "what": "Último ciclo",
       "explain": "Horas que dormiste en tu último descanso."
+    },
+    "manualAt": "Medido a mano a las {{time}}",
+    "glucose": {
+      "name": "Azúcar en sangre",
+      "what": "Glucosa · mg/dL",
+      "explain": "Energía que lleva tu sangre a los músculos y al cerebro. Se mide con una gota de sangre en el glucómetro."
     }
   },
   "quick": {
@@ -823,7 +830,7 @@
       "last": "Último reconocimiento",
       "lastNow": "Ahora",
       "lastNever": "Aún no",
-      "fictional": "Perfil ficticio de demostración."
+      "fictional": "Este perfil solo lo ven tú y el oficial médico. Se abre con tu rostro o con tu PIN y se guarda cifrado en esta tableta. A la Tierra viajan tus mediciones; nunca tu rostro ni tu PIN. Perfil ficticio de demostración."
     },
     "today": {
       "title": "Monitoreo de hoy · Día {{day}}",
@@ -987,5 +994,46 @@
       "red": "Pide ayuda y sigue el protocolo paso a paso."
     },
     "legendTitle": "Qué significa cada color"
+  },
+  "measure": {
+    "title": "Registrar medición",
+    "sub": "Escribe lo que marca el aparato del botiquín. Rellena solo lo que hayas medido.",
+    "devices": "El Bio-Monitor y la pulsera envían sus datos solos; aquí va lo que mides a mano.",
+    "save": "Guardar medición",
+    "saved": "Guardado a las {{time}} · viaja a la Tierra en el próximo contacto.",
+    "history": "Tus últimas mediciones",
+    "bpm": "lpm",
+    "field": {
+      "pressure": "Presión arterial",
+      "heartRate": "Pulso",
+      "spo2": "Oxígeno (SpO₂)",
+      "temperature": "Temperatura",
+      "glucose": "Azúcar en sangre"
+    },
+    "aria": {
+      "systolic": "Presión sistólica en mmHg",
+      "diastolic": "Presión diastólica en mmHg",
+      "heartRate": "Pulso en latidos por minuto",
+      "spo2": "Saturación de oxígeno en porcentaje",
+      "temperature": "Temperatura en grados Celsius",
+      "glucose": "Glucosa en mg/dL"
+    },
+    "ph": {
+      "systolic": "Alta",
+      "diastolic": "Baja"
+    },
+    "how": {
+      "pressure": "Tensiómetro de brazo. Escribe los dos números que muestra.",
+      "heartRate": "Lo dan el tensiómetro o el pulsioxímetro.",
+      "spo2": "Pulsioxímetro en el dedo.",
+      "temperature": "Termómetro del botiquín.",
+      "glucose": "Glucómetro: una gota de sangre del dedo."
+    },
+    "error": {
+      "empty": "Escribe al menos un valor.",
+      "pressurePair": "La presión lleva dos números: alta y baja.",
+      "pressureOrder": "El número alto de la presión debe ser mayor que el bajo.",
+      "range": "Algún valor no es posible para ese aparato. Revisa lo escrito."
+    }
   }
 }

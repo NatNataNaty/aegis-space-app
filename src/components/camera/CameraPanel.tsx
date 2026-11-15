@@ -45,7 +45,7 @@ export function CameraPanel() {
       <header className="camera__head">
         <div className="camera__title">
           <h2>{t("camera.title")}</h2>
-          <OriginBadge origin="camera_live" />
+          {active && <OriginBadge origin="camera_live" />}
         </div>
         <LiveIndicator />
       </header>
