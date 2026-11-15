@@ -1,4 +1,4 @@
-import { CircleCheck, CircleX, LockKeyhole, Play, ScanFace, Square, UserPlus } from "lucide-react";
+import { CircleCheck, CircleX, KeyRound, LockKeyhole, Play, ScanFace, ShieldCheck, Square, UserPlus } from "lucide-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CREW_PROFILE } from "../../data/crew";
@@ -8,6 +8,7 @@ import { useVaultStore } from "../../features/protocols/eventLog";
 import { fmtNum } from "../../lib/format";
 import { useHealthStore } from "../../stores/health.store";
 import { useMissionStore } from "../../stores/mission.store";
+import { useVaultUi } from "../../stores/vaultUi.store";
 import { CameraPanel } from "../camera/CameraPanel";
 
 function IdentityBar() {
@@ -81,12 +82,23 @@ function IdentityBar() {
   );
 }
 
+/** El perfil se abre al reconocer el rostro o con el registro desbloqueado por PIN. */
+export function profileUnlocked(vault: string, phase: string): boolean {
+  return vault === "unlocked" || phase === "matched";
+}
+
 function ProfileCard() {
   const { t } = useTranslation();
   const lastMatchAt = useIdentityStore((s) => s.lastMatchAt);
+  const phase = useIdentityStore((s) => s.phase);
+  const enrolled = useIdentityStore((s) => s.enrolled);
+  const scan = useIdentityStore((s) => s.scan);
+  const vault = useVaultStore((s) => s.status);
+  const openPin = useVaultUi((s) => s.setOpen);
   const missionMs = useMissionStore((s) => s.missionMs);
   const mt = toMissionTime(missionMs);
   const p = CREW_PROFILE;
+  const unlocked = profileUnlocked(vault, phase);
   const rows: [string, string][] = [
     [t("face.profile.id"), p.id],
     [t("face.profile.age"), t("face.profile.ageValue", { n: p.age })],
@@ -98,24 +110,49 @@ function ProfileCard() {
     [t("face.profile.last"), lastMatchAt ? t("face.profile.lastNow") : t("face.profile.lastNever")],
   ];
   return (
-    <article className="card profile">
+    <article className={`card profile${unlocked ? "" : " profile--locked"}`}>
       <header className="profile__head">
         <span className="profile__avatar" aria-hidden>
-          {p.initials}
+          {unlocked ? p.initials : <LockKeyhole size={26} />}
         </span>
         <span>
-          <span className="profile__name">{p.name}</span>
+          <span className="profile__name">{unlocked ? p.name : t("face.profile.lockedTitle")}</span>
           <span className="profile__role">{t("hero.crewName")}</span>
         </span>
       </header>
-      <dl className="profile__grid">
-        {rows.map(([k, v]) => (
-          <div key={k}>
-            <dt>{k}</dt>
-            <dd>{v}</dd>
+      {unlocked ? (
+        <>
+          <p className="profile__opened">
+            <ShieldCheck size={16} aria-hidden /> {phase === "matched" ? t("face.profile.byFace") : t("face.profile.byPin")}
+          </p>
+          <dl className="profile__grid">
+            {rows.map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      ) : (
+        <div className="profile__lock">
+          <p>{t("face.profile.lockedText")}</p>
+          <div className="profile__actions">
+            {enrolled ? (
+              <button type="button" className="dbtn dbtn--primary" onClick={() => void scan()}>
+                <ScanFace size={16} aria-hidden /> {t("face.profile.useFace")}
+              </button>
+            ) : (
+              <p className="muted small">{t("face.profile.enrollHint")}</p>
+            )}
+            {vault !== "unsupported" && (
+              <button type="button" className="dbtn" onClick={() => openPin(true)}>
+                <KeyRound size={16} aria-hidden /> {vault === "new" ? t("face.profile.createPin") : t("face.profile.usePin")}
+              </button>
+            )}
           </div>
-        ))}
-      </dl>
+        </div>
+      )}
       <p className="profile__note">{t("face.profile.fictional")}</p>
     </article>
   );

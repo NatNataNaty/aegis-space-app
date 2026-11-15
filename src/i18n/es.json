@@ -664,7 +664,10 @@
     },
     "research": "Investigación en curso de NASA HRP",
     "mappingNote": "La relación entre cada riesgo y los peligros es una lectura del equipo a partir de los textos de NASA.",
-    "offlineNote": "Todo este contenido va incluido en la app y funciona sin red. Las direcciones de las fuentes son solo para consultarlas en la Tierra."
+    "offlineNote": "Todo este contenido va incluido en la app y funciona sin red.",
+    "seeRisksN_one": "Ver su riesgo ({{count}})",
+    "seeRisksN_other": "Ver sus {{count}} riesgos",
+    "seeRisksN": "Ver sus {{count}} riesgos"
   },
   "control": {
     "link": "Enlace con la Tierra",
@@ -833,7 +836,15 @@
       "last": "Último reconocimiento",
       "lastNow": "Ahora",
       "lastNever": "Aún no",
-      "fictional": "Este perfil solo lo ven tú y el oficial médico. Se abre con tu rostro o con tu PIN y se guarda cifrado en esta tableta. A la Tierra viajan tus mediciones; nunca tu rostro ni tu PIN. Perfil ficticio de demostración."
+      "fictional": "Este perfil solo lo ven tú y el oficial médico. Se abre con tu rostro o con tu PIN y se guarda cifrado en esta tableta. A la Tierra viajan tus mediciones; nunca tu rostro ni tu PIN. Perfil ficticio de demostración.",
+      "lockedTitle": "Perfil protegido",
+      "lockedText": "Tus datos personales y médicos se abren cuando aegis te reconoce: con tu rostro o con tu PIN.",
+      "useFace": "Identificarme con el rostro",
+      "usePin": "Abrir con mi PIN",
+      "createPin": "Crear mi PIN",
+      "enrollHint": "Registra tu rostro una vez (botón «Registrar mi rostro» arriba) para abrir el perfil sin escribir nada.",
+      "byFace": "Abierto: te reconoció tu rostro.",
+      "byPin": "Abierto con tu PIN."
     },
     "today": {
       "title": "Monitoreo de hoy · Día {{day}}",
@@ -970,7 +981,8 @@
     }
   },
   "source": {
-    "offlineHint": "Contenido incluido en la app. Esta dirección es solo para consultarla en la Tierra."
+    "offlineHint": "Contenido incluido en la app. La referencia completa está en la ficha de fuentes del proyecto.",
+    "prefix": "Fuente:"
   },
   "triage": {
     "srNow": "Estado ahora:",

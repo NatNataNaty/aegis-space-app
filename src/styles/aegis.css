@@ -1664,3 +1664,11 @@ cite.source .source__url {
 .panel .prevent { margin-top: 0; }
 .footer__build { opacity: 0.7; font-variant-numeric: tabular-nums; }
 cite.source .source__url { white-space: normal; overflow-wrap: anywhere; text-overflow: clip; }
+
+/* ---------- Perfil protegido hasta reconocer rostro o PIN ---------- */
+.profile--locked .profile__avatar { color: var(--amber); }
+.profile__lock { display: grid; gap: 14px; }
+.profile__lock p { margin: 0; color: var(--text-2); line-height: 1.45; }
+.profile__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.profile__opened { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--ok, #8fe0b8); }
+#risks-title { scroll-margin-top: 90px; }
