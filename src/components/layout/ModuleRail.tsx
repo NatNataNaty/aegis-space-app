@@ -11,6 +11,7 @@ import {
   Waypoints,
   type LucideIcon,
 } from "lucide-react";
+import { AegisMark } from "../space/Starfield";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { cx } from "../../lib/format";
@@ -54,7 +55,9 @@ export function ModuleRail({ current, onChange }: { current: ModuleId; onChange:
 
   return (
     <nav className="rail" aria-label={t("modules.aria")}>
-      <span className="rail__brand">aegis</span>
+      <span className="rail__brand">
+        <AegisMark /> aegis
+      </span>
       <div className="rail__modules">
         {GROUPS.map((g) => (
           <div key={g.id} role="group" aria-labelledby={`rail-g-${g.id}`} className="rail__block">
