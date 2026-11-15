@@ -109,3 +109,21 @@ test.describe("independencia de la Tierra", () => {
     expect(external).toEqual([]);
   });
 });
+
+test("el paso «manual médico» lleva al manual de a bordo y «Cómo me siento» al registro", async ({ page, context }) => {
+  const external = watchExternal(context);
+  await page.goto("/es/protocolos/agotamiento");
+  await page.getByRole("button", { name: "Sí, puedo hacerlo solo" }).click();
+  await page.getByRole("link", { name: /Abrir en el manual de a bordo/ }).first().click();
+  await expect(page).toHaveURL(/\/es\/manual\/agotamiento/);
+  await expect(page.getByRole("heading", { name: /Señales de alarma/ })).toBeVisible();
+  await expect(page.locator(".manual__do li")).toHaveCount(4);
+  await page.goto("/es/protocolos/frecuencia-cardiaca");
+  await page.getByRole("button", { name: "Sí, puedo hacerlo solo" }).click();
+  // Avanza hasta el paso que remite a «Cómo me siento».
+  await page.getByRole("button", { name: "Hecho" }).first().click();
+  await page.getByRole("button", { name: "Hecho" }).first().click();
+  await page.getByRole("link", { name: /Abrir «Cómo me siento»/ }).first().click();
+  await expect(page.getByRole("button", { name: "Guardar medición" })).toBeVisible();
+  expect(external).toEqual([]);
+});

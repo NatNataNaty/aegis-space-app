@@ -1,4 +1,6 @@
-import { BellRing, Check, ClipboardCheck, Hand, ShieldAlert, Stethoscope } from "lucide-react";
+import { BellRing, Check, ChevronRight, ClipboardCheck, Hand, ShieldAlert, Stethoscope } from "lucide-react";
+import { Link } from "react-router-dom";
+import { manualPath, modulePath } from "../../app/paths";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { activeCrew } from "../../data/crew";
@@ -6,7 +8,7 @@ import { enqueueOutboxItem } from "../../features/link/outboxService";
 import { logEvent } from "../../features/protocols/eventLog";
 import { pick } from "../../lib/content";
 import { cx } from "../../lib/format";
-import type { Protocol, StepKind } from "../../lib/schemas/content";
+import type { Protocol, ProtocolStep, StepKind } from "../../lib/schemas/content";
 
 export type RunMode = "solo" | "buddy";
 
@@ -24,6 +26,12 @@ const mmss = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padSta
 export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: Protocol; mode: RunMode; compact?: boolean }) {
   const { t, i18n } = useTranslation();
   const steps = mode === "solo" ? protocol.solo : protocol.withBuddy;
+  // Los pasos que remiten a otra parte de la app llevan a ella con un toque.
+  const stepLink = (s: ProtocolStep): { to: string; label: string } | null => {
+    if (s.text.es.includes("manual médico")) return { to: manualPath(protocol.id, i18n.language), label: t("steps.openManual") };
+    if (s.text.es.includes("«Cómo me siento»")) return { to: modulePath("log"), label: t("steps.openLog") };
+    return null;
+  };
   const [current, setCurrent] = useState(0);
   const [doneAt, setDoneAt] = useState<number[]>([]);
   const [startedAt] = useState(() => Date.now());
@@ -89,6 +97,11 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
                 </span>
                 <span className="step__text">{pick(s.text, i18n.language)}</span>
                 {s.kind === "clinical" && <span className="step__pending">{t("medical.pendingReview")}</span>}
+                {stepLink(s) && (
+                  <Link className="step__link" to={stepLink(s)!.to}>
+                    {stepLink(s)!.label} <ChevronRight size={14} aria-hidden />
+                  </Link>
+                )}
                 {state === "done" && <span className="step__meta">{t("steps.doneAt", { time: time(doneAt[i]) })}</span>}
                 {state === "current" && (
                   <span className="step__actions">

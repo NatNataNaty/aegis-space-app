@@ -19,14 +19,17 @@ import { TrendsSection } from "../components/dashboard/sections/TrendsSection";
 import { FaceModule } from "../components/identity/FaceModule";
 import { AboutDataDialog } from "../components/layout/AboutDataDialog";
 import { HowItWorks } from "../components/layout/HowItWorks";
-import { ModuleRail, type ModuleId } from "../components/layout/ModuleRail";
+import { useSearchParams } from "react-router-dom";
+import { ModuleRail, MODULES, type ModuleId } from "../components/layout/ModuleRail";
 import { TopBar } from "../components/layout/TopBar";
 import { StepsPanel } from "../components/protocols/StepsPanel";
 
 export function App() {
   const { t } = useTranslation();
   const mood = useHeroMood();
-  const [module, setModule] = useState<ModuleId>("vitals");
+  const [params] = useSearchParams();
+  const fromUrl = params.get("m");
+  const [module, setModule] = useState<ModuleId>((MODULES as string[]).includes(fromUrl ?? "") ? (fromUrl as ModuleId) : "vitals");
   const [aboutOpen, setAboutOpen] = useState(false);
 
   const go = (m: ModuleId) => {
