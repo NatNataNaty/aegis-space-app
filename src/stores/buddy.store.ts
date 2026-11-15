@@ -23,6 +23,10 @@ export interface OutgoingCall {
   /** El aviso salió hacia otras pantallas (false si el navegador no lo permite). */
   delivered: boolean;
   acknowledgedAt: number | null;
+  /** Quién respondió: otra pantalla («buddy») o alguien en esta misma nave («local»). */
+  acknowledgedBy?: "buddy" | "local";
+  /** La sirena de la nave se silenció (el aviso sigue visible). */
+  muted?: boolean;
 }
 
 interface BuddyState {
@@ -39,6 +43,9 @@ interface BuddyState {
   /** Envía el aviso. Sin «¿Necesitas ayuda?» abierto, usa el protocolo y motivo indicados. */
   askForHelp: (auto: boolean, crewName: string, context?: { protocolId: string | null; reason: string }) => void;
   cancelOutgoing: () => void;
+  /** Alguien en la nave oyó la alarma y va a ayudar. */
+  localAck: () => void;
+  muteAlarm: () => void;
   acknowledge: (id: string) => void;
   silence: (id: string) => void;
   forgetAlertKeys: (activeKeys: string[]) => void;
@@ -118,6 +125,19 @@ export const useBuddyStore = create<BuddyState>((set, get) => ({
     set({ outgoing: null });
   },
 
+  localAck: () => {
+    const out = get().outgoing;
+    if (!out || out.acknowledgedAt) return;
+    postBuddyMessage({ type: "ack", id: out.call.id, at: Date.now() });
+    set({ outgoing: { ...out, acknowledgedAt: Date.now(), acknowledgedBy: "local" } });
+    void logEvent("help_acknowledged", { call_id: out.call.id, by: "local" });
+  },
+
+  muteAlarm: () => {
+    const out = get().outgoing;
+    if (out) set({ outgoing: { ...out, muted: true } });
+  },
+
   acknowledge: (id) => {
     postBuddyMessage({ type: "ack", id, at: Date.now() });
     set({ incoming: get().incoming.filter((c) => c.id !== id) });
@@ -151,7 +171,7 @@ onBuddyMessage((m) => {
     if (!s.incoming.some((c) => c.id === m.id)) useBuddyStore.setState({ incoming: [...s.incoming, m] });
   } else if (m.type === "ack") {
     if (s.outgoing?.call.id === m.id && !s.outgoing.acknowledgedAt) {
-      useBuddyStore.setState({ outgoing: { ...s.outgoing, acknowledgedAt: m.at } });
+      useBuddyStore.setState({ outgoing: { ...s.outgoing, acknowledgedAt: m.at, acknowledgedBy: "buddy" } });
     }
   } else if (m.type === "cancel") {
     useBuddyStore.setState({ incoming: s.incoming.filter((c) => c.id !== m.id) });

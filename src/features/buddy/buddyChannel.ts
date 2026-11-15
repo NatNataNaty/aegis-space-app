@@ -111,3 +111,57 @@ export function playAlarm(): void {
     /* sin vibración */
   }
 }
+
+function ctx(): AudioContext | null {
+  try {
+    const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!Ctx) return null;
+    audio ??= new Ctx();
+    if (audio.state === "suspended") void audio.resume();
+    return audio;
+  } catch {
+    return null;
+  }
+}
+
+/** Pitido de cuenta atrás: corto y suave; más agudo en los últimos segundos. */
+export function playTick(urgent: boolean): void {
+  const a = ctx();
+  if (!a) return;
+  const now = a.currentTime;
+  const osc = a.createOscillator();
+  const gain = a.createGain();
+  osc.frequency.value = urgent ? 1046 : 784;
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(urgent ? 0.22 : 0.12, now + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+  osc.connect(gain).connect(a.destination);
+  osc.start(now);
+  osc.stop(now + 0.14);
+}
+
+/** Sirena de emergencia de la nave: barrido grave-agudo-grave de ~1,2 s. Se repite mientras suene. */
+export function playSiren(): void {
+  const a = ctx();
+  if (a) {
+    const now = a.currentTime;
+    const osc = a.createOscillator();
+    const gain = a.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(520, now);
+    osc.frequency.linearRampToValueAtTime(1180, now + 0.6);
+    osc.frequency.linearRampToValueAtTime(520, now + 1.2);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.18, now + 0.05);
+    gain.gain.setValueAtTime(0.18, now + 1.1);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+    osc.connect(gain).connect(a.destination);
+    osc.start(now);
+    osc.stop(now + 1.22);
+  }
+  try {
+    if (navigator.userActivation?.hasBeenActive ?? true) navigator.vibrate?.([400, 150, 400]);
+  } catch {
+    /* sin vibración */
+  }
+}

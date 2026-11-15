@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { BuddyAlarm } from "../components/alerts/BuddyAlarm";
 import { HelpOverlay } from "../components/alerts/HelpOverlay";
 import { HelpStatus } from "../components/alerts/HelpStatus";
+import { ShipAlarm } from "../components/alerts/ShipAlarm";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { VaultLock } from "../components/layout/VaultLock";
 import { startEarthLink } from "../features/link/earthReports";
@@ -25,6 +26,7 @@ export function RootLayout() {
         <HelpStatus />
         <HelpOverlay />
         <BuddyAlarm />
+        <ShipAlarm />
       </ErrorBoundary>
       <ErrorBoundary name="vault">
         <VaultLock />

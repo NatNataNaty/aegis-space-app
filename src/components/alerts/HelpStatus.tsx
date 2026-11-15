@@ -20,7 +20,8 @@ export function HelpStatus() {
     return () => window.clearInterval(id);
   }, [outgoing]);
 
-  if (!outgoing) return null;
+  // Mientras suena la alarma de la nave, el aviso grande ocupa la pantalla.
+  if (!outgoing || !outgoing.acknowledgedAt) return null;
 
   const { call, delivered, acknowledgedAt } = outgoing;
   const message = !delivered
