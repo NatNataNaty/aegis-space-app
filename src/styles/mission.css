@@ -765,3 +765,141 @@ h3,
   inset: 0;
   z-index: 0;
 }
+
+/* =============================================================================
+   Limpieza final
+   - Azul NASA para el fondo, gris grafito para los paneles, blanco para el texto.
+   - Sin líneas de color a la izquierda de ningún contenedor.
+   - Colores de estado apagados, nada fosforescente.
+   ========================================================================== */
+:root {
+  --bg: #0a1530;
+  --bg-2: #08112a;
+  --panel: #171b23;
+  --panel-2: #20252f;
+  --panel-3: #1b2029;
+  --border: #2a303b;
+  --border-2: #3a414d;
+  --rule: #262b35;
+  --text: #ffffff;
+  --text-2: #d3d7de;
+  --muted: #a9b0bb;
+  --faint: #9aa1ad;
+  --ok: #5aa982;
+  --amber: #d6a046;
+  --alert: #d9645a;
+  --live: #5aa982;
+  --warn: #d6a046;
+}
+
+/* Menú activo: solo superficie gris y texto blanco, sin barra */
+.rail__item--on::before {
+  display: none;
+}
+.rail {
+  background: rgba(8, 17, 42, 0.88);
+}
+
+/* Ningún contenedor con línea de color a la izquierda */
+.triage,
+.triage--green,
+.triage--yellow,
+.triage--red,
+.manual__alarm {
+  border: 1px solid var(--border);
+  border-left-width: 1px;
+}
+.triage--red,
+.manual__alarm {
+  border-color: #5a2f2c;
+}
+.hazard__fact,
+.step--clinical:not(.step--current) {
+  border-left: 0 !important;
+  box-shadow: none !important;
+}
+.hazard__fact {
+  padding-left: 0;
+}
+
+/* Títulos de estado en blanco; el color queda solo en el foco del semáforo */
+.triage--green .triage__title,
+.triage--yellow .triage__title,
+.triage--red .triage__title,
+.manual__alarm h2 {
+  color: var(--text);
+}
+.triage {
+  --lamp-green: #5aa982;
+  --lamp-yellow: #d6a046;
+  --lamp-red: #d9645a;
+}
+.triage__lamp--on .triage__bulb {
+  box-shadow: none !important;
+}
+
+/* Sin etiquetas «En vivo», «Autorreportado», etc.: el origen ya se explica en «Acerca de los datos» */
+.badge {
+  display: none !important;
+}
+.live,
+.live--on,
+.live--off {
+  background: var(--panel);
+  border-color: var(--border-2);
+  color: var(--text-2);
+}
+.live__dot {
+  background: var(--ok);
+}
+
+/* ¿Cómo funciona aegis?: columnas sin marco, tarjetas con relleno y números en gris */
+.how__col {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0;
+}
+.how__box {
+  padding: 16px;
+  gap: 12px;
+}
+.how__num {
+  color: var(--muted);
+  font-size: 44px;
+  font-weight: 600;
+}
+.how__col h2 {
+  font-size: 20px;
+}
+.how__refs-col {
+  padding: 18px;
+}
+
+/* Estrellas más visibles */
+.starfield__star {
+  opacity: 0.6;
+}
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.starfield__meteor {
+  height: 2px;
+  width: 160px;
+}
+
+/* Verde de «estable» y similares, apagado */
+.body-card__status--stable,
+.report-status--synced,
+.step--done .step__num,
+.step__meta {
+  color: var(--ok);
+}
+.triage-legend__green {
+  color: var(--ok);
+}
