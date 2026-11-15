@@ -1,10 +1,10 @@
 {
   "app": {
-    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como «Simulado» no representan lecturas reales."
+    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Datos de demostración."
   },
   "mission": {
     "name": "Tránsito a Marte",
-    "clockTitle": "Tiempo de misión simulado",
+    "clockTitle": "Hora de la misión",
     "day": "Día {{day}}"
   },
   "block": {
@@ -152,7 +152,7 @@
     "source": "Fuente",
     "window": "Ventana",
     "quality": "Calidad",
-    "qualityNa": "No aplica (dato simulado o autorreportado)",
+    "qualityNa": "No aplica (dato del escenario o autorreportado)",
     "action": "Acción sugerida",
     "level": {
       "info": "Información",
@@ -161,7 +161,7 @@
     },
     "sourceLabel": {
       "camera_live": "Cámara real",
-      "simulated": "Simulador",
+      "simulated": "Escenario",
       "combined": "Combinada (demo)",
       "user_reported": "Autorreporte"
     }
@@ -190,29 +190,29 @@
     "heartRate": {
       "label": "Frecuencia cardíaca",
       "what": "Latidos por minuto generados por el escenario de demostración.",
-      "note": "Dato simulado. No procede de ningún sensor."
+      "note": "Dato de demostración. No procede de ningún sensor."
     },
     "spo2": {
       "label": "SpO₂",
-      "what": "Saturación de oxígeno en sangre simulada.",
+      "what": "Saturación de oxígeno en sangre.",
       "note": "La cámara no mide SpO₂ en este prototipo."
     },
     "bloodPressure": {
       "label": "Presión arterial",
-      "what": "Presión sistólica / diastólica simulada en mmHg.",
-      "note": "Dato simulado. Las etiquetas describen el escenario, no un diagnóstico."
+      "what": "Presión sistólica / diastólica en mmHg.",
+      "note": "Dato de demostración. Las etiquetas describen el escenario, no un diagnóstico."
     },
     "temperature": {
       "label": "Temperatura corporal",
-      "what": "Temperatura central simulada en °C."
+      "what": "Temperatura central en °C."
     },
     "respRate": {
       "label": "Frecuencia respiratoria",
-      "what": "Respiraciones por minuto simuladas."
+      "what": "Respiraciones por minuto."
     },
     "glucose": {
       "label": "Glucosa",
-      "what": "Glucosa en sangre simulada en mg/dL. Indicador secundario."
+      "what": "Glucosa en sangre en mg/dL. Indicador secundario."
     },
     "sleep": {
       "label": "Sueño",
@@ -254,7 +254,7 @@
     },
     "exercise": {
       "label": "Ejercicio",
-      "what": "Minutos de ejercicio completados según el horario simulado."
+      "what": "Minutos de ejercicio completados según el horario."
     },
     "reaction": {
       "label": "Tiempo de reacción",
@@ -297,7 +297,7 @@
     },
     "schedule": {
       "title": "Horario de misión · Día {{day}}",
-      "sub": "Reloj de la demo. La cámara no se usa para medir el sueño.",
+      "sub": "Hora de la misión. La cámara no se usa para medir el sueño.",
       "dayTimeline": "Horario del día",
       "currentBlock": "Bloque actual",
       "sinceRest": "Desde el último descanso",
@@ -306,7 +306,7 @@
       "now": "Ahora",
       "inTime": "en {{time}}",
       "sleepTitle": "Sueño",
-      "sleepSub": "Actigrafía ficticia y percepción simulada.",
+      "sleepSub": "Estimado con un sensor de movimiento en la muñeca (actigrafía) y percibido por ti.",
       "sleepActigraphy": "Sueño estimado (actigrafía)",
       "sleepPerceived": "Sueño percibido",
       "avg7": "Media 7 días",
@@ -318,7 +318,7 @@
     },
     "exposure": {
       "radiation": "Radiación acumulada",
-      "radiationSub": "Valor demostrativo para un tránsito interplanetario.",
+      "radiationSub": "Dosis de radiación recibida desde que empezó el viaje. mSv = milisievert, la unidad de dosis.",
       "dailyRate": "Tasa diaria de la demo: {{value}} mSv/día",
       "activity": "Actividad física",
       "activitySub": "Ejercicio completado hoy según el horario.",
@@ -397,11 +397,18 @@
       "camOff": "apagado"
     },
     "assistant": "Asistente de a bordo",
-    "assistantSub": "Próximamente: responderá con la biblioteca de NASA y CSA"
+    "assistantSub": "Próximamente: responderá con la biblioteca de NASA y CSA",
+    "face": "Identificación facial",
+    "how": "Cómo funciona aegis",
+    "group": {
+      "watch": "Vigilancia",
+      "guide": "Alertas y guía",
+      "mission": "Misión"
+    }
   },
   "hero": {
     "crewName": "Especialista de misión 2",
-    "bpm": "latidos por minuto",
+    "bpm": "latidos por minuto (frecuencia cardíaca)",
     "baseline": "Lo normal para ti es {{value}}",
     "headline": {
       "hrVariation": "Tu frecuencia cardíaca está lejos de lo habitual.",
@@ -411,7 +418,17 @@
     },
     "sourcePrefix": "Esta lectura se compara con el riesgo de",
     "sourceLink": "adaptaciones cardiovasculares de NASA",
-    "pending": "El umbral clínico está pendiente de revisión médica."
+    "pending": "El umbral clínico está pendiente de revisión médica.",
+    "learn": {
+      "learning_one": "Aprendiendo lo normal para ti · {{count}} lectura",
+      "learning_other": "Aprendiendo lo normal para ti · {{count}} lecturas",
+      "reliable_one": "Ajustado a ti con {{count}} lectura",
+      "reliable_other": "Ajustado a ti con {{count}} lecturas"
+    },
+    "learnState": {
+      "learning": "todavía está aprendiendo",
+      "reliable": "ya es fiable"
+    }
   },
   "steps": {
     "fullProtocol": "Ver protocolo completo",
@@ -469,7 +486,7 @@
     "combined_fatigue": {
       "title": "Señales compatibles con fatiga",
       "observed": "La cámara registró {{closures}} cierres prolongados o largos en 5 min y el escenario simula {{hours}} h de sueño.",
-      "window": "Últimos 5 min (cámara) · último ciclo de sueño (simulado)",
+      "window": "Últimos 5 min (cámara) · último ciclo de sueño",
       "action": "Abre el protocolo de agotamiento. Si no respondes, se avisa a tu compañero."
     },
     "repeated_closures": {
@@ -485,13 +502,13 @@
       "action": "Haz una pausa y revisa tu descanso."
     },
     "sim_vitals": {
-      "title": "Variación en datos simulados",
+      "title": "Variación en tus signos vitales",
       "observed": "{{list}} fuera del perfil de demostración. No representa una urgencia médica real.",
       "window": "Lectura actual del escenario",
       "action": "Sigue el protocolo enlazado y avisa a tu compañero u oficial médico."
     },
     "sim_sleep": {
-      "title": "Sueño simulado reducido",
+      "title": "Sueño reducido",
       "observed": "El escenario simula {{hours}} h de sueño en el último ciclo (media de 7 días: {{avg}} h).",
       "window": "Últimos 7 ciclos",
       "action": "Recuerda el horario de descanso de la misión."
@@ -533,11 +550,11 @@
         "Más cierres de ojos que tu referencia"
       ],
       "combined_fatigue": [
-        "≥ {{n}} cierres prolongados + sueño simulado < {{h}} h",
+        "≥ {{n}} cierres prolongados + sueño < {{h}} h",
         "Protocolo de agotamiento y «¿Necesitas ayuda?»"
       ],
       "sim_vitals": [
-        "Signos vitales simulados fuera del perfil",
+        "Signos vitales fuera del perfil",
         "Protocolo de la señal (frecuencia cardíaca, oxígeno)"
       ],
       "self_symptoms": [
@@ -656,7 +673,7 @@
     "pending": "En la bandeja de salida",
     "synced": "Entregados",
     "linkActive": "Enlace activo",
-    "delay": "Retardo simulado",
+    "delay": "Retardo de la señal",
     "delayMode": {
       "none": "Sin retardo",
       "moon": "Luna",
@@ -719,6 +736,207 @@
       "title": "Olvidé mi PIN",
       "warning": "Sin el PIN no se puede descifrar. Borrar el registro elimina todos los eventos guardados en este equipo.",
       "confirm": "Borrar el registro y crear otro PIN"
+    }
+  },
+  "body": {
+    "title": "Tu cuerpo ahora",
+    "sub": "Cada dato dice qué mide y si está estable",
+    "usual": "Lo habitual en ti: {{value}} {{unit}}",
+    "spo2": {
+      "name": "Oxígeno en sangre",
+      "what": "SpO₂ · saturación de oxígeno",
+      "explain": "Porcentaje de tu sangre que transporta oxígeno. Se mide con un sensor de luz sobre la piel."
+    },
+    "pressure": {
+      "name": "Presión arterial",
+      "what": "Sistólica / diastólica",
+      "explain": "El primer número es la presión cuando el corazón late; el segundo, cuando descansa entre latidos."
+    },
+    "temperature": {
+      "name": "Temperatura",
+      "what": "Corporal",
+      "explain": "El calor de tu cuerpo."
+    },
+    "sleep": {
+      "name": "Sueño",
+      "what": "Último ciclo",
+      "explain": "Horas que dormiste en tu último descanso."
+    }
+  },
+  "quick": {
+    "title": "Qué puedes hacer",
+    "faceTitle": "Identificación facial",
+    "face": "Reconoce quién eres con la cámara y abre tu ficha de tripulante. Todo se compara en tu equipo.",
+    "logTitle": "Cómo me siento",
+    "logLast": "Cuenta tu fatiga, ánimo y síntomas. Última entrada a las {{time}}.",
+    "logNone": "Cuenta tu fatiga, ánimo y síntomas. Aún no hay entradas hoy.",
+    "alertsTitle": "Alertas y protocolos",
+    "alertsNone": "Sin avisos activos. Los 10 protocolos están a 3 toques desde Emergencia.",
+    "alertsSome": "{{count}} aviso(s) activo(s). Ábrelos para ver qué hacer."
+  },
+  "face": {
+    "matched": "Identidad confirmada · {{name}}",
+    "score": "parecido {{value}} %",
+    "nomatch": "No coincide con el rostro registrado. Prueba con más luz o mirando de frente.",
+    "noface": "No se vio un rostro a tiempo. Mira a la cámara y vuelve a intentarlo.",
+    "locked": "Para registrar tu rostro, desbloquea primero tu registro médico: la huella se guarda cifrada con tu PIN.",
+    "enrolling": "Registrando tu rostro…",
+    "scanning": "Reconociendo…",
+    "readyScan": "Pulsa «Reconocer» y mira a la cámara.",
+    "readyEnroll": "Registra tu rostro una vez para que la app te reconozca.",
+    "enroll": "Registrar mi rostro",
+    "scan": "Reconocer",
+    "reenroll": "Registrar de nuevo",
+    "forget": "Borrar mi huella",
+    "stop": "Detener",
+    "privacy": "Todo se compara en este dispositivo. Se guarda una huella geométrica cifrada, nunca fotos ni vídeo. Nivel demo: el PIN sigue siendo la llave.",
+    "profile": {
+      "id": "ID de tripulante",
+      "age": "Edad",
+      "ageValue": "{{n}} años",
+      "mission": "Misión",
+      "day": "Día de misión",
+      "body": "Altura y peso",
+      "blood": "Grupo sanguíneo",
+      "buddy": "Compañero de apoyo",
+      "buddyValue": "Especialista de misión 1",
+      "last": "Último reconocimiento",
+      "lastNow": "Ahora",
+      "lastNever": "Aún no",
+      "fictional": "Perfil ficticio de demostración."
+    },
+    "today": {
+      "title": "Monitoreo de hoy · Día {{day}}",
+      "hr": "Frecuencia cardíaca",
+      "bpm": "lpm",
+      "spo2": "Oxígeno en sangre",
+      "bp": "Presión arterial",
+      "temp": "Temperatura",
+      "sleep": "Sueño",
+      "feel": "Cómo me siento",
+      "feelHint": "Cómo me siento: fatiga · ánimo · estrés."
+    },
+    "days": {
+      "title": "Últimos días",
+      "day": "Día",
+      "hr": "Pulso en reposo",
+      "sleep": "Sueño",
+      "exercise": "Ejercicio",
+      "today": "Día {{day}} (hoy)"
+    }
+  },
+  "assistant": {
+    "tag": "Responde con la biblioteca de NASA y CSA",
+    "empty": "Pregúntame cómo estás, qué significa un dato o por qué importa algo en el viaje. Respondo con tus datos de este equipo y con la biblioteca de NASA y CSA.",
+    "placeholder": "Escribe tu pregunta…",
+    "send": "Enviar",
+    "openLog": "Abrir «Cómo me siento»",
+    "quickTitle": "Preguntas rápidas",
+    "q": {
+      "today": "¿Cómo estoy hoy?",
+      "oxygen": "¿Qué significa mi oxígeno en sangre?",
+      "radiation": "¿Cuánta radiación llevo acumulada?",
+      "sleepWeek": "¿Cómo estuvo mi sueño esta semana?",
+      "sleepWhy": "¿Por qué importa dormir bien en el viaje a Marte?",
+      "logSymptom": "Quiero anotar un síntoma"
+    },
+    "seesTitle": "Qué datos ve el asistente",
+    "seesSub": "Solo lo que ya está en este dispositivo.",
+    "sees": {
+      "vitals": "Signos vitales",
+      "vitalsSub": "Pulso, oxígeno, presión, temperatura",
+      "sleep": "Sueño y horario de la misión",
+      "feel": "Cómo me siento",
+      "feelLast": "Último registro a las {{time}}",
+      "feelNone": "Sin registros hoy",
+      "library": "Biblioteca NASA HRP y CSA",
+      "librarySub": "Peligros y riesgos con su fuente"
+    },
+    "src": {
+      "session": "Datos de tu sesión · Día {{day}}",
+      "rules": "Reglas del asistente",
+      "app": "aegis"
+    },
+    "a": {
+      "today": "Hoy, día {{day}}, tus lecturas están dentro de tu rango habitual: pulso {{hr}} latidos por minuto (lo normal para ti es {{usual}}), oxígeno en sangre {{spo2}} %, presión {{bp}} mmHg y temperatura {{temp}} °C. Dormiste {{sleep}} h. No hay alertas activas.",
+      "todayAlerts": "Hoy, día {{day}}: pulso {{hr}} latidos por minuto (lo normal para ti es {{usual}}), oxígeno {{spo2}} %, presión {{bp}} mmHg, temperatura {{temp}} °C y {{sleep}} h de sueño. Hay {{count}} aviso(s) activo(s): ábrelos en Alertas para ver qué hacer.",
+      "oxygen": "Tu oxígeno en sangre es {{spo2}} %: es el porcentaje de tu sangre que transporta oxígeno. NASA estudia la falta de oxígeno (hipoxia) como uno de los riesgos del vuelo espacial. Si te falta el aire o te mareas, abre Emergencia.",
+      "radiation": "Llevas {{total}} mSv acumulados en el viaje, unos {{daily}} mSv al día en esta demo. La radiación espacial no se ve ni se siente: por eso se mide y se registra. NASA la considera uno de los peligros más importantes de una misión a Marte.",
+      "sleepWeek": "En las últimas {{count}} noches dormiste de media {{avg}} h. {{short}} noche(s) bajaron de 6 h. Si notas cansancio, anótalo en «Cómo me siento».",
+      "sleepWhy": "En misiones largas, dormir bien ayuda a mantener la atención y el ánimo. NASA señala que la falta de sueño, el reloj interno desajustado y el exceso de trabajo se suman en el aislamiento. No recomiendo medicamentos ni dosis: ante síntomas graves, abre Emergencia.",
+      "logSymptom": "Claro. En «Cómo me siento» marcas tus síntomas y la app te dice qué protocolo seguir.",
+      "baseline": "Lo normal para ti, según lo que la app aprendió, es un pulso de {{hr}} latidos por minuto, con {{count}} lecturas: {{state}}. Solo sirve para explicarte tus datos; los umbrales de alerta no cambian.",
+      "baselineNone": "Todavía no tengo lecturas tuyas para aprender lo normal para ti. En unos minutos de uso empezaré.",
+      "unsafe": "No recomiendo medicamentos ni dosis. Si te encuentras mal, abre Emergencia y sigue el protocolo con tu compañero u oficial médico.",
+      "unknown": "No tengo esa respuesta en la biblioteca de a bordo. Prueba con una de las preguntas rápidas, o abre «Peligros y guía»."
+    }
+  },
+  "how": {
+    "title": "Cómo funciona aegis",
+    "lead": "Mide, avisa, guía y registra. Todo en el dispositivo, sin red.",
+    "menuTitle": "Menú en tres bloques",
+    "inputs": {
+      "title": "Entradas",
+      "sub": "De dónde salen los datos"
+    },
+    "detect": {
+      "title": "Detección",
+      "sub": "Qué se sale de lo normal"
+    },
+    "respond": {
+      "title": "Respuesta",
+      "sub": "Qué pasa cuando hay una alerta"
+    },
+    "record": {
+      "title": "Registro y Tierra",
+      "sub": "Qué se guarda y qué sale"
+    },
+    "items": {
+      "camera": {
+        "title": "Cámara",
+        "text": "Reconoce al tripulante y vigila los ojos para detectar fatiga."
+      },
+      "vitals": {
+        "title": "Signos vitales",
+        "text": "Pulso, oxígeno, presión, temperatura, sueño y radiación."
+      },
+      "feel": {
+        "title": "Cómo me siento",
+        "text": "Cuestionario y prueba de reacción."
+      },
+      "engine": {
+        "title": "Motor de alertas",
+        "text": "Reglas explicables en ES y EN. Cada alerta dice qué señales la causaron, su fuente y su protocolo. Aprende lo normal para ti sin cambiar los límites."
+      },
+      "help": {
+        "title": "¿Necesitas ayuda?",
+        "text": "Aviso a pantalla completa con cuenta atrás de 30 s."
+      },
+      "buddy": {
+        "title": "Aviso al compañero",
+        "text": "Alarma con sonido y botón «Voy a ayudar»."
+      },
+      "protocol": {
+        "title": "Protocolo paso a paso",
+        "text": "10 protocolos. Pendientes de revisión médica."
+      },
+      "vault": {
+        "title": "Registro a bordo",
+        "text": "Cifrado en el dispositivo con tu PIN."
+      },
+      "outbox": {
+        "title": "Bandeja de salida",
+        "text": "Sale cuando hay enlace, con retardo Luna o Marte."
+      },
+      "control": {
+        "title": "Centro de control",
+        "text": "Sin enlace dice «Sin datos». No inventa cifras."
+      }
+    },
+    "menu": {
+      "watch": "Signos vitales, Identificación facial y Cómo me siento.",
+      "guide": "Alertas, y Peligros y guía con los 5 peligros y 17 riesgos de NASA.",
+      "mission": "Radiación y ejercicio, y Sueño y misión."
     }
   }
 }
