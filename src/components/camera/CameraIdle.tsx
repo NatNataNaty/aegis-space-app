@@ -1,3 +1,4 @@
+import { simT } from "../../i18n";
 import { CameraOff, LoaderCircle, ScanFace, ShieldCheck } from "lucide-react";
 import { ocularSession } from "../../features/camera/ocularSession";
 import { fmtClock } from "../../lib/format";
@@ -24,7 +25,7 @@ export function CameraIdle() {
     return (
       <div className="stage-msg stage-msg--error" role="alert">
         <CameraOff size={28} aria-hidden />
-        <p>{error.message}</p>
+        <p>{simT(error.message)}</p>
         <button type="button" className="btn btn--primary" onClick={() => void ocularSession.start()}>
           {t("camera.retry")}
         </button>

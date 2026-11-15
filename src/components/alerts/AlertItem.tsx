@@ -6,10 +6,14 @@ import { OriginBadge } from "../common/OriginBadge";
 import { QualityTag } from "../common/StatusTag";
 import { LevelIcon } from "./LevelIcon";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { protocolPath } from "../../app/paths";
+import { getProtocol, pick } from "../../lib/content";
 
 export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaultOpen?: boolean }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(defaultOpen);
+  const protocol = alert.protocolId ? getProtocol(alert.protocolId) : undefined;
 
   return (
     <li className={cx("alert", `alert--${alert.level}`, open && "alert--open")}>
@@ -36,7 +40,7 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
                 {alert.signals.map((s, i) => (
                   <tr key={i}>
                     <td>{s.label}</td>
-                    <td className="mono">{s.value}</td>
+                    <td>{s.value}</td>
                     <td>
                       <OriginBadge origin={s.origin} />
                     </td>
@@ -53,6 +57,11 @@ export function AlertItem({ alert, defaultOpen = false }: { alert: Alert; defaul
             <dt>{t("alerts.action")}</dt>
             <dd>{alert.action}</dd>
           </dl>
+          {protocol && (
+            <Link className="mbtn mbtn--amber alert__protocol" to={protocolPath(protocol.id, i18n.language)}>
+              {t("library.openProtocol", { name: pick(protocol.title, i18n.language) })}
+            </Link>
+          )}
           <p className="alert__disclaimer">{alert.disclaimer}</p>
         </div>
       )}

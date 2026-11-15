@@ -41,16 +41,18 @@ export function MarsHero() {
   const hr = useHealthStore((s) => s.snapshot.vitals.heartRate.value);
   const history = useHealthStore((s) => s.snapshot.history24h);
   const trend7d = useHealthStore((s) => s.snapshot.trend7d);
+  const hrStatus = useHealthStore((s) => s.snapshot.vitals.heartRate.status);
   const topAlert = useHealthStore((s) => s.activeAlerts.find((a) => a.level !== "info"));
 
   const baseline = trend7d.length ? Math.round(trend7d.reduce((a, d) => a + d.restingHr, 0) / trend7d.length) : null;
   const shown = useAnimatedNumber(hr);
-  const ratio = baseline ? hr / baseline : 1;
 
+  // El titular solo refleja el estado ya calculado (heartRate.status) y las alertas activas:
+  // aquí no se aplica ningún umbral clínico propio.
   const headline =
     mood === "alert"
-      ? ratio >= 1.25
-        ? t("hero.headline.hrHigh")
+      ? hrStatus === "variation"
+        ? t("hero.headline.hrVariation")
         : (topAlert?.title ?? t("hero.headline.alert"))
       : mood === "watch"
         ? t("hero.headline.watch")

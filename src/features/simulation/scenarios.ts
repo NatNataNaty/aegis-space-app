@@ -152,7 +152,7 @@ export const SCENARIOS: Record<ScenarioId, ScenarioDefinition> = {
       { minutesAgo: 1400, title: "Reducción de ejercicio", detail: "Sesión de ejercicio acortada en el escenario.", level: "info" },
     ],
     recommendations: [
-      "Ante síntomas o variaciones reales, seguir el protocolo médico de la misión y contactar al personal sanitario.",
+      "Ante síntomas o variaciones reales, seguir el protocolo de la app y avisar al compañero u oficial médico.",
       "Repetir la medición con el equipo médico de a bordo.",
       "Registrar síntomas en el cuestionario de autoevaluación.",
     ],

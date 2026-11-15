@@ -22,6 +22,12 @@ export interface Alert {
   quality: Quality | null;
   action: string;
   disclaimer: string;
+  /** Protocolo paso a paso que abre esta alerta (content/alerts.json). */
+  protocolId: string | null;
+  /** Abre «¿Necesitas ayuda?» a pantalla completa. */
+  askForHelp: boolean;
+  /** Segundos sin respuesta antes de avisar al compañero (0 = inmediato). */
+  buddyAfterSec: number;
 }
 
 export interface SelfReport {
@@ -45,6 +51,8 @@ export interface PerclosPoint {
 }
 
 export interface AlertContext {
+  /** Hora de la evaluación (ms). Sirve para ignorar autoevaluaciones caducadas. */
+  evaluatedAt?: number;
   camera: {
     active: boolean;
     calibrated: boolean;

@@ -47,7 +47,14 @@ export function ExposureSection() {
           {activity.exerciseTodayMin}
           <small>/ {activity.exerciseTargetMin} min</small>
         </div>
-        <div className="progress progress--lg" aria-label={t("sections.exposure.pctGoal", { pct })}>
+        <div
+          className="progress progress--lg"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={pct}
+          aria-label={t("sections.exposure.pctGoal", { pct })}
+        >
           <span style={{ width: `${pct}%` }} />
         </div>
         <p className="muted">{t("sections.exposure.workload", { label: t(`sections.exposure.workloadLabel.${activity.workloadLabel}`) })}</p>

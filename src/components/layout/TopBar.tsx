@@ -59,7 +59,7 @@ export function TopBar({ onOpenAbout, onOpenAlerts }: TopBarProps) {
           {alertCount > 0 && <span className="icon-btn__count">{alertCount}</span>}
         </button>
 
-        <button type="button" className="btn btn--ghost" onClick={onOpenAbout}>
+        <button type="button" className="btn btn--ghost" onClick={onOpenAbout} aria-label={t("topbar.aboutData")}>
           <Database size={15} aria-hidden />
           <span className="btn__label">{t("topbar.aboutData")}</span>
         </button>

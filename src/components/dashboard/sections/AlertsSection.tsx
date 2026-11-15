@@ -6,6 +6,7 @@ import { AlertItem } from "../../alerts/AlertItem";
 import { LevelIcon } from "../../alerts/LevelIcon";
 import { OriginBadge } from "../../common/OriginBadge";
 import { useTranslation } from "react-i18next";
+import { simT } from "../../../i18n";
 
 export function AlertsSection() {
   const { t } = useTranslation();
@@ -63,9 +64,9 @@ export function AlertsSection() {
             <li key={`sim-${i}`}>
               <LevelIcon level={e.level} />
               <div>
-                <span className="history__title">{e.title}</span>
+                <span className="history__title">{simT(e.title)}</span>
                 <span className="history__meta">
-                  {e.label} · {e.detail}
+                  {e.label} · {simT(e.detail)}
                 </span>
               </div>
               <OriginBadge origin="simulated" />

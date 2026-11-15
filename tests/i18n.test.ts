@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import en from "../src/i18n/en.json";
 import es from "../src/i18n/es.json";
+import simEn from "../src/i18n/sim.en.json";
+import { SCENARIOS } from "../src/features/simulation/scenarios";
 
 type Tree = { [key: string]: unknown };
 
@@ -43,6 +45,19 @@ describe("i18n: claves usadas en el código", () => {
       }
     }
     expect(Object.keys(sources).length).toBeGreaterThan(20);
+    expect(missing).toEqual([]);
+  });
+});
+
+describe("i18n: textos de los escenarios de demo", () => {
+  it("cada texto visible de los escenarios tiene traducción al inglés", () => {
+    const texts = Object.values(SCENARIOS).flatMap((s) => [
+      s.summary,
+      ...s.recommendations,
+      ...s.schedule.map((b) => b.label),
+      ...s.alertLog.flatMap((e) => [e.title, e.detail]),
+    ]);
+    const missing = [...new Set(texts)].filter((x) => !(x in simEn));
     expect(missing).toEqual([]);
   });
 });

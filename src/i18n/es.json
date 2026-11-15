@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "aegis-space-med",
-    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como SIMULADO no representan lecturas reales."
+    "footer": "aegis-space-med · Prototipo educativo NASA Space Apps 2026. No es un dispositivo médico. Los datos marcados como «Simulado» no representan lecturas reales."
   },
   "mission": {
     "name": "Tránsito a Marte",
@@ -44,34 +43,13 @@
       "Si no hay rostro o la calidad es insuficiente, el dato se muestra como «No disponible», nunca como cero."
     ]
   },
-  "tabs": {
-    "ariaLabel": "Secciones",
-    "eye": "Ojos y alerta",
-    "trends": "Tendencias",
-    "schedule": "Sueño y misión",
-    "exposure": "Exposición",
-    "alerts": "Alertas",
-    "self": "Autoevaluación",
-    "guide": "Guía"
-  },
   "nav": {
-    "panel": "Panel",
     "emergency": "Emergencia",
-    "control": "Centro de control",
     "back": "Volver al panel"
   },
   "pages": {
-    "protocol": {
-      "title": "Protocolo: {{id}}",
-      "pending": "Pantalla de protocolo en construcción (P3). El contenido llegará desde /content (P2)."
-    },
-    "emergency": {
-      "title": "Modo emergencia",
-      "pending": "Modo emergencia en construcción (P3)."
-    },
     "control": {
-      "title": "Centro de control",
-      "pending": "Centro de control en construcción (UI: P3, datos: P1)."
+      "title": "Centro de control"
     },
     "notFound": {
       "title": "Página no encontrada"
@@ -81,11 +59,11 @@
     "pendingReview": "PENDIENTE DE REVISIÓN MÉDICA"
   },
   "origin": {
-    "camera_live": "EN VIVO",
-    "simulated": "SIMULADO",
-    "user_reported": "AUTORREPORTADO",
-    "local_test": "PRUEBA LOCAL",
-    "stale": "LECTURA ANTERIOR",
+    "camera_live": "En vivo",
+    "simulated": "Simulado",
+    "user_reported": "Autorreportado",
+    "local_test": "Prueba local",
+    "stale": "Lectura anterior",
     "staleTitle": "Última lectura antes de pausar la cámara"
   },
   "simStatus": {
@@ -155,11 +133,11 @@
     "faceDetected": "Rostro detectado",
     "noFace": "Sin rostro",
     "live": {
-      "starting": "INICIANDO",
-      "paused": "CÁMARA EN PAUSA",
-      "inactive": "CÁMARA INACTIVA",
-      "active": "CÁMARA ACTIVA",
-      "activeLong": "CÁMARA ACTIVA — PROCESAMIENTO LOCAL"
+      "starting": "Iniciando",
+      "paused": "Cámara en pausa",
+      "inactive": "Cámara inactiva",
+      "active": "Cámara activa",
+      "activeLong": "Cámara activa — procesamiento local"
     },
     "eyes": "Ojos",
     "opening": "Apertura",
@@ -426,7 +404,7 @@
     "bpm": "latidos por minuto",
     "baseline": "Lo normal para ti es {{value}}",
     "headline": {
-      "hrHigh": "Tu corazón va demasiado rápido.",
+      "hrVariation": "Tu frecuencia cardíaca está lejos de lo habitual.",
       "alert": "Algo necesita tu atención.",
       "watch": "Vigila cómo te sientes hoy.",
       "calm": "Todo en calma. Sigue con tu día."
@@ -436,28 +414,311 @@
     "pending": "El umbral clínico está pendiente de revisión médica."
   },
   "steps": {
-    "title": "Qué hacer ahora",
     "fullProtocol": "Ver protocolo completo",
     "calmTitle": "Nada pendiente",
     "calmLead": "Tus lecturas están dentro de tu rango habitual. Si notas algo, anótalo y la app te dirá qué hacer.",
     "watchTitle": "Atenta a cómo sigues",
     "watchLead": "Hay una lectura en seguimiento. No hace falta actuar todavía; anota cualquier síntoma.",
-    "items": {
-      "stop": "Para y sujétate a un anclaje.",
-      "breathe": "Respira despacio 2 minutos sin moverte.",
-      "askHelp": "Si sigue alto, pide ayuda: tu compañero recibe el aviso.",
-      "clinical": "Paso clínico del manual de a bordo."
-    },
     "done": "Hecho",
     "doneAt": "Hecho a las {{time}}",
     "finished": "Protocolo completado. Queda registrado con la hora de cada paso.",
     "needHelp": "Necesito ayuda",
-    "imOk": "Estoy bien",
     "logSymptom": "Anotar síntoma",
-    "buddy": {
-      "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
-      "sent": "Aviso enviado a tu compañero.",
-      "ok": "Anotado: dijiste que estás bien."
+    "relatedProtocol": "Ver el protocolo relacionado",
+    "helpSent": "Aviso enviado"
+  },
+  "engine": {
+    "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",
+    "unavailable": "No disponible",
+    "noBlock": "Sin bloque",
+    "vital": {
+      "heartRate": "Frecuencia cardíaca",
+      "bloodPressure": "Presión arterial",
+      "spo2": "SpO₂",
+      "respRate": "Frecuencia respiratoria",
+      "temperature": "Temperatura",
+      "glucose": "Glucosa"
+    },
+    "signal": {
+      "prolonged": "Cierres prolongados (400–499 ms)",
+      "long": "Cierres largos (≥ 500 ms)",
+      "perclos5": "PERCLOS 5 min",
+      "sleepLast": "Sueño último ciclo",
+      "block": "Bloque actual",
+      "quality": "Calidad de captura",
+      "scheduleBlock": "Bloque del horario",
+      "baseline": "Referencia personal",
+      "latest": "Última ventana",
+      "regularity": "Regularidad",
+      "symptom": "Síntoma",
+      "fatigue": "Fatiga percibida"
+    },
+    "camera_unavailable": {
+      "title": "Medición ocular no disponible",
+      "observedReasons": "{{reasons}}. No se emiten alertas oculares con fotogramas no válidos.",
+      "observed": "No se detecta el rostro o los ojos. No se emiten alertas oculares.",
+      "window": "{{s}} s sin datos válidos",
+      "action": "Colócate frente a la cámara con iluminación suficiente o recalibra."
+    },
+    "rest_period": {
+      "title": "Periodo de descanso programado",
+      "observed": "La misión está en ventana de descanso. Los ojos cerrados no se tratan como anomalía y la cámara no mide sueño.",
+      "window": "Horario de misión",
+      "action": "Respetar la ventana de descanso."
+    },
+    "combined_fatigue": {
+      "title": "Señales compatibles con fatiga",
+      "observed": "La cámara registró {{closures}} cierres prolongados o largos en 5 min y el escenario simula {{hours}} h de sueño.",
+      "window": "Últimos 5 min (cámara) · último ciclo de sueño (simulado)",
+      "action": "Abre el protocolo de agotamiento. Si no respondes, se avisa a tu compañero."
+    },
+    "repeated_closures": {
+      "title": "Revisar nivel de alerta",
+      "observed": "Se registraron {{closures}} cierres prolongados o largos durante el trabajo.",
+      "window": "Últimos 5 min",
+      "action": "Haz una pausa breve y revisa tu estado de alerta."
+    },
+    "perclos_above_baseline": {
+      "title": "Más cierres de ojos que tu referencia",
+      "observed": "PERCLOS por encima de tu referencia personal en {{n}} ventanas seguidas de 1 min.",
+      "window": "{{n}} ventanas de 60 s",
+      "action": "Haz una pausa y revisa tu descanso."
+    },
+    "sim_vitals": {
+      "title": "Variación en datos simulados",
+      "observed": "{{list}} fuera del perfil de demostración. No representa una urgencia médica real.",
+      "window": "Lectura actual del escenario",
+      "action": "Sigue el protocolo enlazado y avisa a tu compañero u oficial médico."
+    },
+    "sim_sleep": {
+      "title": "Sueño simulado reducido",
+      "observed": "El escenario simula {{hours}} h de sueño en el último ciclo (media de 7 días: {{avg}} h).",
+      "window": "Últimos 7 ciclos",
+      "action": "Recuerda el horario de descanso de la misión."
+    },
+    "self_symptoms": {
+      "title": "Síntomas reportados",
+      "observed": "Reportaste: {{list}}.",
+      "window": "Último cuestionario",
+      "action": "Sigue el protocolo enlazado y avisa a tu compañero u oficial médico."
+    },
+    "self_fatigue": {
+      "title": "Fatiga percibida alta",
+      "observed": "Indicaste una fatiga de {{n}}/5.",
+      "window": "Último cuestionario",
+      "action": "Planifica una pausa y revisa tu próximo descanso."
+    },
+    "questionnaire_pending": {
+      "title": "Autoevaluación pendiente",
+      "observed": "No hay un cuestionario de fatiga y síntomas en esta sesión.",
+      "window": "Sesión actual",
+      "action": "Completa la autoevaluación breve."
+    },
+    "rules": {
+      "title": "Reglas activas",
+      "camera_unavailable": [
+        "Cámara sin rostro u ojos visibles",
+        "Medición no disponible; sin alerta ocular"
+      ],
+      "rest_period": [
+        "Periodo programado de descanso",
+        "Los cierres de ojos no se tratan como anomalía"
+      ],
+      "repeated_closures": [
+        "≥ {{n}} cierres prolongados o largos en 5 min de trabajo",
+        "Revisar nivel de alerta"
+      ],
+      "perclos_above_baseline": [
+        "PERCLOS sobre tu referencia en {{n}} ventanas válidas",
+        "Más cierres de ojos que tu referencia"
+      ],
+      "combined_fatigue": [
+        "≥ {{n}} cierres prolongados + sueño simulado < {{h}} h",
+        "Protocolo de agotamiento y «¿Necesitas ayuda?»"
+      ],
+      "sim_vitals": [
+        "Signos vitales simulados fuera del perfil",
+        "Protocolo de la señal (frecuencia cardíaca, oxígeno)"
+      ],
+      "self_symptoms": [
+        "Síntomas autorreportados",
+        "Protocolo del síntoma"
+      ]
+    }
+  },
+  "help": {
+    "title": "¿Necesitas ayuda?",
+    "countdown": "Si no respondes en {{s}} s, avisamos a tu compañero.",
+    "needHelp": "Necesito ayuda",
+    "imOk": "Estoy bien",
+    "openProtocol": "Abrir el protocolo",
+    "status": {
+      "sent": "Aviso enviado a las pantallas de la tripulación. Esperando a que tu compañero confirme…",
+      "acknowledged": "Tu compañero ha confirmado: viene en camino.",
+      "noAck": "Nadie ha confirmado todavía. Pide ayuda en voz alta o por el interfono.",
+      "unsupported": "Esta pantalla no puede avisar a otras. Pide ayuda en voz alta o por el interfono.",
+      "cancel": "Cancelar aviso",
+      "close": "Cerrar"
+    },
+    "autoSent": "Para esta señal avisamos a tu compañero de inmediato. Ya está avisado.",
+    "imOkCancel": "Estoy bien: cancelar el aviso"
+  },
+  "buddy": {
+    "title": "{{name}} necesita ayuda",
+    "asked": "Ha pulsado «Necesito ayuda»",
+    "noAnswer": "No ha respondido a la alerta",
+    "going": "Voy a ayudar",
+    "silence": "Silenciar",
+    "immediate": "Aviso automático por la señal medida"
+  },
+  "protocol": {
+    "elapsed": "Tiempo desde el inicio:",
+    "decision": "¿Estás consciente y puedes actuar solo?",
+    "canSolo": "Sí, puedo hacerlo solo",
+    "needBuddy": "No, avisa a mi compañero",
+    "iAmHelper": "Soy el compañero que ayuda",
+    "modeLabel": "Modo del protocolo",
+    "mode": {
+      "solo": "Yo solo",
+      "buddy": "Con compañero"
+    },
+    "vitals": "Signos vitales del afectado",
+    "callAnother": "Pedir otro compañero",
+    "trigger": "Cuándo se abre",
+    "buddyPolicyTitle": "¿Hace falta compañero?",
+    "escalate": "Cuándo escalar",
+    "source": "Riesgo de NASA relacionado",
+    "pendingNote": "Los pasos no clínicos siguen el formato del plan. Cada paso clínico remite al manual médico de a bordo y debe revisarlo alguien con formación médica.",
+    "notFoundTitle": "Protocolo no encontrado",
+    "notFound": "No hay ningún protocolo con el identificador «{{id}}».",
+    "kind": {
+      "safety": "Seguridad",
+      "action": "Acción",
+      "notify": "Aviso",
+      "clinical": "Paso clínico",
+      "record": "Registro"
+    },
+    "buddyPolicy": {
+      "always": "Sí, siempre.",
+      "if_no_response": "Si no respondes en 30 s, se avisa al compañero.",
+      "by_severity": "Según la gravedad.",
+      "if_immobile": "Si no puedes moverte.",
+      "optional": "Opcional y con privacidad.",
+      "no": "No hace falta.",
+      "everyone": "Toda la tripulación, al refugio."
+    },
+    "bpm": "lpm"
+  },
+  "emergency": {
+    "title": "Emergencia",
+    "helpNow": "Necesito ayuda ahora",
+    "helpSent": "Aviso enviado",
+    "choose": "Elige la situación",
+    "open": "Ir a emergencia"
+  },
+  "library": {
+    "hazardsTitle": "Los 5 peligros del vuelo espacial (RIDGE)",
+    "hazardsSub": "Según el Programa de Investigación Humana de NASA. Pueden sumarse y agravar sus efectos.",
+    "seeRisks": "Ver sus riesgos",
+    "risksTitle": "Los 17 riesgos para la salud",
+    "risksSub": "Riesgos identificados por NASA HRP. Su efecto cambia según el destino: órbita baja, Luna o Marte.",
+    "filter": "Filtrar riesgos",
+    "all": "Todos",
+    "showing": "Mostrando {{n}} riesgos",
+    "category": {
+      "physiology": "Fisiología humana",
+      "behavior": "Conducta y factores humanos",
+      "radiation": "Radiación"
+    },
+    "hazards": "Peligros",
+    "openProtocol": "Abrir protocolo: {{name}}",
+    "studies": "Cómo lo combatimos: estudios de NASA",
+    "earth": "Beneficios en la Tierra (CSA)",
+    "officialPage": "Página oficial del riesgo",
+    "mission": {
+      "artemis-ii": "Artemis II",
+      "iss": "ISS",
+      "iss-past": "ISS, finalizado"
+    },
+    "research": "Investigación en curso de NASA HRP",
+    "mappingNote": "La relación entre cada riesgo y los peligros es una lectura del equipo a partir de los textos de NASA.",
+    "offlineNote": "Todo este contenido funciona sin red. Los enlaces abren la página oficial cuando hay conexión."
+  },
+  "control": {
+    "link": "Enlace con la Tierra",
+    "linkSub": "Todo se guarda primero a bordo y se envía cuando hay enlace. La nave nunca espera respuesta.",
+    "network": "Red",
+    "online": "Con conexión",
+    "offline": "Sin conexión",
+    "supabase": "Servidor de la Tierra",
+    "configured": "Configurado",
+    "notConfigured": "Sin configurar",
+    "pending": "En la bandeja de salida",
+    "synced": "Entregados",
+    "linkActive": "Enlace activo",
+    "delay": "Retardo simulado",
+    "delayMode": {
+      "none": "Sin retardo",
+      "moon": "Luna",
+      "mars": "Marte"
+    },
+    "earth": "Datos recibidos en la Tierra",
+    "alerts": "Alertas",
+    "protocols": "Protocolos",
+    "noEarthData": "Sin datos (no hay enlace)",
+    "notes": "Notas del control de misión",
+    "log": "Registro a bordo (cifrado)",
+    "logSub": "Lo que se ha guardado en este dispositivo y viajará a la Tierra.",
+    "noEvents": "Todavía no hay eventos registrados.",
+    "event": {
+      "help_prompt": "Se preguntó «¿Necesitas ayuda?»",
+      "help_answer_ok": "Respondió «Estoy bien»",
+      "help_requested": "Pidió ayuda",
+      "help_auto_sent": "Aviso automático: sin respuesta",
+      "help_acknowledged": "El compañero confirmó",
+      "protocol_started": "Protocolo iniciado",
+      "protocol_step_done": "Paso hecho",
+      "protocol_finished": "Protocolo completado"
+    }
+  },
+  "errors": {
+    "title": "El módulo «{{name}}» ha fallado",
+    "body": "El resto de la app sigue funcionando. Si es urgente, abre <a>Emergencia</a>.",
+    "retry": "Reintentar"
+  },
+  "vault": {
+    "bar": {
+      "new": "Tu registro médico aún no tiene PIN.",
+      "locked": "Registro médico bloqueado.",
+      "unlocked": "Registro médico cifrado y abierto.",
+      "pending": "{{count}} evento(s) esperan para guardarse cifrados."
+    },
+    "create": "Crear PIN",
+    "unlock": "Desbloquear",
+    "lock": "Bloquear",
+    "later": "Ahora no",
+    "working": "Protegiendo…",
+    "title": {
+      "new": "Protege tu registro médico",
+      "locked": "Desbloquea tu registro médico"
+    },
+    "lead": {
+      "new": "Elige un PIN de 4 a 8 cifras. Cifra en este equipo tus alertas, avisos y pasos de protocolo.",
+      "locked": "Escribe tu PIN para guardar y ver tus registros cifrados."
+    },
+    "pin": "PIN",
+    "confirm": "Repite el PIN",
+    "err": {
+      "format": "El PIN debe tener de 4 a 8 cifras.",
+      "mismatch": "Los dos PIN no coinciden.",
+      "wrong": "PIN incorrecto.",
+      "failed": "No se pudo abrir el registro. La app sigue funcionando y guarda en memoria."
+    },
+    "note": "El PIN no se guarda en ningún sitio. Emergencia y «¿Necesitas ayuda?» funcionan aunque el registro esté bloqueado.",
+    "reset": {
+      "title": "Olvidé mi PIN",
+      "warning": "Sin el PIN no se puede descifrar. Borrar el registro elimina todos los eventos guardados en este equipo.",
+      "confirm": "Borrar el registro y crear otro PIN"
     }
   }
 }

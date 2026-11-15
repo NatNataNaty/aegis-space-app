@@ -1,0 +1,17 @@
+{
+  "rules": [
+    { "alertId": "sim_vitals.heartRate", "protocolId": "frecuencia-cardiaca", "askForHelp": true, "buddyAfterSec": 30, "reviewStatus": "pendiente" },
+    { "alertId": "sim_vitals.spo2", "protocolId": "falta-oxigeno", "askForHelp": true, "buddyAfterSec": 0, "reviewStatus": "pendiente" },
+    { "alertId": "combined_fatigue", "protocolId": "agotamiento", "askForHelp": true, "buddyAfterSec": 30, "reviewStatus": "pendiente" },
+    { "alertId": "repeated_closures", "protocolId": "agotamiento", "askForHelp": false, "buddyAfterSec": 30, "reviewStatus": "pendiente" },
+    { "alertId": "perclos_above_baseline", "protocolId": "agotamiento", "askForHelp": false, "buddyAfterSec": 30, "reviewStatus": "pendiente" },
+    { "alertId": "sim_sleep", "protocolId": "agotamiento", "askForHelp": false, "buddyAfterSec": 30, "reviewStatus": "pendiente" },
+    { "alertId": "self_fatigue", "protocolId": "agotamiento", "askForHelp": false, "buddyAfterSec": 30, "reviewStatus": "pendiente" }
+  ],
+  "symptoms": [
+    { "symptom": "headache", "protocolId": "vision-cabeza" },
+    { "symptom": "blurred", "protocolId": "vision-cabeza" },
+    { "symptom": "dizziness", "protocolId": "mareo" },
+    { "symptom": "nausea", "protocolId": "mareo" }
+  ]
+}

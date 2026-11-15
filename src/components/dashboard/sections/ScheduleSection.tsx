@@ -1,4 +1,5 @@
 import { BedDouble } from "lucide-react";
+import { simT } from "../../../i18n";
 import {
   formatMinuteOfDay,
   formatMinutes,
@@ -60,7 +61,7 @@ export function ScheduleSection() {
                 key={`${i}-${j}`}
                 className={`timeline__seg timeline__seg--${b.kind}`}
                 style={{ left: `${seg.left}%`, width: `${seg.width}%` }}
-                title={`${b.label} · ${formatMinuteOfDay(b.start)}–${formatMinuteOfDay(b.end)}`}
+                title={`${simT(b.label)} · ${formatMinuteOfDay(b.start)}–${formatMinuteOfDay(b.end)}`}
               />
             )),
           )}
@@ -83,7 +84,7 @@ export function ScheduleSection() {
         <div className="kv-grid">
           <div>
             <span className="kv__label">{t("sections.schedule.currentBlock")}</span>
-            <span className="kv__value">{current ? current.label : "—"}</span>
+            <span className="kv__value">{current ? simT(current.label) : "—"}</span>
             {current && (
               <span className="kv__sub">
                 {formatMinuteOfDay(current.start)}–{formatMinuteOfDay(current.end)} · {formatMinutes(blockDuration(current))}

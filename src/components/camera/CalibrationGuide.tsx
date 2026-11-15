@@ -1,3 +1,4 @@
+import { simT } from "../../i18n";
 import { ocularSession } from "../../features/camera/ocularSession";
 import { EYE_CONFIG } from "../../features/camera/eyeMetrics.config";
 import { useCameraStore } from "../../stores/camera.store";
@@ -18,7 +19,7 @@ export function CalibrationGuide() {
       <div className="calib__card">
         <span className="calib__step">{t("camera.calibStep", { step })}</span>
         <p className="calib__msg">
-          {!faceVisible && step === 1 ? t("camera.faceToCamera") : calibration.message}
+          {!faceVisible && step === 1 ? t("camera.faceToCamera") : simT(calibration.message)}
         </p>
         {step === 2 && (
           <div className="calib__blinks" aria-label={t("camera.blinksDetected", { count: calibration.blinksDetected })}>

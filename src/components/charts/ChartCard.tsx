@@ -3,15 +3,16 @@ import type { DataOrigin } from "../../features/camera/camera.types";
 import { OriginBadge } from "../common/OriginBadge";
 
 export const CHART = {
-  grid: "rgba(148, 163, 184, 0.12)",
-  axis: "#7c879b",
-  tooltipBg: "#0f1522",
-  tooltipBorder: "#263044",
-  primary: "#5cc8ff",
-  secondary: "#a78bfa",
-  live: "#3ddc97",
-  warn: "#f5b84c",
-  alert: "#ff7a59",
+  // Paleta «Atardecer marciano» (mismos valores que las variables de src/styles/mars.css).
+  grid: "rgba(227, 205, 189, 0.12)",
+  axis: "#d2bbac",
+  tooltipBg: "#1a0f14",
+  tooltipBorder: "#5c3d49",
+  primary: "#9fd0f2",
+  secondary: "#c9b6f2",
+  live: "#8fd6b4",
+  warn: "#f2b35b",
+  alert: "#ffa088",
 } as const;
 
 export const axisProps = {
@@ -27,10 +28,10 @@ export const tooltipProps = {
     border: `1px solid ${CHART.tooltipBorder}`,
     borderRadius: 8,
     fontSize: 12,
-    color: "#e6ebf2",
+    color: "#f7e9dd",
   },
-  labelStyle: { color: "#9aa5b8" },
-  cursor: { stroke: "rgba(148,163,184,0.3)" },
+  labelStyle: { color: "#d2bbac" },
+  cursor: { stroke: "rgba(227, 205, 189, 0.3)" },
 } as const;
 
 interface ChartCardProps {

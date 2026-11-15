@@ -1,4 +1,5 @@
-import type { AlertLevel, AlertSource } from "./alert.types";
+import i18n from "../../i18n";
+import type { AlertLevel } from "./alert.types";
 
 /** Demo thresholds. Engineering choices for the prototype, not medical limits. */
 export const ALERT_CONFIG = {
@@ -14,24 +15,11 @@ export const ALERT_CONFIG = {
   perclosMarginPoints: 5,
   perclosMarginRatio: 1.5,
   highPerceivedFatigue: 4,
+  /** Ventana de validez de la autoevaluación en la demo (no es un umbral clínico). */
+  selfReportMaxAgeMs: 12 * 60 * 60 * 1000,
 } as const;
 
-export const DISCLAIMER = "Prototipo educativo de apoyo a la observación. No es un diagnóstico.";
-
 export const LEVEL_ORDER: Record<AlertLevel, number> = { attention: 0, watch: 1, info: 2 };
-
-export const LEVEL_LABEL: Record<AlertLevel, string> = {
-  info: "Información",
-  watch: "Seguimiento",
-  attention: "Atención",
-};
-
-export const SOURCE_LABEL: Record<AlertSource, string> = {
-  camera_live: "Cámara real",
-  simulated: "Simulador",
-  combined: "Combinada (demo)",
-  user_reported: "Autorreporte",
-};
 
 export interface RuleExplanation {
   id: string;
@@ -39,12 +27,25 @@ export interface RuleExplanation {
   result: string;
 }
 
-export const RULES: RuleExplanation[] = [
-  { id: "camera_unavailable", condition: "Cámara sin rostro u ojos visibles", result: "Medición no disponible; sin alerta ocular" },
-  { id: "rest_period", condition: "Periodo programado de descanso", result: "Contexto de descanso; los cierres no se tratan como anomalía" },
-  { id: "repeated_closures", condition: `≥ ${ALERT_CONFIG.repeatedClosures} cierres prolongados o largos en 5 min de trabajo`, result: "Revisar nivel de alerta" },
-  { id: "perclos_above_baseline", condition: `PERCLOS sobre tu referencia en ${ALERT_CONFIG.perclosElevatedWindows} ventanas válidas`, result: "Aumento de cierres oculares respecto a tu referencia" },
-  { id: "combined_fatigue", condition: `≥ ${ALERT_CONFIG.combinedClosures} cierres prolongados + sueño simulado < ${ALERT_CONFIG.insufficientSleepHours} h`, result: "Señales compatibles con fatiga en este escenario de demo" },
-  { id: "sim_vitals", condition: "Signos vitales simulados fuera del perfil", result: "Variación en datos simulados" },
-  { id: "self_symptoms", condition: "Síntomas autorreportados", result: "Seguir el protocolo médico de la misión" },
-];
+const RULE_IDS = [
+  "camera_unavailable",
+  "rest_period",
+  "repeated_closures",
+  "perclos_above_baseline",
+  "combined_fatigue",
+  "sim_vitals",
+  "self_symptoms",
+] as const;
+
+/** Reglas activas explicadas en el idioma actual (las cifras salen de ALERT_CONFIG). */
+export function ruleExplanations(): RuleExplanation[] {
+  const params: Record<string, Record<string, number>> = {
+    repeated_closures: { n: ALERT_CONFIG.repeatedClosures },
+    perclos_above_baseline: { n: ALERT_CONFIG.perclosElevatedWindows },
+    combined_fatigue: { n: ALERT_CONFIG.combinedClosures, h: ALERT_CONFIG.insufficientSleepHours },
+  };
+  return RULE_IDS.map((id) => {
+    const [condition, result] = i18n.t(`engine.rules.${id}`, { returnObjects: true, ...params[id] }) as unknown as string[];
+    return { id, condition, result };
+  });
+}

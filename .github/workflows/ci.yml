@@ -1,10 +1,19 @@
 name: CI
 
-on: workflow_dispatch
+# Se ejecuta en cada push y en cada pull request (antes solo se lanzaba a mano,
+# así que los PR se fusionaban sin pasar tests).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   validate:
-    name: Lint, Typecheck, Test & Build
+    name: Typecheck, tests y build
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +37,11 @@ jobs:
 
       - name: Build application
         run: npm run build
+
+      - name: Install Chromium for e2e
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E sin red (Playwright + axe)
+        run: npm run test:e2e
+        env:
+          CI: "true"

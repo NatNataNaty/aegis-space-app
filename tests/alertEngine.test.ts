@@ -1,4 +1,5 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import i18n from "../src/i18n";
 import type { AlertContext } from "../src/features/alerts/alert.types";
 import { evaluateAlerts, perclosBaselineStatus } from "../src/features/alerts/alertEngine";
 import type { OcularSummary } from "../src/features/camera/camera.types";
@@ -41,6 +42,10 @@ function ctx(scenario: ScenarioId, s300: OcularSummary | null, extra: Partial<Al
     ...extra,
   };
 }
+
+beforeAll(async () => {
+  await i18n.changeLanguage("es");
+});
 
 describe("evaluateAlerts", () => {
   it("does not raise ocular alerts for an isolated closure", () => {
@@ -99,5 +104,64 @@ describe("perclosBaselineStatus", () => {
   it("ignores invalid windows", () => {
     const trend = [2, null, 2, null].map((p, i) => ({ t: i * 60_000, perclos: p }));
     expect(perclosBaselineStatus(trend).baseline).toBeNull();
+  });
+});
+
+describe("alertas enlazadas a protocolos (content/alerts.json)", () => {
+  it("la variación de frecuencia cardíaca abre su protocolo y pide ayuda", () => {
+    const alerts = evaluateAlerts(ctx("physio_variation", null));
+    const vitals = alerts.find((a) => a.id === "sim_vitals");
+    expect(vitals?.protocolId).toMatch(/frecuencia-cardiaca|falta-oxigeno/);
+    expect(vitals?.askForHelp).toBe(true);
+  });
+
+  it("la fatiga combinada abre el protocolo de agotamiento", () => {
+    const alerts = evaluateAlerts(ctx("sleep_deficit", summary({ longClosures: 2 })));
+    expect(alerts.find((a) => a.id === "combined_fatigue")?.protocolId).toBe("agotamiento");
+  });
+
+  it("un síntoma reportado abre el protocolo de ese síntoma", () => {
+    const alerts = evaluateAlerts(
+      ctx("stable", null, { selfReport: { fatigue: 2, mood: 4, stress: 2, symptoms: ["dizziness"], recordedAt: 0 } }),
+    );
+    expect(alerts.find((a) => a.id === "self_symptoms")?.protocolId).toBe("mareo");
+  });
+});
+
+describe("alertas en inglés", () => {
+  beforeAll(async () => {
+    await i18n.changeLanguage("en");
+  });
+  afterAll(async () => {
+    await i18n.changeLanguage("es");
+  });
+
+  it("ningún texto de alerta queda en español", () => {
+    const alerts = evaluateAlerts(
+      ctx("physio_variation", summary({ longClosures: 3 }), {
+        selfReport: { fatigue: 5, mood: 2, stress: 4, symptoms: ["headache"], recordedAt: 0 },
+      }),
+    );
+    const text = alerts.flatMap((a) => [a.title, a.observed, a.action, a.window, ...a.signals.map((s) => s.label)]).join(" ");
+    expect(text).not.toMatch(/[áéíóúñ¿¡]|Sueño|Variación|Síntoma|Frecuencia/);
+  });
+  // Correcciones aportadas por P2/P4 (rama de Griss390, commit e20aea3).
+  it("no lanza PERCLOS con historial antiguo si el fotograma actual no es válido", () => {
+    const context = ctx("stable", summary());
+    context.camera.frameQuality = "unavailable";
+    context.camera.perclosTrend = [2, 2, 2, 20, 20].map((perclos, i) => ({ t: i * 60000, perclos }));
+    expect(evaluateAlerts(context).some((a) => a.id === "perclos_above_baseline")).toBe(false);
+  });
+
+  it("no reutiliza una autoevaluación caducada ni con fecha futura", () => {
+    const context = ctx("stable", summary());
+    context.selfReport = { fatigue: 5, mood: 2, stress: 5, symptoms: ["dizziness"], recordedAt: 0 };
+    context.evaluatedAt = 13 * 3600000;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms" || a.id === "self_fatigue")).toBe(false);
+    context.evaluatedAt = 100;
+    context.selfReport.recordedAt = 200;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms")).toBe(false);
+    context.evaluatedAt = 300;
+    expect(evaluateAlerts(context).some((a) => a.id === "self_symptoms")).toBe(true);
   });
 });

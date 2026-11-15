@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "aegis-space-med",
-    "footer": "aegis-space-med · Educational prototype, NASA Space Apps 2026. Not a medical device. Data marked SIMULATED are not real readings."
+    "footer": "aegis-space-med · Educational prototype, NASA Space Apps 2026. Not a medical device. Data marked “Simulated” are not real readings."
   },
   "mission": {
     "name": "Mars transit",
@@ -44,34 +43,13 @@
       "If no face is found or quality is too low, the value is shown as “Not available”, never as zero."
     ]
   },
-  "tabs": {
-    "ariaLabel": "Sections",
-    "eye": "Eyes & alertness",
-    "trends": "Trends",
-    "schedule": "Sleep & mission",
-    "exposure": "Exposure",
-    "alerts": "Alerts",
-    "self": "Self-check",
-    "guide": "Guide"
-  },
   "nav": {
-    "panel": "Dashboard",
     "emergency": "Emergency",
-    "control": "Mission control",
     "back": "Back to dashboard"
   },
   "pages": {
-    "protocol": {
-      "title": "Protocol: {{id}}",
-      "pending": "Protocol screen under construction (P3). Content will come from /content (P2)."
-    },
-    "emergency": {
-      "title": "Emergency mode",
-      "pending": "Emergency mode under construction (P3)."
-    },
     "control": {
-      "title": "Mission control",
-      "pending": "Mission control under construction (UI: P3, data: P1)."
+      "title": "Mission control"
     },
     "notFound": {
       "title": "Page not found"
@@ -81,11 +59,11 @@
     "pendingReview": "PENDING MEDICAL REVIEW"
   },
   "origin": {
-    "camera_live": "LIVE",
-    "simulated": "SIMULATED",
-    "user_reported": "SELF-REPORTED",
-    "local_test": "LOCAL TEST",
-    "stale": "PREVIOUS READING",
+    "camera_live": "Live",
+    "simulated": "Simulated",
+    "user_reported": "Self-reported",
+    "local_test": "Local test",
+    "stale": "Previous reading",
     "staleTitle": "Last reading before the camera was paused"
   },
   "simStatus": {
@@ -155,11 +133,11 @@
     "faceDetected": "Face detected",
     "noFace": "No face",
     "live": {
-      "starting": "STARTING",
-      "paused": "CAMERA PAUSED",
-      "inactive": "CAMERA OFF",
-      "active": "CAMERA ON",
-      "activeLong": "CAMERA ON — LOCAL PROCESSING"
+      "starting": "Starting",
+      "paused": "Camera paused",
+      "inactive": "Camera off",
+      "active": "Camera on",
+      "activeLong": "Camera on — local processing"
     },
     "eyes": "Eyes",
     "opening": "Openness",
@@ -426,7 +404,7 @@
     "bpm": "beats per minute",
     "baseline": "Normal for you is {{value}}",
     "headline": {
-      "hrHigh": "Your heart is beating too fast.",
+      "hrVariation": "Your heart rate is far from your usual range.",
       "alert": "Something needs your attention.",
       "watch": "Keep an eye on how you feel today.",
       "calm": "All calm. Carry on with your day."
@@ -436,28 +414,311 @@
     "pending": "The clinical threshold is pending medical review."
   },
   "steps": {
-    "title": "What to do now",
     "fullProtocol": "See full protocol",
     "calmTitle": "Nothing pending",
     "calmLead": "Your readings are within your usual range. If you notice something, log it and the app will tell you what to do.",
     "watchTitle": "Watch how you feel",
     "watchLead": "One reading is under watch. No action needed yet; log any symptom.",
-    "items": {
-      "stop": "Stop and hold on to an anchor.",
-      "breathe": "Breathe slowly for 2 minutes without moving.",
-      "askHelp": "If it stays high, ask for help: your crewmate gets an alert.",
-      "clinical": "Clinical step from the onboard manual."
-    },
     "done": "Done",
     "doneAt": "Done at {{time}}",
     "finished": "Protocol complete. Each step is logged with its time.",
     "needHelp": "I need help",
-    "imOk": "I'm OK",
     "logSymptom": "Log symptom",
-    "buddy": {
-      "countdown": "If you don't answer in {{s}} s, we alert your crewmate.",
-      "sent": "Alert sent to your crewmate.",
-      "ok": "Logged: you said you're OK."
+    "relatedProtocol": "See the related protocol",
+    "helpSent": "Alert sent"
+  },
+  "engine": {
+    "disclaimer": "Educational prototype to support observation. Not a diagnosis.",
+    "unavailable": "Not available",
+    "noBlock": "No block",
+    "vital": {
+      "heartRate": "Heart rate",
+      "bloodPressure": "Blood pressure",
+      "spo2": "SpO₂",
+      "respRate": "Respiratory rate",
+      "temperature": "Temperature",
+      "glucose": "Glucose"
+    },
+    "signal": {
+      "prolonged": "Prolonged closures (400–499 ms)",
+      "long": "Long closures (≥ 500 ms)",
+      "perclos5": "PERCLOS 5 min",
+      "sleepLast": "Last sleep cycle",
+      "block": "Current block",
+      "quality": "Capture quality",
+      "scheduleBlock": "Schedule block",
+      "baseline": "Personal reference",
+      "latest": "Latest window",
+      "regularity": "Regularity",
+      "symptom": "Symptom",
+      "fatigue": "Perceived fatigue"
+    },
+    "camera_unavailable": {
+      "title": "Eye measurement not available",
+      "observedReasons": "{{reasons}}. No eye alerts are raised from invalid frames.",
+      "observed": "Face or eyes not detected. No eye alerts are raised.",
+      "window": "{{s}} s without valid data",
+      "action": "Face the camera with enough light or recalibrate."
+    },
+    "rest_period": {
+      "title": "Scheduled rest period",
+      "observed": "The mission is in a rest window. Closed eyes are not treated as an anomaly and the camera does not measure sleep.",
+      "window": "Mission schedule",
+      "action": "Respect the rest window."
+    },
+    "combined_fatigue": {
+      "title": "Signals consistent with fatigue",
+      "observed": "The camera logged {{closures}} prolonged or long closures in 5 min and the scenario simulates {{hours}} h of sleep.",
+      "window": "Last 5 min (camera) · last sleep cycle (simulated)",
+      "action": "Open the exhaustion protocol. If you do not answer, your crewmate is alerted."
+    },
+    "repeated_closures": {
+      "title": "Check your alertness",
+      "observed": "{{closures}} prolonged or long closures were logged during work.",
+      "window": "Last 5 min",
+      "action": "Take a short break and check your alertness."
+    },
+    "perclos_above_baseline": {
+      "title": "More eye closures than your reference",
+      "observed": "PERCLOS above your personal reference in {{n}} consecutive 1-min windows.",
+      "window": "{{n}} windows of 60 s",
+      "action": "Take a break and review your rest."
+    },
+    "sim_vitals": {
+      "title": "Variation in simulated data",
+      "observed": "{{list}} outside the demo profile. This is not a real medical emergency.",
+      "window": "Current scenario reading",
+      "action": "Follow the linked protocol and alert your crewmate or medical officer."
+    },
+    "sim_sleep": {
+      "title": "Reduced simulated sleep",
+      "observed": "The scenario simulates {{hours}} h of sleep in the last cycle (7-day average: {{avg}} h).",
+      "window": "Last 7 cycles",
+      "action": "Keep in mind the mission rest schedule."
+    },
+    "self_symptoms": {
+      "title": "Symptoms reported",
+      "observed": "You reported: {{list}}.",
+      "window": "Last questionnaire",
+      "action": "Follow the linked protocol and alert your crewmate or medical officer."
+    },
+    "self_fatigue": {
+      "title": "High perceived fatigue",
+      "observed": "You rated your fatigue {{n}}/5.",
+      "window": "Last questionnaire",
+      "action": "Plan a break and check your next rest period."
+    },
+    "questionnaire_pending": {
+      "title": "Self-check pending",
+      "observed": "There is no fatigue and symptoms questionnaire in this session.",
+      "window": "Current session",
+      "action": "Complete the short self-check."
+    },
+    "rules": {
+      "title": "Active rules",
+      "camera_unavailable": [
+        "Camera without a visible face or eyes",
+        "Measurement not available; no eye alert"
+      ],
+      "rest_period": [
+        "Scheduled rest period",
+        "Eye closures are not treated as an anomaly"
+      ],
+      "repeated_closures": [
+        "≥ {{n}} prolonged or long closures in 5 min of work",
+        "Check your alertness"
+      ],
+      "perclos_above_baseline": [
+        "PERCLOS above your reference in {{n}} valid windows",
+        "More eye closures than your reference"
+      ],
+      "combined_fatigue": [
+        "≥ {{n}} prolonged closures + simulated sleep < {{h}} h",
+        "Exhaustion protocol and “Need help?”"
+      ],
+      "sim_vitals": [
+        "Simulated vital signs outside the profile",
+        "Protocol for that signal (heart rate, oxygen)"
+      ],
+      "self_symptoms": [
+        "Self-reported symptoms",
+        "Protocol for that symptom"
+      ]
+    }
+  },
+  "help": {
+    "title": "Do you need help?",
+    "countdown": "If you do not answer in {{s}} s, we will alert your crewmate.",
+    "needHelp": "I need help",
+    "imOk": "I'm OK",
+    "openProtocol": "Open the protocol",
+    "status": {
+      "sent": "Alert sent to the crew screens. Waiting for your crewmate to confirm…",
+      "acknowledged": "Your crewmate confirmed: they are on their way.",
+      "noAck": "Nobody has confirmed yet. Call for help out loud or on the intercom.",
+      "unsupported": "This screen cannot alert others. Call for help out loud or on the intercom.",
+      "cancel": "Cancel alert",
+      "close": "Close"
+    },
+    "autoSent": "For this signal we alert your crewmate immediately. They have been alerted.",
+    "imOkCancel": "I'm OK: cancel the alert"
+  },
+  "buddy": {
+    "title": "{{name}} needs help",
+    "asked": "They pressed “I need help”",
+    "noAnswer": "They did not answer the alert",
+    "going": "I'm helping",
+    "silence": "Silence",
+    "immediate": "Automatic alert from the measured signal"
+  },
+  "protocol": {
+    "elapsed": "Time since start:",
+    "decision": "Are you conscious and able to act alone?",
+    "canSolo": "Yes, I can do it alone",
+    "needBuddy": "No, alert my crewmate",
+    "iAmHelper": "I am the crewmate helping",
+    "modeLabel": "Protocol mode",
+    "mode": {
+      "solo": "On my own",
+      "buddy": "With a crewmate"
+    },
+    "vitals": "Vital signs of the affected person",
+    "callAnother": "Call another crewmate",
+    "trigger": "When it opens",
+    "buddyPolicyTitle": "Is a crewmate needed?",
+    "escalate": "When to escalate",
+    "source": "Related NASA risk",
+    "pendingNote": "Non-clinical steps follow the plan's format. Each clinical step points to the onboard medical manual and must be reviewed by someone with medical training.",
+    "notFoundTitle": "Protocol not found",
+    "notFound": "There is no protocol with the id “{{id}}”.",
+    "kind": {
+      "safety": "Safety",
+      "action": "Action",
+      "notify": "Alert",
+      "clinical": "Clinical step",
+      "record": "Log"
+    },
+    "buddyPolicy": {
+      "always": "Yes, always.",
+      "if_no_response": "If you do not answer in 30 s, your crewmate is alerted.",
+      "by_severity": "Depending on severity.",
+      "if_immobile": "If you cannot move.",
+      "optional": "Optional and private.",
+      "no": "Not needed.",
+      "everyone": "The whole crew, to the shelter."
+    },
+    "bpm": "bpm"
+  },
+  "emergency": {
+    "title": "Emergency",
+    "helpNow": "I need help now",
+    "helpSent": "Alert sent",
+    "choose": "Choose the situation",
+    "open": "Go to emergency"
+  },
+  "library": {
+    "hazardsTitle": "The 5 hazards of human spaceflight (RIDGE)",
+    "hazardsSub": "From NASA's Human Research Program. They can feed off one another and worsen their effects.",
+    "seeRisks": "See its risks",
+    "risksTitle": "The 17 health risks",
+    "risksSub": "Risks identified by NASA HRP. Their effects vary by destination: low Earth orbit, the Moon or Mars.",
+    "filter": "Filter risks",
+    "all": "All",
+    "showing": "Showing {{n}} risks",
+    "category": {
+      "physiology": "Human physiology",
+      "behavior": "Behavioral performance and human factors",
+      "radiation": "Space radiation"
+    },
+    "hazards": "Hazards",
+    "openProtocol": "Open protocol: {{name}}",
+    "studies": "How we fight it: NASA studies",
+    "earth": "Benefits on Earth (CSA)",
+    "officialPage": "Official risk page",
+    "mission": {
+      "artemis-ii": "Artemis II",
+      "iss": "ISS",
+      "iss-past": "ISS, completed"
+    },
+    "research": "NASA HRP ongoing research",
+    "mappingNote": "The link between each risk and the hazards is the team's reading of NASA's texts.",
+    "offlineNote": "All of this content works offline. Links open the official page when there is a connection."
+  },
+  "control": {
+    "link": "Link with Earth",
+    "linkSub": "Everything is stored on board first and sent when there is a link. The spacecraft never waits for an answer.",
+    "network": "Network",
+    "online": "Online",
+    "offline": "Offline",
+    "supabase": "Earth server",
+    "configured": "Configured",
+    "notConfigured": "Not configured",
+    "pending": "In the outbox",
+    "synced": "Delivered",
+    "linkActive": "Link active",
+    "delay": "Simulated delay",
+    "delayMode": {
+      "none": "No delay",
+      "moon": "Moon",
+      "mars": "Mars"
+    },
+    "earth": "Data received on Earth",
+    "alerts": "Alerts",
+    "protocols": "Protocols",
+    "noEarthData": "No data (no link)",
+    "notes": "Mission control notes",
+    "log": "Onboard log (encrypted)",
+    "logSub": "What has been stored on this device and will travel to Earth.",
+    "noEvents": "No events logged yet.",
+    "event": {
+      "help_prompt": "“Do you need help?” was asked",
+      "help_answer_ok": "Answered “I'm OK”",
+      "help_requested": "Asked for help",
+      "help_auto_sent": "Automatic alert: no answer",
+      "help_acknowledged": "Crewmate confirmed",
+      "protocol_started": "Protocol started",
+      "protocol_step_done": "Step done",
+      "protocol_finished": "Protocol completed"
+    }
+  },
+  "errors": {
+    "title": "The “{{name}}” module failed",
+    "body": "The rest of the app keeps working. If it is urgent, open <a>Emergency</a>.",
+    "retry": "Retry"
+  },
+  "vault": {
+    "bar": {
+      "new": "Your medical log has no PIN yet.",
+      "locked": "Medical log locked.",
+      "unlocked": "Medical log encrypted and open.",
+      "pending": "{{count}} event(s) waiting to be stored encrypted."
+    },
+    "create": "Create PIN",
+    "unlock": "Unlock",
+    "lock": "Lock",
+    "later": "Not now",
+    "working": "Protecting…",
+    "title": {
+      "new": "Protect your medical log",
+      "locked": "Unlock your medical log"
+    },
+    "lead": {
+      "new": "Choose a 4 to 8 digit PIN. It encrypts your alerts, help calls and protocol steps on this device.",
+      "locked": "Enter your PIN to store and see your encrypted records."
+    },
+    "pin": "PIN",
+    "confirm": "Repeat the PIN",
+    "err": {
+      "format": "The PIN must have 4 to 8 digits.",
+      "mismatch": "The two PINs do not match.",
+      "wrong": "Wrong PIN.",
+      "failed": "The log could not be opened. The app keeps working and stores in memory."
+    },
+    "note": "The PIN is never stored. Emergency and “Do you need help?” work even while the log is locked.",
+    "reset": {
+      "title": "I forgot my PIN",
+      "warning": "Without the PIN nothing can be decrypted. Deleting the log removes every event stored on this device.",
+      "confirm": "Delete the log and create a new PIN"
     }
   }
 }

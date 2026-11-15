@@ -185,7 +185,7 @@ export class OcularAnalyzer {
 
     if (t - this.firstFrameAt > FPS_WARMUP_MS && assessFps(fps) === "limited") {
       quality = worst(quality, "limited");
-      reasons.push(`FPS bajos (${fps})`);
+      reasons.push("FPS bajos");
     }
 
     const usable = quality !== "unavailable";
