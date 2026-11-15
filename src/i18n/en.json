@@ -41,7 +41,8 @@
       "The camera does not measure sleep, SpO₂, blood pressure, temperature or glucose.",
       "Detector thresholds are experimental parameters, not official NASA medical limits.",
       "If no face is found or quality is too low, the value is shown as “Not available”, never as zero."
-    ]
+    ],
+    "refsTitle": "Content references"
   },
   "nav": {
     "emergency": "Emergency",
@@ -444,7 +445,9 @@
     "needHelp": "I need help",
     "logSymptom": "Log symptom",
     "relatedProtocol": "See the related protocol",
-    "helpSent": "Alert sent"
+    "helpSent": "Alert sent",
+    "openManual": "Open in the onboard manual",
+    "openLog": "Open “How I feel”"
   },
   "engine": {
     "disclaimer": "Educational prototype to support observation. Not a diagnosis.",
@@ -1080,5 +1083,18 @@
       "specialist": "Mission specialist",
       "medical": "Medical officer"
     }
+  },
+  "manual": {
+    "title": "Onboard manual · {{name}}",
+    "back": "Back to the protocol",
+    "clinicalTitle": "Clinical procedure",
+    "clinicalText": "The validated clinical procedure (drugs, doses and manoeuvres) is loaded by the flight medical team before the mission. In this prototype it is pending medical review: aegis does not invent treatments. Meanwhile, follow the steps below and alert the medical officer.",
+    "askOfficer": "Alert the medical officer",
+    "nowTitle": "What you can do now",
+    "riskTitle": "What this risk is: {{name}}",
+    "signsTitle": "Warning signs: act now",
+    "doTitle": "What to do now",
+    "related": "If it gets worse: {{name}}",
+    "reviewNote": "First-aid actions from recognised guidelines. Their adaptation to microgravity and any drugs are set by the flight medical team."
   }
 }

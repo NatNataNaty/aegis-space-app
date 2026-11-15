@@ -3,6 +3,19 @@ import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { OriginBadge } from "../common/OriginBadge";
 
+/** Referencias de todo el contenido médico y espacial (detalle con direcciones en docs/FUENTES.md). */
+const REFERENCES = [
+  "NASA Human Research Program — Hazards, Risks y Ongoing Research",
+  "NASA OCHMO — NASA-STD-3001 Technical Briefs (sueño, radiación, adaptación espacial, hueso)",
+  "NASA Human Research Roadmap y NTRS — informes de evidencia",
+  "Canadian Space Agency — Radiation monitoring; Bio-Monitor",
+  "American Heart Association — Guías 2025 de RCP y señales de infarto",
+  "European Resuscitation Council / Resuscitation Council UK — Soporte vital básico 2025",
+  "Cruz Roja Americana y St John Ambulance — Hemorragia grave",
+  "Organización Mundial de la Salud — Primeros auxilios psicológicos (2011)",
+  "FDA — Oxímetros de pulso",
+];
+
 export function AboutDataDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useTranslation();
   const limits = t("about.limits", { returnObjects: true }) as string[];
@@ -55,6 +68,15 @@ export function AboutDataDialog({ open, onClose }: { open: boolean; onClose: () 
           <ul>
             {limits.map((item) => (
               <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="about-limits">
+          <h3>{t("about.refsTitle")}</h3>
+          <ul className="about-refs">
+            {REFERENCES.map((r) => (
+              <li key={r}>{r}</li>
             ))}
           </ul>
         </div>

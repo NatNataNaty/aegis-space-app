@@ -1,12 +1,11 @@
 import { activeCrew } from "../../data/crew";
 import { UserRoundPlus } from "lucide-react";
 import { PreventionList } from "../common/PreventionList";
-import { SourceCite } from "../common/SourceCite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { ROUTES } from "../../app/paths";
-import { getProtocol, HRP_RISKS_URL, pick, riskById } from "../../lib/content";
+import { getProtocol, pick, riskById } from "../../lib/content";
 import { fmtNum } from "../../lib/format";
 import { useBuddyStore } from "../../stores/buddy.store";
 import { useHealthStore } from "../../stores/health.store";
@@ -137,16 +136,8 @@ export function ProtocolPage() {
           <div className="panel">
             <h3>{t("protocol.whyAnchor")}</h3>
             <p>{t("protocol.whyAnchorText")}</p>
-            <SourceCite label={t("protocol.whyAnchorSource")} url="https://ntrs.nasa.gov/api/citations/20080026032/downloads/20080026032.pdf" />
           </div>
 
-          <div className="panel">
-            <h3>{t("protocol.source")}</h3>
-            <p>
-              <SourceCite label={`NASA HRP · ${risk ? pick(risk.name, lang) : t("library.risksTitle")}`} url={risk?.sourceUrl ?? HRP_RISKS_URL} />
-            </p>
-            <p className="muted">{t("library.offlineNote")}</p>
-          </div>
         </aside>
       </div>
     </PageShell>

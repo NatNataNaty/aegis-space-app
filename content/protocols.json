@@ -110,7 +110,36 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Palpitaciones con mareo, desmayo, dolor de pecho o falta de aire.",
+          "en": "Palpitations with dizziness, fainting, chest pain or shortness of breath."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Para lo que estés haciendo y sujétate.",
+          "en": "Stop what you are doing and hold on."
+        },
+        {
+          "es": "Repite la medición tras 5 minutos en reposo.",
+          "en": "Repeat the reading after 5 minutes at rest."
+        },
+        {
+          "es": "Anota qué sentías y qué hacías cuando empezó.",
+          "en": "Note what you felt and were doing when it started."
+        },
+        {
+          "es": "Si aparece dolor de pecho o falta de aire, abre el protocolo «Dolor en el pecho o falta de aire».",
+          "en": "If chest pain or shortness of breath appears, open the “Chest pain or shortness of breath” protocol."
+        }
+      ],
+      "sources": [
+        "AHA · Warning signs of a heart attack"
+      ]
+    }
   },
   {
     "id": "dolor-pecho-respirar",
@@ -223,7 +252,53 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Molestia en el centro del pecho que dura más de unos minutos, o que va y viene: presión, opresión o dolor.",
+          "en": "Discomfort in the centre of the chest lasting more than a few minutes, or that comes and goes: pressure, squeezing or pain."
+        },
+        {
+          "es": "Dolor en uno o ambos brazos, la espalda, el cuello, la mandíbula o el estómago.",
+          "en": "Pain in one or both arms, the back, neck, jaw or stomach."
+        },
+        {
+          "es": "Falta de aire, con o sin dolor de pecho.",
+          "en": "Shortness of breath, with or without chest discomfort."
+        },
+        {
+          "es": "Sudor frío, náuseas o mareo.",
+          "en": "Cold sweat, nausea or light-headedness."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Deja toda actividad, sujétate y quédate quieto.",
+          "en": "Stop all activity, hold on and stay still."
+        },
+        {
+          "es": "Avisa al oficial médico ahora: no esperes a ver si pasa.",
+          "en": "Alert the medical officer now: do not wait to see if it passes."
+        },
+        {
+          "es": "Que un compañero se quede contigo y vigile si respondes y respiras.",
+          "en": "Have a crewmate stay with you and watch that you respond and breathe."
+        },
+        {
+          "es": "Anota la hora en que empezó: es clave para el tratamiento.",
+          "en": "Note the time it started: it matters for treatment."
+        },
+        {
+          "es": "Si deja de responder o de respirar, pasa al protocolo «Tripulante que no responde».",
+          "en": "If they stop responding or breathing, switch to the “Unresponsive crewmate” protocol."
+        }
+      ],
+      "sources": [
+        "AHA · Warning signs of a heart attack",
+        "AHA 2025 · Adult Basic Life Support"
+      ]
+    }
   },
   {
     "id": "falta-oxigeno",
@@ -327,7 +402,40 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-hypoxia/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-hypoxia/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Falta de aire, confusión, labios o uñas azulados, aunque el oxímetro marque normal.",
+          "en": "Shortness of breath, confusion, bluish lips or nails, even if the oximeter reads normal."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Deja la actividad y respira con calma.",
+          "en": "Stop activity and breathe calmly."
+        },
+        {
+          "es": "Repite la medición: dedo limpio, mano caliente y quieta.",
+          "en": "Repeat the reading: clean finger, warm and still hand."
+        },
+        {
+          "es": "Revisa las alarmas de atmósfera de la nave (oxígeno y CO₂): puede afectar a toda la tripulación.",
+          "en": "Check the spacecraft atmosphere alarms (oxygen and CO₂): it may affect the whole crew."
+        },
+        {
+          "es": "Si hay síntomas, trátalo como urgente aunque el número dude: los oxímetros pueden fallar.",
+          "en": "If there are symptoms, treat it as urgent even if the number is unclear: oximeters can be inaccurate."
+        },
+        {
+          "es": "El oxígeno suplementario se usa según el manual de vuelo.",
+          "en": "Supplemental oxygen is used as the flight manual specifies."
+        }
+      ],
+      "sources": [
+        "FDA · Pulse oximeters"
+      ]
+    }
   },
   {
     "id": "sintomas-eva",
@@ -431,7 +539,32 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-decompression-sickness/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-decompression-sickness/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Dolor en articulaciones, hormigueo, picor en la piel, dificultad para respirar o síntomas parecidos a un ictus.",
+          "en": "Joint pain, tingling, itchy skin, difficulty breathing or stroke-like symptoms."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Dilo en voz alta enseguida: no ocultes síntomas durante la caminata.",
+          "en": "Say it out loud at once: never hide symptoms during the spacewalk."
+        },
+        {
+          "es": "Termina la caminata espacial de forma segura pero rápida y vuelve a la nave presurizada.",
+          "en": "End the spacewalk safely but quickly and return to the pressurised spacecraft."
+        },
+        {
+          "es": "Avisa al oficial médico y anota a qué hora empezaron.",
+          "en": "Alert the medical officer and note when they started."
+        }
+      ],
+      "sources": [
+        "NASA HRP · Risk of decompression sickness"
+      ]
+    }
   },
   {
     "id": "golpe-lesion",
@@ -535,7 +668,41 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-injury-and-compromised-performance-from-extravehicular-activity-eva/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-injury-and-compromised-performance-from-extravehicular-activity-eva/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Sangrado abundante que no para, pulso muy rápido o confusión: puede ser shock.",
+          "en": "Heavy bleeding that won't stop, a very fast pulse or confusion: possible shock."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Sujeta al herido y sujétate tú; ponte guantes si los tienes, sin retrasar la ayuda.",
+          "en": "Restrain the injured crewmate and yourself; put on gloves if available, without delaying care."
+        },
+        {
+          "es": "Cubre la herida con gasa o tela limpia y aprieta fuerte y sin soltar hasta que pare.",
+          "en": "Cover the wound with gauze or clean cloth and press firmly without letting go until it stops."
+        },
+        {
+          "es": "Si la sangre traspasa, no quites el apósito: pon otro encima y sigue apretando.",
+          "en": "If blood soaks through, don't remove the dressing: add another on top and keep pressing."
+        },
+        {
+          "es": "Si hay un objeto clavado, no lo saques: aprieta a los lados.",
+          "en": "If an object is embedded, don't pull it out: press on either side."
+        },
+        {
+          "es": "Vigila cómo responde; si deja de responder, empieza la reanimación.",
+          "en": "Monitor their response; if they become unresponsive, start CPR."
+        }
+      ],
+      "sources": [
+        "American Red Cross · Life-threatening external bleeding",
+        "St John Ambulance · Severe bleeding"
+      ]
+    }
   },
   {
     "id": "mareo",
@@ -639,7 +806,36 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Mareo junto a dolor de cabeza intenso, visión doble, debilidad en un lado del cuerpo o confusión.",
+          "en": "Dizziness with severe headache, double vision, weakness on one side or confusion."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Reduce la actividad y los movimientos bruscos de cabeza.",
+          "en": "Reduce activity and sudden head movements."
+        },
+        {
+          "es": "Fija la vista en una referencia de «arriba» de la nave.",
+          "en": "Fix your gaze on the spacecraft's “up” reference."
+        },
+        {
+          "es": "Mantén pies o manos en contacto con una superficie.",
+          "en": "Keep your feet or hands in contact with a surface."
+        },
+        {
+          "es": "Ten una bolsa a mano y bebe a sorbos para no deshidratarte.",
+          "en": "Keep a bag handy and sip fluids to avoid dehydration."
+        }
+      ],
+      "sources": [
+        "NASA · Sensorimotor adaptation / Space adaptation sickness"
+      ]
+    }
   },
   {
     "id": "vision-cabeza",
@@ -725,7 +921,32 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Pérdida brusca de visión o dolor de cabeza súbito y muy intenso.",
+          "en": "Sudden loss of vision or a sudden, very severe headache."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Anota cuándo empezó y qué ves: borroso, manchas o visión doble.",
+          "en": "Note when it started and what you see: blurred, spots or double vision."
+        },
+        {
+          "es": "Haz la prueba de visión del botiquín con cada ojo por separado.",
+          "en": "Do the medical-kit vision test with each eye separately."
+        },
+        {
+          "es": "Avisa al oficial médico: los cambios de visión en vuelo se vigilan con revisiones de ojos.",
+          "en": "Alert the medical officer: in-flight vision changes are tracked with eye checks."
+        }
+      ],
+      "sources": [
+        "NASA HRP · SANS"
+      ]
+    }
   },
   {
     "id": "crisis-emocional",
@@ -811,7 +1032,40 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-behavioral-conditions-and-psychiatric-disorders/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-behavioral-conditions-and-psychiatric-disorders/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Riesgo de hacerse daño o de dañar a otros.",
+          "en": "Risk of harming themselves or others."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Observa: comprueba que el lugar es seguro y si hay alguien muy afectado.",
+          "en": "Look: check the area is safe and who is most affected."
+        },
+        {
+          "es": "Escucha: acércate, preséntate y escucha sin presionar ni juzgar.",
+          "en": "Listen: approach, introduce yourself and listen without pressure or judgement."
+        },
+        {
+          "es": "Ayuda a calmar y pregunta qué necesita ahora.",
+          "en": "Help them feel calm and ask what they need now."
+        },
+        {
+          "es": "Conecta: avisa al comandante y pide contacto con el apoyo psicológico y su familia en el próximo enlace.",
+          "en": "Link: tell the commander and request contact with psychological support and family at the next link."
+        },
+        {
+          "es": "Si hay riesgo de daño, no lo dejes solo.",
+          "en": "If there is a risk of harm, do not leave them alone."
+        }
+      ],
+      "sources": [
+        "WHO 2011 · Psychological first aid"
+      ]
+    }
   },
   {
     "id": "agotamiento",
@@ -915,7 +1169,37 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Cabeceos o errores en tareas críticas.",
+          "en": "Nodding off or errors in critical tasks."
+        }
+      ],
+      "actions": [
+        {
+          "es": "No hagas tareas críticas: avisa al comandante para reprogramarlas.",
+          "en": "Don't do critical tasks: ask the commander to reschedule them."
+        },
+        {
+          "es": "Si es posible, haz una siesta corta planificada.",
+          "en": "If possible, take a short planned nap."
+        },
+        {
+          "es": "Al despertar, busca luz brillante durante 1–2 horas.",
+          "en": "After waking, seek bright light for 1–2 hours."
+        },
+        {
+          "es": "Sin cafeína de 6 a 12 horas antes de dormir y sin pantallas 1–2 horas antes.",
+          "en": "No caffeine 6 to 12 hours before sleep and no screens 1–2 hours before."
+        }
+      ],
+      "sources": [
+        "NASA OCHMO-MTB-009 · Circadian desynchrony",
+        "NASA · Sleep loss evidence report"
+      ]
+    }
   },
   {
     "id": "radiacion",
@@ -1019,7 +1303,36 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/reference/risk-of-radiation-induced-cancers/"
+    "sourceUrl": "https://www.nasa.gov/reference/risk-of-radiation-induced-cancers/",
+    "manual": {
+      "signs": [
+        {
+          "es": "Aviso de evento solar o subida brusca del dosímetro.",
+          "en": "Solar event warning or a sudden rise on the dosimeter."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Ve al refugio de la nave de inmediato: tiene más blindaje.",
+          "en": "Go to the spacecraft shelter at once: it has more shielding."
+        },
+        {
+          "es": "En naves pequeñas, apilad agua y provisiones alrededor del refugio.",
+          "en": "In small spacecraft, stack water and supplies around the shelter."
+        },
+        {
+          "es": "Si hay una caminata espacial en curso, termínala antes de tiempo.",
+          "en": "If a spacewalk is under way, end it early."
+        },
+        {
+          "es": "Lleva tu dosímetro y registra la dosis.",
+          "en": "Carry your dosimeter and log the dose."
+        }
+      ],
+      "sources": [
+        "NASA · Radiation protection brief / Radiation DAG"
+      ]
+    }
   },
   {
     "id": "no-responde",
@@ -1150,6 +1463,53 @@
       }
     ],
     "reviewStatus": "pendiente",
-    "sourceUrl": "https://www.nasa.gov/hrp/risks/"
+    "sourceUrl": "https://www.nasa.gov/hrp/risks/",
+    "manual": {
+      "signs": [
+        {
+          "es": "No responde al llamarlo por su nombre ni al tocarle el hombro.",
+          "en": "Does not respond to their name or a shoulder tap."
+        },
+        {
+          "es": "No respira o solo boquea: boquear no cuenta como respirar.",
+          "en": "Not breathing or only gasping: gasping is not normal breathing."
+        }
+      ],
+      "actions": [
+        {
+          "es": "Sujeta al compañero a una superficie firme y sujétate tú.",
+          "en": "Restrain your crewmate against a firm surface and restrain yourself."
+        },
+        {
+          "es": "Llámalo y tócale el hombro. Si no responde, da la alarma a toda la tripulación ya.",
+          "en": "Call their name and tap their shoulder. If no response, alert the whole crew now."
+        },
+        {
+          "es": "Mira si respira normalmente durante 10 segundos como máximo.",
+          "en": "Check for normal breathing for no more than 10 seconds."
+        },
+        {
+          "es": "Si no respira: compresiones en el centro del pecho, 100 a 120 por minuto y de 5 a 6 cm de profundidad.",
+          "en": "If not breathing: compressions in the centre of the chest, 100 to 120 per minute, 5 to 6 cm deep."
+        },
+        {
+          "es": "Deja que el pecho vuelva arriba entre compresiones y no pares más de 10 segundos.",
+          "en": "Let the chest fully recoil between compressions and never pause more than 10 seconds."
+        },
+        {
+          "es": "Que otra persona traiga el desfibrilador (DEA) y lo use en cuanto llegue.",
+          "en": "Have someone bring the defibrillator (AED) and use it as soon as it arrives."
+        },
+        {
+          "es": "Turnaos en las compresiones cada 2 minutos.",
+          "en": "Swap compressors every 2 minutes."
+        }
+      ],
+      "sources": [
+        "AHA 2025 · Adult Basic Life Support",
+        "ERC/Resuscitation Council UK 2025 · Adult BLS",
+        "NASA · Human factors and ISS medical systems"
+      ]
+    }
   }
 ]

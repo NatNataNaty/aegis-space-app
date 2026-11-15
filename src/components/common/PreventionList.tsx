@@ -2,7 +2,6 @@ import { ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { pick } from "../../lib/content";
 import type { Risk } from "../../lib/schemas/content";
-import { SourceCite } from "./SourceCite";
 
 /**
  * «Cómo prevenirlo»: contramedidas que NASA describe para un riesgo, en palabras sencillas.
@@ -21,13 +20,10 @@ export function PreventionList({ risk, headingLevel = 4 }: { risk: Risk; heading
         {risk.prevention.map((p, i) => (
           <li key={i}>
             <span>{pick(p.text, i18n.language)}</span>
-            {p.sourceUrl && <SourceCite label={t("prevent.techBrief")} url={p.sourceUrl} compact />}
           </li>
         ))}
       </ul>
-      <p className="prevent__note">
-        {t("prevent.note")} <SourceCite label={`NASA HRP · ${pick(risk.name, i18n.language)}`} url={risk.sourceUrl} compact />
-      </p>
+      <p className="prevent__note">{t("prevent.note")}</p>
     </section>
   );
 }

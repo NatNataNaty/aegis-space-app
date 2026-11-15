@@ -76,3 +76,18 @@ Cada riesgo de `content/risks.json` puede llevar `prevention`: contramedidas des
 | S23 | [NASA HSRB Bone Risk Record Rev C](https://www.nasa.gov/wp-content/uploads/2025/11/hsrb-bone-risk-record-rev-c-web.pdf) | Calcio y vitamina D suficientes. |
 | S24 | [Human Research Roadmap: SANS](https://humanresearchroadmap.nasa.gov/Risks/risk.aspx?i=105) | Revisiones oculares en vuelo. |
 | S25 | [NTRS 20080026032: Human factors and ISS medical systems](https://ntrs.nasa.gov/api/citations/20080026032/downloads/20080026032.pdf) | Respaldo del primer paso «sujétate»: sujetar equipo, paciente y a uno mismo. |
+
+## «Manual de a bordo» (primeros auxilios por situación, añadido por P3)
+
+Cada protocolo lleva `manual` (señales de alarma y acciones rápidas), parafraseado de guías reconocidas, sin fármacos ni dosis. En pantalla no se muestran citas; las referencias están en «Acerca de los datos».
+
+| ID | Fuente | Uso |
+| --- | --- | --- |
+| M01 | [AHA 2025 Adult BLS](https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/executive-summary) | Compresiones 100–120/min, 5–6 cm. |
+| M02 | [ERC / Resuscitation Council UK 2025 Adult BLS](https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/adult-basic-life-support-guidelines) | Comprobar respuesta y respiración, pausas mínimas, DEA. |
+| M03 | [AHA Heart attack warning signs](https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack) | Señales de alarma de dolor torácico. |
+| M04 | [American Red Cross: life-threatening bleeding](https://www.redcross.org/take-a-class/resources/learn-first-aid/bleeding-life-threatening-external) | Presión directa. |
+| M05 | [St John Ambulance: severe bleeding](https://www.sja.org.uk/get-advice/first-aid-advice/bleeding/severe-bleeding/) | Segundo apósito, objeto clavado, vigilar respuesta. |
+| M06 | [WHO Psychological first aid (2011)](https://www.who.int/publications/i/item/9789241548205) | Observar, escuchar, conectar. |
+| M07 | [FDA Pulse oximeters](https://www.fda.gov/medical-devices/products-and-medical-procedures/pulse-oximeters) | Considerar síntomas aunque el oxímetro dude. |
+| M08 | NASA (S20–S25 y páginas de riesgos) | Descompresión, mareo espacial, sueño, radiación, SANS, sujeción. |

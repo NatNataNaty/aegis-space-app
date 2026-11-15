@@ -41,7 +41,8 @@
       "La cámara no mide sueño, SpO₂, presión arterial, temperatura ni glucosa.",
       "Los umbrales del detector son parámetros experimentales, no límites médicos oficiales de NASA.",
       "Si no hay rostro o la calidad es insuficiente, el dato se muestra como «No disponible», nunca como cero."
-    ]
+    ],
+    "refsTitle": "Referencias del contenido"
   },
   "nav": {
     "emergency": "Emergencia",
@@ -444,7 +445,9 @@
     "needHelp": "Necesito ayuda",
     "logSymptom": "Anotar síntoma",
     "relatedProtocol": "Ver el protocolo relacionado",
-    "helpSent": "Aviso enviado"
+    "helpSent": "Aviso enviado",
+    "openManual": "Abrir en el manual de a bordo",
+    "openLog": "Abrir «Cómo me siento»"
   },
   "engine": {
     "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",
@@ -1080,5 +1083,18 @@
       "specialist": "Especialista de misión",
       "medical": "Oficial médica"
     }
+  },
+  "manual": {
+    "title": "Manual de a bordo · {{name}}",
+    "back": "Volver al protocolo",
+    "clinicalTitle": "Procedimiento clínico",
+    "clinicalText": "El procedimiento clínico validado (fármacos, dosis y maniobras) lo carga el equipo médico de vuelo antes de la misión. En este prototipo queda pendiente de revisión médica: aegis no inventa tratamientos. Mientras tanto, sigue los pasos de abajo y avisa al oficial médico.",
+    "askOfficer": "Avisar al oficial médico",
+    "nowTitle": "Lo que sí puedes hacer ya",
+    "riskTitle": "Qué es este riesgo: {{name}}",
+    "signsTitle": "Señales de alarma: actúa ya",
+    "doTitle": "Qué hacer ahora",
+    "related": "Si empeora: {{name}}",
+    "reviewNote": "Acciones de primeros auxilios de guías reconocidas. Su adaptación a la microgravedad y cualquier fármaco los define el equipo médico de vuelo."
   }
 }

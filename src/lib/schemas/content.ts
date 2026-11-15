@@ -109,6 +109,18 @@ export const protocolSchema = z
     withBuddy: z.array(protocolStepSchema).min(2).max(7),
     reviewStatus,
     sourceUrl,
+    /**
+     * «Manual de a bordo»: señales de alarma y acciones rápidas de primeros auxilios tomadas de guías
+     * reconocidas (AHA, ERC, Cruz Roja, OMS) y de NASA. Sin fármacos ni dosis. Las fuentes se guardan
+     * aquí y se listan en «Acerca de los datos».
+     */
+    manual: z
+      .object({
+        signs: z.array(localized).min(1),
+        actions: z.array(localized).min(2).max(8),
+        sources: z.array(z.string().min(1)).min(1),
+      })
+      .optional(),
   })
   .superRefine((p, ctx) => {
     for (const step of [...p.solo, ...p.withBuddy]) {
