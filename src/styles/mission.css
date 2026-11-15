@@ -7,35 +7,35 @@
 
 :root {
   /* Superficies: grafito neutro, de más oscuro a más claro */
-  --bg: #0d0f12;
-  --bg-2: #090b0d;
-  --panel: #15181c;
-  --panel-2: #1d2126;
-  --panel-3: #191c21;
-  --border: #262b31;
-  --border-2: #343a42;
-  --rule: #22272d;
+  --bg: #061430;
+  --bg-2: #040e24;
+  --panel: #0b1f45;
+  --panel-2: #12295a;
+  --panel-3: #0f2450;
+  --border: #1d3a72;
+  --border-2: #2a4b8a;
+  --rule: #1a3466;
   /* Texto */
-  --text: #f1f3f5;
-  --text-2: #c7cdd4;
-  --muted: #9aa3ad;
-  --faint: #8c95a0;
+  --text: #ffffff;
+  --text-2: #d5e0f2;
+  --muted: #a7b9d8;
+  --faint: #97abcf;
   /* Un color por significado */
-  --amber: #e8a33d; /* atención */
+  --amber: #f2b33d; /* atención */
   --amber-ink: #1a1205;
-  --accent: #f1f3f5; /* elemento activo: blanco */
-  --accent-2: #c7cdd4;
+  --accent: #ffffff; /* elemento activo: blanco */
+  --accent-2: #d5e0f2;
   --ok: #3dbe7a; /* estable */
   --ok-line: #24583d;
-  --rust: #d7263d; /* emergencia */
-  --alert: #ef5350;
+  --rust: #e0331f; /* emergencia */
+  --alert: #ff6a55;
   --warn: #e8a33d;
   --live: #3dbe7a;
-  --sim: #c7cdd4;
-  --user: #c7cdd4;
-  --test: #c7cdd4;
-  --lilac: #c7cdd4;
-  --lilac-line: #343a42;
+  --sim: #d5e0f2;
+  --user: #d5e0f2;
+  --test: #d5e0f2;
+  --lilac: #d5e0f2;
+  --lilac-line: #2a4b8a;
   /* Forma: esquinas discretas, sin sombras */
   --radius: 12px;
   --radius-md: 10px;
@@ -99,7 +99,7 @@ h3,
   font-weight: 600;
 }
 .rail__item--on .rail__hint {
-  color: #4a525c;
+  color: #3a5a8f;
 }
 .rail__emergency {
   background: var(--rust);
@@ -206,7 +206,7 @@ h3,
 .btn--primary:hover,
 .dbtn--primary:hover:not(:disabled),
 .mbtn--amber:hover {
-  background: #d9dde2;
+  background: #dbe6f7;
 }
 /* Peligro: rojo sólido */
 .dbtn--danger,
@@ -216,50 +216,34 @@ h3,
   color: #fff;
 }
 .dbtn--danger:hover:not(:disabled) {
-  background: #bf1f34;
+  background: #c42a18;
 }
 :focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 2px;
 }
 
-/* ---------- Pantalla principal: paisaje de Marte en colores planos ---------- */
-.mars-hero,
-.mars-hero--calm {
-  background: #14181d !important;
+/* ---------- Pantalla principal: la escena de Marte animada (cielo, sol, polvo) ---------- */
+.mars-hero.mars-hero--calm,
+.mars-hero:not(.mars-hero--watch):not(.mars-hero--alert) {
+  background-image: radial-gradient(80% 90% at 72% 30%, #27385c 0%, #13224a 45%, #061430 100%) !important;
+}
+.mars-hero.mars-hero--watch {
+  background-image: radial-gradient(80% 90% at 72% 30%, #4a3a33 0%, #1d2140 45%, #061430 100%) !important;
+}
+.mars-hero.mars-hero--alert {
+  background-image: radial-gradient(80% 90% at 72% 30%, #5c3424 0%, #24183a 45%, #061430 100%) !important;
+}
+.mars-hero:not(.mars-hero--watch):not(.mars-hero--alert) {
+  --halo-core: #d8eefd;
+  --halo-mid: #7fb7e2;
+  --halo-edge: #4b5e86;
+}
+.mars-hero {
   border: 1px solid var(--border);
 }
-.mars-hero--watch {
-  background: #1a1813 !important;
-}
-.mars-hero--alert {
-  background: #1d1314 !important;
-}
-.mars-hero__sky,
-.mars-hero__dust {
-  display: none;
-}
-.mars-hero__sun {
-  fill: #e9e2d6;
-  animation: none;
-}
-.mars-hero--watch .mars-hero__sun {
-  fill: var(--amber);
-}
-.mars-hero--alert .mars-hero__sun {
-  fill: var(--alert);
-}
-.mars-hero__ridge--far {
-  fill: #3a2b26;
-}
-.mars-hero__ridge--mid {
-  fill: #4a332a;
-}
-.mars-hero__ridge--near {
-  fill: #5a3b2d;
-}
 .mars-hero__number {
-  color: var(--text);
+  color: #9fd0f2;
 }
 .mars-hero--watch .mars-hero__number {
   color: var(--amber);
