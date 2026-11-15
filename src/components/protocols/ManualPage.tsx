@@ -77,6 +77,7 @@ export function ManualPage() {
                 </li>
               ))}
             </ol>
+            <p className="manual__review">{t("manual.reviewNote")}</p>
             {related && (
               <Link className="step__link" to={protocolPath(related, lang)}>
                 {t("manual.related", { name: pick(getProtocol(related)!.title, lang) })}
@@ -85,11 +86,6 @@ export function ManualPage() {
           </section>
         )}
 
-        <section className="panel" aria-labelledby="manual-escalate">
-          <h2 id="manual-escalate">{t("protocol.escalate")}</h2>
-          <p>{pick(protocol.escalate, lang)}</p>
-          <p className="manual__review">{t("manual.reviewNote")}</p>
-        </section>
 
         {risk && (
           <section className="panel" aria-labelledby="manual-risk">

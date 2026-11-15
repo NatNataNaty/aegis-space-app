@@ -52,7 +52,6 @@ export function StepsPanel({ mood, onLogSymptom }: { mood: HeroMood; onLogSympto
           {t("steps.fullProtocol")}
         </Link>
       </div>
-      <p className="step__pending">{t("medical.pendingReview")}</p>
 
       <ProtocolRunner key={protocol.id} protocol={protocol} mode="solo" compact />
 

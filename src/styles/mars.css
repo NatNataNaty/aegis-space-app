@@ -271,9 +271,9 @@ body {
 }
 
 .mars-hero {
-  --halo-core: #d8eefd;
-  --halo-mid: #7fb7e2;
-  --halo-edge: #4b5e86;
+  --halo-core: #fff1dc;
+  --halo-mid: #e8c9a0;
+  --halo-edge: #6a4c48;
   position: relative;
   flex: 999 1 560px;
   min-width: 0;

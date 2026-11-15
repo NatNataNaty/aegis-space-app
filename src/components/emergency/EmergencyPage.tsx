@@ -74,7 +74,6 @@ export function EmergencyPage() {
             </li>
           ))}
         </ul>
-        <p className="emergency__pending">{t("medical.pendingReview")}</p>
       </main>
     </div>
   );

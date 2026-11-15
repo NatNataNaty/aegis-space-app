@@ -446,7 +446,7 @@ button.pill:hover,
   min-height: 340px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: radial-gradient(80% 90% at 72% 30%, #27385c 0%, #1e1a33 45%, #1d1015 100%);
+  background: radial-gradient(80% 90% at 72% 30%, #3d2b2c 0%, #24161c 45%, #1d1015 100%);
 }
 
 .mars-hero--watch {
@@ -1716,3 +1716,30 @@ cite.source .source__url { white-space: normal; overflow-wrap: anywhere; text-ov
 .ship-alarm__row .mbtn { display: inline-flex; align-items: center; gap: 6px; }
 .ship-alarm__note { margin: 0; font-size: 13px; color: #d9b3ad; }
 @media (prefers-reduced-motion: reduce) { .ship-alarm { animation: none; } }
+
+/* ---------- Paleta única: sin azules ni lilas; ámbar, arena y neutros cálidos ---------- */
+:root {
+  --accent: #e9c08a;
+  --accent-2: #d9a066;
+  --sim: #d8c9c6;
+  --user: #e9c08a;
+  --test: #d8c9c6;
+  --lilac: #d8c9c6;
+  --lilac-line: #4a2e39;
+}
+.risk__cat--physiology, .risk__cat--behavior { color: var(--text-2); }
+.step__link { border-color: var(--border-2); color: var(--text); }
+.step__link:hover { background: var(--panel-2); border-color: var(--amber); }
+.body-card__manual, .identity__watch { color: var(--text-2); }
+.how__earth, .how__refs { margin-top: 28px; display: grid; gap: 12px; }
+.how__earth .dbtn { width: fit-content; text-decoration: none; }
+.how__earth-steps { margin: 0; padding-left: 22px; display: grid; gap: 8px; color: var(--text-2); line-height: 1.5; max-width: 72ch; }
+.how__refs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.how__refs-col { padding: 16px 18px; border: 1px solid var(--border-2); border-radius: 14px; background: var(--panel); }
+.how__refs-col h3 { margin: 0 0 10px; font-size: 15px; color: var(--amber); }
+.how__refs-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.how__refs-col li { display: grid; gap: 2px; }
+.how__refs-col li b { color: var(--text); font-size: 14px; }
+.how__refs-col li span { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.prevent { border-color: var(--border-2); background: var(--bg-2); }
+.prevent__title { color: var(--amber); }

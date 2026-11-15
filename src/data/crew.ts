@@ -25,10 +25,10 @@ export interface CrewMember {
 }
 
 export const CREW: CrewMember[] = [
-  { id: "AR1-001", name: "Tomás Quispe", initials: "TQ", role: "commander", age: 46, heightM: 1.74, weightKg: 76, bloodType: "A+", scenarioId: "accumulated_fatigue", buddyId: "AR1-004" },
+  { id: "AR1-001", name: "Valeria Choque", initials: "VC", role: "commander", age: 44, heightM: 1.63, weightKg: 59, bloodType: "A+", scenarioId: "accumulated_fatigue", buddyId: "AR1-004" },
   { id: "AR1-002", name: "Elena Marín", initials: "EM", role: "specialist", age: 38, heightM: 1.68, weightKg: 62, bloodType: "O+", scenarioId: "stable", buddyId: "AR1-003" },
-  { id: "AR1-003", name: "Daniel Okafor", initials: "DO", role: "pilot", age: 41, heightM: 1.82, weightKg: 81, bloodType: "B+", scenarioId: "sleep_deficit", buddyId: "AR1-002" },
-  { id: "AR1-004", name: "Sofía Lindqvist", initials: "SL", role: "medical", age: 35, heightM: 1.65, weightKg: 58, bloodType: "AB-", scenarioId: "recovery", buddyId: "AR1-001" },
+  { id: "AR1-003", name: "Camila Rojas", initials: "CR", role: "pilot", age: 36, heightM: 1.66, weightKg: 60, bloodType: "B+", scenarioId: "sleep_deficit", buddyId: "AR1-002" },
+  { id: "AR1-004", name: "Daniel Okafor", initials: "DO", role: "medical", age: 41, heightM: 1.82, weightKg: 81, bloodType: "AB-", scenarioId: "recovery", buddyId: "AR1-001" },
 ];
 
 export const crewById = (id: string | null | undefined) => CREW.find((c) => c.id === id);

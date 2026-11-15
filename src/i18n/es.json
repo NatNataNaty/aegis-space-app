@@ -42,7 +42,8 @@
       "Los umbrales del detector son parámetros experimentales, no límites médicos oficiales de NASA.",
       "Si no hay rostro o la calidad es insuficiente, el dato se muestra como «No disponible», nunca como cero."
     ],
-    "refsTitle": "Referencias del contenido"
+    "refsTitle": "Referencias del contenido",
+    "refsHint": "Las fuentes de todo el contenido están en «¿Cómo funciona aegis?»."
   },
   "nav": {
     "emergency": "Emergencia",
@@ -390,7 +391,7 @@
     "aria": "Módulos",
     "vitals": "Signos vitales",
     "eye": "Escaneo ocular",
-    "log": "Cómo me siento",
+    "log": "¿Cómo me siento?",
     "alerts": "Alertas",
     "hazards": "Peligros y guía",
     "radiation": "Radiación y ejercicio",
@@ -402,7 +403,7 @@
     "assistant": "Asistente de a bordo",
     "assistantSub": "Próximamente: responderá con la biblioteca de NASA y CSA",
     "face": "Identificación facial",
-    "how": "Cómo funciona aegis",
+    "how": "¿Cómo funciona aegis?",
     "group": {
       "watch": "Vigilancia",
       "guide": "Alertas y guía",
@@ -447,7 +448,7 @@
     "relatedProtocol": "Ver el protocolo relacionado",
     "helpSent": "Aviso enviado",
     "openManual": "Abrir en el manual de a bordo",
-    "openLog": "Abrir «Cómo me siento»"
+    "openLog": "Abrir «¿Cómo me siento?»"
   },
   "engine": {
     "disclaimer": "Prototipo educativo de apoyo a la observación. No es un diagnóstico.",
@@ -607,11 +608,11 @@
     },
     "vitals": "Signos vitales del afectado",
     "callAnother": "Pedir otro compañero",
-    "trigger": "Cuándo se abre",
+    "trigger": "¿Cuándo se abre?",
     "buddyPolicyTitle": "¿Hace falta compañero?",
     "escalate": "Cuándo escalar",
     "source": "Riesgo de NASA relacionado",
-    "pendingNote": "Los pasos no clínicos siguen el formato del plan. Cada paso clínico remite al manual médico de a bordo y debe revisarlo alguien con formación médica.",
+    "pendingNote": "Sigue los pasos uno a uno y pulsa «Hecho»: cada paso queda guardado con su hora.",
     "notFoundTitle": "Protocolo no encontrado",
     "notFound": "No hay ningún protocolo con el identificador «{{id}}».",
     "kind": {
@@ -631,7 +632,7 @@
       "everyone": "Toda la tripulación, al refugio."
     },
     "bpm": "lpm",
-    "whyAnchor": "Por qué el primer paso es sujetarse",
+    "whyAnchor": "¿Por qué el primer paso es sujetarse?",
     "whyAnchorText": "Sin gravedad, quien atiende debe sujetar el equipo, al tripulante y a sí mismo antes de ayudar.",
     "whyAnchorSource": "NASA · Factores humanos y sistemas médicos de la ISS"
   },
@@ -658,7 +659,7 @@
     },
     "hazards": "Peligros",
     "openProtocol": "Abrir protocolo: {{name}}",
-    "studies": "Cómo lo combatimos: estudios de NASA",
+    "studies": "¿Cómo lo combatimos? Estudios de NASA",
     "earth": "Beneficios en la Tierra (CSA)",
     "officialPage": "Página oficial del riesgo",
     "mission": {
@@ -712,12 +713,12 @@
     "telemetry": "Reportes de la tripulación",
     "delayNote": "Retardo real de la señal: hasta 20 minutos por sentido entre la Tierra y Marte (NASA HRP). Luna y Marte son una demo acelerada: aquí tardan segundos.",
     "reports": "Reportes de cada tripulante",
-    "reportsSub": "Cada minuto sale un resumen de signos por tripulante; también cada «Cómo me siento», cada cambio de semáforo y cada protocolo completado. Sin enlace se guardan a bordo y viajan en el siguiente contacto.",
+    "reportsSub": "Cada minuto sale un resumen de signos por tripulante; también cada «¿Cómo me siento?», cada cambio de semáforo y cada protocolo completado. Sin enlace se guardan a bordo y viajan en el siguiente contacto.",
     "noReports": "Aún no hay reportes en la bandeja.",
     "neverSent": "Nunca se envían fotos, vídeo, puntos del rostro, la plantilla facial ni el PIN.",
     "reportKind": {
       "minute_summary": "Resumen de signos",
-      "self_report": "Cómo me siento",
+      "self_report": "¿Cómo me siento?",
       "alerts_log": "Aviso o cambio de semáforo",
       "protocol_runs": "Protocolo completado",
       "manual_measurement": "Medición a mano"
@@ -801,10 +802,10 @@
     }
   },
   "quick": {
-    "title": "Qué puedes hacer",
+    "title": "¿Qué puedes hacer?",
     "faceTitle": "Identificación facial",
     "face": "Reconoce quién eres con la cámara y abre tu ficha de tripulante. Todo se compara en tu equipo.",
-    "logTitle": "Cómo me siento",
+    "logTitle": "¿Cómo me siento?",
     "logLast": "Cuenta tu fatiga, ánimo y síntomas. Última entrada a las {{time}}.",
     "logNone": "Cuenta tu fatiga, ánimo y síntomas. Aún no hay entradas hoy.",
     "alertsTitle": "Alertas y protocolos",
@@ -859,8 +860,8 @@
       "bp": "Presión arterial",
       "temp": "Temperatura",
       "sleep": "Sueño",
-      "feel": "Cómo me siento",
-      "feelHint": "Cómo me siento: fatiga · ánimo · estrés."
+      "feel": "¿Cómo me siento?",
+      "feelHint": "¿Cómo me siento? Fatiga, ánimo y estrés."
     },
     "days": {
       "title": "Últimos días",
@@ -892,7 +893,7 @@
     "empty": "Pregúntame cómo estás, qué significa un dato o por qué importa algo en el viaje. Respondo con tus datos de este equipo y con la biblioteca de NASA y CSA.",
     "placeholder": "Escribe tu pregunta…",
     "send": "Enviar",
-    "openLog": "Abrir «Cómo me siento»",
+    "openLog": "Abrir «¿Cómo me siento?»",
     "quickTitle": "Preguntas rápidas",
     "q": {
       "today": "¿Cómo estoy hoy?",
@@ -902,13 +903,13 @@
       "sleepWhy": "¿Por qué importa dormir bien en el viaje a Marte?",
       "logSymptom": "Quiero anotar un síntoma"
     },
-    "seesTitle": "Qué datos ve el asistente",
+    "seesTitle": "¿Qué datos ve el asistente?",
     "seesSub": "Solo lo que ya está en este dispositivo.",
     "sees": {
       "vitals": "Signos vitales",
       "vitalsSub": "Pulso, oxígeno, presión, temperatura",
       "sleep": "Sueño y horario de la misión",
-      "feel": "Cómo me siento",
+      "feel": "¿Cómo me siento?",
       "feelLast": "Último registro a las {{time}}",
       "feelNone": "Sin registros hoy",
       "library": "Biblioteca NASA HRP y CSA",
@@ -924,9 +925,9 @@
       "todayAlerts": "Hoy, día {{day}}: pulso {{hr}} latidos por minuto (lo normal para ti es {{usual}}), oxígeno {{spo2}} %, presión {{bp}} mmHg, temperatura {{temp}} °C y {{sleep}} h de sueño. Hay {{count}} aviso(s) activo(s): ábrelos en Alertas para ver qué hacer.",
       "oxygen": "Tu oxígeno en sangre es {{spo2}} %: es el porcentaje de tu sangre que transporta oxígeno. NASA estudia la falta de oxígeno (hipoxia) como uno de los riesgos del vuelo espacial. Si te falta el aire o te mareas, abre Emergencia.",
       "radiation": "Llevas {{total}} mSv acumulados en el viaje, unos {{daily}} mSv al día en esta demo. La radiación espacial no se ve ni se siente: por eso se mide y se registra. NASA la considera uno de los peligros más importantes de una misión a Marte.",
-      "sleepWeek": "En las últimas {{count}} noches dormiste de media {{avg}} h. {{short}} noche(s) bajaron de 6 h. Si notas cansancio, anótalo en «Cómo me siento».",
+      "sleepWeek": "En las últimas {{count}} noches dormiste de media {{avg}} h. {{short}} noche(s) bajaron de 6 h. Si notas cansancio, anótalo en «¿Cómo me siento?».",
       "sleepWhy": "En misiones largas, dormir bien ayuda a mantener la atención y el ánimo. NASA señala que la falta de sueño, el reloj interno desajustado y el exceso de trabajo se suman en el aislamiento. No recomiendo medicamentos ni dosis: ante síntomas graves, abre Emergencia.",
-      "logSymptom": "Claro. En «Cómo me siento» marcas tus síntomas y la app te dice qué protocolo seguir.",
+      "logSymptom": "Claro. En «¿Cómo me siento?» marcas tus síntomas y la app te dice qué protocolo seguir.",
       "baseline": "Lo normal para ti, según lo que la app aprendió, es un pulso de {{hr}} latidos por minuto, con {{count}} lecturas: {{state}}. Solo sirve para explicarte tus datos; los umbrales de alerta no cambian.",
       "baselineNone": "Todavía no tengo lecturas tuyas para aprender lo normal para ti. En unos minutos de uso empezaré.",
       "unsafe": "No recomiendo medicamentos ni dosis. Si te encuentras mal, abre Emergencia y sigue el protocolo con tu compañero u oficial médico.",
@@ -934,7 +935,7 @@
     }
   },
   "how": {
-    "title": "Cómo funciona aegis",
+    "title": "¿Cómo funciona aegis?",
     "lead": "Mide, avisa, guía y registra. Todo en el dispositivo, sin red.",
     "menuTitle": "Menú en tres bloques",
     "inputs": {
@@ -943,15 +944,15 @@
     },
     "detect": {
       "title": "Detección",
-      "sub": "Qué se sale de lo normal"
+      "sub": "¿Qué se sale de lo normal?"
     },
     "respond": {
       "title": "Respuesta",
-      "sub": "Qué pasa cuando hay una alerta"
+      "sub": "¿Qué pasa cuando hay una alerta?"
     },
     "record": {
       "title": "Registro y Tierra",
-      "sub": "Qué se guarda y qué sale"
+      "sub": "¿Qué se guarda y qué sale?"
     },
     "items": {
       "camera": {
@@ -963,7 +964,7 @@
         "text": "Pulso, oxígeno, presión, temperatura, sueño y radiación."
       },
       "feel": {
-        "title": "Cómo me siento",
+        "title": "¿Cómo me siento?",
         "text": "Cuestionario y prueba de reacción."
       },
       "engine": {
@@ -980,7 +981,7 @@
       },
       "protocol": {
         "title": "Protocolo paso a paso",
-        "text": "11 protocolos. Pendientes de revisión médica."
+        "text": "11 protocolos paso a paso, solo o con compañero."
       },
       "vault": {
         "title": "Registro a bordo",
@@ -996,9 +997,24 @@
       }
     },
     "menu": {
-      "watch": "Signos vitales, Identificación facial y Cómo me siento.",
+      "watch": "Signos vitales, Identificación facial y ¿Cómo me siento?",
       "guide": "Alertas, y Peligros y guía con los 5 peligros y 17 riesgos de NASA.",
       "mission": "Radiación y ejercicio, y Sueño y misión."
+    },
+    "earth": {
+      "title": "¿Cómo sé que los reportes llegan a la Tierra?",
+      "s1": "Cada minuto se guarda en la tableta un resumen de signos de cada tripulante; también cada «¿Cómo me siento?», cada medición, cada alarma y cada protocolo.",
+      "s2": "Cuando hay enlace, salen solos hacia el servidor de la Tierra con el retraso real de la señal. Sin enlace, esperan a bordo.",
+      "s3": "En el centro de control cada reporte pasa de «En cola» a «Entregado», con su tripulante y su hora.",
+      "open": "Ver los envíos a la Tierra"
+    },
+    "refs": {
+      "title": "¿De dónde sale la información?",
+      "sub": "Todo el contenido médico y espacial viene de estas fuentes. Va incluido en la app y funciona sin internet.",
+      "space": "Salud en el espacio",
+      "firstAid": "Primeros auxilios",
+      "devices": "Dispositivos y visión",
+      "note": "Las acciones de primeros auxilios no incluyen fármacos ni dosis: esos los indica el médico de vuelo. Su adaptación a la microgravedad requiere validación médica antes de una misión real."
     }
   },
   "source": {
@@ -1029,7 +1045,7 @@
       "yellow": "Repite la medición y anota cómo te sientes.",
       "red": "Pide ayuda y sigue el protocolo paso a paso."
     },
-    "legendTitle": "Qué significa cada color"
+    "legendTitle": "¿Qué significa cada color?"
   },
   "measure": {
     "title": "Registrar medición",
@@ -1073,7 +1089,7 @@
     }
   },
   "prevent": {
-    "title": "Cómo prevenirlo",
+    "title": "¿Cómo prevenirlo?",
     "note": "Contramedidas que describe NASA. No incluyen fármacos ni dosis: esos los indica el médico de vuelo.",
     "techBrief": "NASA · informe técnico"
   },
@@ -1082,7 +1098,7 @@
       "commander": "Comandante",
       "pilot": "Piloto",
       "specialist": "Especialista de misión",
-      "medical": "Oficial médica"
+      "medical": "Oficial médico"
     }
   },
   "manual": {
@@ -1092,9 +1108,9 @@
     "clinicalText": "El procedimiento clínico validado (fármacos, dosis y maniobras) lo carga el equipo médico de vuelo antes de la misión. En este prototipo queda pendiente de revisión médica: aegis no inventa tratamientos. Mientras tanto, sigue los pasos de abajo y avisa al oficial médico.",
     "askOfficer": "Avisar al oficial médico",
     "nowTitle": "Lo que sí puedes hacer ya",
-    "riskTitle": "Qué es este riesgo: {{name}}",
+    "riskTitle": "¿Qué es este riesgo? {{name}}",
     "signsTitle": "Señales de alarma: actúa ya",
-    "doTitle": "Qué hacer ahora",
+    "doTitle": "¿Qué hacer ahora?",
     "related": "Si empeora: {{name}}",
     "reviewNote": "Acciones de primeros auxilios de guías reconocidas. Su adaptación a la microgravedad y cualquier fármaco los define el equipo médico de vuelo."
   },

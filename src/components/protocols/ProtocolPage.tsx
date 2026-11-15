@@ -41,7 +41,6 @@ export function ProtocolPage() {
 
   return (
     <PageShell title={title}>
-      <p className="page__pending">{t("medical.pendingReview")}</p>
       <p className="protocol__note">{t("protocol.pendingNote")}</p>
 
       <div className="protocol">
@@ -123,8 +122,6 @@ export function ProtocolPage() {
             <p>{pick(protocol.trigger, lang)}</p>
             <h3>{t("protocol.buddyPolicyTitle")}</h3>
             <p>{t(`protocol.buddyPolicy.${protocol.buddy}`)}</p>
-            <h3>{t("protocol.escalate")}</h3>
-            <p>{pick(protocol.escalate, lang)}</p>
           </div>
 
           {risk?.prevention && (

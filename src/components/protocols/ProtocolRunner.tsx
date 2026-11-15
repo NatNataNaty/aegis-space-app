@@ -29,7 +29,7 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
   // Los pasos que remiten a otra parte de la app llevan a ella con un toque.
   const stepLink = (s: ProtocolStep): { to: string; label: string } | null => {
     if (s.text.es.includes("manual médico")) return { to: manualPath(protocol.id, i18n.language), label: t("steps.openManual") };
-    if (s.text.es.includes("«Cómo me siento»")) return { to: modulePath("log"), label: t("steps.openLog") };
+    if (s.text.es.includes("Cómo me siento")) return { to: modulePath("log"), label: t("steps.openLog") };
     return null;
   };
   const [current, setCurrent] = useState(0);
@@ -96,7 +96,6 @@ export function ProtocolRunner({ protocol, mode, compact = false }: { protocol: 
                   <Icon size={14} aria-hidden /> {t(`protocol.kind.${s.kind}`)}
                 </span>
                 <span className="step__text">{pick(s.text, i18n.language)}</span>
-                {s.kind === "clinical" && <span className="step__pending">{t("medical.pendingReview")}</span>}
                 {stepLink(s) && (
                   <Link className="step__link" to={stepLink(s)!.to}>
                     {stepLink(s)!.label} <ChevronRight size={14} aria-hidden />
