@@ -508,10 +508,12 @@ h3,
    10 % rojo de acción (botón principal, menú activo, emergencia). Nada más compite con él.
    ========================================================================== */
 :root {
-  --action: #fc3d21;
-  --action-hover: #e2341a;
+  /* Rojo de acción con texto blanco legible (5:1, WCAG AA); el rojo NASA vivo solo en detalles sin texto */
+  --action: #d42e17;
+  --action-hover: #bd2611;
+  --action-bright: #fc3d21;
   --action-ink: #ffffff;
-  --rust: #fc3d21;
+  --rust: #d42e17;
 }
 
 /* Menú activo: superficie azul más clara, texto blanco y una barra roja (el 10 %) */
@@ -528,7 +530,7 @@ h3,
   bottom: 8px;
   width: 3px;
   border-radius: 3px;
-  background: var(--action);
+  background: var(--action-bright);
 }
 .rail__item--on .rail__hint {
   color: var(--muted);
