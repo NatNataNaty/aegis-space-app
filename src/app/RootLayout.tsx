@@ -3,6 +3,7 @@ import { BuddyAlarm } from "../components/alerts/BuddyAlarm";
 import { HelpOverlay } from "../components/alerts/HelpOverlay";
 import { HelpStatus } from "../components/alerts/HelpStatus";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
+import { VaultLock } from "../components/layout/VaultLock";
 import { useAppEngine } from "../hooks/useAppEngine";
 import { useHelpWatcher } from "../hooks/useHelpWatcher";
 
@@ -20,6 +21,9 @@ export function RootLayout() {
         <HelpStatus />
         <HelpOverlay />
         <BuddyAlarm />
+      </ErrorBoundary>
+      <ErrorBoundary name="vault">
+        <VaultLock />
       </ErrorBoundary>
       <ErrorBoundary name="page">
         <Outlet />

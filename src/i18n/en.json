@@ -685,5 +685,40 @@
     "title": "The “{{name}}” module failed",
     "body": "The rest of the app keeps working. If it is urgent, open <a>Emergency</a>.",
     "retry": "Retry"
+  },
+  "vault": {
+    "bar": {
+      "new": "Your medical log has no PIN yet.",
+      "locked": "Medical log locked.",
+      "unlocked": "Medical log encrypted and open.",
+      "pending": "{{count}} event(s) waiting to be stored encrypted."
+    },
+    "create": "Create PIN",
+    "unlock": "Unlock",
+    "lock": "Lock",
+    "later": "Not now",
+    "working": "Protecting…",
+    "title": {
+      "new": "Protect your medical log",
+      "locked": "Unlock your medical log"
+    },
+    "lead": {
+      "new": "Choose a 4 to 8 digit PIN. It encrypts your alerts, help calls and protocol steps on this device.",
+      "locked": "Enter your PIN to store and see your encrypted records."
+    },
+    "pin": "PIN",
+    "confirm": "Repeat the PIN",
+    "err": {
+      "format": "The PIN must have 4 to 8 digits.",
+      "mismatch": "The two PINs do not match.",
+      "wrong": "Wrong PIN.",
+      "failed": "The log could not be opened. The app keeps working and stores in memory."
+    },
+    "note": "The PIN is never stored. Emergency and “Do you need help?” work even while the log is locked.",
+    "reset": {
+      "title": "I forgot my PIN",
+      "warning": "Without the PIN nothing can be decrypted. Deleting the log removes every event stored on this device.",
+      "confirm": "Delete the log and create a new PIN"
+    }
   }
 }
